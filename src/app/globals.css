@@ -1,38 +1,26 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-  
 /* "bg-pointGreen" "text-gray2" 등으로 사용 */
 @theme {
     --color-mainBlack: #202020;
-    --color-mainRed: #FF4427;
-    --color-mainWhite: #FFF;
+    --color-mainRed: #ff4427;
+    --color-mainWhite: #fff;
 
-    --color-pointYellow: #FD0;
-    --color-pointDarkYellow: #CDB200;
-    --color-pointGreen: #71E200;
-    --color-pointDarkGreen: #00BF1D;
-    
-    --color-gray1: #4D5358;
+    --color-pointYellow: #fd0;
+    --color-pointDarkYellow: #cdb200;
+    --color-pointGreen: #71e200;
+    --color-pointDarkGreen: #00bf1d;
+
+    --color-gray1: #4d5358;
     --color-gray2: #747474;
-    --color-gray3: #AAAAAA;
-    --color-gray4: #D5D5D5;
-    --color-gray5: #EBEBEB;
-    --color-gray6: #F8F8F8;
+    --color-gray3: #aaaaaa;
+    --color-gray4: #d5d5d5;
+    --color-gray5: #ebebeb;
+    --color-gray6: #f8f8f8;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    max-width: 100vw;
+    height: 100vh;
 }
