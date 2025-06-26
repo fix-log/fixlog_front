@@ -1,4 +1,4 @@
-import Login from "@/pages/login";
+import Login from '@/pages/Login';
 
 export default function login() {
     return (

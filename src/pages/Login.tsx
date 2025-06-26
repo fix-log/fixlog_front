@@ -1,30 +1,52 @@
 'use client';
 
-import AuthLinkButton from '@/features/login/ui/AuthLinkButton';
-import OAuthButton from '@/features/login/ui/OAuthButton';
 import BackButton from '@/shared/ui/BackButton';
-import FormHeader from '@/shared/ui/FormHeader';
-import FormSubmitButton from '@/shared/ui/FormSubmitButton';
-import Input from '@/shared/ui/Input';
+import OAuthButton from '@/features/login/ui/OAuthButton';
+import AuthLinkButton from '@/features/login/ui/AuthLinkButton';
+import loginAPI from '@/features/login/api/loginAPI';
+import { useRouter } from 'next/navigation';
+import FormHeader from '@/features/form/ui/FormHeader';
+import FormSubmitButton from '@/features/form/ui/FormSubmitButton';
+import InputString from '@/features/form/ui/InputString';
+import { useForm } from 'react-hook-form';
+import { loginFormState } from '@/features/login/model/loginFormState';
 
 export default function Login() {
+    const router = useRouter();
+    const {
+        register,
+        handleSubmit,
+        getValues,
+        formState: { errors, isSubmitting },
+    } = useForm<loginFormState>();
+
+    function handleClick() {
+        const email = getValues('email');
+        const password = getValues('password');
+
+        if (loginAPI({ email, password, errors })) router.push('/');
+        else alert(`계정을 찾을 수 없습니다\n다시 확인해주세요`);
+    }
+
     return (
         <div>
             <BackButton />
             <FormHeader title="로그인" />
-            <Input type="email" placeholder="이메일을 입력해주세요" />
-            <Input type="password" placeholder="비밀번호를 입력해주세요" />
-            <FormSubmitButton text="로그인하기" handleClick={() => console.log('test')} />
+            <form onSubmit={handleSubmit(handleClick)}>
+                <InputString type="email" name="email" placeholder="이메일을 입력해주세요" errors={errors} register={register} />
+                <InputString type="password" name="password" placeholder="비밀번호를 입력해주세요" errors={errors} register={register} />
+                <FormSubmitButton text="로그인하기" isSubmitting={isSubmitting} />
+            </form>
             <hr />
             <div>
-                <OAuthButton provider='github' />
-                <OAuthButton provider='naver' />
-                <OAuthButton provider='kakao' />
+                <OAuthButton provider="github" />
+                <OAuthButton provider="naver" />
+                <OAuthButton provider="kakao" />
             </div>
             <div>
-                <AuthLinkButton text='이메일 찾기'/>
-                <AuthLinkButton text='비밀번호 찾기'/>
-                <AuthLinkButton text='회원가입'/>
+                <AuthLinkButton text="이메일 찾기" handleClick={() => router.push('find-email')} />
+                <AuthLinkButton text="비밀번호 찾기" handleClick={() => router.push('find-password')} />
+                <AuthLinkButton text="회원가입" handleClick={() => router.push('signup')} />
             </div>
         </div>
     );
