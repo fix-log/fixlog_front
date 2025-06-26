@@ -1,6 +1,7 @@
 import { UseFormRegister } from "react-hook-form"
 import { FormErrorMessage, FormErrorMessageType } from "./FormErrorMessage"
 import { loginFormState } from "@/features/login/model/loginFormState"
+import { Validation } from "./Validation"
 
 interface FormRegisterProps {
     name: keyof FormErrorMessageType
@@ -8,21 +9,11 @@ interface FormRegisterProps {
 }
 
 export default function FormRegister ({register, name}:FormRegisterProps) {
-    const data = {
-        email: {...register("email", {
-            required: FormErrorMessage.email,
-            pattern: {
-                value: /\S+@\S+\.\S+/,
-                message: FormErrorMessage.email
-            }
-        })},
-        password: {...register("password", {
-            required: FormErrorMessage.password,
-            pattern: {
-                value: /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,16}$/,
-                message: FormErrorMessage.password
-            }
-        })},
-    }
-    return data[name]
+    return {...register(name, {
+        required: FormErrorMessage[name].required,
+        pattern: {
+            value: Validation[name],
+            message: FormErrorMessage[name].message
+        }
+    })}
 }

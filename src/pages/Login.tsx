@@ -1,6 +1,5 @@
 'use client';
 
-import BackButton from '@/shared/ui/BackButton';
 import OAuthButton from '@/features/login/ui/OAuthButton';
 import AuthLinkButton from '@/features/login/ui/AuthLinkButton';
 import loginAPI from '@/features/login/api/loginAPI';
