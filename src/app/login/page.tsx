@@ -36,7 +36,7 @@ export default function Login() {
                 <FormSubmitButton text="로그인하기" isSubmitting={isSubmitting} />
             </form>
             <hr className='border-gray5 w-full'/>
-            <div className='!my-10'>
+            <div className='flex !my-10'>
                 <OAuthButton provider="github" />
                 <OAuthButton provider="naver" />
                 <OAuthButton provider="kakao" />
