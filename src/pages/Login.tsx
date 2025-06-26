@@ -5,9 +5,9 @@ import OAuthButton from '@/features/login/ui/OAuthButton';
 import AuthLinkButton from '@/features/login/ui/AuthLinkButton';
 import loginAPI from '@/features/login/api/loginAPI';
 import { useRouter } from 'next/navigation';
-import FormHeader from '@/features/form/ui/FormHeader';
-import FormSubmitButton from '@/features/form/ui/FormSubmitButton';
-import InputString from '@/features/form/ui/InputString';
+import FormHeader from '@/shared/form/ui/FormHeader';
+import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
+import InputString from '@/shared/form/ui/InputString';
 import { useForm } from 'react-hook-form';
 import { loginFormState } from '@/features/login/model/loginFormState';
 
@@ -30,7 +30,6 @@ export default function Login() {
 
     return (
         <div className='flex flex-col items-center max-w-[500px] w-full'>
-            <BackButton />
             <FormHeader title="로그인" />
             <form className="flex flex-col items-center w-full" onSubmit={handleSubmit(handleClick)}>
                 <InputString type="email" name="email" placeholder="이메일을 입력해주세요" errors={errors} register={register} />
