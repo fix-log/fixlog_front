@@ -29,16 +29,16 @@ export default function Login() {
     }
 
     return (
-        <div>
+        <div className='flex flex-col items-center max-w-[500px] w-full'>
             <BackButton />
             <FormHeader title="로그인" />
-            <form onSubmit={handleSubmit(handleClick)}>
+            <form className="flex flex-col items-center w-full" onSubmit={handleSubmit(handleClick)}>
                 <InputString type="email" name="email" placeholder="이메일을 입력해주세요" errors={errors} register={register} />
                 <InputString type="password" name="password" placeholder="비밀번호를 입력해주세요" errors={errors} register={register} />
                 <FormSubmitButton text="로그인하기" isSubmitting={isSubmitting} />
             </form>
-            <hr />
-            <div>
+            <hr className='border-gray5 w-full'/>
+            <div className='!my-10'>
                 <OAuthButton provider="github" />
                 <OAuthButton provider="naver" />
                 <OAuthButton provider="kakao" />
@@ -46,7 +46,7 @@ export default function Login() {
             <div>
                 <AuthLinkButton text="이메일 찾기" handleClick={() => router.push('find-email')} />
                 <AuthLinkButton text="비밀번호 찾기" handleClick={() => router.push('find-password')} />
-                <AuthLinkButton text="회원가입" handleClick={() => router.push('signup')} />
+                <AuthLinkButton text="회원가입" handleClick={() => router.push('signup')} className='text-mainRed' />
             </div>
         </div>
     );
