@@ -12,9 +12,10 @@ interface InputStringProps {
     register: UseFormRegister<FieldValues>;
     label?: string;
     isRequired?: boolean;
+    children?: React.ReactNode;
 }
 
-export default function InputString({ type, name, errors, placeholder, register, label, isRequired }: InputStringProps) {
+export default function InputString({ type, name, errors, placeholder, register, label, isRequired, children }: InputStringProps) {
     return (
         <div className="w-full">
             {label && (
@@ -23,12 +24,15 @@ export default function InputString({ type, name, errors, placeholder, register,
                     {isRequired && <span className="text-mainRed">*</span>}
                 </p>
             )}
-            <input
-                className="border-1 border-gray4 rounded-[5px] text-[20px] w-full h-[60px] !pl-[17px] !pr-[20px] !my-[10px] focus:outline-none focus:border-pointDarkYellow/50 focus:shadow-[0_0_3.6px_#CDB200]"
-                type={type}
-                placeholder={placeholder}
-                {...FormRegister({ register, name })}
-            />
+            <div className='flex w-full'>
+                <input
+                    className="border-1 border-gray4 rounded-[5px] text-[20px] w-full h-[60px] !pl-[17px] !pr-[20px] !my-[10px] focus:outline-none focus:border-pointDarkYellow/50 focus:shadow-[0_0_3.6px_#CDB200]"
+                    type={type}
+                    placeholder={placeholder}
+                    {...FormRegister({ register, name })}
+                />
+                {children}
+            </div>
             {errors[name] && <p className="text-pointDarkYellow !pl-3 !-mt-2">{errors[name].message?.toString()}</p>}
         </div>
     );
