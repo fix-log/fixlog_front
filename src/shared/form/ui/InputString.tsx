@@ -2,14 +2,14 @@
 
 import FormRegister from '../model/FormRegister';
 import { FormErrorMessageType } from '../model/FormErrorMessage';
-import { FieldErrors } from 'react-hook-form';
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 
 interface InputStringProps {
     type: 'text' | 'number' | 'email' | 'password';
     name: keyof FormErrorMessageType;
     placeholder: string;
     errors: FieldErrors;
-    register: UseFormRegister<any>; //타입선언 해매다 일단 임시 any타입 선언
+    register: UseFormRegister<FieldValues>;
     label?: string;
     isRequired?: boolean;
 }
@@ -29,7 +29,7 @@ export default function InputString({ type, name, errors, placeholder, register,
                 placeholder={placeholder}
                 {...FormRegister({ register, name })}
             />
-            {errors[name] && <p className="text-pointDarkYellow !pl-3 !-mt-2">{errors[name].message}</p>}
+            {errors[name] && <p className="text-pointDarkYellow !pl-3 !-mt-2">{errors[name].message?.toString()}</p>}
         </div>
     );
 }

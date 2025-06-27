@@ -8,7 +8,6 @@ import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
 import InputString from '@/shared/form/ui/InputString';
 import { useForm } from 'react-hook-form';
-import { LoginFormStateType } from '@/features/login/model/loginFormState';
 
 export default function Login() {
     const router = useRouter();
@@ -18,7 +17,7 @@ export default function Login() {
         handleSubmit,
         getValues,
         formState: { errors, isSubmitting },
-    } = useForm<LoginFormStateType>();
+    } = useForm();
 
     function handleClick() {
         const email = getValues('email');
