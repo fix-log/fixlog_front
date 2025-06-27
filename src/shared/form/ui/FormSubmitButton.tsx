@@ -1,5 +1,3 @@
-'use client';
-
 interface FormSubmitButtonProps {
     text: string;
     isSubmitting: boolean;
