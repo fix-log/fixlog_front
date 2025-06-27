@@ -1,5 +1,5 @@
-export const ProviderImages = {
-    github: "/log_git.png",
-    naver: "/log_naver.png",
-    kakao: "/log_kakao.png"
+export const providerImages = {
+    github: "/logo_git.png",
+    naver: "/logo_naver.png",
+    kakao: "/logo_kakao.png"
 }

@@ -1,4 +1,4 @@
-export interface loginFormState {
+export interface LoginFormStateType {
     email: string;
     password: string;
     error: {
@@ -7,7 +7,7 @@ export interface loginFormState {
     }
 }
 
-export const loginFormState: loginFormState = {
+export const loginFormState: LoginFormStateType = {
     email: '',
     password: '',
     error: {
