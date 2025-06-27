@@ -1,19 +1,18 @@
 import { UseFormRegister } from "react-hook-form"
-import { FormErrorMessage, FormErrorMessageType } from "./FormErrorMessage"
-import { loginFormState } from "@/features/login/model/loginFormState"
-import { Validation } from "./Validation"
+import { formErrorMessage, FormErrorMessageType } from "./FormErrorMessage"
+import { validation } from "./Validation"
 
 interface FormRegisterProps {
     name: keyof FormErrorMessageType
-    register: UseFormRegister<loginFormState>
+    register: UseFormRegister<any> //타입선언 해매다 일단 임시 any타입 선언
 }
 
-export default function FormRegister ({register, name}:FormRegisterProps) {
+export default function formRegister ({register, name}:FormRegisterProps) {
     return {...register(name, {
-        required: FormErrorMessage[name].required,
+        required: formErrorMessage[name].required,
         pattern: {
-            value: Validation[name],
-            message: FormErrorMessage[name].message
+            value: validation[name],
+            message: formErrorMessage[name].message
         }
     })}
 }

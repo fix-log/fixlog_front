@@ -9,7 +9,7 @@ interface InputStringProps {
     name: keyof FormErrorMessageType;
     placeholder: string;
     errors: FieldErrors;
-    register: any; //타입선언 해매다 일단 임시 any타입 선언
+    register: UseFormRegister<any>; //타입선언 해매다 일단 임시 any타입 선언
     label?: string;
     isRequired?: boolean;
 }

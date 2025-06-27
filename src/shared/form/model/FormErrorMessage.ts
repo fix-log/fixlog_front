@@ -8,7 +8,7 @@ export interface FormErrorMessageType {
     password: FieldErrorMessage;
 }
 
-export const FormErrorMessage: FormErrorMessageType = {
+export const formErrorMessage: FormErrorMessageType = {
     email: {
         required: "이메일을 입력해주세요",
         message: "이메일 형식이 맞지 않습니다"

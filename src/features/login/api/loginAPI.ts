@@ -2,15 +2,15 @@
 // API 준비되면 갈아엎어질 파일
 
 import { FieldErrors } from "react-hook-form"
-import { loginFormState } from "../model/loginFormState"
+import { LoginFormStateType } from "../model/loginFormState"
 
-interface loginAPIProps {
+interface LoginAPIProps {
     email: string
     password: string
-    errors: FieldErrors<loginFormState>
+    errors: FieldErrors<LoginFormStateType>
 }
 
-export default function loginAPI ({email, password, errors}:loginAPIProps) {
+export default function loginAPI ({email, password, errors}:LoginAPIProps) {
     const data = {
         email: "true@gmail.com",
         password: '123456@A'}
