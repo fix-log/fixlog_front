@@ -24,9 +24,9 @@ export default function InputString({ type, name, errors, placeholder, register,
                     {isRequired && <span className="text-mainRed">*</span>}
                 </p>
             )}
-            <div className='flex w-full'>
+            <div className='flex items-center w-full'>
                 <input
-                    className="border-1 border-gray4 rounded-[5px] text-[20px] w-full h-[60px] !pl-[17px] !pr-[20px] !my-[10px] focus:outline-none focus:border-pointDarkYellow/50 focus:shadow-[0_0_3.6px_#CDB200]"
+                    className="border-1 border-gray4 rounded-[5px] text-[20px] w-full h-[60px] !pl-[17px] !pr-[20px] !my-[15px] focus:outline-none focus:border-pointDarkYellow/50 focus:shadow-[0_0_3.6px_#CDB200]"
                     type={type}
                     placeholder={placeholder}
                     {...FormRegister({ register, name })}
