@@ -1,8 +1,36 @@
 export default async function Page() {
+    // TODO: 내 이슈 데이터 가져오기
+
     return (
-        <>
-            <div>내 이슈 페이지</div>
-            <div>해당 프로젝트의 내 이슈 받아와서 렌더링하기 (포지션도 표시)</div>
-        </>
+        <section>
+            {/* 내 이슈 페이지 */}
+            {/* 목업 */}
+            <div>
+                <h2 className="text-2xl font-bold">(아이콘) 여운 (총 갯수)</h2>
+                <ul className="flex gap-2">
+                    <li>
+                        <h3>시작 전</h3>
+                        <div className="border w-48 h-24">이슈 카드1</div>
+                        <div className="border w-48 h-24">이슈 카드2</div>
+                    </li>
+
+                    <li>
+                        <h3>진행 중</h3>
+                        <div className="border w-48 h-24">이슈 카드1</div>
+                        <div className="border w-48 h-24">이슈 카드2</div>
+                        <div className="border w-48 h-24">이슈 카드3</div>
+                    </li>
+
+                    <li>
+                        <h3>완료</h3>
+                        <div className="border w-48 h-24">이슈 카드1</div>
+                        <div className="border w-48 h-24">이슈 카드2</div>
+                        <div className="border w-48 h-24">이슈 카드3</div>
+                        <div className="border w-48 h-24">이슈 카드4</div>
+                        <div className="border w-48 h-24">이슈 카드5</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
     );
 }
