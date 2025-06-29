@@ -1,7 +1,9 @@
+import Header from '@/shared/ui/Header';
+
 export default function Home() {
-    return (
-        <>
-            <div>메인 페이지</div>
-        </>
-    );
+  return (
+    <>
+      <main>메인 페이지</main>
+    </>
+  );
 }
