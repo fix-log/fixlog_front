@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 };
 
 const font = localFont({
-    src: './SUIT-Regular.woff2',
+  src: '../../public/fonts/SUIT-Regular.woff2',
 });
 
 export default function RootLayout({
   children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
   return (
     <html lang='ko' className={font.className}>
