@@ -1,3 +1,4 @@
+import localFont from 'next/font/local';
 import './globals.css';
 import type { Metadata } from 'next';
 import Header from '@/shared/ui/Header';
@@ -7,13 +8,17 @@ export const metadata: Metadata = {
   description: '협업 플랫폼',
 };
 
+const font = localFont({
+    src: './SUIT-Regular.woff2',
+});
+
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: Readonly<{
+    children: React.ReactNode;
+}>) {
   return (
-    <html lang='ko'>
+    <html lang='ko' className={font.className}>
       <body className='min-h-screen bg-white text-zinc-900'>
         <Header />
         <main className='min-h-[calc(100vh-110px)]'>
