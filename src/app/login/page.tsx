@@ -6,7 +6,7 @@ import loginAPI from '@/features/login/api/loginAPI';
 import { useRouter } from 'next/navigation';
 import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
-import InputString from '@/shared/form/ui/InputString';
+import FormInputString from '@/shared/form/ui/FormInputString';
 import { useForm } from 'react-hook-form';
 
 export default function Login() {
@@ -25,8 +25,8 @@ export default function Login() {
         <div className="flex flex-col items-center max-w-[500px] w-full">
             <FormHeader title="로그인" />
             <form className="flex flex-col items-center w-full" onSubmit={form.handleSubmit(handleClick)}>
-                <InputString type="email" name="email" placeholder="이메일을 입력해주세요" form={form} />
-                <InputString type="password" name="password" placeholder="비밀번호를 입력해주세요" form={form} />
+                <FormInputString type="email" name="email" placeholder="이메일을 입력해주세요" form={form} />
+                <FormInputString type="password" name="password" placeholder="비밀번호를 입력해주세요" form={form} />
                 <FormSubmitButton text="로그인하기" isSubmitting={form.formState.isSubmitting} />
             </form>
             <hr className="border-gray5 w-full" />

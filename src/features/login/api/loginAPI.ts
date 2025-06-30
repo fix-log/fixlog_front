@@ -2,7 +2,7 @@
 // API 준비되면 갈아엎어질 파일
 
 import { FieldErrors } from 'react-hook-form';
-import { LoginFormStateType } from '../model/loginFormState';
+import { LoginFormStateType } from '../model/LoginFormState';
 
 interface LoginAPIProps {
   email: string;

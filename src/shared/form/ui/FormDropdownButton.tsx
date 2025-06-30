@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import FormDropdownToggle from './FormDropdownToggle';
-import {selectOptions, selectOptionsType } from "@/features/signup/model/selectOptions"
+import {selectOptions, selectOptionsType } from "@/features/signup/model/SelectOptions"
 
 interface FormDropdownButtonProps {
     label: string;
