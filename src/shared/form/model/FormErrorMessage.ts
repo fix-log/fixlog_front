@@ -1,6 +1,6 @@
 export interface FieldErrorMessage {
-    required: string;
-    message: string;
+  required: string;
+  message: string;
 }
 
 export interface FormErrorMessageType {

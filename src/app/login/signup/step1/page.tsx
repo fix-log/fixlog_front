@@ -21,7 +21,7 @@ export default function Signup() {
             <form className="w-full" onSubmit={form.handleSubmit(handleClick)}>
                 <div className="flex w-full">
                     <InputString label="이메일" type="email" name="email" placeholder="이메일을 입력해주세요" form={form}>
-                        <button className="bg-mainBlack rounded-[5px] text-mainWhite font-bold w-[90px] h-[60px] !ml-3">인증</button>
+                        <button className="bg-mainBlack rounded-[5px] text-mainWhite font-bold w-[90px] h-[60px] !ml-3 !my-[10px]">인증</button>
                     </InputString>
                 </div>
                 <InputString label="닉네임" type="text" name="nickname" placeholder="닉네임을 입력해주세요" form={form} />
@@ -37,7 +37,7 @@ export default function Signup() {
                         <TermsAgreement id="isMarketingAgreed" text="이벤트, 프로모션 알림 메일 수신" isRequired={false} />
                     </div>
                 </div>
-                <FormSubmitButton text="다음 (1/4)" isSubmitting={form.formState.isSubmitting} className="!mb-0" />
+                <FormSubmitButton text="다음 (1/4)" isSubmitting={form.formState.isSubmitting} className="" />
             </form>
         </div>
     );
