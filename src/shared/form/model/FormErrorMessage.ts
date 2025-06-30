@@ -8,6 +8,9 @@ export interface FormErrorMessageType {
     password: FieldErrorMessage;
     confirmPassword: FieldErrorMessage;
     nickname: FieldErrorMessage;
+    name: FieldErrorMessage;
+    birthDate: FieldErrorMessage;
+    phoneNumber: FieldErrorMessage;
 }
 
 export const formErrorMessage: FormErrorMessageType = {
@@ -26,5 +29,17 @@ export const formErrorMessage: FormErrorMessageType = {
     nickname: {
         required: "닉네임을 입력해주세요",
         message: "닉네임 에러 문구"
+    },
+    name: {
+        required: "이름을 입력해주세요",
+        message: ""
+    },
+    birthDate: {
+        required: "생년월일을 입력해주세요",
+        message: ""
+    },
+    phoneNumber: {
+        required: "전화번호를 입력해주세요",
+        message: ""
     }
 }
