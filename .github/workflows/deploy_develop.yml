@@ -3,7 +3,7 @@ name: Deploy to EC2 (develop)
 on:
   push:
     branches:
-      - feature/14
+      - feature/14 # 브랜치 이름 수정 필요
 
 jobs:
   deploy:
@@ -21,8 +21,10 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
-            cd ~/fixlog_front/fixlog_front
-            git pull origin develop
-            yarn install
+            cd ~/fixlog_front/fixlog_front  
+            git fetch origin
+            git checkout feature/14 || git checkout -b feature/14 origin/feature/14
+            git pull origin feature/14
+            yarn install --frozen-lockfile
             yarn build
             pm2 reload fixlog-dev || pm2 start yarn --name "fixlog-dev" -- start
