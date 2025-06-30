@@ -1,0 +1,28 @@
+name: Deploy to EC2 (develop)
+
+on:
+  push:
+    branches:
+      - feature/14
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Copy files to EC2 and deploy
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          script: |
+            cd ~/fixlog_front/fixlog_front
+            git pull origin develop
+            yarn install
+            yarn build
+            pm2 reload fixlog-dev || pm2 start yarn --name "fixlog-dev" -- start
