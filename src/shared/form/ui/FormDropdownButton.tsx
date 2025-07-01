@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import FormDropdownToggle from './FormDropdownToggle';
 import {selectOptions, selectOptionsType } from "@/features/signup/model/SelectOptions"
+import DropdownIcon from './DropdownIcon';
 
 interface FormDropdownButtonProps {
     label: string;
@@ -31,7 +32,7 @@ export default function FormDropdownButton({ open, setOpen, data, label, placeho
             >
                 <div className="flex w-full">
                     <p className="grow !pl-[17px]">{placeholder}</p>
-                    <p className='!pr-[20px]'>화살표</p>
+                    <DropdownIcon form={open} target={label} />
                 </div>
                 {open === label && <FormDropdownToggle data={selectOptions[data]} />}
             </button>
