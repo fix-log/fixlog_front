@@ -38,7 +38,7 @@ export default function Login() {
             <div>
                 <AuthLinkButton text="이메일 찾기" handleClick={() => router.push('/login/find-email')} />
                 <AuthLinkButton text="비밀번호 찾기" handleClick={() => router.push('/login/find-password')} />
-                <AuthLinkButton text="회원가입" handleClick={() => router.push('/login/signup')} className="text-mainRed" />
+                <AuthLinkButton text="회원가입" handleClick={() => router.push('/login/signup/step1')} className="text-mainRed" />
             </div>
         </div>
     );
