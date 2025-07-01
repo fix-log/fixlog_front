@@ -4,7 +4,7 @@ import FormRegister from '../model/FormRegister';
 import { FormErrorMessageType } from '../model/FormErrorMessage';
 import { UseFormReturn } from 'react-hook-form';
 
-interface InputStringProps {
+interface FormInputStringProps {
   type: 'text' | 'number' | 'email' | 'password';
   name: keyof FormErrorMessageType;
   placeholder: string;
@@ -14,7 +14,7 @@ interface InputStringProps {
   children?: React.ReactNode;
 }
 
-export default function InputString({
+export default function FormInputString({
   type,
   name,
   placeholder,
@@ -22,7 +22,7 @@ export default function InputString({
   label,
   isRequired,
   children,
-}: InputStringProps) {
+}: FormInputStringProps) {
   return (
     <div className='w-full'>
       {label && (
