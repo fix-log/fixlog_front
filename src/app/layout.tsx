@@ -1,7 +1,7 @@
 import localFont from 'next/font/local';
 import './globals.css';
 import type { Metadata } from 'next';
-import Header from '@/shared/ui/Header';
+import Header from '@/widgets/Header';
 
 export const metadata: Metadata = {
   title: 'fixlog',

@@ -3,7 +3,7 @@
 import TermsAgreement from '@/features/signup/ui/TermsAgreement';
 import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
-import InputString from '@/shared/form/ui/InputString';
+import FormInputString from '@/shared/form/ui/FormInputString';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
@@ -20,13 +20,13 @@ export default function Signup() {
             <FormHeader title="회원가입" />
             <form className="w-full" onSubmit={form.handleSubmit(handleClick)}>
                 <div className="flex w-full">
-                    <InputString label="이메일" type="email" name="email" placeholder="이메일을 입력해주세요" form={form}>
+                    <FormInputString label="이메일" type="email" name="email" placeholder="이메일을 입력해주세요" form={form}>
                         <button className="bg-mainBlack rounded-[5px] text-mainWhite font-bold w-[90px] h-[60px] !ml-3 !my-[10px]">인증</button>
-                    </InputString>
+                    </FormInputString>
                 </div>
-                <InputString label="닉네임" type="text" name="nickname" placeholder="닉네임을 입력해주세요" form={form} />
-                <InputString label="비밀번호" type="password" name="password" placeholder="비밀번호를 입력해주세요" form={form} />
-                <InputString label="비밀번호 확인" type="password" name="confirmPassword" placeholder="비밀번호를 다시 입력해주세요" form={form} />
+                <FormInputString label="닉네임" type="text" name="nickname" placeholder="닉네임을 입력해주세요" form={form} />
+                <FormInputString label="비밀번호" type="password" name="password" placeholder="비밀번호를 입력해주세요" form={form} />
+                <FormInputString label="비밀번호 확인" type="password" name="confirmPassword" placeholder="비밀번호를 다시 입력해주세요" form={form} />
                 <hr className="border-gray5 w-full !my-10" />
                 <div>
                     <TermsAgreement id="isAllAgreed" text="전체 동의" className="text-[18px] font-bold !ml-2" />
