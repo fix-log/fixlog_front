@@ -32,8 +32,18 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* 오른쪽 영역 */}
-        <div>{/* 요기 */}</div>
+        {/* 오른쪽 영역 (검색, 로그인 버튼 등 들어갈 자리) */}
+        <div className='text-[18px]'>
+          <Link href='/login' className='!ml-[46px]'>
+            로그인
+          </Link>
+          <Link
+            href='/login/signup/step1'
+            className='bg-mainRed text-mainWhite !ml-[46px] rounded-[5px] !p-[8px_21px] !pb-[9px]'
+          >
+            회원가입
+          </Link>
+        </div>
       </div>
     </header>
   );
