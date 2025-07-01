@@ -35,7 +35,10 @@ export default function Header() {
         </div>
 
         {/* 오른쪽 영역 (검색, 로그인 버튼 등 들어갈 자리) */}
-        <div>{/* 요기 */}</div>
+        <div className='text-[18px]'>
+          <Link href='/login' className='!ml-[46px]'>로그인</Link>
+          <Link href='/login/signup/step1' className='rounded-[5px] bg-mainRed text-mainWhite !p-[8px_21px] !pb-[9px] !ml-[46px]'>회원가입</Link>
+        </div>
       </div>
     </header>
   );
