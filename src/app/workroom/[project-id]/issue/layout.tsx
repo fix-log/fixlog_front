@@ -2,29 +2,25 @@ import { NavigationItems } from '@/shared/types/navigation';
 import Link from 'next/link';
 
 interface LayoutProps {
-  params: { 'workroom-id': string };
+  params: { 'project-id': string };
   children: React.ReactNode;
 }
 
 const navItems: NavigationItems = [
-  { name: '소개', href: '/workroom/id/info' },
-  { name: '멤버', href: '/workroom/id/member' },
-  { name: '이슈', href: '/workroom/id/issue' },
-  { name: '일정', href: '/workroom/id/schedule' },
-  { name: '관리', href: '/workroom/id/admin' },
+  { name: '모든 이슈', href: '/workroom/id/issue/all' },
+  { name: '내 이슈', href: '/workroom/id/issue/mine' },
 ];
 
 export default async function Layout({ params, children }: LayoutProps) {
-  const { 'workroom-id': workroomId } = params;
+  const { 'project-id': projectId } = params;
 
   return (
     <>
-      <div>프로젝트 제목</div>
       <nav>
         <ul className='flex gap-4'>
           {navItems.map((item) => (
             <li key={item.href}>
-              <Link href={item.href.replace('id', workroomId)}>{item.name}</Link>
+              <Link href={item.href.replace('id', projectId)}>{item.name}</Link>
             </li>
           ))}
         </ul>
