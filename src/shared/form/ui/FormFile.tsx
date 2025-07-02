@@ -18,7 +18,7 @@ export default function FormFile({ label, isRequired }: FormFileProps) {
       >
         파일을 등록해주세요
       </label>
-      <input id='form_file' type='file' className='hidden' />
+      <input id='form_file' type='file' className='hidden' accept=".pdf" />
     </div>
   );
 }
