@@ -2,25 +2,46 @@
 
 /* "bg-pointGreen" "text-gray2" 등으로 사용 */
 @theme {
-    --color-mainBlack: #202020;
-    --color-mainRed: #ff4427;
-    --color-mainWhite: #fff;
+  --color-mainBlack: #202020;
+  --color-mainRed: #ff4427;
+  --color-mainWhite: #fff;
 
-    --color-pointYellow: #fd0;
-    --color-pointDarkYellow: #cdb200;
-    --color-pointGreen: #71e200;
-    --color-pointDarkGreen: #00bf1d;
+  --color-pointYellow: #fd0;
+  --color-pointDarkYellow: #cdb200;
+  --color-pointGreen: #71e200;
+  --color-pointDarkGreen: #00bf1d;
 
-    --color-gray1: #4d5358;
-    --color-gray2: #747474;
-    --color-gray3: #aaaaaa;
-    --color-gray4: #d5d5d5;
-    --color-gray5: #ebebeb;
-    --color-gray6: #f8f8f8;
+  --color-gray1: #4d5358;
+  --color-gray2: #747474;
+  --color-gray3: #aaaaaa;
+  --color-gray4: #d5d5d5;
+  --color-gray5: #ebebeb;
+  --color-gray6: #f8f8f8;
 }
 
 html,
 body {
-    max-width: 100vw;
-    height: 100vh;
+  height: 100vh;
+}
+
+body {
+  overflow-y: scroll; /* 항상 스크롤바 표시 */
+}
+
+* {
+  font-family: 'SUIT-Regular';
+}
+
+/* 스크롤바 스타일링으로 레이아웃 변화 최소화 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
 }
