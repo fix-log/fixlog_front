@@ -3,7 +3,7 @@ name: Deploy to EC2 (develop)
 on:
   push:
     branches:
-      - feature/14
+      - develop
 
 jobs:
   deploy:
@@ -23,8 +23,8 @@ jobs:
           script: |
             cd ~/fixlog_front/fixlog_front
             git fetch origin
-            git checkout feature/14 || git checkout -b feature/14 origin/feature/14
-            git pull origin feature/14
+            git checkout develop || git checkout -b develop origin/develop
+            git pull origin develop
 
             # 컨테이너 종료 및 제거
             docker stop fixlog-container || true
