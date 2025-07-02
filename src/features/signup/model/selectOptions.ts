@@ -1,15 +1,107 @@
 export interface selectOptionsType {
-    position: string[]
-    career: string[]
-    devLanguage: string[]
-    stackAndTool: string[]
-    designAndCollab: string[]
+  position: string[];
+  career: string[];
+  devLanguage: string[];
+  stackAndTool: string[];
+  designAndCollab: string[];
+  devInterest: string[]
+  techTrendInterest: string[];
+  careerAndGrowth: string[];
 }
 
-export const selectOptions:selectOptionsType = {
-    position: ['Desiginer', 'FrontEnd', 'BackEnd', 'Marketer', 'Planner', 'DevOps', 'PM', 'Android', 'IOS'],
-    career: ['대학생 또는 대학원생', '신입', '1년', '2년', '3년', '4년', '5년', '6년 이상'],
-    devLanguage: ['JavaScript', 'TypeScript', 'Python', 'Java', 'Go', 'Swift', 'Kotlin', 'C', 'PHP', 'SQL'],
-    stackAndTool: ['기술1', '기술2', '기술3', '기술4', '기술5', '기술6', '기술7'],
-    designAndCollab: ['디자인1', '디자인2', '디자인3', '디자인4', '디자인5', '디자인6', '디자인7'],
-}
+export const selectOptions: selectOptionsType = {
+  position: [
+    'Desiginer',
+    'FrontEnd',
+    'BackEnd',
+    'Marketer',
+    'Planner',
+    'DevOps',
+    'PM',
+    'Android',
+    'IOS',
+  ],
+  career: ['대학생 또는 대학원생', '신입', '1년', '2년', '3년', '4년', '5년', '6년 이상'],
+  devLanguage: [
+    'JavaScript',
+    'TypeScript',
+    'Python',
+    'Java',
+    'Go',
+    'Swift',
+    'Kotlin',
+    'C',
+    'PHP',
+    'SQL',
+  ],
+  stackAndTool: [
+    'React',
+    'Vue',
+    'Next.js',
+    'Svelte',
+    'Django',
+    'FastAPI',
+    'Spring',
+    'Express',
+    'Git',
+    'GitHub',
+    'GitLab',
+    'Vercel',
+    'Netlify',
+    'AWS',
+    'NCP',
+    'Firebase',
+    'Redis',
+    'GitHub',
+    'Actions',
+    'Jenkins',
+    'Docker',
+  ],
+  designAndCollab: [
+    'Figma',
+    'Zeplin',
+    'Adobe XD',
+    'Photoshop',
+    'Illustrator',
+    'Notion',
+    'Slack',
+    'Trello',
+    'Jira',
+  ],
+  devInterest: [
+    '프론트엔드',
+    '백엔드',
+    '풀스택',
+    'iOS',
+    '안드로이드',
+    '데브옵스 (DevOps)',
+    '인공지능 / 머신러닝',
+    '데이터 분석 / 데이터 사이언스',
+    '게임 개발',
+    '블록체인',
+    '보안 / 해킹',
+    '임베디드 / IoT',
+  ],
+  techTrendInterest: [
+    '사이드 프로젝트',
+    '오픈소스',
+    '스타트업',
+    '리팩토링',
+    '테스트 / TDD',
+    'CI/CD',
+    '클라우드 (AWS, GCP, Azure 등)',
+    'GPT / 생성형 AI',
+    '프로덕트 매니지먼트',
+    '기술 문서화',
+    '코드 리뷰',
+  ],
+  careerAndGrowth: [
+    '취업 준비',
+    '이직 준비',
+    '개발 공부 / 학습',
+    '부트캠프 수료자',
+    '멘토링 / 멘티 활동',
+    '포트폴리오 만들기',
+    '커뮤니티 활동',
+  ],
+};
