@@ -1,9 +1,9 @@
 interface PageProps {
-  params: { 'project-id': string };
+  params: Promise<{ 'project-id': string }>;
 }
 
 export default async function Page({ params }: PageProps) {
-  const { 'project-id': projectId } = params;
+  const { 'project-id': projectId } = await params;
   console.log(projectId);
 
   // TODO: 프로젝트 소개 데이터 가져오기

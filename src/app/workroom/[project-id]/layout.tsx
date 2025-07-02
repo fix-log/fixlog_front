@@ -1,12 +1,12 @@
 import ProjectNav from '@/widgets/ui/ProjectNav';
 
 interface LayoutProps {
-  params: { 'project-id': string };
+  params: Promise<{ 'project-id': string }>;
   children: React.ReactNode;
 }
 
 export default async function Layout({ params, children }: LayoutProps) {
-  const { 'project-id': projectId } = params;
+  const { 'project-id': projectId } = await params;
 
   return (
     <>

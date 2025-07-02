@@ -2,7 +2,7 @@ import { NavigationItems } from '@/shared/types/navigation';
 import Link from 'next/link';
 
 interface LayoutProps {
-  params: { 'project-id': string };
+  params: Promise<{ 'project-id': string }>;
   children: React.ReactNode;
 }
 
@@ -12,7 +12,7 @@ const navItems: NavigationItems = [
 ];
 
 export default async function Layout({ params, children }: LayoutProps) {
-  const { 'project-id': projectId } = params;
+  const { 'project-id': projectId } = await params;
 
   return (
     <>
