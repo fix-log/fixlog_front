@@ -21,7 +21,7 @@ export default function step3() {
 
   return (
     <div className='flex w-full !max-w-[500px] flex-col items-center'>
-      <FormHeader title='기술 역량' />
+      <FormHeader title='기타 정보' />
       <form className='w-full' onSubmit={form.handleSubmit(handleClick)}>
         <FormDropdownButton
           label='관심 개발 분야'
