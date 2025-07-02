@@ -1,19 +1,37 @@
-name: Deploy to EC2 (develop)
+name: Deploy to EC2 with Docker(develop)
 
 on:
   push:
     branches:
-      - develop
+      - feature/14
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      # GitHub 레포지토리 코드 체크아웃
+      - name: Checkout source code
+        uses: actions/checkout@v4
 
-      - name: Deploy to EC2 via SSH
+      #  DockerHub 로그인
+      - name: Log in to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Docker 이미지 빌드 및 DockerHub에 푸시
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest
+
+      # EC2에 SSH 접속 후 이미지 pull + 컨테이너 재시작
+      - name: SSH and deploy on EC2
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -21,20 +39,11 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
-            cd ~/fixlog_front/fixlog_front
-            git fetch origin
-            git checkout develop || git checkout -b develop origin/develop
-            git pull origin develop
-
-            # 컨테이너 종료 및 제거
             docker stop fixlog-container || true
             docker rm fixlog-container || true
 
-            # 이미지 제거
-            docker rmi fixlog-front || true
+            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest || true
 
-            # 이미지 빌드
-            docker build -t fixlog-front .
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest
 
-            # 새 컨테이너 실행
-            docker run -d -p 3001:3000 --name fixlog-container fixlog-front
+            docker run -d -p 3001:3000 --name fixlog-container ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest
