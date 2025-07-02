@@ -1,9 +1,10 @@
 import { redirect } from 'next/navigation';
 
 interface PageProps {
-  params: { 'workroom-id': string };
+  params: { 'project-id': string };
 }
 
 export default async function Page({ params }: PageProps) {
-  redirect(`/workroom/${params['workroom-id']}/info`);
+  const { 'project-id': projectId } = params;
+  redirect(`/workroom/${projectId}/issue/all`);
 }

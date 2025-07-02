@@ -1,7 +1,7 @@
 import localFont from 'next/font/local';
 import './globals.css';
 import type { Metadata } from 'next';
-import Header from '@/widgets/Header';
+import Header from '@/widgets/ui/Header';
 
 export const metadata: Metadata = {
   title: 'fixlog',
@@ -9,7 +9,14 @@ export const metadata: Metadata = {
 };
 
 const font = localFont({
-  src: '../../public/fonts/SUIT-Regular.woff2',
+  src: [
+    {
+      path: '../../public/fonts/SUIT-Regular.woff2',
+      weight: '100 900',
+    },
+  ],
+  display: 'swap',
+  variable: '--font-suit',
 });
 
 export default function RootLayout({
@@ -18,11 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='ko' className={font.className}>
-      <body className='min-h-screen bg-white text-zinc-900'>
+    <html lang='ko' className={font.variable}>
+      <body className={font.className}>
         <Header />
-        <main className='min-h-[calc(100vh-110px)]'>
-          <div className='mx-auto max-w-[1440px] px-4'>{children}</div>
+        <main className='mx-auto flex min-h-[calc(100vh-110px)] w-full max-w-[1440px] flex-col items-center pt-[110px]'>
+          {children}
         </main>
       </body>
     </html>
