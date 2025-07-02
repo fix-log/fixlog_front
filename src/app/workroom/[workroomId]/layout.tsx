@@ -1,12 +1,12 @@
 import ProjectNav from '@/widgets/ui/ProjectNav';
 
 interface LayoutProps {
-  params: Promise<{ projectId: string }>;
+  params: Promise<{ workroomId: string }>;
   children: React.ReactNode;
 }
 
 export default async function Layout({ params, children }: LayoutProps) {
-  const { projectId } = await params;
+  const { workroomId } = await params;
 
   return (
     <>
@@ -14,7 +14,7 @@ export default async function Layout({ params, children }: LayoutProps) {
         <span className='text-gray3 text-xl'>프로젝트</span>
         <h2 className='text-[42px] font-extrabold'>프로젝트 제목</h2>
       </div>
-      <ProjectNav projectId={projectId} />
+      <ProjectNav workroomId={workroomId} />
       {children}
     </>
   );
