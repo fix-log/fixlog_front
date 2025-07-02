@@ -12,8 +12,8 @@ const navItems: NavigationItems = [
 
 export default function Header() {
   return (
-    <header className='fixed top-0 right-0 left-0 z-10 flex h-[110px] justify-center bg-white px-6'>
-      <div className='flex h-full w-full max-w-[1440px] items-center justify-between'>
+    <header className='fixed top-0 right-0 left-0 z-10 flex h-[110px] justify-center bg-white'>
+      <div className='flex h-full w-full max-w-[1440px] items-center justify-between px-6'>
         {/* 로고 */}
         <Link href='/' className='flex items-center'>
           <Image src='/fixlog.png' alt='fixlog 로고' width={100} height={51} priority />
