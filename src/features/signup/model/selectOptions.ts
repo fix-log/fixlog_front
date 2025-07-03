@@ -1,12 +1,5 @@
 export interface selectOptionsType {
-  position: string[];
-  career: string[];
-  devLanguage: string[];
-  stackAndTool: string[];
-  designAndCollab: string[];
-  devInterest: string[]
-  techTrendInterest: string[];
-  careerAndGrowth: string[];
+  [key: string]: string[];
 }
 
 export const selectOptions: selectOptionsType = {
