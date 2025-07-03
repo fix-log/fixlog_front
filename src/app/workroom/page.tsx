@@ -1,8 +1,9 @@
+import JoinedWorkroomCard from '@/widgets/ui/JoinedWorkroomCard';
 import MyWorkroomCard from '@/widgets/ui/MyWorkroomCard';
 import Link from 'next/link';
 
-// 임시 워크룸 데이터
-const workrooms = [
+// 임시 내 워크룸 데이터
+const myWorkrooms = [
   {
     id: '1',
     name: '워크룸 1',
@@ -14,6 +15,58 @@ const workrooms = [
   {
     id: '2',
     name: '워크룸 2',
+    description: '25자 정도 (띄어쓰기 포함) 소개글을 쓸 수 있어요.',
+    period: '2025.01.01 ~ 2025.01.01',
+    status: '진행중',
+    member: 10,
+  },
+];
+
+// 임시 참여한 워크룸 데이터
+const joinedWorkrooms = [
+  {
+    id: '3',
+    name: '워크룸 3',
+    description: '워크룸 1 설명. 블라블라. Blah Blah',
+    period: '2025.01.01 ~ 2025.01.01',
+    status: '진행중',
+    member: 10,
+  },
+  {
+    id: '4',
+    name: '워크룸 4',
+    description: '25자 정도 (띄어쓰기 포함) 소개글을 쓸 수 있어요.',
+    period: '2025.01.01 ~ 2025.01.01',
+    status: '진행중',
+    member: 10,
+  },
+  {
+    id: '5',
+    name: '워크룸 5',
+    description: '25자 정도 (띄어쓰기 포함) 소개글을 쓸 수 있어요.',
+    period: '2025.01.01 ~ 2025.01.01',
+    status: '진행중',
+    member: 10,
+  },
+  {
+    id: '6',
+    name: '워크룸 6',
+    description: '25자 정도 (띄어쓰기 포함) 소개글을 쓸 수 있어요.',
+    period: '2025.01.01 ~ 2025.01.01',
+    status: '진행중',
+    member: 10,
+  },
+  {
+    id: '7',
+    name: '워크룸 7',
+    description: '25자 정도 (띄어쓰기 포함) 소개글을 쓸 수 있어요.',
+    period: '2025.01.01 ~ 2025.01.01',
+    status: '진행중',
+    member: 10,
+  },
+  {
+    id: '8',
+    name: '워크룸 8',
     description: '25자 정도 (띄어쓰기 포함) 소개글을 쓸 수 있어요.',
     period: '2025.01.01 ~ 2025.01.01',
     status: '진행중',
@@ -49,8 +102,10 @@ export default function Workroom() {
 
         {/* 워크룸 있을 때 */}
         <ul className='bg-mainRed/4 flex gap-4 px-13 py-16'>
-          {workrooms.map((workroom) => (
-            <MyWorkroomCard key={workroom.id} workroom={workroom} />
+          {myWorkrooms.map((workroom) => (
+            <li key={workroom.id}>
+              <MyWorkroomCard workroom={workroom} />
+            </li>
           ))}
         </ul>
       </section>
@@ -58,46 +113,11 @@ export default function Workroom() {
       <section className='flex w-full flex-col gap-5 pt-10 pb-6 md:gap-10 md:pt-40 md:pb-24'>
         <h2 className='text-[32px] font-extrabold'>👑 여운님이 참여한 워크룸</h2>
         <ul className='flex flex-wrap gap-4'>
-          <li className='h-28 w-60 border'>
-            <Link href='/workroom/1' className='h-full w-full'>
-              <div className='h-full w-full'>참여한 워크룸 카드1</div>
-            </Link>
-          </li>
-          <li className='h-28 w-60 border'>
-            <Link href='/workroom/2' className='h-full w-full'>
-              <div className='h-full w-full'>참여한 워크룸 카드2</div>
-            </Link>
-          </li>
-          <li className='h-28 w-60 border'>
-            <Link href='/workroom/3' className='h-full w-full'>
-              <div className='h-full w-full'>참여한 워크룸 카드3</div>
-            </Link>
-          </li>
-          <li className='h-28 w-60 border'>
-            <Link href='/workroom/3' className='h-full w-full'>
-              <div className='h-full w-full'>참여한 워크룸 카드4</div>
-            </Link>
-          </li>
-          <li className='h-28 w-60 border'>
-            <Link href='/workroom/1' className='h-full w-full'>
-              <div className='h-full w-full'>참여한 워크룸 카드5</div>
-            </Link>
-          </li>
-          <li className='h-28 w-60 border'>
-            <Link href='/workroom/2' className='h-full w-full'>
-              <div className='h-full w-full'>참여한 워크룸 카드6</div>
-            </Link>
-          </li>
-          <li className='h-28 w-60 border'>
-            <Link href='/workroom/3' className='h-full w-full'>
-              <div className='h-full w-full'>참여한 워크룸 카드7</div>
-            </Link>
-          </li>
-          <li className='h-28 w-60 border'>
-            <Link href='/workroom/3' className='h-full w-full'>
-              <div className='h-full w-full'>참여한 워크룸 카드8</div>
-            </Link>
-          </li>
+          {joinedWorkrooms.map((workroom) => (
+            <li key={workroom.id}>
+              <JoinedWorkroomCard workroom={workroom} />
+            </li>
+          ))}
         </ul>
       </section>
     </>
