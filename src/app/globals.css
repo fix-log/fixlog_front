@@ -28,10 +28,6 @@ body {
   overflow-y: scroll; /* 항상 스크롤바 표시 */
 }
 
-* {
-  font-family: 'SUIT-Regular';
-}
-
 /* 스크롤바 스타일링으로 레이아웃 변화 최소화 */
 ::-webkit-scrollbar {
   width: 8px;
