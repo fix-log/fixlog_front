@@ -3,7 +3,7 @@ name: Deploy to EC2 with Docker(develop)
 on:
   push:
     branches:
-      - feature/14
+      - develop
 
 jobs:
   build-and-deploy:
