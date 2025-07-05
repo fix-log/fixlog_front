@@ -25,7 +25,7 @@ export default async function JoinedWorkroomCard({ workroom }: JoinedWorkroomCar
     >
       <div className='flex w-full items-center justify-between pb-1.5'>
         <div className='bg-gray2 h-4 w-4 rounded-full' />
-        {/* TODO: 더보기 버튼 (클라이언트 컴포넌트로?) */}
+        {/* TODO: 더보기 버튼 (클라이언트 컴포넌트로?) 이벤트 버블링 방지하기 */}
         <button>...</button>
       </div>
 

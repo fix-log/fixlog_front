@@ -24,7 +24,7 @@ export default async function MyWorkroomCard({ workroom }: MyWorkroomCardProps) 
         <span className='text-pointDarkGreen border-pointDarkGreen rounded-full border-2 px-2 py-0.5 text-[14px]'>
           {workroom.status}
         </span>
-        {/* TODO: 더보기 버튼 (클라이언트 컴포넌트로?) */}
+        {/* TODO: 더보기 버튼 (클라이언트 컴포넌트로?) 이벤트 버블링 방지하기 */}
         <button>...</button>
       </div>
 

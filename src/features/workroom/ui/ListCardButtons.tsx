@@ -1,21 +1,26 @@
 'use client';
 
 import Modal from '@/shared/ui/Modal';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 interface ListCardButtonsProps {
-  workroomId: string;
+  workroomId: string; // 워크룸 타입 정의 후 수정
 }
 
 export default function ListCardButtons({ workroomId }: ListCardButtonsProps) {
-  const [isModalOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  const [isModalOpen, setIsOpen] = useState<boolean>(false);
 
-  // TODO: 삭제 기능 구현 (워크룸id를 파라미터로 전달해서)
+  // TODO: 삭제 기능 구현 (워크룸id를 파라미터로 전달해서), (useCallback으로 감싸기)
   console.log(workroomId);
 
   return (
     <div className='flex flex-col gap-3'>
-      <button className='bg-mainRed h-10 w-[150px] rounded-[5px] text-white hover:cursor-pointer'>
+      <button
+        className='bg-mainRed h-10 w-[150px] rounded-[5px] text-white hover:cursor-pointer'
+        onClick={() => router.push(`/workroom/${workroomId}/edit`)}
+      >
         수정하기
       </button>
       <button

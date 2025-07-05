@@ -1,9 +1,11 @@
 'use client';
 
+import { Dispatch, SetStateAction } from 'react';
+
 interface ModalProps {
   children: React.ReactNode;
   className?: string;
-  setIsOpen: (isOpen: boolean) => void;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function Modal({ children, className, setIsOpen }: ModalProps) {
