@@ -8,4 +8,5 @@ export const validation = {
   name: new RegExp(''), // 빌드 에러 때문에 임시 추가 (기태)
   birthDate: new RegExp(''), // 빌드 에러 때문에 임시 추가 (기태)
   phoneNumber: new RegExp(''), // 빌드 에러 때문에 임시 추가 (기태)
+  url: new RegExp(''),
 };

@@ -11,6 +11,7 @@ export interface FormErrorMessageType {
   name: FieldErrorMessage;
   birthDate: FieldErrorMessage;
   phoneNumber: FieldErrorMessage;
+  url: FieldErrorMessage;
 }
 
 export const formErrorMessage: FormErrorMessageType = {
@@ -40,6 +41,10 @@ export const formErrorMessage: FormErrorMessageType = {
   },
   phoneNumber: {
     required: '전화번호를 입력해주세요',
+    message: '',
+  },
+  url: {
+    required: 'URL을 입력해주세요',
     message: '',
   },
 };
