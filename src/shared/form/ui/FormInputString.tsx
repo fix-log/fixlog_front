@@ -41,7 +41,7 @@ export default function FormInputString({
         {children}
       </div>
       {form.formState.errors[name] && (
-        <p className='text-pointDarkYellow !-mt-2 !pl-3'>
+        <p className='text-pointDarkYellow -mt-3 pl-3 pb-3'>
           {form.formState.errors[name].message?.toString()}
         </p>
       )}

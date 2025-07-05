@@ -58,7 +58,7 @@ export default function Signup() {
             placeholder='이메일을 입력해주세요'
             form={form}
           >
-            <button className='bg-mainBlack text-mainWhite !my-[10px] !ml-3 h-[60px] w-[90px] rounded-[5px] font-bold'>
+            <button className='cursor-pointer bg-mainBlack text-mainWhite !my-[15px] !ml-3 h-[60px] w-[90px] rounded-[5px] font-bold'>
               인증
             </button>
           </FormInputString>
