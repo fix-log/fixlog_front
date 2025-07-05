@@ -17,6 +17,7 @@ export const schema = z
         message: '대문자, 특수문자 각각 1개 이상 포함되어야 합니다',
       }),
     confirmPassword: z.string().nonempty('비밀번호를 다시 입력해주세요'),
+    isAllAgreed: z.boolean().optional(),
     isOver14Agreed: z.literal(true, literalErrorMap),
     isTermsAgreed: z.literal(true, literalErrorMap),
     isPrivacyAgreed: z.literal(true, literalErrorMap),

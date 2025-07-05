@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { schema } from '@/features/signup/model/schema/Step1';
 
 export default function Signup() {
@@ -34,17 +34,26 @@ export default function Signup() {
     }
   }
 
+  const agreementKeys = [
+    'isOver14Agreed',
+    'isTermsAgreed',
+    'isPrivacyAgreed',
+    'isMarketingAgreed',
+  ] as const;
+  const agreementWatch = form.watch(agreementKeys);
+  console.log('agreementWatch== ', agreementWatch);
+
   // 전체동의
   function selectAllAgreements() {
-    const agreement = [
-      'isOver14Agreed',
-      'isTermsAgreed',
-      'isPrivacyAgreed',
-      'isMarketingAgreed',
-    ] as const;
-    agreement.map((item) => form.setValue(item, !isAllAgreed));
+    agreementKeys.map((item) => form.setValue(item, !isAllAgreed));
     setIsAllAgreed(!isAllAgreed);
   }
+
+  useEffect(() => {
+    const isAllTrue = agreementWatch.every(Boolean);
+    setIsAllAgreed(isAllTrue);
+    form.setValue('isAllAgreed', isAllTrue);
+  }, [agreementWatch]);
 
   return (
     <div className='flex w-full max-w-[500px] flex-col items-center'>
@@ -58,7 +67,7 @@ export default function Signup() {
             placeholder='이메일을 입력해주세요'
             form={form}
           >
-            <button className='cursor-pointer bg-mainBlack text-mainWhite !my-[15px] !ml-3 h-[60px] w-[90px] rounded-[5px] font-bold'>
+            <button className='bg-mainBlack text-mainWhite !my-[15px] !ml-3 h-[60px] w-[90px] cursor-pointer rounded-[5px] font-bold'>
               인증
             </button>
           </FormInputString>
