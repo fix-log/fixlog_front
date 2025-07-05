@@ -16,7 +16,7 @@ export default function ListCardButtons({ workroomId }: ListCardButtonsProps) {
   console.log(workroomId);
 
   return (
-    <div className='flex flex-col gap-3'>
+    <div className='pointer-events-auto flex flex-col gap-3'>
       <button
         className='bg-mainRed h-10 w-[150px] rounded-[5px] text-white hover:cursor-pointer'
         onClick={() => router.push(`/workroom/${workroomId}/edit`)}
