@@ -1,4 +1,4 @@
-import WorkroomListCard from '@/widgets/ui/WorkroomListCard';
+import WorkroomListCard from '@/features/workroom/ui/WorkroomListCard';
 
 export default async function Page() {
   return (
