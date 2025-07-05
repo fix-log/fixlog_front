@@ -1,6 +1,6 @@
 'use client';
 
-import FormRegister from '../model/FormRegister';
+// import FormRegister from '../model/FormRegister';
 import { FormErrorMessageType } from '../model/FormErrorMessage';
 import { UseFormReturn } from 'react-hook-form';
 
@@ -36,7 +36,7 @@ export default function FormInputString({
           className='border-gray4 focus:border-pointDarkYellow/50 !my-[15px] h-[60px] w-full rounded-[5px] border-1 !pr-[20px] !pl-[17px] text-[20px] focus:shadow-[0_0_3.6px_#CDB200] focus:outline-none'
           type={type}
           placeholder={placeholder}
-          {...FormRegister({ register: form.register, name })}
+          {...form.register(name)}
         />
         {children}
       </div>
