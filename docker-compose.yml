@@ -1,0 +1,13 @@
+services:
+  frontend:
+    build:
+      context: .
+    container_name: fixlog-frontend
+    ports:
+      - "3001:3000"
+    command: yarn start
+    restart: always
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env.production
