@@ -3,6 +3,7 @@
 // import FormRegister from '../model/FormRegister';
 import { FormErrorMessageType } from '../model/FormErrorMessage';
 import { UseFormReturn } from 'react-hook-form';
+import { focus, errorFocus } from './TailwindcssUtil';
 
 interface FormInputStringProps {
   type: 'text' | 'number' | 'email' | 'password' | 'url';
@@ -23,6 +24,8 @@ export default function FormInputString({
   isRequired,
   children,
 }: FormInputStringProps) {
+  const focusClassName = form.formState.errors[name] ? errorFocus : focus;
+
   return (
     <div className='w-full'>
       {label && (
@@ -33,7 +36,10 @@ export default function FormInputString({
       )}
       <div className='flex w-full'>
         <input
-          className='border-gray4 focus:border-pointDarkYellow/50 !my-[15px] h-[60px] w-full rounded-[5px] border-1 !pr-[20px] !pl-[17px] text-[20px] focus:shadow-[0_0_3.6px_#CDB200] focus:outline-none'
+          className={
+            'border-gray4 !my-[15px] h-[60px] w-full rounded-[5px] border-1 !pr-[20px] !pl-[17px] text-[20px] focus:outline-none' +
+            focusClassName
+          }
           type={type}
           placeholder={placeholder}
           {...form.register(name)}
@@ -41,7 +47,7 @@ export default function FormInputString({
         {children}
       </div>
       {form.formState.errors[name] && (
-        <p className='text-pointDarkYellow -mt-3 pl-3 pb-3'>
+        <p className='text-pointDarkYellow -mt-3 pb-3 pl-3'>
           {form.formState.errors[name].message?.toString()}
         </p>
       )}
