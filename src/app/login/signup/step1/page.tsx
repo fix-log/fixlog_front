@@ -5,7 +5,7 @@ import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
 import FormInputString from '@/shared/form/ui/FormInputString';
 import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
+import { FieldErrors, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useEffect, useState } from 'react';
@@ -26,10 +26,10 @@ export default function Signup() {
   }
 
   // 필수약관만 alert 표시
-  function onError(errors: typeof errors) {
+  function onError(errors: FieldErrors<typeof form>) {
     const messages = Object.values(errors).map((err) => err.message);
     if (messages.length > 0) {
-      if (!messages[0].includes('필수 약관')) return;
+      if (!messages[0]?.includes('필수 약관')) return;
       alert(messages[0]);
     }
   }
@@ -50,9 +50,11 @@ export default function Signup() {
   }
 
   useEffect(() => {
-    const isAllTrue = agreementWatch.every(Boolean);
+    const isAllTrue: boolean = agreementWatch.every(Boolean);
     setIsAllAgreed(isAllTrue);
-    form.setValue('isAllAgreed', isAllTrue);
+    form.setValue('isAllAgreed' as const, isAllTrue);
+    // ESLint가 의존성 잔소리해서 강제 무시 주석 추가 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [agreementWatch]);
 
   return (
