@@ -5,7 +5,7 @@ import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
 import FormInputString from '@/shared/form/ui/FormInputString';
 import { useRouter } from 'next/navigation';
-import { FieldErrors, FieldValue, useForm, useWatch } from 'react-hook-form';
+import { FieldErrors, useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useEffect, useState } from 'react';
@@ -19,6 +19,9 @@ export default function Signup() {
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      isEmailVerified: false,
+    },
   });
 
   function handleClick() {
@@ -41,11 +44,14 @@ export default function Signup() {
     'isMarketingAgreed',
   ] as const;
 
+  const emailWatch = form.watch('isEmailVerified');
+  console.log('emailWatch== ', emailWatch);
+
   const agreementWatch = useWatch({
     control: form.control,
     name: agreementKeys,
   }) as boolean[];
-  console.log('agreementWatch== ', agreementWatch);
+  // console.log('agreementWatch== ', agreementWatch);
 
   // 전체동의
   function selectAllAgreements() {
@@ -73,8 +79,14 @@ export default function Signup() {
             placeholder='이메일을 입력해주세요'
             form={form}
           >
-            <button className='bg-mainBlack text-mainWhite !my-[15px] !ml-3 h-[60px] w-[90px] cursor-pointer rounded-[5px] font-bold'>
-              인증
+            <button
+              type='button'
+              className={
+                'bg-mainBlack text-mainWhite !my-[15px] !ml-3 h-[60px] w-[90px] cursor-pointer rounded-[5px] font-bold'
+              }
+              onClick={() => form.setValue('isEmailVerified' as const, true)}
+            >
+              {emailWatch ? '완료' : '인증'}
             </button>
           </FormInputString>
         </div>

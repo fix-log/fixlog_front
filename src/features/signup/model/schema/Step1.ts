@@ -7,6 +7,7 @@ const literalErrorMap = {
 export const schema = z
   .object({
     email: z.string().nonempty('이메일을 입력해주세요').email('이메일 형식이 아닙니다'),
+    isEmailVerified: z.boolean(),
     nickname: z.string().nonempty('닉네임을 입력해주세요'),
     password: z
       .string()
@@ -23,7 +24,20 @@ export const schema = z
     isPrivacyAgreed: z.literal(true, literalErrorMap),
     isMarketingAgreed: z.boolean().optional(),
   })
-  .refine((data) => data.password === data.confirmPassword, {
-    path: ['confirmPassword'],
-    message: '비밀번호가 일치하지 않습니다',
+  .superRefine((data, ctx) => {
+    console.log('isEmailVerified:', data.isEmailVerified);
+    if (!data.isEmailVerified) {
+      ctx.addIssue({
+        path: ['email'],
+        message: '이메일 인증을 진행해주세요',
+        code: z.ZodIssueCode.custom,
+      });
+    }
+    if (data.password !== data.confirmPassword) {
+      ctx.addIssue({
+        path: ['confirmPassword'],
+        message: '비밀번호가 일치하지 않습니다',
+        code: z.ZodIssueCode.custom,
+      });
+    }
   });
