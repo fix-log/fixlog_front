@@ -28,22 +28,22 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          platforms: linux/amd64 # 빌드 플랫폼 설정
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest
 
       # EC2에 SSH 접속 후 이미지 pull + 컨테이너 재시작
-      - name: SSH and deploy on EC2
-        uses: appleboy/ssh-action@v0.1.6
+      - name: SSH and deploy on EC2 with Docker Compose
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
-            docker stop fixlog-container || true
-            docker rm fixlog-container || true
+            cd ~/fixlog_front
 
-            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest || true
+            docker compose down || true
 
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest
 
-            docker run -d -p 3001:3000 --name fixlog-container ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest
+            docker compose up -d
