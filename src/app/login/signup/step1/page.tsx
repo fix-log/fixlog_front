@@ -12,10 +12,9 @@ import { useEffect, useState } from 'react';
 import { schema } from '@/features/signup/model/schema/Step1';
 
 export default function Step1() {
+  const router = useRouter();
   const [isAllAgreed, setIsAllAgreed] = useState(false);
   // 전체동의 상태
-
-  const router = useRouter();
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
@@ -27,6 +26,8 @@ export default function Step1() {
   function handleClick() {
     router.push('/login/signup/step2');
   }
+
+  const emailWatch = form.watch('isEmailVerified');
 
   // 필수약관만 alert 표시
   function onError(errors: FieldErrors<typeof form>) {
@@ -44,23 +45,21 @@ export default function Step1() {
     'isMarketingAgreed',
   ] as const;
 
-  const emailWatch = form.watch('isEmailVerified');
-  console.log('emailWatch== ', emailWatch);
-
-  const agreementWatch = useWatch({
-    control: form.control,
-    name: agreementKeys,
-  }) as boolean[];
-  // console.log('agreementWatch== ', agreementWatch);
-
   // 전체동의
   function selectAllAgreements() {
     agreementKeys.map((item) => form.setValue(item, !isAllAgreed));
     setIsAllAgreed(!isAllAgreed);
   }
 
+  // 약관 디테일 구현 (전체 체크 상태 추적)
+  // 약관 모두 동의일 때 and 전체동의 상태일 때 하나라도 취소할 떄
+  const agreementWatch = useWatch({
+    control: form.control,
+    name: agreementKeys,
+  }) as boolean[];
+
   useEffect(() => {
-    const isAllTrue: boolean = agreementWatch.every(Boolean);
+    const isAllTrue = agreementWatch.every(Boolean);
     setIsAllAgreed(isAllTrue);
     form.setValue('isAllAgreed' as const, isAllTrue);
     // ESLint가 의존성 잔소리해서 강제 무시 주석 추가
