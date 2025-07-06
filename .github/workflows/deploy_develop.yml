@@ -10,28 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # GitHub 레포지토리 코드 체크아웃
+      # 1. GitHub 레포지토리 코드 체크아웃
       - name: Checkout source code
         uses: actions/checkout@v4
 
-      #  DockerHub 로그인
+      # 2. DockerHub 로그인
       - name: Log in to DockerHub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Docker 이미지 빌드 및 DockerHub에 푸시
+      # 3. Docker 이미지 빌드 및 DockerHub에 푸시
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: ./Dockerfile
+          context: ./fixlog_front/fixlog_front
+          file: ./fixlog_front/fixlog_front/dockerfile
           push: true
-          platforms: linux/amd64 # 빌드 플랫폼 설정
+          platforms: linux/amd64
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest
 
-      # EC2에 SSH 접속 후 이미지 pull + 컨테이너 재시작
+      # 4. EC2에 SSH 접속 후 이미지 pull + 컨테이너 재시작
       - name: SSH and deploy on EC2 with Docker Compose
         uses: appleboy/ssh-action@v1
         with:
@@ -40,10 +40,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
-            cd ~/fixlog_front
+            cd ~/fixlog_front/fixlog_front
 
             docker compose down || true
-
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest
-
             docker compose up -d
