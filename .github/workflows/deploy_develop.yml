@@ -25,8 +25,8 @@ jobs:
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v6
         with:
-          context: ./fixlog_front/fixlog_front
-          file: ./fixlog_front/fixlog_front/dockerfile
+          context: .
+          file: ./dockerfile
           push: true
           platforms: linux/amd64
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest
