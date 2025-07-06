@@ -11,7 +11,7 @@ import { z } from 'zod';
 import { useEffect, useState } from 'react';
 import { schema } from '@/features/signup/model/schema/Step1';
 
-export default function Signup() {
+export default function Step1() {
   const [isAllAgreed, setIsAllAgreed] = useState(false);
   // 전체동의 상태
 

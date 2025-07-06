@@ -2,20 +2,20 @@
 
 // import FormRegister from '../model/FormRegister';
 import { FormErrorMessageType } from '../model/FormErrorMessage';
-import { UseFormReturn } from 'react-hook-form';
+import { FieldValues, UseFormReturn } from 'react-hook-form';
 import { focus, errorFocus } from './TailwindcssUtil';
 
-interface FormInputStringProps {
+interface FormInputStringProps<T extends FieldValues> {
   type: 'text' | 'number' | 'email' | 'password' | 'url';
   name: keyof FormErrorMessageType;
   placeholder: string;
-  form: UseFormReturn;
+  form: UseFormReturn<T>;
   label?: string;
   isRequired?: boolean;
   children?: React.ReactNode;
 }
 
-export default function FormInputString({
+export default function FormInputString<T extends FieldValues>({
   type,
   name,
   placeholder,
@@ -23,7 +23,7 @@ export default function FormInputString({
   label,
   isRequired,
   children,
-}: FormInputStringProps) {
+}: FormInputStringProps<T>) {
   const focusClassName = form.formState.errors[name] ? errorFocus : focus;
 
   return (
