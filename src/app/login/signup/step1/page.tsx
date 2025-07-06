@@ -5,7 +5,7 @@ import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
 import FormInputString from '@/shared/form/ui/FormInputString';
 import { useRouter } from 'next/navigation';
-import { FieldErrors, useForm } from 'react-hook-form';
+import { FieldErrors, FieldValue, useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useEffect, useState } from 'react';
@@ -40,7 +40,11 @@ export default function Signup() {
     'isPrivacyAgreed',
     'isMarketingAgreed',
   ] as const;
-  const agreementWatch = form.watch(agreementKeys);
+
+  const agreementWatch = useWatch({
+    control: form.control,
+    name: agreementKeys,
+  }) as boolean[];
   console.log('agreementWatch== ', agreementWatch);
 
   // 전체동의
@@ -53,7 +57,7 @@ export default function Signup() {
     const isAllTrue: boolean = agreementWatch.every(Boolean);
     setIsAllAgreed(isAllTrue);
     form.setValue('isAllAgreed' as const, isAllTrue);
-    // ESLint가 의존성 잔소리해서 강제 무시 주석 추가 
+    // ESLint가 의존성 잔소리해서 강제 무시 주석 추가
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [agreementWatch]);
 
