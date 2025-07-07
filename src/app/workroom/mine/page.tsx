@@ -17,11 +17,11 @@ const workrooms = [
 export default async function Page() {
   return (
     <>
-      <h2 className='mt-6 w-full text-[32px] font-extrabold md:mt-24'>
+      <h2 className='mt-6 w-full text-[18px] font-extrabold md:mt-24 md:text-[32px]'>
         👑 여운님이 만든 워크룸 리스트
       </h2>
 
-      <ul className='my-12 flex w-full flex-col gap-4'>
+      <ul className='my-5 flex w-full flex-col gap-2 md:my-12 md:gap-4'>
         {workrooms.map((workroom) => (
           <WorkroomListCard key={workroom.id} workroom={workroom} />
         ))}

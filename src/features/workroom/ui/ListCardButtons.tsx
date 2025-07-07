@@ -16,15 +16,15 @@ export default function ListCardButtons({ workroomId }: ListCardButtonsProps) {
   console.log(workroomId);
 
   return (
-    <div className='pointer-events-auto flex flex-col gap-3'>
+    <div className='pointer-events-auto flex flex-col gap-2 md:gap-3'>
       <button
-        className='bg-mainRed hover:bg-mainRed/85 h-10 w-[150px] rounded-[5px] text-white transition-all duration-200 hover:cursor-pointer'
+        className='bg-mainRed hover:bg-mainRed/85 h-7.5 w-[68px] rounded-full text-white transition-all duration-200 hover:cursor-pointer max-md:text-[10px] md:h-10 md:w-[150px] md:rounded-[5px]'
         onClick={() => router.push(`/workroom/${workroomId}/edit`)}
       >
         수정하기
       </button>
       <button
-        className='bg-gray3 hover:bg-gray3/85 h-10 w-[150px] rounded-[5px] text-white transition-all duration-200 hover:cursor-pointer'
+        className='bg-gray3 hover:bg-gray3/85 h-7.5 w-[68px] rounded-full text-white transition-all duration-200 hover:cursor-pointer max-md:text-[10px] md:h-10 md:w-[150px] md:rounded-[5px]'
         onClick={() => setIsOpen(true)}
       >
         삭제하기

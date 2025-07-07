@@ -24,13 +24,13 @@ export default async function WorkroomListCard({ workroom }: WorkroomPageProps) 
       />
 
       {/* 카드 내용 */}
-      <div className='border-gray5 pointer-events-none relative z-10 flex items-center justify-between rounded-[5px] border bg-white py-[32px] pr-[80px] pl-[25px]'>
-        <div className='flex items-center gap-8'>
+      <div className='border-gray5 pointer-events-none relative z-10 flex items-center justify-between rounded-[5px] border bg-white px-4 py-[16px] md:py-[32px] md:pr-[80px] md:pl-[25px]'>
+        <div className='flex items-center gap-4 md:gap-8'>
           <Menu className='text-gray3 size-5' />
-          <div className='flex flex-col gap-4'>
-            <div className='bg-pointGreen mb-2.5 h-4 w-4 rounded-full' />
-            <h3 className='text-[24px] font-extrabold'>{workroom.name}</h3>
-            <span className='text-gray3 text-[18px]'>{workroom.period}</span>
+          <div className='flex flex-col gap-2 md:gap-4'>
+            <div className='bg-pointGreen mb-1.5 h-3 w-3 rounded-full md:mb-2.5 md:h-4 md:w-4' />
+            <h3 className='text-[16px] font-extrabold md:text-[24px]'>{workroom.name}</h3>
+            <span className='text-gray3 text-[10px] md:text-[18px]'>{workroom.period}</span>
           </div>
         </div>
 
