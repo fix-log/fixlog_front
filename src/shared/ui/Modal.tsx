@@ -23,7 +23,7 @@ export default function Modal({ children, className, setIsOpen }: ModalProps) {
 
   if (!mounted) return null;
 
-  // Portal로 모달 컴포넌트를 body에 띄우기
+  // Portal로 모달 컴포넌트를 body에 띄우기 (독립적인 Stacking Context 생성)
   return createPortal(
     <>
       <div className='fixed inset-0 z-90 bg-black/30' onClick={onClose} />

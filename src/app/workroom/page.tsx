@@ -1,5 +1,5 @@
-import JoinedWorkroomCard from '@/widgets/ui/JoinedWorkroomCard';
-import MyWorkroomCard from '@/widgets/ui/MyWorkroomCard';
+import JoinedWorkroomCard from '@/features/workroom/ui/JoinedWorkroomCard';
+import MyWorkroomCard from '@/features/workroom/ui/MyWorkroomCard';
 import WorkroomPlusButton from '@/widgets/ui/WorkroomPlusButton';
 import Link from 'next/link';
 
@@ -88,7 +88,10 @@ export default function Workroom() {
 
         {/* 워크룸 없을 때 */}
         <div className='bg-mainRed/4 flex gap-4 py-16'>
-          <Link href={`/workroom/create`} className='mx-auto'>
+          <Link
+            href={`/workroom/create`}
+            className='mx-auto transition-all duration-200 hover:scale-102'
+          >
             <div className='border-mainRed/40 flex flex-col items-center justify-center gap-4 rounded-[5px] border bg-white px-18.5 py-20 shadow-[0_0_13.5px_0_rgba(255,68,39,0.2)]'>
               <div className='bg-mainRed mb-5.5 flex h-15 w-15 items-center justify-center rounded-full'>
                 <span className='text-5xl text-white'>+</span>
@@ -104,9 +107,7 @@ export default function Workroom() {
         {/* 워크룸 있을 때 */}
         <ul className='bg-mainRed/4 flex gap-4 px-13 py-16'>
           {myWorkrooms.map((workroom) => (
-            <li key={workroom.id}>
-              <MyWorkroomCard workroom={workroom} />
-            </li>
+            <MyWorkroomCard key={workroom.id} workroom={workroom} />
           ))}
         </ul>
       </section>
@@ -115,9 +116,7 @@ export default function Workroom() {
         <h2 className='text-[32px] font-extrabold'>👑 여운님이 참여한 워크룸</h2>
         <ul className='flex flex-wrap gap-4'>
           {joinedWorkrooms.map((workroom) => (
-            <li key={workroom.id}>
-              <JoinedWorkroomCard workroom={workroom} />
-            </li>
+            <JoinedWorkroomCard key={workroom.id} workroom={workroom} />
           ))}
         </ul>
       </section>

@@ -11,8 +11,8 @@ export default function WorkroomPlusButton() {
   return (
     <>
       <button
-        onClick={() => setIsOpen(!isModalOpen)}
-        className='bg-mainRed fixed right-35 bottom-35 z-100 flex h-20 w-20 items-center justify-center rounded-full hover:cursor-pointer'
+        onClick={() => setIsOpen((prev) => !prev)}
+        className='bg-mainRed hover:bg-mainRed/85 fixed right-35 bottom-35 z-100 flex h-20 w-20 items-center justify-center rounded-full transition-all duration-200 hover:cursor-pointer'
       >
         <span
           className={`${isModalOpen && 'rotate-45'} text-5xl text-white transition-all duration-200`}

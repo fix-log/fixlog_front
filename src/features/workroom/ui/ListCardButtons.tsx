@@ -12,19 +12,19 @@ export default function ListCardButtons({ workroomId }: ListCardButtonsProps) {
   const router = useRouter();
   const [isModalOpen, setIsOpen] = useState<boolean>(false);
 
-  // TODO: 삭제 기능 구현 (워크룸id를 파라미터로 전달해서), (useCallback으로 감싸기)
+  // TODO: 삭제 API 연결하기 (워크룸id를 파라미터로 전달해서), (useCallback으로 감싸기)
   console.log(workroomId);
 
   return (
     <div className='pointer-events-auto flex flex-col gap-3'>
       <button
-        className='bg-mainRed h-10 w-[150px] rounded-[5px] text-white hover:cursor-pointer'
+        className='bg-mainRed hover:bg-mainRed/85 h-10 w-[150px] rounded-[5px] text-white transition-all duration-200 hover:cursor-pointer'
         onClick={() => router.push(`/workroom/${workroomId}/edit`)}
       >
         수정하기
       </button>
       <button
-        className='bg-gray3 h-10 w-[150px] rounded-[5px] text-white hover:cursor-pointer'
+        className='bg-gray3 hover:bg-gray3/85 h-10 w-[150px] rounded-[5px] text-white transition-all duration-200 hover:cursor-pointer'
         onClick={() => setIsOpen(true)}
       >
         삭제하기
@@ -40,14 +40,14 @@ export default function ListCardButtons({ workroomId }: ListCardButtonsProps) {
 
             <div className='flex gap-4'>
               <button
-                className='bg-mainRed h-[45px] w-[150px] rounded-[5px] text-white hover:cursor-pointer'
+                className='bg-mainRed hover:bg-mainRed/85 h-[45px] w-[150px] rounded-[5px] text-white transition-all duration-200 hover:cursor-pointer'
                 // TODO: 삭제 함수 연결
                 onClick={() => console.log('삭제')}
               >
                 삭제
               </button>
               <button
-                className='h-[45px] w-[150px] rounded-[5px] bg-black text-white hover:cursor-pointer'
+                className='h-[45px] w-[150px] rounded-[5px] bg-black text-white transition-all duration-200 hover:cursor-pointer hover:bg-black/85'
                 onClick={() => setIsOpen(false)}
               >
                 취소
