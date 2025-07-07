@@ -1,9 +1,26 @@
 @import 'tailwindcss';
 
+:root {
+  /* text-h1, text-body-m 이렇게 사용 */
+  --font-h1: 54px;
+  --font-h2: 42px;
+  --font-h3: 32px;
+  --font-h4: 24px;
+  --font-h5: 22px;
+  --font-h6: 20px;
+  --font-body-l: 18px;
+  --font-body-m: 16px;
+  --font-body-s: 14px;
+  --font-body-xs: 12px;
+  --font-btn-l: 20px;
+  /* ... (필요한 스타일 계속 추가) */
+}
+
 /* "bg-pointGreen" "text-gray2" 등으로 사용 */
 @theme {
   --color-mainBlack: #202020;
   --color-mainRed: #ff4427;
+  --color-mainDarkRed: #e41e00;
   --color-mainWhite: #fff;
 
   --color-pointYellow: #fd0;
@@ -43,5 +60,5 @@ body {
 }
 
 .custom-swiper .swiper-pagination-bullet-active {
-  background-color: #ff4427 !important; 
+  background-color: #ff4427 !important;
 }
