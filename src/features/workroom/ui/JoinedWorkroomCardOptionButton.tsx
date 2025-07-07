@@ -25,7 +25,7 @@ export default function JoinedWorkroomCardOptionButton({
         }}
         className='hover:cursor-pointer'
       >
-        <Ellipsis className='text-gray5 hover:text-gray4 mx-2 my-1 size-6 transition-all duration-200' />
+        <Ellipsis className='text-gray5 hover:text-gray4 mx-1 my-1 size-6 transition-all duration-200 max-md:translate-x-2.5 md:mx-2' />
       </button>
 
       {isDropdownOpen && (

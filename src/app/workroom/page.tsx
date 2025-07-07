@@ -115,8 +115,8 @@ export default function Workroom() {
       </section>
 
       <section className='flex w-full flex-col gap-5 pt-10 pb-6 md:gap-10 md:pt-40 md:pb-24'>
-        <h2 className='text-[32px] font-extrabold'>👑 여운님이 참여한 워크룸</h2>
-        <ul className='flex flex-wrap gap-4'>
+        <h2 className='text-[18px] font-extrabold md:text-[32px]'>👑 여운님이 참여한 워크룸</h2>
+        <ul className='flex flex-wrap gap-2 md:gap-4'>
           {joinedWorkrooms.map((workroom) => (
             <JoinedWorkroomCard key={workroom.id} workroom={workroom} />
           ))}

@@ -20,21 +20,21 @@ interface JoinedWorkroomCardProps {
 
 export default async function JoinedWorkroomCard({ workroom }: JoinedWorkroomCardProps) {
   return (
-    <li className='relative transition-all duration-200 hover:scale-102'>
+    <li className='relative transition-all duration-200 hover:scale-102 max-md:w-full'>
       <Link
         href={`/workroom/${workroom.id}/info`}
         className='absolute inset-0 z-0'
         aria-label={`${workroom.name} 워크룸 상세 보기 (참여한 워크룸)`}
       />
 
-      <div className='border-gray5 flex h-[212px] w-[452px] flex-col justify-center gap-2 rounded-[5px] border bg-white px-[45px] py-[30px]'>
+      <div className='border-gray5 flex flex-col justify-center gap-2 rounded-[5px] border bg-white px-[24px] py-[16px] md:h-[212px] md:w-[452px] md:px-[45px] md:py-[30px]'>
         <div className='flex w-full items-center justify-between pb-1.5'>
-          <div className='bg-gray2 h-4 w-4 rounded-full' />
+          <div className='bg-gray2 h-2.5 w-2.5 rounded-full md:h-4 md:w-4' />
           <JoinedWorkroomCardOptionButton workroomId={workroom.id} />
         </div>
 
-        <h3 className='text-[24px] font-extrabold'>{workroom.name}</h3>
-        <span className='text-gray3 pb-2 text-[18px]'>{workroom.period}</span>
+        <h3 className='text-[16px] font-extrabold md:text-[24px]'>{workroom.name}</h3>
+        <span className='text-gray3 text-[10px] md:text-[18px]'>{workroom.period}</span>
         {/* 역할 */}
         <Badge name='Designer' />
       </div>
@@ -46,7 +46,7 @@ export default async function JoinedWorkroomCard({ workroom }: JoinedWorkroomCar
 
 const Badge = ({ name }: { name: string }) => {
   return (
-    <span className='text-mainRed border-mainRed w-fit rounded-full border px-3 py-0.5 text-lg'>
+    <span className='text-mainRed border-mainRed w-fit rounded-full border px-2 py-0.5 text-[10px] max-md:my-1.5 md:px-3 md:text-lg'>
       {name}
     </span>
   );
