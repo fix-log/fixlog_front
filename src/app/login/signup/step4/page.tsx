@@ -7,9 +7,9 @@ import FormInputString from '@/shared/form/ui/FormInputString';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 
-export default function step3() {
+export default function Step4() {
   const router = useRouter();
   const form = useForm();
   const [isDropdownOpen, setIsDropdownOpen] = useState<string | undefined>(undefined);
@@ -20,6 +20,7 @@ export default function step3() {
   }
 
   return (
+    <FormProvider {...form}>
     <div className='flex w-full !max-w-[500px] flex-col items-center'>
       <FormHeader title='기타 정보' />
       <form className='w-full' onSubmit={form.handleSubmit(handleClick)}>
@@ -50,10 +51,10 @@ export default function step3() {
           type='url'
           placeholder='URL을 입력해주세요'
           name='url'
-          form={form}
         />
         <FormSubmitButton text='회원가입하기' isSubmitting={form.formState.isSubmitting} />
       </form>
     </div>
+    </FormProvider>
   );
 }
