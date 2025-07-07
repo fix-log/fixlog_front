@@ -31,23 +31,30 @@ export default function ListCardButtons({ workroomId }: ListCardButtonsProps) {
       </button>
 
       {isModalOpen && (
-        <Modal className='w-[500px] px-[86px] py-[70px]' setIsOpen={setIsOpen}>
-          <div className='flex flex-col items-center gap-13'>
+        <Modal
+          className='px-[32px] py-[40px] md:w-[500px] md:px-[86px] md:py-[70px]'
+          setIsOpen={setIsOpen}
+        >
+          <div className='flex flex-col items-center gap-6 md:gap-13'>
             <div className='flex flex-col items-center gap-1'>
-              <h3 className='text-[34px] font-extrabold'>이 워크룸을 삭제하시겠습니까?</h3>
-              <span className='text-gray3 text-[18px]'>삭제된 워크룸은 복구할 수 없습니다.</span>
+              <h3 className='text-[18px] font-extrabold md:text-[34px]'>
+                이 워크룸을 삭제하시겠습니까?
+              </h3>
+              <span className='text-gray3 text-[10px] md:text-[18px]'>
+                삭제된 워크룸은 복구할 수 없습니다.
+              </span>
             </div>
 
-            <div className='flex gap-4'>
+            <div className='flex gap-2 md:gap-4'>
               <button
-                className='bg-mainRed hover:bg-mainRed/85 h-[45px] w-[150px] rounded-[5px] text-white transition-all duration-200 hover:cursor-pointer'
+                className='bg-mainRed hover:bg-mainRed/85 h-8 w-24 rounded-[5px] text-white transition-all duration-200 hover:cursor-pointer max-md:text-[10px] md:h-[45px] md:w-[150px]'
                 // TODO: 삭제 함수 연결
                 onClick={() => console.log('삭제')}
               >
                 삭제
               </button>
               <button
-                className='h-[45px] w-[150px] rounded-[5px] bg-black text-white transition-all duration-200 hover:cursor-pointer hover:bg-black/85'
+                className='h-8 w-24 rounded-[5px] bg-black text-white transition-all duration-200 hover:cursor-pointer hover:bg-black/85 max-md:text-[10px] md:h-[45px] md:w-[150px]'
                 onClick={() => setIsOpen(false)}
               >
                 취소

@@ -28,7 +28,7 @@ export default function Modal({ children, className, setIsOpen }: ModalProps) {
     <>
       <div className='fixed inset-0 z-90 bg-black/30' onClick={onClose} />
       <section
-        className={`fixed inset-0 z-100 m-auto h-fit w-fit flex-col items-center justify-center rounded-[5px] bg-white ${className}`}
+        className={`fixed inset-0 z-100 m-auto h-fit w-fit flex-col items-center justify-center rounded-[12px] bg-white md:rounded-[5px] ${className}`}
       >
         {children}
       </section>
