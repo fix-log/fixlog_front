@@ -10,14 +10,14 @@ import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 export default function Signup() {
-    const router = useRouter();
-    const form = useForm();
-    const [isDropdownOpen, setIsDropdownOpen] = useState<string | undefined>(undefined);
-    // 드롭다운 오픈 여부 + 오픈된 드롭다운이 무엇인지 판단하기 위함이기도 함
+  const router = useRouter();
+  const form = useForm();
+  const [isDropdownOpen, setIsDropdownOpen] = useState<string | undefined>(undefined);
+  // 드롭다운 오픈 여부 + 오픈된 드롭다운이 무엇인지 판단하기 위함이기도 함
 
-    function handleClick() {
-        router.push('/login/signup/step3');
-    }
+  function handleClick() {
+    router.push('/login/signup/step3');
+  }
 
     return (
         <FormProvider {...form}>

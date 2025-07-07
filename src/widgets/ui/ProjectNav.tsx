@@ -12,7 +12,7 @@ const navItems: NavigationItems = [
   { name: '관리', href: '/workroom/id/admin', content: 'admin' },
 ];
 
-export default function ProjectNav({ projectId }: { projectId: string }) {
+export default function ProjectNav({ workroomId }: { workroomId: string }) {
   const pathname = usePathname();
   console.log(pathname);
 
@@ -22,7 +22,7 @@ export default function ProjectNav({ projectId }: { projectId: string }) {
         {navItems.map((item) => (
           <li key={item.href} className='flex h-[90px] w-1/5 items-center justify-center'>
             <Link
-              href={item.href.replace('id', projectId)}
+              href={item.href.replace('id', workroomId)}
               className={`${
                 pathname.includes(item.content!) ? 'text-mainBlack border-mainBlack' : 'text-gray4'
               } flex h-full w-full items-center justify-center border-b-3`}

@@ -2,21 +2,17 @@ import localFont from 'next/font/local';
 import './globals.css';
 import type { Metadata } from 'next';
 import Header from '@/widgets/ui/Header';
+import Footer from '@/widgets/ui/Footer';
 
 export const metadata: Metadata = {
   title: 'fixlog',
   description: '협업 플랫폼',
 };
 
-const font = localFont({
-  src: [
-    {
-      path: '../../public/fonts/SUIT-Regular.woff2',
-      weight: '100 900',
-    },
-  ],
+const suit = localFont({
+  src: '../../public/fonts/SUIT-Variable.woff2',
+  weight: '100 900',
   display: 'swap',
-  variable: '--font-suit',
 });
 
 export default function RootLayout({
@@ -25,12 +21,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='ko' className={font.variable}>
-      <body className={font.className}>
+    <html lang='ko' className={suit.className}>
+      <body>
         <Header />
-        <main className='mx-auto flex min-h-[calc(100vh-110px)] w-full max-w-[1440px] flex-col items-center pt-[110px]'>
+        <main className='mx-auto flex min-h-[calc(100vh-110px)] w-full max-w-[1440px] flex-col items-center px-6 pt-[110px]'>
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   );

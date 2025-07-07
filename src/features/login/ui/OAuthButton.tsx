@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { providerImages } from '../model/ProviderImages';
+import { providerImages } from '../model/providerImages';
 
 interface OAuthButtonProps {
   provider: 'github' | 'naver' | 'kakao';

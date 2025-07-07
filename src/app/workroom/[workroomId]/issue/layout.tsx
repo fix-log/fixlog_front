@@ -2,7 +2,7 @@ import { NavigationItems } from '@/shared/types/navigation';
 import Link from 'next/link';
 
 interface LayoutProps {
-  params: { 'project-id': string };
+  params: Promise<{ workroomId: string }>;
   children: React.ReactNode;
 }
 
@@ -12,7 +12,7 @@ const navItems: NavigationItems = [
 ];
 
 export default async function Layout({ params, children }: LayoutProps) {
-  const { 'project-id': projectId } = params;
+  const { workroomId } = await params;
 
   return (
     <>
@@ -20,7 +20,7 @@ export default async function Layout({ params, children }: LayoutProps) {
         <ul className='flex gap-4'>
           {navItems.map((item) => (
             <li key={item.href}>
-              <Link href={item.href.replace('id', projectId)}>{item.name}</Link>
+              <Link href={item.href.replace('id', workroomId)}>{item.name}</Link>
             </li>
           ))}
         </ul>

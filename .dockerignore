@@ -1,0 +1,19 @@
+# node_modules는 어차피 docker 내부에서 다시 설치하니까 제외
+node_modules
+.next
+out
+dist
+build
+
+# 로그, 임시 파일
+*.log
+*.swp
+*.swo
+*.tmp
+
+.env
+.env.* 
+
+# Git 관련
+.git
+.gitignore
