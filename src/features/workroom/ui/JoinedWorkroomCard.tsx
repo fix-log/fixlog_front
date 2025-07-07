@@ -27,8 +27,8 @@ export default async function JoinedWorkroomCard({ workroom }: JoinedWorkroomCar
         aria-label={`${workroom.name} 워크룸 상세 보기 (참여한 워크룸)`}
       />
 
-      <div className='border-gray5 flex flex-col justify-center gap-2 rounded-[5px] border bg-white px-[24px] py-[16px] md:h-[212px] md:w-[452px] md:px-[45px] md:py-[30px]'>
-        <div className='flex w-full items-center justify-between pb-1.5'>
+      <div className='border-gray5 flex flex-col justify-center gap-0.5 rounded-[5px] border bg-white px-[24px] py-[12px] md:h-[212px] md:w-[452px] md:gap-2 md:px-[45px] md:py-[30px]'>
+        <div className='flex w-full items-center justify-between md:pb-1.5'>
           <div className='bg-gray2 h-2.5 w-2.5 rounded-full md:h-4 md:w-4' />
           <JoinedWorkroomCardOptionButton workroomId={workroom.id} />
         </div>
@@ -46,7 +46,7 @@ export default async function JoinedWorkroomCard({ workroom }: JoinedWorkroomCar
 
 const Badge = ({ name }: { name: string }) => {
   return (
-    <span className='text-mainRed border-mainRed w-fit rounded-full border px-2 py-0.5 text-[10px] max-md:my-1.5 md:px-3 md:text-lg'>
+    <span className='text-mainRed border-mainRed w-fit rounded-full border px-2 py-0.5 text-[10px] max-md:my-2 md:px-3 md:text-lg'>
       {name}
     </span>
   );
