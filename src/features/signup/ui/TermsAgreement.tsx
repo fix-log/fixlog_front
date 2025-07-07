@@ -1,28 +1,27 @@
-import { FieldValues, UseFormReturn } from 'react-hook-form';
+import { useFormContext } from "react-hook-form";
 
-interface TermsAgreementProps<T extends FieldValues> {
+interface TermsAgreementProps {
   id: string;
   text: string;
-  form: UseFormReturn<T>;
   isRequired?: boolean;
   className?: string;
   onClick?: () => void;
 }
 
-export default function TermsAgreement<T extends FieldValues>({
+export default function TermsAgreement({
   id,
   text,
-  form,
   isRequired,
   className,
   onClick,
-}: TermsAgreementProps<T>) {
+}: TermsAgreementProps) {
+  const { register, watch } = useFormContext()
   const isTermsOpen = id === 'isTermsAgreed' || id === 'isPrivacyAgreed';
   if (!className) className = '';
 
   return (
     <>
-      <input id={id} type='checkbox' className='hidden' {...form.register(id)} />
+      <input id={id} type='checkbox' className='hidden' {...register(id)} />
       <label
         htmlFor={id}
         className='!my-2 flex items-center text-[13px]'
@@ -33,7 +32,7 @@ export default function TermsAgreement<T extends FieldValues>({
             id='radio_button'
             className='border-gray4 !mr-1 flex h-[14px] w-[14px] items-center justify-center rounded-full border-1'
           >
-            {form.watch(id) && <div className='bg-mainRed h-[8px] w-[8px] rounded-full'></div>}
+            {watch(id) && <div className='bg-mainRed h-[8px] w-[8px] rounded-full'></div>}
           </div>
           <p className={className}>
             {text}

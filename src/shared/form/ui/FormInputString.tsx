@@ -1,30 +1,26 @@
-'use client';
-
-// import FormRegister from '../model/FormRegister';
+import { useFormContext } from 'react-hook-form';
 import { FormErrorMessageType } from '../model/FormErrorMessage';
-import { FieldValues, UseFormReturn } from 'react-hook-form';
 import { focus, errorFocus } from './TailwindcssUtil';
 
-interface FormInputStringProps<T extends FieldValues> {
+interface FormInputStringProps {
   type: 'text' | 'number' | 'email' | 'password' | 'url';
   name: keyof FormErrorMessageType;
   placeholder: string;
-  form: UseFormReturn<T>;
   label?: string;
   isRequired?: boolean;
   children?: React.ReactNode;
 }
 
-export default function FormInputString<T extends FieldValues>({
+export default function FormInputString({
   type,
   name,
   placeholder,
-  form,
   label,
   isRequired,
   children,
-}: FormInputStringProps<T>) {
-  const focusClassName = form.formState.errors[name] ? errorFocus : focus;
+}: FormInputStringProps) {
+  const { register, formState: {errors} } = useFormContext()
+  const focusClassName = errors[name] ? errorFocus : focus;
 
   return (
     <div className='w-full'>
@@ -42,13 +38,13 @@ export default function FormInputString<T extends FieldValues>({
           }
           type={type}
           placeholder={placeholder}
-          {...form.register(name)}
+          {...register(name)}
         />
         {children}
       </div>
-      {form.formState.errors[name] && (
+      {errors[name] && (
         <p className='text-pointDarkYellow -mt-3 pb-3 pl-3'>
-          {form.formState.errors[name].message?.toString()}
+          {errors[name].message?.toString()}
         </p>
       )}
     </div>
