@@ -107,7 +107,7 @@ export default function Workroom() {
         </div>
 
         {/* 워크룸 있을 때 */}
-        <ul className='bg-mainRed/4 flex gap-4 px-13 py-16'>
+        <ul className='md:bg-mainRed/4 flex gap-4 md:px-13 md:py-16'>
           {myWorkrooms.map((workroom) => (
             <MyWorkroomCard key={workroom.id} workroom={workroom} />
           ))}
