@@ -1,7 +1,6 @@
 import localFont from 'next/font/local';
 import './globals.css';
 import type { Metadata } from 'next';
-import Header from '@/widgets/ui/Header';
 
 export const metadata: Metadata = {
   title: 'fixlog',
@@ -31,12 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ko' className={suit.variable}>
-      <body className='font-sans'>
-        <Header />
-        <main className='mx-auto flex min-h-[calc(100vh-110px)] w-full max-w-[1440px] flex-col items-center px-6 pt-[110px]'>
-          {children}
-        </main>
-      </body>
+      <body className='font-sans'>{children}</body>
     </html>
   );
 }

@@ -9,7 +9,7 @@ const navItems: NavigationItems = [
 ];
 
 // 임시 로그인 여부 (나중에 전역 상태로 바꿔야댐 true 로 하면 로그인 후 헤더로 변경)
-const isLoggedIn = false;
+const isLoggedIn = true;
 
 export default function Header() {
   return (
@@ -40,9 +40,9 @@ export default function Header() {
             <button>
               <Image src='/icon_notification.png' alt='알림' width={20} height={20} />
             </button>
-            <button>
+            <Link href='/fixletter' aria-label='픽레터로 이동'>
               <Image src='/icon_message.png' alt='메시지' width={20} height={20} />
-            </button>
+            </Link>
             <button>
               <Image src='/icon_profile.png' alt='프로필' width={56} height={56} />
             </button>
