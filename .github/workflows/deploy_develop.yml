@@ -43,5 +43,6 @@ jobs:
             cd ~/fixlog_front/fixlog_front
 
             docker compose down || true
+            docker image rm ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest || true
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest
             docker compose up -d

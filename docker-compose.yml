@@ -1,7 +1,8 @@
+version: '3.8'
+
 services:
   frontend:
-    build:
-      context: .
+    image: sujeong9928/fixlog-front:latest
     container_name: fixlog-frontend
     ports:
       - "3000:3000"
