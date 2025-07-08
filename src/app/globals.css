@@ -43,5 +43,12 @@ body {
 }
 
 .custom-swiper .swiper-pagination-bullet-active {
-  background-color: #ff4427 !important; 
+  background-color: #ff4427 !important;
+}
+.swiper-pagination-bullet-active {
+  background: #ff4427 !important; /* 메인레드 */
+}
+
+.swiper {
+  overflow: visible !important;
 }

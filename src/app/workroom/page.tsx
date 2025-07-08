@@ -1,27 +1,7 @@
 import JoinedWorkroomCard from '@/features/workroom/ui/JoinedWorkroomCard';
-import MyWorkroomCard from '@/features/workroom/ui/MyWorkroomCard';
+import MyWorkroomCarousel from '@/features/workroom/ui/MyWorkroomCarousel';
 import WorkroomPlusButton from '@/widgets/ui/WorkroomPlusButton';
 import Link from 'next/link';
-
-// 임시 내 워크룸 데이터
-const myWorkrooms = [
-  {
-    id: '1',
-    name: '워크룸 1',
-    description: '워크룸 1 설명. 블라블라. Blah Blah',
-    period: '2025.01.01 ~ 2025.01.01',
-    status: '진행중',
-    member: 10,
-  },
-  // {
-  //   id: '2',
-  //   name: '워크룸 2',
-  //   description: '25자 정도 (띄어쓰기 포함) 소개글을 쓸 수 있어요.',
-  //   period: '2025.01.01 ~ 2025.01.01',
-  //   status: '진행중',
-  //   member: 10,
-  // },
-];
 
 // 임시 참여한 워크룸 데이터
 const joinedWorkrooms = [
@@ -107,11 +87,8 @@ export default function Workroom() {
         </div>
 
         {/* 워크룸 있을 때 */}
-        <ul className='md:bg-mainRed/4 flex gap-4 md:px-13 md:py-16'>
-          {myWorkrooms.map((workroom) => (
-            <MyWorkroomCard key={workroom.id} workroom={workroom} />
-          ))}
-        </ul>
+        {/* TODO: 워크룸 데이터 받아서 인자로 넘겨주기 */}
+        <MyWorkroomCarousel />
       </section>
 
       <section className='flex w-full flex-col gap-5 pt-10 pb-6 md:gap-10 md:pt-40 md:pb-24'>

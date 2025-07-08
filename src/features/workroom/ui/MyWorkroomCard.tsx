@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import MyWorkroomCardOptionButton from './MyWorkroomCardOptionButton';
 import { UsersRound } from 'lucide-react';
@@ -16,16 +18,16 @@ interface MyWorkroomCardProps {
   workroom: Workroom;
 }
 
-export default async function MyWorkroomCard({ workroom }: MyWorkroomCardProps) {
+export default function MyWorkroomCard({ workroom }: MyWorkroomCardProps) {
   return (
-    <li className='relative transition-all duration-200 hover:scale-102 max-md:w-full'>
+    <div className='relative w-full transition-all duration-200 hover:scale-102'>
       <Link
         href={`/workroom/${workroom.id}/info`}
         className='absolute inset-0 z-0'
         aria-label={`${workroom.name} 워크룸 상세 보기 (내 워크룸)`}
       />
 
-      <div className='border-gray5 md:border-mainRed/40 flex flex-col items-center justify-center gap-4 rounded-[5px] border bg-white p-[22px] shadow-[0_3px_3px_0_rgba(0,0,0,0.0.05)] md:h-87 md:w-144 md:px-[45px] md:py-[30px] md:shadow-[0_0_13.5px_0_rgba(255,68,39,0.2)]'>
+      <div className='border-gray5 md:border-mainRed/40 flex w-80 flex-col items-center justify-center gap-4 rounded-[5px] border bg-white p-[22px] shadow-[0_3px_3px_0_rgba(0,0,0,0.0.05)] md:h-87 md:w-144 md:px-[45px] md:py-[30px] md:shadow-[0_0_13.5px_0_rgba(255,68,39,0.2)]'>
         <div className='mb-12 flex w-full items-center justify-between md:mb-20'>
           <span className='text-pointDarkGreen border-pointDarkGreen rounded-full border-1 px-1.5 py-0.5 text-[12px] md:border-2 md:px-2 md:text-[14px]'>
             {workroom.status}
@@ -47,6 +49,6 @@ export default async function MyWorkroomCard({ workroom }: MyWorkroomCardProps) 
           </div>
         </div>
       </div>
-    </li>
+    </div>
   );
 }
