@@ -24,10 +24,10 @@ export default function Signup() {
         <div className="flex flex-col items-center !max-w-[500px] w-full">
             <FormHeader title="기본 정보" />
             <form className="w-full" onSubmit={form.handleSubmit(handleClick)}>
-                <FormInputString label="이름" type="text" name="name" placeholder="이름을 입력해주세요" />
-                <FormInputString label="생년월일" type="text" name="birthDate" placeholder="YYYYMMDD" />
-                <FormRadioSelect label="성별" name="gender" button={['남성', '여성']} />
-                <FormInputString label="전화번호" type="text" name="phoneNumber" placeholder="숫자만 입력해주세요" />
+                {/* <FormInputString label="이름" type="text" id="name" placeholder="이름을 입력해주세요" />
+                <FormInputString label="생년월일" type="text" id="birthDate" placeholder="YYYYMMDD" />
+                <FormRadioSelect label="성별" id="gender" button={['남성', '여성']} />
+                <FormInputString label="전화번호" type="text" id="phoneNumber" placeholder="숫자만 입력해주세요" /> */}
                 <FormDropdownButton label="포지션" placeholder="포지션을 선택해주세요" data='position' open={isDropdownOpen} setOpen={setIsDropdownOpen} />
                 <FormDropdownButton label="경력" placeholder="경력을 선택해주세요" data='career' open={isDropdownOpen} setOpen={setIsDropdownOpen} />
                 <FormSubmitButton text="다음(2/4)" isSubmitting={form.formState.isSubmitting} />

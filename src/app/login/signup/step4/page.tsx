@@ -3,7 +3,7 @@
 import FormDropdownButton from '@/shared/form/ui/FormDropdownButton';
 import FormFile from '@/shared/form/ui/FormFile';
 import FormHeader from '@/shared/form/ui/FormHeader';
-import FormInputString from '@/shared/form/ui/FormInputString';
+// import FormInputString from '@/shared/form/ui/FormInputString';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -46,12 +46,12 @@ export default function Step4() {
           setOpen={setIsDropdownOpen}
         />
         <FormFile label='포트폴리오 파일' />
-        <FormInputString
+        {/* <FormInputString
           label='참고 링크'
           type='url'
           placeholder='URL을 입력해주세요'
-          name='url'
-        />
+          id='url'
+        /> */}
         <FormSubmitButton text='회원가입하기' isSubmitting={form.formState.isSubmitting} />
       </form>
     </div>
