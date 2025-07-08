@@ -26,7 +26,7 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className='hover:text-mainRed text-h3 font-bold text-zinc-800'
+              className='hover:text-mainRed text-h4 font-bold text-zinc-800'
             >
               {item.name}
             </Link>
@@ -49,12 +49,12 @@ export default function Header() {
           </div>
         ) : (
           <div className='flex items-center gap-[46px]'>
-            <Link href='/login' className='text-body-m text-zinc-800'>
+            <Link href='/login' className='text-body-l text-zinc-800'>
               로그인
             </Link>
             <Link
               href='/login/signup/step1'
-              className='bg-mainRed text-mainWhite text-body-m rounded-[5px] p-[8px_21px] pb-[9px] font-bold'
+              className='bg-mainRed text-mainWhite text-body-l rounded-[5px] p-[8px_21px] pb-[9px] font-bold'
             >
               회원가입
             </Link>
