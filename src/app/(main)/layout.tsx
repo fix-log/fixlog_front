@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description: '협업 플랫폼',
 };
 
+// 해당 레이아웃이 적용되길 바란다면 (main) 폴더 안에 넣어주세요!
 export default function RootLayout({
   children,
 }: Readonly<{
