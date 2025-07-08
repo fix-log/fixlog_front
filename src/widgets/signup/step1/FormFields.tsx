@@ -2,13 +2,13 @@ import FormInputString from '@/shared/form/ui/FormInputString';
 import { useFormContext } from 'react-hook-form';
 
 const DATA = [
-  { label: '이메일', type: 'email', name: 'email', placeholder: '이메일을 입력해주세요' },
-  { label: '닉네임', type: 'text', name: 'nickname', placeholder: '닉네임을 입력해주세요' },
-  { label: '비밀번호', type: 'password', name: 'password', placeholder: '비밀번호를 입력해주세요' },
+  { label: '이메일', type: 'email', id: 'email', placeholder: '이메일을 입력해주세요' },
+  { label: '닉네임', type: 'text', id: 'nickname', placeholder: '닉네임을 입력해주세요' },
+  { label: '비밀번호', type: 'password', id: 'password', placeholder: '비밀번호를 입력해주세요' },
   {
     label: '비밀번호 확인',
     type: 'password',
-    name: 'confirmPassword',
+    id: 'confirmPassword',
     placeholder: '이메일을 입력해주세요',
   },
 ] as const;
@@ -31,14 +31,14 @@ export default function FormFields() {
   return (
     <div>
       {DATA.map((item) => (
-        <div key={item.name} className={item.name === 'email' ? 'flex w-full' : ''}>
+        <div key={item.id} className={item.id === 'email' ? 'flex w-full' : ''}>
           <FormInputString
+            id={item.id}
             label={item.label}
             type={item.type}
-            name={item.name}
             placeholder={item.placeholder}
           >
-            {item.name === 'email' && verfiedButton}
+            {item.id === 'email' && verfiedButton}
           </FormInputString>
         </div>
       ))}

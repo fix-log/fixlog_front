@@ -1,10 +1,10 @@
 import { useFormContext } from 'react-hook-form';
-import { FormErrorMessageType } from '../model/FormErrorMessage';
 import { focus, errorFocus } from './TailwindcssUtil';
+import { FormValuesKeys } from '@/features/signup/model/schema/Step1';
 
 interface FormInputStringProps {
   type: 'text' | 'number' | 'email' | 'password' | 'url';
-  name: keyof FormErrorMessageType;
+  id: FormValuesKeys;
   placeholder: string;
   label?: string;
   isRequired?: boolean;
@@ -13,14 +13,14 @@ interface FormInputStringProps {
 
 export default function FormInputString({
   type,
-  name,
+  id,
   placeholder,
   label,
   isRequired,
   children,
 }: FormInputStringProps) {
   const { register, formState: {errors} } = useFormContext()
-  const focusClassName = errors[name] ? errorFocus : focus;
+  const focusClassName = errors[id] ? errorFocus : focus;
 
   return (
     <div className='w-full'>
@@ -38,13 +38,13 @@ export default function FormInputString({
           }
           type={type}
           placeholder={placeholder}
-          {...register(name)}
+          {...register(id)}
         />
         {children}
       </div>
-      {errors[name] && (
+      {errors[id] && (
         <p className='text-pointDarkYellow -mt-3 pb-3 pl-3'>
-          {errors[name].message?.toString()}
+          {errors[id].message?.toString()}
         </p>
       )}
     </div>

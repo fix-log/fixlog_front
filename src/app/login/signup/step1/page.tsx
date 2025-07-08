@@ -5,14 +5,13 @@ import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
 import { useRouter } from 'next/navigation';
 import { FieldErrors, FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { schema } from '@/features/signup/model/schema/Step1';
+import { FormValues, schema } from '@/features/signup/model/schema/Step1';
 import Agreement from '@/widgets/signup/step1/Agreement';
 import FormFields from '@/widgets/signup/step1/FormFields';
 
 export default function Step1() {
   const router = useRouter();
-  const form = useForm<z.infer<typeof schema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(schema),
   });
 

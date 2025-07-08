@@ -41,3 +41,6 @@ export const schema = z
       });
     }
   });
+  
+export type FormValues = z.infer<typeof schema>;
+export type FormValuesKeys = keyof FormValues;
