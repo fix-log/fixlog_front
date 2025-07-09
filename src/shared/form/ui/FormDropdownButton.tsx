@@ -3,7 +3,6 @@ import FormDropdownToggle from './FormDropdownToggle';
 import { selectOptions, selectOptionsType } from '@/features/signup/model/selectOptions';
 import DropdownIcon from './DropdownIcon';
 import { FieldValues, Path, useFormContext } from 'react-hook-form';
-import { lengthLimits } from '../model/LengthLimits';
 
 interface FormDropdownButtonProps {
   id: keyof selectOptionsType;
