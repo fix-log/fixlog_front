@@ -1,18 +1,26 @@
-interface FormRadioSelectProps {
-  key: string;
+import { FieldValues, Path, useFormContext } from 'react-hook-form';
+
+interface FormRadioSelectProps<T extends FieldValues> {
+  id: Path<T>;
   button: string[];
   label?: string;
   isRequired?: boolean;
 }
 
-export default function FormRadioSelect({
+export default function FormRadioSelect<T extends FieldValues>({
   label,
-  key,
+  id,
   button,
   isRequired,
-}: FormRadioSelectProps) {
-  // 빌드 에러 때문에 임시 추가 (기태)
-  console.log(key);
+}: FormRadioSelectProps<T>) {
+  const {
+    register,
+    watch,
+    formState: { errors },
+  } = useFormContext<T>();
+
+  console.log(id);
+  console.log(watch(id));
 
   return (
     <div className='w-full'>
@@ -24,14 +32,23 @@ export default function FormRadioSelect({
       )}
       <ul className='!my-[15px] flex w-full'>
         {button.map((item) => (
-          <button
+          <div
             key={item}
-            className='border-gray4 text-gray4 !mr-[20px] h-[60px] grow cursor-pointer rounded-[5px] border text-center leading-14 last:!mr-0'
+            className={
+              'border-gray4 text-gray4 !mr-[20px] h-[60px] grow rounded-[5px] border text-center leading-14 last:!mr-0' +
+              (watch(id) === item ? ' bg-mainRed text-mainWhite' : '')
+            }
           >
-            {item}
-          </button>
+            <input id={item} type='radio' className='hidden' value={item} {...register(id)} />
+            <label htmlFor={item} className='inline-block h-full w-full cursor-pointer'>
+              {item}
+            </label>
+          </div>
         ))}
       </ul>
+      {errors[id] && (
+        <p className='text-pointDarkYellow -mt-3 pb-3 pl-3'>{errors[id].message?.toString()}</p>
+      )}
     </div>
   );
 }

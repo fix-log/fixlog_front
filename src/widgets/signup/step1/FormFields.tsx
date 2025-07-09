@@ -1,3 +1,4 @@
+import { FormValues } from '@/features/signup/model/schema/Step1';
 import FormInputString from '@/shared/form/ui/FormInputString';
 import { useFormContext } from 'react-hook-form';
 
@@ -32,7 +33,7 @@ export default function FormFields() {
     <div>
       {DATA.map((item) => (
         <div key={item.id} className={item.id === 'email' ? 'flex w-full' : ''}>
-          <FormInputString
+          <FormInputString<FormValues>
             id={item.id}
             label={item.label}
             type={item.type}

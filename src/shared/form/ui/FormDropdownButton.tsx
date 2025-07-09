@@ -2,24 +2,29 @@ import { Dispatch, SetStateAction } from 'react';
 import FormDropdownToggle from './FormDropdownToggle';
 import { selectOptions, selectOptionsType } from '@/features/signup/model/selectOptions';
 import DropdownIcon from './DropdownIcon';
+import { FieldValues, Path, useFormContext } from 'react-hook-form';
 
 interface FormDropdownButtonProps {
+  id: keyof selectOptionsType;
   label: string;
-  data: keyof selectOptionsType;
   open: string | undefined;
   setOpen: Dispatch<SetStateAction<string | undefined>>;
   placeholder: string;
   isRequired?: boolean;
 }
 
-export default function FormDropdownButton({
+export default function FormDropdownButton<T extends FieldValues>({
+  id,
   open,
   setOpen,
-  data,
   label,
   placeholder,
   isRequired,
 }: FormDropdownButtonProps) {
+  const {
+    formState: { errors },
+  } = useFormContext<T>();
+
   function handleClick() {
     setOpen(open === label ? undefined : label);
   }
@@ -44,8 +49,11 @@ export default function FormDropdownButton({
           <p className='grow !pl-[17px]'>{placeholder}</p>
           <DropdownIcon form={open} target={label} />
         </div>
-        {open === label && <FormDropdownToggle data={selectOptions[data]} />}
+        {open === label && <FormDropdownToggle<T> id={id as Path<T>} data={selectOptions[id]} />}
       </button>
+      {errors[id] && (
+        <p className='text-pointDarkYellow -mt-3 pb-3 pl-3'>{errors[id].message?.toString()}</p>
+      )}
     </div>
   );
 }

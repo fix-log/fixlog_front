@@ -1,25 +1,24 @@
-import { useFormContext } from 'react-hook-form';
+import { FieldValues, Path, useFormContext } from 'react-hook-form';
 import { focus, errorFocus } from './TailwindcssUtil';
-import { FormValuesKeys } from '@/features/signup/model/schema/Step1';
 
-interface FormInputStringProps {
+interface FormInputStringProps<T> {
   type: 'text' | 'number' | 'email' | 'password' | 'url';
-  id: FormValuesKeys;
+  id: Path<T>;
   placeholder: string;
   label?: string;
   isRequired?: boolean;
   children?: React.ReactNode;
 }
 
-export default function FormInputString({
+export default function FormInputString<T extends FieldValues>({
   type,
   id,
   placeholder,
   label,
   isRequired,
   children,
-}: FormInputStringProps) {
-  const { register, formState: {errors} } = useFormContext()
+}: FormInputStringProps<T>) {
+  const { register, formState: {errors} } = useFormContext<T>()
   const focusClassName = errors[id] ? errorFocus : focus;
 
   return (
