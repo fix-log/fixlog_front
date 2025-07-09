@@ -40,9 +40,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
-            cd ~/fixlog_front/fixlog_front
-
-            docker compose down || true
-            docker image rm ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest || true
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest
-            docker compose up -d
+            docker rm -f fixlog-frontend || true
+            docker rmi -f sujeong9928/fixlog-front:latest || true
+            docker pull sujeong9928/fixlog-front:latest
+            docker run -d --name fixlog-frontend -p 3000:3000 sujeong9928/fixlog-front:latest
