@@ -10,9 +10,7 @@ export const schema = z.object({
   gender: z
     .string()
     .nullable()
-    .refine((val) => val === '남성' || val === '여성', {
-      message: '성별을 선택해주세요',
-    }),
+    .refine((val) => val !== null && val !== '', { message: '성별을 선택해주세요' }),
   phoneNumber: z.string().nonempty('전화번호를 입력해주세요'),
   position: z.array(z.string()).min(1, '포지션을 선택해주세요'),
   career: z.array(z.string()).min(1, '경력을 선택해주세요'),

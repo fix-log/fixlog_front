@@ -11,11 +11,7 @@ import FormFields from '@/widgets/signup/step2/FormFields';
 export default function Signup() {
   const router = useRouter();
   const form = useForm<FormValues>({
-    resolver: zodResolver(schema),
-    defaultValues: {
-      position: [],
-      career: [],
-    },
+    resolver: zodResolver(schema)
   });
 
   function handleClick() {
