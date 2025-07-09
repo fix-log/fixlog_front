@@ -15,7 +15,7 @@ export default function BannerSlider() {
       pagination={{ clickable: true }}
       autoplay={{ delay: 4000 }}
       loop
-      className='custom-swiper h-[596px] w-full max-w-[1440px]'
+      className='custom-swiper h-[596px] w-full max-w-[1440px] mt-[10px]'
     >
       {bannerImages.map((src, i) => (
         <SwiperSlide key={i}>
