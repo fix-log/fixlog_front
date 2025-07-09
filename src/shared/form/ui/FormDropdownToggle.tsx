@@ -6,13 +6,13 @@ interface FormDropdownToggleProps<T extends FieldValues> {
   data: string[];
 }
 
-
 export default function FormDropdownToggle<T extends FieldValues>({
   id,
   data,
 }: FormDropdownToggleProps<T>) {
   const { register, watch } = useFormContext<T>();
   const maxLength = lengthLimits[id];
+  // maxLength 0 값일 경우 최대제한 없음
 
   function isFullAndMissing(item: string) {
     return watch(id).length >= maxLength && !watch(id).includes(item);
@@ -33,7 +33,7 @@ export default function FormDropdownToggle<T extends FieldValues>({
             id={item}
             type='checkbox'
             value={item}
-            disabled={isFullAndMissing(item)}
+            disabled={maxLength ? isFullAndMissing(item) : false}
             className='hidden'
             {...register(id)}
           />
