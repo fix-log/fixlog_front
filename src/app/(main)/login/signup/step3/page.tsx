@@ -5,7 +5,7 @@ import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 
 export default function Step3() {
   const router = useRouter();
@@ -18,6 +18,7 @@ export default function Step3() {
   }
 
   return (
+    <FormProvider {...form}>
     <div className='flex w-full !max-w-[500px] flex-col items-center'>
       <FormHeader title='기술 역량' />
       <form className='w-full' onSubmit={form.handleSubmit(handleClick)}>
@@ -45,5 +46,6 @@ export default function Step3() {
         <FormSubmitButton text='다음 (3/4)' isSubmitting={form.formState.isSubmitting} />
       </form>
     </div>
+    </FormProvider>
   );
 }

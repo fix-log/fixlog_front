@@ -1,23 +1,18 @@
-import { UseFormReturn } from 'react-hook-form';
-
 interface FormRadioSelectProps {
-  name: string;
+  key: string;
   button: string[];
-  form: UseFormReturn;
   label?: string;
   isRequired?: boolean;
 }
 
 export default function FormRadioSelect({
   label,
-  name,
+  key,
   button,
-  form,
   isRequired,
 }: FormRadioSelectProps) {
   // 빌드 에러 때문에 임시 추가 (기태)
-  console.log(name);
-  console.log(form);
+  console.log(key);
 
   return (
     <div className='w-full'>

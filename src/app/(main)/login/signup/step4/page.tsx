@@ -3,11 +3,11 @@
 import FormDropdownButton from '@/shared/form/ui/FormDropdownButton';
 import FormFile from '@/shared/form/ui/FormFile';
 import FormHeader from '@/shared/form/ui/FormHeader';
-import FormInputString from '@/shared/form/ui/FormInputString';
+// import FormInputString from '@/shared/form/ui/FormInputString';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 
 export default function Step4() {
   const router = useRouter();
@@ -20,6 +20,7 @@ export default function Step4() {
   }
 
   return (
+    <FormProvider {...form}>
     <div className='flex w-full !max-w-[500px] flex-col items-center'>
       <FormHeader title='기타 정보' />
       <form className='w-full' onSubmit={form.handleSubmit(handleClick)}>
@@ -45,15 +46,15 @@ export default function Step4() {
           setOpen={setIsDropdownOpen}
         />
         <FormFile label='포트폴리오 파일' />
-        <FormInputString
+        {/* <FormInputString
           label='참고 링크'
           type='url'
           placeholder='URL을 입력해주세요'
-          name='url'
-          form={form}
-        />
+          id='url'
+        /> */}
         <FormSubmitButton text='회원가입하기' isSubmitting={form.formState.isSubmitting} />
       </form>
     </div>
+    </FormProvider>
   );
 }
