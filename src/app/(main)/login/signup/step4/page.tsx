@@ -20,11 +20,8 @@ export default function Step4() {
   });
 
   function handleClick() {
-    console.log('submit== ', true);
     router.push('/login');
   }
-
-  console.log('form.errors== ', form.formState.errors);
 
   return (
     <FormProvider {...form}>
