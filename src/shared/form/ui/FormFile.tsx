@@ -11,7 +11,8 @@ export default function FormFile<T extends FieldValues>({
   id,
   isRequired,
 }: FormFileProps<T>) {
-  const { register } = useFormContext<T>();
+  const { register, watch } = useFormContext<T>();
+  console.log('watch(portpolio)== ', watch(id));
 
   return (
     <div className='w-full'>

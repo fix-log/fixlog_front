@@ -13,7 +13,6 @@ export default function FormDropdownToggle<T extends FieldValues>({
   const { register, watch } = useFormContext<T>();
   const maxLength = lengthLimits[id];
   // maxLength 0 값일 경우 최대제한 없음
-  console.log(id)
 
   function isFullAndMissing(item: string) {
     return watch(id).length >= maxLength && !watch(id).includes(item);
