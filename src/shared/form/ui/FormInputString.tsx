@@ -18,7 +18,11 @@ export default function FormInputString<T extends FieldValues>({
   isRequired,
   children,
 }: FormInputStringProps<T>) {
-  const { register, formState: {errors} } = useFormContext<T>()
+  const {
+    register,
+    watch,
+    formState: { errors },
+  } = useFormContext<T>();
   const focusClassName = errors[id] ? errorFocus : focus;
 
   return (
@@ -41,10 +45,8 @@ export default function FormInputString<T extends FieldValues>({
         />
         {children}
       </div>
-      {errors[id] && (
-        <p className='text-pointDarkYellow -mt-3 pb-3 pl-3'>
-          {errors[id].message?.toString()}
-        </p>
+      {errors[id] && (id === 'url' ? watch(id) !== '' : true) && (
+        <p className='text-pointDarkYellow -mt-3 pb-3 pl-3'>{errors[id].message?.toString()}</p>
       )}
     </div>
   );

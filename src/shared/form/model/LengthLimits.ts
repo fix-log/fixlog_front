@@ -8,6 +8,9 @@ export const lengthLimits: lengthLimitsType = {
   devLanguage: 5,
   stackAndTool: 8,
   designAndCollab: 0,
+  devInterestField: 3,
+  techTrendsInterest: 3,
+  careerGrowth: 3,
 };
 
 // value: 0 = 최대 선택 제한 없음
