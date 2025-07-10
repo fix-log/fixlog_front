@@ -9,11 +9,11 @@ const navItems: NavigationItems = [
 ];
 
 // 임시 로그인 여부 (나중에 전역 상태로 바꿔야댐 true 로 하면 로그인 후 헤더로 변경)
-const isLoggedIn = false;
+const isLoggedIn = true;
 
 export default function Header() {
   return (
-    <header className='fixed top-0 right-0 left-0 z-10 flex h-[110px] justify-center bg-white'>
+    <header className='fixed top-0 right-0 left-0 z-10 flex h-[110px] justify-center bg-white font-sans'>
       <div className='flex h-full w-full max-w-[1440px] items-center justify-between px-6'>
         {/* 로고 */}
         <Link href='/' className='flex items-center'>
@@ -26,7 +26,7 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className='text-[24px] leading-[130%] text-zinc-800 hover:text-mainRed'
+              className='hover:text-mainRed text-h4 font-bold text-zinc-800'
             >
               {item.name}
             </Link>
@@ -40,21 +40,21 @@ export default function Header() {
             <button>
               <Image src='/icon_notification.png' alt='알림' width={20} height={20} />
             </button>
-            <button>
+            <Link href='/fixletter' aria-label='픽레터로 이동'>
               <Image src='/icon_message.png' alt='메시지' width={20} height={20} />
-            </button>
+            </Link>
             <button>
               <Image src='/icon_profile.png' alt='프로필' width={56} height={56} />
             </button>
           </div>
         ) : (
-          <div className='text-[18px]'>
-            <Link href='/login' className='!ml-[46px]'>
+          <div className='flex items-center gap-[46px]'>
+            <Link href='/login' className='text-body-l text-zinc-800'>
               로그인
             </Link>
             <Link
               href='/login/signup/step1'
-              className='bg-mainRed text-mainWhite !ml-[46px] rounded-[5px] !p-[8px_21px] !pb-[9px]'
+              className='bg-mainRed text-mainWhite text-body-l rounded-[5px] p-[8px_21px] pb-[9px] font-bold'
             >
               회원가입
             </Link>
