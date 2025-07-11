@@ -1,0 +1,42 @@
+'use client';
+
+import Image from 'next/image';
+
+export default function Footer() {
+  return (
+    <footer className='w-full bg-gray6'>
+      <div className='flex w-full max-w-[1920px] flex-col justify-between px-[240px] py-[95px] md:flex-row md:items-center md:gap-10 lg:px-[240px] xl:px-[240px]'>
+        {/* 좌측 로고, 설명 */}
+        <div className='mb-12 md:mb-0 md:flex-1'>
+          <div className='mb-4'>
+            <Image src='/fixlog.png' alt='fixlog 로고' width={100} height={40} />
+          </div>
+          <p className='text-sm leading-relaxed text-zinc-500'>
+            경험이 기록되고, 키워드가 성장으로 연결되는 곳<br />
+            픽스로그에서 당신의 협업 레벨을 올려보세요
+          </p>
+        </div>
+
+        {/* 우측 정보 */}
+        <div className='space-y-2 text-right text-sm text-zinc-500 md:flex-1'>
+          <div className='flex justify-end gap-6'>
+            <a href='#' className='hover:underline'>
+              이용약관
+            </a>
+            <a href='#' className='hover:underline'>
+              개인정보처리방침
+            </a>
+            <a href='#' className='hover:underline'>
+              서비스 소개
+            </a>
+            <a href='#' className='hover:underline'>
+              광고상품 소개
+            </a>
+          </div>
+          <p>Contact: fixlog.team.official@gmail.com</p>
+          <p>© 2025 Fixlog. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
