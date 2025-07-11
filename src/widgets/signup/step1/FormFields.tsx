@@ -23,7 +23,10 @@ export default function FormFields() {
         'bg-mainBlack text-mainWhite !my-[15px] !ml-3 h-[60px] w-[90px] cursor-pointer rounded-[5px] font-bold'
       }
       type='button'
-      onClick={() => form.setValue('isEmailVerified' as const, true)}
+      onClick={() => {
+        form.setValue('isEmailVerified' as const, true);
+        form.trigger('email');
+      }}
     >
       {emailWatch ? '완료' : '인증'}
     </button>

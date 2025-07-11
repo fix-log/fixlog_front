@@ -1,8 +1,6 @@
 import z from 'zod';
 
-const literalErrorMap = {
-  errorMap: () => ({ message: '필수 약관 항목을 확인해주세요' }),
-};
+const agreedErrorMessage = { message: '필수 약관 항목을 확인해주세요' };
 
 export const schema = z
   .object({
@@ -19,28 +17,20 @@ export const schema = z
       }),
     confirmPassword: z.string().nonempty('비밀번호를 다시 입력해주세요'),
     isAllAgreed: z.boolean().optional(),
-    isOver14Agreed: z.literal(true, literalErrorMap),
-    isTermsAgreed: z.literal(true, literalErrorMap),
-    isPrivacyAgreed: z.literal(true, literalErrorMap),
+    isOver14Agreed: z.boolean().refine((val) => val === true, agreedErrorMessage),
+    isTermsAgreed: z.boolean().refine((val) => val === true, agreedErrorMessage),
+    isPrivacyAgreed: z.boolean().refine((val) => val === true, agreedErrorMessage),
     isMarketingAgreed: z.boolean().optional(),
   })
-  .superRefine((data, ctx) => {
-    console.log('isEmailVerified:', data.isEmailVerified);
-    if (!data.isEmailVerified) {
-      ctx.addIssue({
-        path: ['email'],
-        message: '이메일 인증을 진행해주세요',
-        code: z.ZodIssueCode.custom,
-      });
-    }
-    if (data.password !== data.confirmPassword) {
-      ctx.addIssue({
-        path: ['confirmPassword'],
-        message: '비밀번호가 일치하지 않습니다',
-        code: z.ZodIssueCode.custom,
-      });
-    }
+  .partial() // refine 호출이 안돼서 추가
+  .refine((data) => data.isEmailVerified, {
+    path: ['email'],
+    message: '이메일 인증을 진행해주세요',
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    path: ['confirmPassword'],
+    message: '비밀번호가 일치하지 않습니다',
   });
-  
+
 export type FormValues = z.infer<typeof schema>;
 export type FormValuesKeys = keyof FormValues;
