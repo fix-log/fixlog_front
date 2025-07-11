@@ -19,9 +19,6 @@ export default function FormRadioSelect<T extends FieldValues>({
     formState: { errors },
   } = useFormContext<T>();
 
-  console.log(id);
-  console.log(watch(id));
-
   return (
     <div className='w-full'>
       {label && (
