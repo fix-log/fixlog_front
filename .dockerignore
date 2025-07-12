@@ -17,3 +17,9 @@ build
 # Git 관련
 .git
 .gitignore
+
+docker-compose.yml
+Dockerfile
+.dockerignore
+.github
+README.md
