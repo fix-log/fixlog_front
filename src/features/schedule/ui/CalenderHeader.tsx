@@ -2,15 +2,21 @@
 
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-export default function CalenderHeader() {
-  // TODO: 인자로 월 받아오기? (월 만으로 충분한가?)
+interface CalenderHeaderProps {
+  month: number;
+  setMonth: (month: number) => void; // TODO: 타입 수정
+}
 
+export default function CalenderHeader({ month, setMonth }: CalenderHeaderProps) {
+  console.log(month);
+
+  // TODO: 1월 이전, 12월 이후 -> 연도 변경 처리 가능해야함
   const handlePrev = () => {
-    console.log('prev');
+    setMonth(month - 1);
   };
 
   const handleNext = () => {
-    console.log('next');
+    setMonth(month + 1);
   };
 
   return (
@@ -23,7 +29,10 @@ export default function CalenderHeader() {
       </button>
 
       {/* 데이터 받아서 월 표시 */}
-      <div>6 June</div>
+      <div className='flex items-end gap-2'>
+        <span className='text-h3 font-extrabold'>{month + 1}</span>
+        {/* <span className='font-extrabold text-h4 text-gray3'>{months[month]}</span> */}
+      </div>
 
       <button
         onClick={handleNext}
