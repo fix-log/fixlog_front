@@ -42,7 +42,7 @@ jobs:
           script: |
             cd ~/fixlog_front
             #docker rm -f fixlog-frontend || true
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest
-            sudo docker compose up -d
-            #sudo docker rmi -f ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest || true
-            sudo docker system prune -f
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest
+            docker compose up -d
+            #docker rmi -f ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest || true
+            docker system prune -f
