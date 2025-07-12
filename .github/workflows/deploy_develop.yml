@@ -31,7 +31,7 @@ jobs:
           platforms: linux/amd64
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest
 
-      # 4. EC2에 SSH 접속 후 이미지 pull + 컨테이너 재시작
+      # 4. EC2에 SSH 접속 후 최신 이미지로 배포
       - name: SSH and deploy on EC2 with Docker Compose
         uses: appleboy/ssh-action@v1
         with:
@@ -40,7 +40,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
-            cd ~/fixlog_front/fixlog_front           
-            docker compose down || true
-            docker compose pull
+            cd ~/fixlog_front/fixlog_front
+            docker rm -f fixlog-frontend || true
+            docker rmi -f ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest || true
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest
             docker compose up -d
