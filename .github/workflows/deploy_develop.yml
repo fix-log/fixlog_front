@@ -3,7 +3,7 @@ name: Deploy to EC2 with Docker(develop)
 on:
   push:
     branches:
-      - feature/34
+      - develop
 
 jobs:
   build-and-deploy:
@@ -40,7 +40,6 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
-            docker rm -f fixlog-frontend || true
-            docker rmi -f sujeong9928/fixlog-front:latest || true
-            docker pull sujeong9928/fixlog-front:latest
-            docker run -d --name fixlog-frontend -p 3000:3000 sujeong9928/fixlog-front:latest
+            docker-compose down || true
+            docker-compose pull
+            docker-compose up -d

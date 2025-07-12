@@ -6,7 +6,7 @@ services:
     container_name: fixlog-frontend
     ports:
       - "3000:3000"
-    command: yarn start
+    command: node server.js
     restart: always
     environment:
       - NODE_ENV=production
