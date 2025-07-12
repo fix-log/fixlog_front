@@ -11,7 +11,7 @@ export default function FormFile<T extends FieldValues>({
   id,
   isRequired,
 }: FormFileProps<T>) {
-  const { register, watch } = useFormContext<T>();
+  const { register } = useFormContext<T>();
 
   return (
     <div className='w-full'>
