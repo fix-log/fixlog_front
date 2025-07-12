@@ -40,6 +40,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
-            docker-compose down || true
-            docker-compose pull
-            docker-compose up -d
+            cd ~/fixlog_front/fixlog_front           
+            docker compose down || true
+            docker compose pull
+            docker compose up -d
