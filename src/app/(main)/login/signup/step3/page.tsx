@@ -1,17 +1,23 @@
 'use client';
 
-import FormDropdownButton from '@/shared/form/ui/FormDropdownButton';
+import { FormValues, schema } from '@/features/signup/model/schema/Step3';
 import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
+import FormFields from '@/widgets/signup/step3/FormFields';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 export default function Step3() {
   const router = useRouter();
-  const form = useForm();
-  const [isDropdownOpen, setIsDropdownOpen] = useState<string | undefined>(undefined);
-  // 드롭다운 오픈 여부 + 오픈된 드롭다운이 무엇인지 판단하기 위함이기도 함
+  const form = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      devLanguage: [],
+      stackAndTool: [],
+      designAndCollab: [],
+    },
+  });
 
   function handleClick() {
     router.push('/login/signup/step4');
@@ -19,33 +25,13 @@ export default function Step3() {
 
   return (
     <FormProvider {...form}>
-    <div className='flex w-full !max-w-[500px] flex-col items-center'>
-      <FormHeader title='기술 역량' />
-      <form className='w-full' onSubmit={form.handleSubmit(handleClick)}>
-        <FormDropdownButton
-          label='개발 언어'
-          placeholder='개발 언어를 선택해주세요'
-          data='devLanguage'
-          open={isDropdownOpen}
-          setOpen={setIsDropdownOpen}
-        />
-        <FormDropdownButton
-          label='기술 스택 & 툴'
-          placeholder='기술 스택 & 툴을 선택해주세요'
-          data='stackAndTool'
-          open={isDropdownOpen}
-          setOpen={setIsDropdownOpen}
-        />
-        <FormDropdownButton
-          label='디자인 & 협업 툴'
-          placeholder='디자인 & 협업 툴을 선택해주세요'
-          data='designAndCollab'
-          open={isDropdownOpen}
-          setOpen={setIsDropdownOpen}
-        />
-        <FormSubmitButton text='다음 (3/4)' isSubmitting={form.formState.isSubmitting} />
-      </form>
-    </div>
+      <div className='flex w-full !max-w-[500px] flex-col items-center'>
+        <FormHeader title='기술 역량' />
+        <form className='w-full' onSubmit={form.handleSubmit(handleClick)}>
+          <FormFields />
+          <FormSubmitButton text='다음 (3/4)' isSubmitting={form.formState.isSubmitting} />
+        </form>
+      </div>
     </FormProvider>
   );
 }

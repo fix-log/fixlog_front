@@ -1,3 +1,4 @@
+import { FormValues } from '@/features/signup/model/schema/Step1';
 import FormInputString from '@/shared/form/ui/FormInputString';
 import { useFormContext } from 'react-hook-form';
 
@@ -22,7 +23,10 @@ export default function FormFields() {
         'bg-mainBlack text-mainWhite !my-[15px] !ml-3 h-[60px] w-[90px] cursor-pointer rounded-[5px] font-bold'
       }
       type='button'
-      onClick={() => form.setValue('isEmailVerified' as const, true)}
+      onClick={() => {
+        form.setValue('isEmailVerified' as const, true);
+        form.trigger('email');
+      }}
     >
       {emailWatch ? '완료' : '인증'}
     </button>
@@ -32,7 +36,7 @@ export default function FormFields() {
     <div>
       {DATA.map((item) => (
         <div key={item.id} className={item.id === 'email' ? 'flex w-full' : ''}>
-          <FormInputString
+          <FormInputString<FormValues>
             id={item.id}
             label={item.label}
             type={item.type}
