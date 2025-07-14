@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       // css variable 등록
       fontFamily: {
-        suit: ['var(--font-suit)'],
+        sans: ['var(--font-suit)'],
       },
     },
   },

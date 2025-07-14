@@ -1,5 +1,11 @@
 @import 'tailwindcss';
 
+@layer base {
+  html {
+    font-family: var(--font-suit), sans-serif;
+  }
+}
+
 /* "bg-pointGreen" "text-gray2" 등으로 사용 */
 @theme {
   --color-mainBlack: #202020;

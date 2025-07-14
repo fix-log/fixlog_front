@@ -3,13 +3,13 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+COPY package.json package-lock.json ./
 
-RUN yarn install --frozen-lockfile
+RUN npm ci
 
 COPY . .
 
-RUN yarn build
+RUN npm run build
 
 # 2단계: 실행
 FROM node:22-alpine
