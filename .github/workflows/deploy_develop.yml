@@ -1,0 +1,48 @@
+name: Deploy to EC2 with Docker(develop)
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. GitHub 레포지토리 코드 체크아웃
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      # 2. DockerHub 로그인
+      - name: Log in to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 3. Docker 이미지 빌드 및 DockerHub에 푸시
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          platforms: linux/amd64
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest
+
+      # 4. EC2에 SSH 접속 후 최신 이미지로 배포
+      - name: SSH and deploy on EC2 with Docker Compose
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          script: |
+            cd ~/fixlog_front
+            #docker rm -f fixlog-frontend || true
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest
+            docker compose up -d
+            #docker rmi -f ${{ secrets.DOCKERHUB_USERNAME }}/fixlog-front:latest || true
+            docker system prune -f

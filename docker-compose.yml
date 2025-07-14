@@ -1,0 +1,10 @@
+
+services:
+  frontend:
+    image: sujeong9928/fixlog-front:latest
+    container_name: fixlog-frontend
+    ports:
+      - "3000:3000"
+    command: node server.js
+    restart: always
+
