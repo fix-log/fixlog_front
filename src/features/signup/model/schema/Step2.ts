@@ -1,6 +1,6 @@
 import z from 'zod';
 
-export const schema = z.object({
+export const step2Schema = z.object({
   name: z.string().nonempty('이름을 입력해주세요'),
   birthDate: z
     .string()
@@ -16,5 +16,5 @@ export const schema = z.object({
   career: z.array(z.string()).min(1, '경력을 선택해주세요'),
 });
 
-export type FormValues = z.infer<typeof schema>;
+export type FormValues = z.infer<typeof step2Schema>;
 export type FormValuesKeys = keyof FormValues;
