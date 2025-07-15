@@ -1,9 +1,18 @@
-interface FormFileProps {
+import { FieldValues, Path, useFormContext } from 'react-hook-form';
+
+interface FormFileProps<T extends FieldValues> {
   label: string;
+  id: Path<T>;
   isRequired?: boolean;
 }
 
-export default function FormFile({ label, isRequired }: FormFileProps) {
+export default function FormFile<T extends FieldValues>({
+  label,
+  id,
+  isRequired,
+}: FormFileProps<T>) {
+  const { register } = useFormContext<T>();
+
   return (
     <div className='w-full'>
       {label && (
@@ -18,7 +27,7 @@ export default function FormFile({ label, isRequired }: FormFileProps) {
       >
         파일을 등록해주세요
       </label>
-      <input id='form_file' type='file' className='hidden' accept=".pdf" />
+      <input id='form_file' type='file' className='hidden' accept='.pdf' {...register(id)} />
     </div>
   );
 }

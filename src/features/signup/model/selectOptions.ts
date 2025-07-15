@@ -61,7 +61,7 @@ export const selectOptions: selectOptionsType = {
     'Trello',
     'Jira',
   ],
-  devInterest: [
+  devInterestField: [
     '프론트엔드',
     '백엔드',
     '풀스택',
@@ -75,7 +75,7 @@ export const selectOptions: selectOptionsType = {
     '보안 / 해킹',
     '임베디드 / IoT',
   ],
-  techTrendInterest: [
+  techTrendsInterest: [
     '사이드 프로젝트',
     '오픈소스',
     '스타트업',
@@ -88,7 +88,7 @@ export const selectOptions: selectOptionsType = {
     '기술 문서화',
     '코드 리뷰',
   ],
-  careerAndGrowth: [
+  careerGrowth: [
     '취업 준비',
     '이직 준비',
     '개발 공부 / 학습',

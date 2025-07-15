@@ -1,28 +1,30 @@
-'use client';
+import { FieldValues, Path, useFormContext } from 'react-hook-form';
+import { focus, errorFocus } from './TailwindcssUtil';
 
-import FormRegister from '../model/FormRegister';
-import { FormErrorMessageType } from '../model/FormErrorMessage';
-import { UseFormReturn } from 'react-hook-form';
-
-interface FormInputStringProps {
+interface FormInputStringProps<T> {
   type: 'text' | 'number' | 'email' | 'password' | 'url';
-  name: keyof FormErrorMessageType;
+  id: Path<T>;
   placeholder: string;
-  form: UseFormReturn;
   label?: string;
   isRequired?: boolean;
   children?: React.ReactNode;
 }
 
-export default function FormInputString({
+export default function FormInputString<T extends FieldValues>({
   type,
-  name,
+  id,
   placeholder,
-  form,
   label,
   isRequired,
   children,
-}: FormInputStringProps) {
+}: FormInputStringProps<T>) {
+  const {
+    register,
+    watch,
+    formState: { errors },
+  } = useFormContext<T>();
+  const focusClassName = errors[id] ? errorFocus : focus;
+
   return (
     <div className='w-full'>
       {label && (
@@ -33,17 +35,18 @@ export default function FormInputString({
       )}
       <div className='flex w-full'>
         <input
-          className='border-gray4 focus:border-pointDarkYellow/50 !my-[15px] h-[60px] w-full rounded-[5px] border-1 !pr-[20px] !pl-[17px] text-[20px] focus:shadow-[0_0_3.6px_#CDB200] focus:outline-none'
+          className={
+            'border-gray4 !my-[15px] h-[60px] w-full rounded-[5px] border-1 !pr-[20px] !pl-[17px] text-[20px] focus:outline-none' +
+            focusClassName
+          }
           type={type}
           placeholder={placeholder}
-          {...FormRegister({ register: form.register, name })}
+          {...register(id)}
         />
         {children}
       </div>
-      {form.formState.errors[name] && (
-        <p className='text-pointDarkYellow !-mt-2 !pl-3'>
-          {form.formState.errors[name].message?.toString()}
-        </p>
+      {errors[id] && (id === 'url' ? watch(id) !== '' : true) && (
+        <p className='text-pointDarkYellow -mt-3 pb-3 pl-3'>{errors[id].message?.toString()}</p>
       )}
     </div>
   );
