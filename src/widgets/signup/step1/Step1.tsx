@@ -6,8 +6,13 @@ import { useRouter } from "next/navigation";
 import { FieldErrors, useFormContext } from "react-hook-form";
 import Agreement from "@/widgets/signup/step1/Agreement";
 import FormFields from "@/widgets/signup/step1/FormFields";
+import { Dispatch, SetStateAction } from "react";
 
-export default function Step1() {
+interface Step1Props {
+  setStep: Dispatch<SetStateAction<number>>;
+}
+
+export default function Step1({ setStep }: Step1Props) {
   const router = useRouter();
   const form = useFormContext();
 
@@ -21,6 +26,7 @@ export default function Step1() {
   }
 
   function handleClick() {
+    setStep(2);
     router.push("/login/signup");
   }
 

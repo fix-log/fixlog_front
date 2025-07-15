@@ -4,13 +4,19 @@ import FormHeader from "@/shared/form/ui/FormHeader";
 import FormSubmitButton from "@/shared/form/ui/FormSubmitButton";
 import FormFields from "@/widgets/signup/step3/FormFields";
 import { useRouter } from "next/navigation";
+import { Dispatch, SetStateAction } from "react";
 import { useFormContext } from "react-hook-form";
 
-export default function Step3() {
+interface Step3Props {
+  setStep: Dispatch<SetStateAction<number>>;
+}
+
+export default function Step3({ setStep }: Step3Props) {
   const router = useRouter();
   const form = useFormContext();
 
   function handleClick() {
+    setStep(4);
     router.push("/login/signup");
   }
 
