@@ -49,6 +49,7 @@ body {
   border-radius: 4px;
 }
 
+/* Swiper */
 .custom-swiper .swiper-pagination-bullet-active {
   background-color: #ff4427 !important;
 }
