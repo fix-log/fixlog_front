@@ -16,28 +16,37 @@ import { dataType, FormDataType } from "./Types";
 
 export default function Signup() {
   const [step, setStep] = useState(1);
-  
+
   const formData: dataType = {
     1: {
       element: <Step1 setStep={setStep} />,
       schema: step1Schema,
+      default: null,
     },
     2: {
       element: <Step2 setStep={setStep} />,
       schema: step2Schema,
+      default: { position: [], career: [] },
     },
     3: {
       element: <Step3 setStep={setStep} />,
       schema: step3Schema,
+      default: { devLanguage: [], stackAndTool: [], designAndCollab: [] },
     },
     4: {
       element: <Step4 setStep={setStep} />,
       schema: step4Schema,
+      default: {
+        devInterestField: [],
+        techTrendsInterest: [],
+        careerGrowth: [],
+      },
     },
   };
 
   const form = useForm<FormDataType>({
     resolver: zodResolver(formData[step].schema),
+    defaultValues: { ...formData[step].default },
   });
 
   return <FormProvider {...form}>{formData[step].element}</FormProvider>;

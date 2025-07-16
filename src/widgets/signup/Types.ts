@@ -9,6 +9,7 @@ export interface dataType {
   [key: number]: {
     element: ReactElement<any, any>;
     schema: ZodObject;
+    default: { [key: string]: any } | null;
   };
 }
 
