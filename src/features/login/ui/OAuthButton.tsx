@@ -14,7 +14,7 @@ export default function OAuthButton({ provider }: OAuthButtonProps) {
       alt={provider}
       width={60}
       height={60}
-      className='!mr-[35px] cursor-pointer last:!mr-0'
+      className="!mr-[35px] cursor-pointer last:!mr-0"
     />
   );
 }
