@@ -1,45 +1,69 @@
 'use client';
 
+import { addMonths, subMonths, getMonth, getYear } from 'date-fns';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
+// TODO: 상수로 분리 (임시)
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+] as const;
+
 interface CalenderHeaderProps {
-  month: number;
-  setMonth: (month: number) => void; // TODO: 타입 수정
+  currentMonth: Date;
+  setCurrentMonth: (date: Date) => void; // TODO: 타입 수정
 }
 
-export default function CalenderHeader({ month, setMonth }: CalenderHeaderProps) {
-  console.log(month);
+export default function CalenderHeader({ currentMonth, setCurrentMonth }: CalenderHeaderProps) {
+  // console.log(getMonth(currentDate));
+  // 월 -1 (0 - 11)
 
-  // TODO: 1월 이전, 12월 이후 -> 연도 변경 처리 가능해야함
   const handlePrev = () => {
-    setMonth(month - 1);
+    setCurrentMonth(subMonths(currentMonth, 1));
   };
 
   const handleNext = () => {
-    setMonth(month + 1);
+    setCurrentMonth(addMonths(currentMonth, 1));
   };
 
   return (
-    <div className='flex items-center gap-8 py-10'>
-      <button
-        onClick={handlePrev}
-        className='hover:bg-gray5 rounded-md transition-all duration-200 hover:cursor-pointer'
-      >
-        <ChevronLeft className='size-6' />
-      </button>
+    <div className='flex items-center justify-between py-10'>
+      <div className='flex items-center gap-8'>
+        <button
+          onClick={handlePrev}
+          className='hover:bg-gray5 rounded-md transition-all duration-200 hover:cursor-pointer'
+        >
+          <ChevronLeft className='size-6' />
+        </button>
 
-      {/* 데이터 받아서 월 표시 */}
-      <div className='flex items-end gap-2'>
-        <span className='text-h3 font-extrabold'>{month + 1}</span>
-        {/* <span className='font-extrabold text-h4 text-gray3'>{months[month]}</span> */}
+        {/* 데이터 받아서 월 표시 */}
+        <div className='flex min-w-[150px] items-end justify-center gap-2'>
+          <span className='text-h3 font-extrabold'>{getMonth(currentMonth) + 1}</span>
+          <span className='text-h4 text-gray3 font-extrabold'>
+            {months[getMonth(currentMonth)]}
+          </span>
+        </div>
+
+        <button
+          onClick={handleNext}
+          className='hover:bg-gray5 rounded-md transition-all duration-200 hover:cursor-pointer'
+        >
+          <ChevronRight className='size-6' />
+        </button>
       </div>
 
-      <button
-        onClick={handleNext}
-        className='hover:bg-gray5 rounded-md transition-all duration-200 hover:cursor-pointer'
-      >
-        <ChevronRight className='size-6' />
-      </button>
+      {/* 임시 - 디자인에 없음 (추후 삭제) */}
+      <span className='text-h4 text-gray3 px-4 font-extrabold'>{getYear(currentMonth)}</span>
     </div>
   );
 }
