@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import { useFormContext } from "react-hook-form";
 import { SetStateType, StateType } from "../Types";
-import { submitSignup } from "@/features/signup/model/SignupApi";
+import { submitSignup } from "@/features/signup/model/submitSignup";
 
 interface Step1Props {
   setStep: Dispatch<SetStateAction<number>>;
