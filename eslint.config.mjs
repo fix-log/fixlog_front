@@ -10,20 +10,13 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends(
-    'next/core-web-vitals',
-    'next/typescript',
-    'prettier',
-    'plugin:tailwindcss/recommended',
-  ),
+  ...compat.extends('next/core-web-vitals', 'next/typescript', 'prettier'),
   {
     plugins: {
       prettier: (await import('eslint-plugin-prettier')).default,
     },
     rules: {
       '@typescript-eslint/explicit-module-boundary-types': 'off',
-      // Tailwind 관련 규칙 커스터마이징 (선택사항)
-      'tailwindcss/classnames-order': 'off', // prettier-plugin-tailwindcss가 처리하므로 비활성화
     },
     languageOptions: {
       ecmaVersion: 'latest',
