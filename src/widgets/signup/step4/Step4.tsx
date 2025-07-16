@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import FormHeader from "@/shared/form/ui/FormHeader";
-import FormSubmitButton from "@/shared/form/ui/FormSubmitButton";
-import FormFields from "@/widgets/signup/step4/FormFields";
-import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction } from "react";
-import { useFormContext } from "react-hook-form";
-import { SetStateType, StateType } from "../Types";
-import { submitSignup } from "@/features/signup/model/submitSignup";
+import FormHeader from '@/shared/form/ui/FormHeader';
+import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
+import FormFields from '@/widgets/signup/step4/FormFields';
+import { useRouter } from 'next/navigation';
+import { Dispatch, SetStateAction } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { SetStateType, StateType } from '../Types';
+import { submitSignup } from '@/features/signup/model/submitSignup';
 
 interface Step1Props {
   setStep: Dispatch<SetStateAction<number>>;
@@ -29,9 +29,9 @@ export default function Step1({
     setSignupData(mergedData);
     try {
       const isSuccess = await submitSignup<typeof mergedData>(mergedData);
-      router.push("/login");
+      router.push('/login');
     } catch (err) {
-      console.log("실패");
+      console.log('실패');
     }
   };
 

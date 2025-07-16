@@ -1,5 +1,5 @@
-import { FieldValues, Path, PathValue, useFormContext } from "react-hook-form";
-import { lengthLimits } from "../model/LengthLimits";
+import { FieldValues, Path, PathValue, useFormContext } from 'react-hook-form';
+import { lengthLimits } from '../model/LengthLimits';
 
 interface FormDropdownToggleProps<T extends FieldValues> {
   id: Path<T>;
@@ -27,10 +27,10 @@ export default function FormDropdownToggle<T extends FieldValues>({
           key={item}
           onClick={(e) => e.stopPropagation()}
           className={
-            "border-gray6 bg-gray6 text-gray1 !my-[5px] !mr-[15px] rounded-[20px] border !px-[10px] !py-[5px]" +
+            'border-gray6 bg-gray6 text-gray1 !my-[5px] !mr-[15px] rounded-[20px] border !px-[10px] !py-[5px]' +
             (watch(id)?.includes(item)
-              ? " border-mainRed bg-mainWhite text-mainRed border"
-              : "")
+              ? ' border-mainRed bg-mainWhite text-mainRed border'
+              : '')
           }
         >
           <input

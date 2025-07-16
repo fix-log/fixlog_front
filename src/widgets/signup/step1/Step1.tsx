@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import FormHeader from "@/shared/form/ui/FormHeader";
-import FormSubmitButton from "@/shared/form/ui/FormSubmitButton";
-import { useRouter } from "next/navigation";
-import { FieldErrors, useFormContext } from "react-hook-form";
-import Agreement from "@/widgets/signup/step1/Agreement";
-import FormFields from "@/widgets/signup/step1/FormFields";
-import { Dispatch, SetStateAction } from "react";
-import { SetStateType } from "../Types";
+import FormHeader from '@/shared/form/ui/FormHeader';
+import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
+import { useRouter } from 'next/navigation';
+import { FieldErrors, useFormContext } from 'react-hook-form';
+import Agreement from '@/widgets/signup/step1/Agreement';
+import FormFields from '@/widgets/signup/step1/FormFields';
+import { Dispatch, SetStateAction } from 'react';
+import { SetStateType } from '../Types';
 
 interface Step1Props {
   setStep: Dispatch<SetStateAction<number>>;
@@ -22,7 +22,7 @@ export default function Step1({ setStep, setSignupData }: Step1Props) {
   function onError(errors: FieldErrors<typeof form>) {
     const messages = Object.values(errors).map((err) => err.message);
     if (messages.length > 0) {
-      if (!messages[0]?.includes("필수 약관")) return;
+      if (!messages[0]?.includes('필수 약관')) return;
       alert(messages[0]);
     }
   }
@@ -30,7 +30,7 @@ export default function Step1({ setStep, setSignupData }: Step1Props) {
   function handleClick(data: object) {
     setStep(2);
     setSignupData((val) => ({ ...val, ...data }));
-    router.push("/login/signup");
+    router.push('/login/signup');
   }
 
   return (

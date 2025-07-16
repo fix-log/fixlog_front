@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import FormHeader from "@/shared/form/ui/FormHeader";
-import FormSubmitButton from "@/shared/form/ui/FormSubmitButton";
-import FormFields from "@/widgets/signup/step3/FormFields";
-import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction } from "react";
-import { useFormContext } from "react-hook-form";
-import { SetStateType } from "../Types";
+import FormHeader from '@/shared/form/ui/FormHeader';
+import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
+import FormFields from '@/widgets/signup/step3/FormFields';
+import { useRouter } from 'next/navigation';
+import { Dispatch, SetStateAction } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { SetStateType } from '../Types';
 
 interface Step3Props {
   setStep: Dispatch<SetStateAction<number>>;
@@ -19,8 +19,8 @@ export default function Step3({ setStep, setSignupData }: Step3Props) {
 
   function handleClick(data: object) {
     setStep(4);
-    setSignupData(val => ({...val, ...data}));
-    router.push("/login/signup");
+    setSignupData((val) => ({ ...val, ...data }));
+    router.push('/login/signup');
   }
 
   return (
