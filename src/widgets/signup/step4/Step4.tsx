@@ -6,24 +6,42 @@ import FormFields from "@/widgets/signup/step4/FormFields";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import { useFormContext } from "react-hook-form";
+import { SetStateType, StateType } from "../Types";
+import { submitSignup } from "@/features/signup/model/SignupApi";
 
 interface Step1Props {
   setStep: Dispatch<SetStateAction<number>>;
+  signupData: StateType;
+  setSignupData: SetStateType;
 }
 
-export default function Step1({ setStep }: Step1Props) {
+export default function Step1({
+  setStep,
+  signupData,
+  setSignupData,
+}: Step1Props) {
   const router = useRouter();
   const form = useFormContext();
 
-  function handleClick() {
+  const handleClick = async (data: object) => {
     setStep(1);
-    router.push("/login");
-  }
+    const mergedData = { ...signupData, ...data };
+    setSignupData(mergedData);
+    try {
+      const isSuccess = await submitSignup<typeof mergedData>(mergedData);
+      router.push("/login");
+    } catch (err) {
+      console.log("실패");
+    }
+  };
 
   return (
     <div className="flex w-full !max-w-[500px] flex-col items-center">
       <FormHeader title="기타 정보" />
-      <form className="w-full" onSubmit={form.handleSubmit(handleClick)}>
+      <form
+        className="w-full"
+        onSubmit={form.handleSubmit((data) => handleClick(data))}
+      >
         <FormFields />
         <FormSubmitButton
           text="회원가입하기"

@@ -6,24 +6,30 @@ import { useRouter } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import FormFields from "@/widgets/signup/step2/FormFields";
 import { Dispatch, SetStateAction } from "react";
+import { SetStateType } from "../Types";
 
 interface Step2Props {
   setStep: Dispatch<SetStateAction<number>>;
+  setSignupData: SetStateType;
 }
 
-export default function Step2({ setStep }: Step2Props) {
+export default function Step2({ setStep, setSignupData }: Step2Props) {
   const router = useRouter();
   const form = useFormContext();
 
-  function handleClick() {
+  function handleClick(data: object) {
     setStep(3);
+    setSignupData(val => ({...val, ...data}));
     router.push("/login/signup");
   }
 
   return (
     <div className="flex w-full !max-w-[500px] flex-col items-center">
       <FormHeader title="기본 정보" />
-      <form className="w-full" onSubmit={form.handleSubmit(handleClick)}>
+      <form
+        className="w-full"
+        onSubmit={form.handleSubmit((data) => handleClick(data))}
+      >
         <FormFields />
         <FormSubmitButton
           text="다음(2/4)"

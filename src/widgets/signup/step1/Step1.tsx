@@ -7,12 +7,14 @@ import { FieldErrors, useFormContext } from "react-hook-form";
 import Agreement from "@/widgets/signup/step1/Agreement";
 import FormFields from "@/widgets/signup/step1/FormFields";
 import { Dispatch, SetStateAction } from "react";
+import { SetStateType } from "../Types";
 
 interface Step1Props {
   setStep: Dispatch<SetStateAction<number>>;
+  setSignupData: SetStateType;
 }
 
-export default function Step1({ setStep }: Step1Props) {
+export default function Step1({ setStep, setSignupData }: Step1Props) {
   const router = useRouter();
   const form = useFormContext();
 
@@ -25,8 +27,9 @@ export default function Step1({ setStep }: Step1Props) {
     }
   }
 
-  function handleClick() {
+  function handleClick(data: object) {
     setStep(2);
+    setSignupData((val) => ({ ...val, ...data }));
     router.push("/login/signup");
   }
 
@@ -35,7 +38,7 @@ export default function Step1({ setStep }: Step1Props) {
       <FormHeader title="회원가입" />
       <form
         className="w-full"
-        onSubmit={form.handleSubmit(handleClick, onError)}
+        onSubmit={form.handleSubmit((data) => handleClick(data), onError)}
       >
         <FormFields />
         <hr className="border-gray5 !my-10 w-full" />

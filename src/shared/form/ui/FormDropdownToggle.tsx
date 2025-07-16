@@ -1,4 +1,4 @@
-import { FieldValues, Path, useFormContext } from "react-hook-form";
+import { FieldValues, Path, PathValue, useFormContext } from "react-hook-form";
 import { lengthLimits } from "../model/LengthLimits";
 
 interface FormDropdownToggleProps<T extends FieldValues> {
@@ -18,8 +18,7 @@ export default function FormDropdownToggle<T extends FieldValues>({
     return watch(id)?.length >= maxLength && !watch(id).includes(item);
   }
 
-  console.log("watch(id)===", watch(id));
-  if (watch(id) === false) setValue(id, []);
+  if (watch(id) === false) setValue(id, [] as PathValue<T, Path<T>>);
 
   return (
     <ul className="flex w-full flex-wrap !py-[25px] !pl-[17px]">

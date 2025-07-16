@@ -12,29 +12,30 @@ import { step4Schema } from "@/features/signup/model/schema/Step4";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
-import { dataType, FormDataType } from "./Types";
+import { dataType, FormDataType, StateType } from "./Types";
 
 export default function Signup() {
+  const [signupData, setSignupData] = useState<StateType>({});
   const [step, setStep] = useState(1);
 
   const formData: dataType = {
     1: {
-      element: <Step1 setStep={setStep} />,
+      element: <Step1 setStep={setStep} setSignupData={setSignupData} />,
       schema: step1Schema,
       default: null,
     },
     2: {
-      element: <Step2 setStep={setStep} />,
+      element: <Step2 setStep={setStep} setSignupData={setSignupData}  />,
       schema: step2Schema,
       default: { position: [], career: [] },
     },
     3: {
-      element: <Step3 setStep={setStep} />,
+      element: <Step3 setStep={setStep} setSignupData={setSignupData}  />,
       schema: step3Schema,
       default: { devLanguage: [], stackAndTool: [], designAndCollab: [] },
     },
     4: {
-      element: <Step4 setStep={setStep} />,
+      element: <Step4 setStep={setStep} signupData={signupData} setSignupData={setSignupData}  />,
       schema: step4Schema,
       default: {
         devInterestField: [],
