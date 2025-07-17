@@ -3,18 +3,23 @@
 import Day from './Day';
 
 interface WeekProps {
-  week: {
-    nth: number;
-    days: number[];
-  };
+  nthWeek: number;
+  week: Date[];
+  selectedDate: Date | null;
+  setSelectedDate: (date: Date | null) => void;
 }
 
-// TODO: 한주의 일 배열 인자로 받아오기 (임시)
-export default function Week({ week }: WeekProps) {
+export default function Week({ nthWeek, week, selectedDate, setSelectedDate }: WeekProps) {
   return (
     <tr>
-      {week.days.map((date) => (
-        <Day key={week.days.indexOf(date)} date={date} />
+      {week.map((date) => (
+        <Day
+          key={week.indexOf(date)}
+          date={date}
+          nthWeek={nthWeek}
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+        />
       ))}
     </tr>
   );

@@ -1,35 +1,35 @@
 'use client';
 
+import { addDays, eachDayOfInterval, eachWeekOfInterval, endOfMonth, startOfMonth } from 'date-fns';
 import Week from './Week';
 
 // TODO: 상수로 분리 (임시)
-const days = ['일', '월', '화', '수', '목', '금', '토'];
+const days = ['일', '월', '화', '수', '목', '금', '토'] as const;
 
-// TODO: 오늘 날짜 인자로 받아서, 주 나누기
-const weeks = [
-  {
-    nth: 1,
-    days: [1, 2, 3, 4, 5, 6, 7],
-  },
-  {
-    nth: 2,
-    days: [8, 9, 10, 11, 12, 13, 14],
-  },
-  {
-    nth: 3,
-    days: [15, 16, 17, 18, 19, 20, 21],
-  },
-  {
-    nth: 4,
-    days: [22, 23, 24, 25, 26, 27, 28],
-  },
-  {
-    nth: 5,
-    days: [29, 30, 31, 1, 2, 3, 4],
-  },
-];
+interface CalenderContentProps {
+  currentMonth: Date;
+  selectedDate: Date | null;
+  setSelectedDate: (date: Date | null) => void;
+}
 
-export default function CalenderContent() {
+export default function CalenderContent({
+  currentMonth,
+  selectedDate,
+  setSelectedDate,
+}: CalenderContentProps) {
+  // 그 달의 주 별 첫 날 배열
+  const firstDaysOfWeeks = eachWeekOfInterval({
+    start: startOfMonth(currentMonth),
+    end: endOfMonth(currentMonth),
+  }); // 오브젝트 (배열 아님)
+
+  // 주 별 날짜 배열
+  const weeks = firstDaysOfWeeks.map((firstDay) =>
+    eachDayOfInterval({ start: firstDay, end: addDays(firstDay, 6) }),
+  );
+
+  // console.log(weeks);
+
   return (
     <table className='w-full'>
       <thead className='border-gray5 border-b'>
@@ -43,8 +43,14 @@ export default function CalenderContent() {
       </thead>
 
       <tbody>
-        {weeks.map((week) => (
-          <Week key={week.nth} week={week} />
+        {weeks.map((week, index) => (
+          <Week
+            key={index}
+            nthWeek={index + 1}
+            week={week}
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+          />
         ))}
       </tbody>
     </table>

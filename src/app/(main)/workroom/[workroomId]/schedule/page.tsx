@@ -8,7 +8,8 @@ export default async function Page() {
     <section className='flex w-full gap-2 md:py-28'>
       {/* 선택된 날짜를 상태로 관리하고 캘린더와 오늘 일정 컴포넌트에 각각 내려서 사용 */}
       <div className='border-gray5 w-2/3 rounded-[10px] border'>
-        <Calender />
+        {/* TODO: 라우팅 정리하고 파라미터 받아서 초기값 설정 */}
+        <Calender initialMonth={new Date(2025, 6, 1)} initialDate={new Date(2025, 6, 15)} />
       </div>
       <div className='border-gray5 w-1/3 rounded-[10px] border'>해당 날짜 상세 컴포넌트</div>
     </section>
