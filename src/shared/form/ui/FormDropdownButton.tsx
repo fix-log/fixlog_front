@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useRef } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import FormDropdownToggle from './FormDropdownToggle';
 import { selectOptions, selectOptionsType } from '@/features/signup/model/selectOptions';
 import DropdownIcon from './DropdownIcon';
@@ -25,11 +25,11 @@ export default function FormDropdownButton<T extends FieldValues>({
 }: FormDropdownButtonProps) {
   const {
     getValues,
+    setValue,
     formState: { errors },
   } = useFormContext<T>();
   const selectionMessage =
     lengthLimits[id] !== 0 ? `최대 ${lengthLimits[id]}개 선택 가능` : '많이 선택 가능';
-
   const selectedItem = getValues(id as Path<T>);
   const displayText = open === label ? selectionMessage : placeholder;
 
@@ -59,19 +59,28 @@ export default function FormDropdownButton<T extends FieldValues>({
         </div>
         {open === label && <FormDropdownToggle<T> id={id as Path<T>} data={selectOptions[id]} />}
       </button>
+
+      {/* 선택된 아이템 태그로 표시 */}
       {selectedItem && (
         <div className='flex flex-wrap'>
           {selectedItem.map((item: string) => (
             <div
               key={item}
               className='text-mainRed bg-mainRed20 -mt-1 mr-[10px] mb-4 flex cursor-pointer items-center gap-x-2 rounded-full px-[10px] py-[5px] font-bold'
+              onClick={(e) =>
+                setValue(
+                  id as Path<T>,
+                  selectedItem.filter((item: string) => item !== e.currentTarget.textContent),
+                )
+              }
             >
-              <p>{item}</p>
+              {item}
               <X width={15} height={15} />
             </div>
           ))}
         </div>
       )}
+
       {errors[id] && (
         <p className='text-pointDarkYellow -mt-3 pb-3 pl-3'>{errors[id].message?.toString()}</p>
       )}
