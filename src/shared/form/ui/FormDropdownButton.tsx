@@ -1,9 +1,10 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useRef } from 'react';
 import FormDropdownToggle from './FormDropdownToggle';
 import { selectOptions, selectOptionsType } from '@/features/signup/model/selectOptions';
 import DropdownIcon from './DropdownIcon';
 import { FieldValues, Path, useFormContext } from 'react-hook-form';
 import { lengthLimits } from '../model/LengthLimits';
+import { X } from 'lucide-react';
 
 interface FormDropdownButtonProps {
   id: keyof selectOptionsType;
@@ -23,10 +24,14 @@ export default function FormDropdownButton<T extends FieldValues>({
   isRequired,
 }: FormDropdownButtonProps) {
   const {
+    getValues,
     formState: { errors },
   } = useFormContext<T>();
   const selectionMessage =
     lengthLimits[id] !== 0 ? `최대 ${lengthLimits[id]}개 선택 가능` : '많이 선택 가능';
+
+  const selectedItem = getValues(id as Path<T>);
+  const displayText = open === label ? selectionMessage : placeholder;
 
   function handleClick() {
     setOpen(open === label ? undefined : label);
@@ -48,12 +53,25 @@ export default function FormDropdownButton<T extends FieldValues>({
           (open === label ? ' !pt-[14px]' : '')
         }
       >
-        <div className='flex w-full'>
-          <p className='grow !pl-[17px]'>{open === label ? selectionMessage : placeholder}</p>
+        <div className='flex w-full items-center'>
+          <p className='grow !pl-[17px]'>{displayText}</p>
           <DropdownIcon form={open} target={label} />
         </div>
         {open === label && <FormDropdownToggle<T> id={id as Path<T>} data={selectOptions[id]} />}
       </button>
+      {selectedItem && (
+        <div className='flex flex-wrap'>
+          {selectedItem.map((item: string) => (
+            <div
+              key={item}
+              className='text-mainRed bg-mainRed20 -mt-1 mr-[10px] mb-4 flex cursor-pointer items-center gap-x-2 rounded-full px-[10px] py-[5px] font-bold'
+            >
+              <p>{item}</p>
+              <X width={15} height={15} />
+            </div>
+          ))}
+        </div>
+      )}
       {errors[id] && (
         <p className='text-pointDarkYellow -mt-3 pb-3 pl-3'>{errors[id].message?.toString()}</p>
       )}

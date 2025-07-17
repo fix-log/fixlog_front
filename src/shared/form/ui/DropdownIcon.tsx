@@ -7,5 +7,5 @@ interface DropdownIcon {
 }
 
 export default function DropdownIcon({ form, target }: DropdownIcon) {
-  return <div className='text-gray1 !pt-[3px] !pr-[15px]'>{form === target ? <ChevronDown /> : <Plus />}</div>;
+  return <div className='text-gray1 pr-[15px]'>{form === target ? <ChevronDown /> : <Plus />}</div>;
 }
