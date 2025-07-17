@@ -123,18 +123,18 @@ export default function Crew() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // 현재 페이지 번호 (기본값 1)
+  // 현재 페이지 번호 (기본 1)
   const currentPage = Number(searchParams.get("page") ?? "1");
   // 총 페이지 수 (전체 항목 수 / 페이지당 아이템 수)
   const totalPages = Math.ceil(crew.length / ITEMS_PER_PAGE);
 
-  // 현재 페이지에 보여줄 데이터만 잘라서 메모이제이션
+  // 현재 페이지에 보여줄 데이터만
   const paginatedCrew = useMemo(() => {
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
     return crew.slice(start, start + ITEMS_PER_PAGE);
   }, [currentPage]);
 
-  // 페이지 버튼 클릭 시 쿼리스트링 업데이트 → URL 변경 발생
+  // 페이지 버튼 클릭
   const handlePageChange = (page: number) => {
     const params = new URLSearchParams(searchParams);
     params.set("page", String(page));

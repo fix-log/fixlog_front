@@ -2,7 +2,7 @@ import { FieldValues, Path, useFormContext } from 'react-hook-form';
 import { focus, errorFocus } from './TailwindcssUtil';
 
 interface FormInputStringProps<T> {
-  type: 'text' | 'number' | 'email' | 'password' | 'url';
+  type: "text" | "number" | "email" | "password" | "url" | "date";
   id: Path<T>;
   placeholder: string;
   label?: string;
