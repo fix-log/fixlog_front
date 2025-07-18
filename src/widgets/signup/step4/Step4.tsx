@@ -3,11 +3,11 @@
 import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
 import FormFields from '@/widgets/signup/step4/FormFields';
-import { useRouter } from 'next/navigation';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { SetStateType, StateType } from '../Types';
 import { submitSignup } from '@/features/signup/model/submitSignup';
+import SignupModal from './SignupModal';
 
 interface Step1Props {
   setStep: Dispatch<SetStateAction<number>>;
@@ -16,17 +16,16 @@ interface Step1Props {
 }
 
 export default function Step1({ setStep, signupData, setSignupData }: Step1Props) {
-  const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const form = useFormContext();
 
   const handleClick = async (data: object) => {
-    setStep(1);
     const mergedData = { ...signupData, ...data };
     setSignupData(mergedData);
     try {
       const isSuccess = await submitSignup<typeof mergedData>(mergedData);
       console.log(isSuccess);
-      router.push('/login');
+      setIsModalOpen(true);
     } catch (err) {
       console.log(err, '실패');
     }
@@ -39,6 +38,7 @@ export default function Step1({ setStep, signupData, setSignupData }: Step1Props
         <FormFields />
         <FormSubmitButton text='회원가입하기' isSubmitting={form.formState.isSubmitting} />
       </form>
+      {isModalOpen && <SignupModal setStep={setStep} setIsModalOpen={setIsModalOpen} />}
     </div>
   );
 }
