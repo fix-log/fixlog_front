@@ -45,7 +45,6 @@ export const selectOptions: selectOptionsType = {
     'NCP',
     'Firebase',
     'Redis',
-    'GitHub',
     'Actions',
     'Jenkins',
     'Docker',

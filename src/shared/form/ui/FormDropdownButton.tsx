@@ -3,7 +3,6 @@ import FormDropdownToggle from './FormDropdownToggle';
 import { selectOptions, selectOptionsType } from '@/features/signup/model/selectOptions';
 import DropdownIcon from './DropdownIcon';
 import { FieldValues, Path, useFormContext } from 'react-hook-form';
-import { lengthLimits } from '../model/LengthLimits';
 import { X } from 'lucide-react';
 import FormDropdownToggleSingle from './FormDropdownToggleSingle';
 
@@ -78,7 +77,7 @@ export default function FormDropdownButton<T extends FieldValues>({
       </button>
 
       {/* 선택된 아이템 태그로 표시 */}
-      {selectedItem && (
+      {typeof selectedItem === 'object' && (
         <div className='flex flex-wrap'>
           {selectedItem.map((item: string) => (
             <div
