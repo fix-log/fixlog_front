@@ -5,7 +5,7 @@ import TermsDetailModal from './TermsDetailModal';
 interface TermsAgreementProps {
   id: string;
   text: string;
-  isRequired?: boolean;
+  isRequired?: 'required' | 'optional' | undefined;
   className?: string;
   onClick?: () => void;
 }
@@ -21,6 +21,8 @@ export default function TermsAgreement({
   const { register, watch } = useFormContext();
   const isTermsOpen = id === 'isTermsAgreed' || id === 'isPrivacyAgreed';
   if (!className) className = '';
+
+  console.log(text, isRequired);
 
   return (
     <>
@@ -39,7 +41,9 @@ export default function TermsAgreement({
           </div>
           <p className={className}>
             {text}
-            {isRequired && <span className='!ml-1'>{isRequired ? '(필수)' : '(선택)'}</span>}
+            {isRequired && (
+              <span className='!ml-1'>{isRequired === 'required' ? '(필수)' : '(선택)'}</span>
+            )}
           </p>
         </div>
         {isTermsOpen && (
