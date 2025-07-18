@@ -16,7 +16,7 @@ import { dataType, FormDataType, StateType } from './Types';
 
 export default function Signup() {
   const [signupData, setSignupData] = useState<StateType>({});
-  const [step, setStep] = useState(4);
+  const [step, setStep] = useState(1);
 
   const formData: dataType = {
     1: {
