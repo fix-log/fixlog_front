@@ -15,11 +15,7 @@ interface Step1Props {
   setSignupData: SetStateType;
 }
 
-export default function Step1({
-  setStep,
-  signupData,
-  setSignupData,
-}: Step1Props) {
+export default function Step1({ setStep, signupData, setSignupData }: Step1Props) {
   const router = useRouter();
   const form = useFormContext();
 
@@ -29,24 +25,19 @@ export default function Step1({
     setSignupData(mergedData);
     try {
       const isSuccess = await submitSignup<typeof mergedData>(mergedData);
+      console.log(isSuccess);
       router.push('/login');
     } catch (err) {
-      console.log('실패');
+      console.log(err, '실패');
     }
   };
 
   return (
-    <div className="flex w-full !max-w-[500px] flex-col items-center">
-      <FormHeader title="기타 정보" />
-      <form
-        className="w-full"
-        onSubmit={form.handleSubmit((data) => handleClick(data))}
-      >
+    <div className='flex w-full !max-w-[500px] flex-col items-center'>
+      <FormHeader title='기타 정보' />
+      <form className='w-full' onSubmit={form.handleSubmit((data) => handleClick(data))}>
         <FormFields />
-        <FormSubmitButton
-          text="회원가입하기"
-          isSubmitting={form.formState.isSubmitting}
-        />
+        <FormSubmitButton text='회원가입하기' isSubmitting={form.formState.isSubmitting} />
       </form>
     </div>
   );
