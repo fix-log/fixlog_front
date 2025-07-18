@@ -1,4 +1,6 @@
-import { useFormContext } from "react-hook-form";
+import { useState } from 'react';
+import { useFormContext } from 'react-hook-form';
+import TermsDetailModal from './TermsDetailModal';
 
 interface TermsAgreementProps {
   id: string;
@@ -15,7 +17,8 @@ export default function TermsAgreement({
   className,
   onClick,
 }: TermsAgreementProps) {
-  const { register, watch } = useFormContext()
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { register, watch } = useFormContext();
   const isTermsOpen = id === 'isTermsAgreed' || id === 'isPrivacyAgreed';
   if (!className) className = '';
 
@@ -40,9 +43,22 @@ export default function TermsAgreement({
           </p>
         </div>
         {isTermsOpen && (
-          <button className='text-mainRed !ml-auto cursor-pointer font-bold'>보기</button>
+          <button
+            type='button'
+            className='text-mainRed !ml-auto cursor-pointer font-bold'
+            onClick={() => setIsModalOpen(true)}
+          >
+            보기
+          </button>
         )}
       </label>
+      {isModalOpen && (
+        <TermsDetailModal
+          id={id as 'isPrivacyAgreed' | 'isTermsAgreed'}
+          terms={text}
+          setIsModalOpen={setIsModalOpen}
+        />
+      )}
     </>
   );
 }
