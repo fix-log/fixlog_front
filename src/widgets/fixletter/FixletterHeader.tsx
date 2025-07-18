@@ -7,7 +7,7 @@ export default function FixletterHeader() {
   const router = useRouter();
 
   return (
-    <header className='relative flex h-[100px] justify-center border-b-1 border-gray-100 bg-white px-6'>
+    <header className='relative flex h-[80px] justify-center border-b-1 border-gray-100 bg-white px-6'>
       <button className='p-2' aria-label='뒤로가기'>
         <ArrowLeft size={30} onClick={() => router.push('/')} />
       </button>
