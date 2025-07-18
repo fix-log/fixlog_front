@@ -1,4 +1,5 @@
 import Calender from '@/features/schedule/ui/Calender';
+import DailySchedule from '@/features/schedule/ui/DailySchedule';
 
 export default async function Page() {
   // TODO: 프로젝트 일정 데이터 가져오기 (선택된 일자가 포함된 월)
@@ -11,7 +12,7 @@ export default async function Page() {
         {/* TODO: 라우팅 정리하고 파라미터 받아서 초기값 설정 */}
         <Calender initialMonth={new Date(2025, 6, 1)} initialDate={new Date(2025, 6, 15)} />
       </div>
-      <div className='border-gray5 w-1/3 rounded-[10px] border'>해당 날짜 상세 컴포넌트</div>
+      <DailySchedule />
     </section>
   );
 }
