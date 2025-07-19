@@ -2,6 +2,7 @@
 
 import { cn } from '@/shared/lib/util';
 import Link from 'next/link';
+import { forwardRef } from 'react';
 
 interface EditDeleteDropdownProps {
   position: string;
@@ -9,13 +10,13 @@ interface EditDeleteDropdownProps {
   handleDelete: () => void; // TODO: 삭제 API에 맞게 타입 수정하기
 }
 
-export default function EditDeleteDropdown({
-  position,
-  href,
-  handleDelete,
-}: EditDeleteDropdownProps) {
+export default forwardRef<HTMLDivElement, EditDeleteDropdownProps>(function EditDeleteDropdown(
+  { position, href, handleDelete },
+  ref,
+) {
   return (
     <div
+      ref={ref}
       className={cn(
         'border-gray5 absolute z-10 flex min-w-31 flex-col rounded-[5px] border bg-white',
         position,
@@ -35,4 +36,4 @@ export default function EditDeleteDropdown({
       </button>
     </div>
   );
-}
+});

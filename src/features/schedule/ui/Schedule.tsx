@@ -1,11 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { EllipsisVertical } from 'lucide-react';
 import EditDeleteDropdown from '@/widgets/ui/EditDeleteDropdown';
+import useOutsideClick from '@/shared/hooks/useOutsideClick';
 
 export default function Schedule() {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  useOutsideClick({ ref: dropdownRef, onClose: () => setIsDropdownOpen(false) });
 
   const handleDelete = () => {
     console.log('일정 삭제');
@@ -30,6 +33,7 @@ export default function Schedule() {
 
       {isDropdownOpen && (
         <EditDeleteDropdown
+          ref={dropdownRef}
           position='top-6 right-12'
           href={`/workroom/워크룸id/schedule/날짜/일정id/edit`}
           handleDelete={handleDelete}
