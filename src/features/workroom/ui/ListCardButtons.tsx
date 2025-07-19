@@ -37,9 +37,9 @@ export default function ListCardButtons({ workroomId }: ListCardButtonsProps) {
         >
           <div className='flex flex-col items-center gap-6 md:gap-13'>
             <div className='flex flex-col items-center gap-1'>
-              <h3 className='text-[18px] font-extrabold md:text-[34px]'>
+              <h6 className='text-[18px] font-extrabold md:text-[34px]'>
                 이 워크룸을 삭제하시겠습니까?
-              </h3>
+              </h6>
               <span className='text-gray3 text-[10px] md:text-[18px]'>
                 삭제된 워크룸은 복구할 수 없습니다.
               </span>

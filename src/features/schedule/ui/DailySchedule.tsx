@@ -1,5 +1,5 @@
-import { Trash2 } from 'lucide-react';
 import Schedule from './Schedule';
+import DailyScheduleButtons from './DailyScheduleButtons';
 
 export default async function DailySchedule() {
   return (
@@ -12,16 +12,8 @@ export default async function DailySchedule() {
         <Schedule />
         <Schedule />
       </ul>
-      {/* 컴포넌트 분리 (클라이언트 컴포넌트) */}
-      <div className='flex h-30 items-center gap-2 px-4 py-5.5'>
-        {/* 버튼이 아니라 링크여야 하나? */}
-        <button className='border-gray5 text-h4 hover:bg-gray6 h-full grow rounded-[10px] border px-3.5 text-left font-extrabold transition duration-200 hover:cursor-pointer'>
-          + 새로운 일정 추가
-        </button>
-        <button className='border-gray5 hover:bg-gray6 h-full w-[75px] rounded-[10px] border transition duration-200 hover:cursor-pointer'>
-          <Trash2 size={26} className='m-auto' />
-        </button>
-      </div>
+
+      <DailyScheduleButtons />
     </section>
   );
 }
