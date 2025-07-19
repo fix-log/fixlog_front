@@ -1,3 +1,4 @@
+import { colorChangeAnimation } from '@/shared/ui/Animation';
 import { FieldValues, Path, useFormContext } from 'react-hook-form';
 
 interface FormRadioSelectProps<T extends FieldValues> {
@@ -33,29 +34,19 @@ export default function FormRadioSelect<T extends FieldValues>({
             key={item}
             className={
               'border-gray4 text-gray4 !mr-[20px] h-[60px] grow rounded-[5px] border text-center leading-14 last:!mr-0' +
-              (watch(id) === item ? ' bg-mainRed text-mainWhite' : '')
+              (watch(id) === item ? ' bg-mainRed text-mainWhite' : '') +
+              colorChangeAnimation
             }
           >
-            <input
-              id={item}
-              type='radio'
-              className='hidden'
-              value={item}
-              {...register(id)}
-            />
-            <label
-              htmlFor={item}
-              className='inline-block h-full w-full cursor-pointer'
-            >
+            <input id={item} type='radio' className='hidden' value={item} {...register(id)} />
+            <label htmlFor={item} className='inline-block h-full w-full cursor-pointer'>
               {item}
             </label>
           </div>
         ))}
       </ul>
       {errors[id] && (
-        <p className='text-pointDarkYellow -mt-3 pb-3 pl-3'>
-          {errors[id].message?.toString()}
-        </p>
+        <p className='text-pointDarkYellow -mt-3 pb-3 pl-3'>{errors[id].message?.toString()}</p>
       )}
     </div>
   );
