@@ -9,7 +9,7 @@ const navItems: NavigationItems = [
 ];
 
 // 임시 로그인 여부 (나중에 전역 상태로 바꿔야댐 true 로 하면 로그인 후 헤더로 변경)
-const isLoggedIn = true;
+const isLoggedIn = false;
 
 export default function Header() {
   return (
