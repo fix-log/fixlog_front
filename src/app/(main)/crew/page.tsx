@@ -1,5 +1,6 @@
 import { CrewProject } from '@/shared/types/crew';
 import CrewListSection from '@/features/crew/CrewListSection';
+import { Suspense } from 'react';
 
 const crewData: CrewProject[] = [
   {
@@ -99,10 +100,7 @@ const crewData: CrewProject[] = [
     user_nickname: '유노윤호',
     deadline: '2025-06-13T08:00:00Z',
     status: 'closed',
-    project_positions: [
-      { position_name: 'BackEnd' },
-      { position_name: 'Frontend' },
-    ],
+    project_positions: [{ position_name: 'BackEnd' }, { position_name: 'Frontend' }],
     project_skill_tools: [
       { skill_tool_name: 'React' },
       { skill_tool_name: 'TypeScript' },
@@ -112,5 +110,9 @@ const crewData: CrewProject[] = [
 ];
 
 export default function CrewPage() {
-  return <CrewListSection crew={crewData} />;
+  return (
+    <Suspense fallback={<div>로딩 중...</div>}>
+      <CrewListSection crew={crewData} />
+    </Suspense>
+  );
 }
