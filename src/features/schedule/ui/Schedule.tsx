@@ -4,13 +4,20 @@ import { useRef, useState } from 'react';
 import { EllipsisVertical } from 'lucide-react';
 import EditDeleteDropdown from '@/widgets/ui/EditDeleteDropdown';
 import useOutsideClick from '@/shared/hooks/useOutsideClick';
+import Modal from '@/shared/ui/Modal';
 
 export default function Schedule() {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  useOutsideClick({ ref: dropdownRef, onClose: () => setIsDropdownOpen(false) });
+  useOutsideClick({
+    ref: dropdownRef,
+    onClose: () => setIsDropdownOpen(false),
+    enabled: !isDeleteModalOpen,
+  });
 
   const handleDelete = () => {
+    setIsDeleteModalOpen(true);
     console.log('일정 삭제');
   };
 
@@ -38,6 +45,24 @@ export default function Schedule() {
           href={`/workroom/워크룸id/schedule/날짜/일정id/edit`}
           handleDelete={handleDelete}
         />
+      )}
+
+      {isDeleteModalOpen && (
+        <Modal setIsOpen={setIsDeleteModalOpen} className='flex w-1/3 flex-col gap-4 px-25 py-18'>
+          <h6 className='text-h3 flex flex-col gap-2 text-center font-extrabold'>
+            <span>해당 일정을</span>
+            <span>삭제하시겠습니까?</span>
+          </h6>
+          <p className='text-h5 text-gray3 font-semibold'>삭제하시면 다시 복구할 수 없습니다.</p>
+          <button
+            onClick={() => {
+              console.log('해당 일정 삭제');
+            }}
+            className='bg-mainRed text-body-m hover:bg-mainRed/85 mt-[25px] rounded-[5px] px-25 py-3 font-extrabold text-white transition duration-200 hover:cursor-pointer'
+          >
+            해당 일정 삭제하기
+          </button>
+        </Modal>
       )}
     </li>
   );
