@@ -14,7 +14,7 @@ const navItems: NavigationItems = [
 
 export default function ProjectNav({ workroomId }: { workroomId: string }) {
   const pathname = usePathname();
-  console.log(pathname);
+  // console.log(pathname);
 
   return (
     <nav className='w-full'>

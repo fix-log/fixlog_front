@@ -1,6 +1,7 @@
 import z from 'zod';
+import preprocessArrayFormField from './preprocessArrayFormField';
 
-export const schema = z.object({
+export const step2Schema = z.object({
   name: z.string().nonempty('이름을 입력해주세요'),
   birthDate: z
     .string()
@@ -10,11 +11,13 @@ export const schema = z.object({
   gender: z
     .string()
     .nullable()
-    .refine((val) => val !== null && val !== '', { message: '성별을 선택해주세요' }),
+    .refine((val) => val !== null && val !== '', {
+      message: '성별을 선택해주세요',
+    }),
   phoneNumber: z.string().nonempty('전화번호를 입력해주세요'),
-  position: z.array(z.string()).min(1, '포지션을 선택해주세요'),
-  career: z.array(z.string()).min(1, '경력을 선택해주세요'),
+  position: preprocessArrayFormField('포지션을 선택해주세요'),
+  career: preprocessArrayFormField('경력을 선택해주세요'),
 });
 
-export type FormValues = z.infer<typeof schema>;
+export type FormValues = z.infer<typeof step2Schema>;
 export type FormValuesKeys = keyof FormValues;

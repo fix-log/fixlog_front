@@ -1,41 +1,41 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Heart, MessageCircle, Mail, MoreHorizontal } from 'lucide-react';
+
+import ReportModal from '@/features/fixred/report/ReportModal';
+import BlockModal from '@/features/fixred/block/BlockModal';
 
 export default function PickreadMainPage() {
   const [activeTab, setActiveTab] = useState<'all' | 'following'>('all');
+  const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(null);
+  const [showReportModal, setShowReportModal] = useState(false);
+  const [showBlockModal, setShowBlockModal] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = () => setOpenDropdownIndex(null);
+    window.addEventListener('click', handleClickOutside);
+    return () => window.removeEventListener('click', handleClickOutside);
+  }, []);
 
   return (
     <main className="flex justify-center bg-white py-8 min-h-screen">
       <section className="w-full max-w-[1440px] px-6 space-y-6">
-
         {/* 탭 필터 */}
         <div className="inline-flex bg-white border border-[var(--color-gray4)] p-1 rounded-md w-fit">
-          <button
-            onClick={() => setActiveTab('all')}
-            className={`px-4 py-1.5 text-sm font-bold transition-all
-              ${
-                activeTab === 'all'
+          {(['all', 'following'] as const).map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-4 py-1.5 text-sm font-bold transition-all ${
+                activeTab === tab
                   ? 'bg-[var(--color-mainRed)] text-white rounded-md'
                   : 'text-[var(--color-gray3)]'
-              }
-            `}
-          >
-            전체
-          </button>
-          <button
-            onClick={() => setActiveTab('following')}
-            className={`px-4 py-1.5 text-sm font-bold transition-all
-              ${
-                activeTab === 'following'
-                  ? 'bg-[var(--color-mainRed)] text-white rounded-md'
-                  : 'text-[var(--color-gray3)]'
-              }
-            `}
-          >
-            팔로잉
-          </button>
+              }`}
+            >
+              {tab === 'all' ? '전체' : '팔로잉'}
+            </button>
+          ))}
         </div>
 
         {/* 입력창 */}
@@ -45,12 +45,12 @@ export default function PickreadMainPage() {
         </div>
 
         {/* 게시물 카드 */}
-        {[1, 2, 3].map((item) => (
+        {[1, 2, 3].map((item, index) => (
           <div
             key={item}
-            className="bg-white border border-[var(--color-gray4)] p-5 space-y-3 rounded-md"
+            className="bg-white border border-[var(--color-gray4)] p-5 space-y-3 rounded-md relative"
           >
-            {/* 작성자 + 시간 */}
+            {/* 작성자 */}
             <div className="flex justify-between items-start">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-[var(--color-gray5)] rounded-full" />
@@ -60,9 +60,44 @@ export default function PickreadMainPage() {
                 </div>
               </div>
 
-              <button className="text-[var(--color-gray3)] hover:text-[var(--color-gray1)]">
-                <MoreHorizontal className="w-5 h-5" />
-              </button>
+              {/* 드롭다운 버튼 */}
+              <div className="relative">
+                <button
+                  className="text-[var(--color-gray3)] hover:text-[var(--color-gray1)]"
+                  onClick={(e) => {
+                    e.stopPropagation(); // 드롭다운 안 닫히게
+                    setOpenDropdownIndex(openDropdownIndex === index ? null : index);
+                  }}
+                >
+                  <MoreHorizontal className="w-5 h-5" />
+                </button>
+
+                {openDropdownIndex === index && (
+                  <div
+                    className="absolute right-0 mt-2 w-28 bg-white border border-gray-300 rounded shadow z-10"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <button
+                      onClick={() => {
+                        setShowReportModal(true);
+                        setOpenDropdownIndex(null);
+                      }}
+                      className="block w-full px-4 py-2 text-sm text-red-500 hover:bg-gray-50"
+                    >
+                      신고하기
+                    </button>
+                    <button
+                      onClick={() => {
+                        setShowBlockModal(true);
+                        setOpenDropdownIndex(null);
+                      }}
+                      className="block w-full px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
+                    >
+                      차단하기
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* 본문 */}
@@ -71,14 +106,14 @@ export default function PickreadMainPage() {
               이런 뜨개질 처음봐서 너무 신기해! 배워보고 싶다🥹
             </p>
 
-            {/* 이미지 그리드 */}
+            {/* 이미지 */}
             <div className="grid grid-cols-3 gap-2 overflow-hidden">
               <div className="h-48 bg-[var(--color-gray5)]" />
               <div className="h-48 bg-[var(--color-gray5)]" />
               <div className="h-48 bg-[var(--color-gray5)]" />
             </div>
 
-            {/* 좋아요 / 댓글 / 쪽지 */}
+            {/* 아이콘 */}
             <div className="flex gap-6 text-sm text-[var(--color-gray2)] items-center">
               <div className="flex items-center gap-1">
                 <Heart className="w-4 h-4" />
@@ -96,6 +131,20 @@ export default function PickreadMainPage() {
           </div>
         ))}
       </section>
+
+      {/* 모달 */}
+      {showReportModal && (
+        <ReportModal
+          setIsOpen={setShowReportModal}
+          onComplete={() => alert(' 신고 완료')}
+        />
+      )}
+      {showBlockModal && (
+        <BlockModal
+          setIsOpen={setShowBlockModal}
+          onComplete={() => alert('차단 완료')}
+        />
+      )}
     </main>
   );
 }
