@@ -1,5 +1,6 @@
 'use client';
 
+import { findEmail } from '@/features/finedEmail/api/findEmail';
 import { FormValues, schema } from '@/features/finedEmail/FinedEmailSchema';
 import FormHeader from '@/shared/form/ui/FormHeader';
 import FormInputString from '@/shared/form/ui/FormInputString';
@@ -20,15 +21,21 @@ export default function FindEmail() {
     resolver: zodResolver(schema),
   });
 
-  function fromHandleSubmit() {
-    router.push('/login');
+  function fromHandleSubmit(data: object) {
+    try {
+      // const respones = findEmail(data);
+      console.log(data);
+      router.push('/login');
+    } catch (err) {
+      console.log(err, '실패');
+    }
   }
 
   return (
     <FormProvider {...form}>
       <div className='flex w-full max-w-[500px] flex-col items-center'>
         <FormHeader title='이메일 찾기' />
-        <form className='w-full' onSubmit={form.handleSubmit(fromHandleSubmit)}>
+        <form className='w-full' onSubmit={form.handleSubmit((data) => fromHandleSubmit(data))}>
           {DATA.map((item) => (
             <FormInputString
               key={item.id}
