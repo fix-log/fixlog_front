@@ -27,6 +27,7 @@ export default function FindEmail() {
       console.log(data);
       router.push('/login');
     } catch (err) {
+      alert('입력하신 정보와 일치하는 이메일을 찾을 수 없습니다');
       console.log(err, '실패');
     }
   }
