@@ -1,7 +1,7 @@
 import z from 'zod';
 
 export const schema = z.object({
-  email: z.string().nonempty('이메일을 입력해주세요').email('이메일 형식이 아닙니다'),
+  name: z.string().nonempty('이름을 입력해주세요'),
   birthDate: z
     .string()
     .nonempty('생년월일을 입력해주세요')
