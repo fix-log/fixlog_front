@@ -4,7 +4,7 @@ import FormRadioSelect from '@/shared/form/ui/FormRadioSelect';
 import { useState } from 'react';
 
 export default function FormFields() {
-    const [isDropdownOpen, setIsDropdownOpen] = useState<string | undefined>(undefined);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<string | undefined>(undefined);
   // 드롭다운 오픈 여부 + 오픈된 드롭다운이 무엇인지 판단하기 위함이기도 함
 
   return (
@@ -18,8 +18,9 @@ export default function FormFields() {
         id='phoneNumber'
         placeholder='숫자만 입력해주세요'
       />
-      
+
       <FormDropdownButton
+        type='multi'
         label='포지션'
         placeholder='포지션을 선택해주세요'
         id='position'
@@ -27,6 +28,7 @@ export default function FormFields() {
         setOpen={setIsDropdownOpen}
       />
       <FormDropdownButton
+        type='single'
         label='경력'
         placeholder='경력을 선택해주세요'
         id='career'
