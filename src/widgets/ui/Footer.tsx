@@ -4,9 +4,9 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className='w-full bg-gray6'>
-      <div className='flex w-full max-w-[1920px] flex-col justify-between px-[240px] py-[95px] md:flex-row md:items-center md:gap-10 lg:px-[240px] xl:px-[240px]'>
-        {/* 좌측 로고, 설명 */}
+    <footer className='bg-gray6 w-full'>
+      <div className='mx-auto flex max-w-[1440px] flex-col px-6 py-[95px] md:flex-row md:justify-between md:gap-10'>
+        {/* 좌측 */}
         <div className='mb-12 md:mb-0 md:flex-1'>
           <div className='mb-4'>
             <Image src='/fixlog.png' alt='fixlog 로고' width={100} height={40} />
@@ -17,9 +17,9 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* 우측 정보 */}
-        <div className='space-y-2 text-right text-sm text-zinc-500 md:flex-1'>
-          <div className='flex justify-end gap-6'>
+        {/* 우측 */}
+        <div className='flex flex-col items-start space-y-2 text-left text-sm text-zinc-500 md:flex-1 md:items-end md:text-right'>
+          <div className='flex flex-wrap gap-6 md:justify-end'>
             <a href='#' className='hover:underline'>
               이용약관
             </a>
