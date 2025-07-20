@@ -3,12 +3,12 @@ import Image from 'next/image';
 
 export default function CahtSidebar() {
   return (
-    <div className='flex w-[430px] flex-col gap-3 border-r bg-gray-50 px-4 py-6'>
-      <ul>
+    <div className='slim-scrollbar border-gray5 flex h-[100vh] w-[450px] flex-col gap-3 border-r'>
+      <ul className='flex h-full flex-col gap-3 overflow-y-auto px-4 py-6'>
         {dummyChats.map((chat) => (
           <li
             key={chat.id}
-            className={`flex h-[100px] cursor-pointer items-center gap-3 rounded p-3 ${chat.selected ? 'border border-red-300 bg-white' : 'bg-gray-100'}`}
+            className={`relative flex h-[120px] cursor-pointer items-center gap-3 rounded p-3 ${chat.selected ? 'border border-red-300 bg-white' : 'bg-gray-100'}`}
           >
             <Image
               src={chat.avatar}
@@ -19,11 +19,15 @@ export default function CahtSidebar() {
             />
             <div className='flex w-[380px]'>
               <div className='w-[280px]flex-1 mr-[30px]'>
-                <div className='text-mainBlack truncate text-[20px] font-bold'>{chat.name}</div>
+                <div className='text-mainBlack truncate text-[16px] font-extrabold'>
+                  {chat.name}
+                </div>
                 <div className='text-gray3 font-regular truncate text-[14px]'>{chat.preview}</div>
               </div>
-              <span className='text-gray3 text-end text-[14px]'>{chat.time}</span>
             </div>
+            <span className='text-gray3 absolute top-3 right-3 text-end text-[14px]'>
+              {chat.time}
+            </span>
           </li>
         ))}
       </ul>

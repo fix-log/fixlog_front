@@ -1,67 +1,20 @@
 @import 'tailwindcss';
 
-:root {
-  /* text-h1, text-body-m 이렇게 사용 */
-  --font-h1: 50px;
-  --font-h2: 40px;
-  --font-h3: 30px;
-  --font-h4: 22px;
-  --font-h5: 20px;
-  --font-h6: 18px;
-  --font-body-l: 16px;
-  --font-body-m: 14px;
-  --font-body-s: 12px;
-  --font-body-xs: 10px;
-  --font-btn-l: 16px;
-  /* ... (필요한 스타일 계속 추가) */
+/* 스크롤 공통 디자인 - 사용시 slim-scrollbar 추가 */
+.slim-scrollbar {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--color-gray5) #f3f4f6;
+  /* Chrome, Edge, Safari */
 }
-
-@layer utilities {
-  .text-h1 {
-    font-size: var(--font-h1);
-    line-height: 1.1;
-  }
-  .text-h2 {
-    font-size: var(--font-h2);
-    line-height: 1.1;
-  }
-  .text-h3 {
-    font-size: var(--font-h3);
-    line-height: 1.1;
-  }
-  .text-h4 {
-    font-size: var(--font-h4);
-    line-height: 1.3;
-  }
-  .text-h5 {
-    font-size: var(--font-h5);
-    line-height: 1.3;
-  }
-  .text-h6 {
-    font-size: var(--font-h6);
-    line-height: 1.1;
-  }
-
-  .text-body-l {
-    font-size: var(--font-body-l);
-    line-height: 1.4;
-  }
-  .text-body-m {
-    font-size: var(--font-body-m);
-    line-height: 1.4;
-  }
-  .text-body-s {
-    font-size: var(--font-body-s);
-    line-height: 1.4;
-  }
-  .text-body-xs {
-    font-size: var(--font-body-xs);
-    line-height: 1;
-  }
-  .text-btn-l {
-    font-size: var(--font-btn-l);
-    line-height: 1;
-  }
+.slim-scrollbar::-webkit-scrollbar {
+  width: 6px; /* 두께 조절 */
+}
+.slim-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-gray6);
+  border-radius: 6px;
+}
+.slim-scrollbar::-webkit-scrollbar-track {
+  background: var(--color-gray6);
 }
 
 /* "bg-pointGreen" "text-gray2" 등으로 사용 */

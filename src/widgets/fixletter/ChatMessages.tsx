@@ -1,36 +1,56 @@
-const messages = [
-  {
-    id: 1,
-    fromMe: false,
-    text: `안녕하세요, 여운님. 협업 제안 해주셔서 감사합니다! 혹시 어떤 프로젝트인지 알려주실 수 있나요?`,
-    date: '2025.06.08',
-  },
-  {
-    id: 2,
-    fromMe: true,
-    text: `안녕하세요, 다고운님
-UXUI 디자이너 다고운이라고 합니다!
-여운님의 이력을 보며 함께 협업하고 싶은 프로젝트가 있어 제안을 드리고 싶어서 연락드립니다
-보시면 답장 부탁드립니다~`,
-    date: '2025.06.08',
-  },
-];
+'use client';
+import type { Message } from '@/entities/fixletter/messages1';
+import { messages1 } from '@/entities/fixletter/messages1';
 
 export default function ChatMessages() {
+  const sameDateMsg = messages1.reduce(
+    (acc, msg) => {
+      if (!acc[msg.date]) {
+        acc[msg.date] = [];
+      }
+      acc[msg.date].push(msg);
+      return acc;
+    },
+    {} as { [date: string]: Message[] },
+  );
+
+  const sortedDates = Object.entries(sameDateMsg).sort(([dateA], [dateB]) =>
+    dateA > dateB ? 1 : -1,
+  );
+
+  const dateList = sortedDates.map(([date]) => date);
+
   return (
-    <div className='flex flex-1 flex-col gap-2 overflow-y-auto px-8 py-4'>
-      {/* 날짜 */}
-      <div className='mx-auto my-3 text-xs text-gray-400'>{messages[0].date}</div>
-      {/* 메시지 리스트 */}
-      {messages.map((msg) => (
-        <div key={msg.id} className={`flex ${msg.fromMe ? 'justify-end' : 'justify-start'}`}>
-          <div
-            className={`max-w-xs rounded-lg px-4 py-2 text-sm whitespace-pre-line ${
-              msg.fromMe ? 'border border-gray-300 bg-white' : 'border border-gray-200 bg-gray-50'
-            }`}
-          >
-            {msg.text}
+    <div className='slim-scrollbar flex flex-1 flex-col gap-2 overflow-y-auto px-8 py-4'>
+      {sortedDates.map(([date, messages]) => (
+        <div key={date}>
+          {/* 날짜 */}
+          <div className='mx-auto my-3 mt-[30px] mb-[15px] text-center text-xs text-gray-400'>
+            {date}
           </div>
+          {/* 메시지 리스트 (그 날짜에 해당하는) */}
+          {messages.map((msg) => (
+            <div
+              key={msg.id}
+              className={`flex ${msg.fromMe ? 'justify-end' : 'justify-start'} mb-[25px]`}
+            >
+              {msg.fromMe ? (
+                <div className='flex items-end'>
+                  <p className={'text-gray4 marge pr-2 text-[12px]'}>{msg.time}</p>
+                  <div className='max-w-xs rounded-lg border border-gray-300 bg-white px-4 py-2 text-[14px] whitespace-pre-line'>
+                    {msg.text}
+                  </div>
+                </div>
+              ) : (
+                <div className='flex items-end'>
+                  <div className='max-w-xs rounded-lg border border-gray-200 bg-gray-50 px-4 py-2 text-[14px] whitespace-pre-line'>
+                    {msg.text}
+                  </div>
+                  <p className={'text-gray4 pl-2 text-end text-[12px]'}>{msg.time}</p>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       ))}
     </div>
