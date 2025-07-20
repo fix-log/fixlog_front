@@ -1,4 +1,5 @@
 'use client';
+
 import type { Message } from '@/entities/fixletter/messages1';
 import { messages1 } from '@/entities/fixletter/messages1';
 

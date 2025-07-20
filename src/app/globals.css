@@ -7,7 +7,7 @@
   /* Chrome, Edge, Safari */
 }
 .slim-scrollbar::-webkit-scrollbar {
-  width: 6px; /* 두께 조절 */
+  width: 4px; /* 두께 조절 */
 }
 .slim-scrollbar::-webkit-scrollbar-thumb {
   background: var(--color-gray6);
@@ -22,6 +22,7 @@
   --color-mainBlack: #202020;
   --color-mainRed: #ff4427;
   --color-mainRed20: #ff442719;
+  --color-mainRed50: #ff442750;
   --color-mainDarkRed: #e41e00;
   --color-mainWhite: #fff;
 

@@ -1,4 +1,5 @@
-// components/chat/ChatHeader.tsx
+'use client';
+
 import { dummyChats } from '@/entities/fixletter/dummyChats';
 import Image from 'next/image';
 
@@ -9,7 +10,7 @@ export default function ChatHeader() {
     return <p> 로딩중입니다</p>;
   }
   return (
-    <header className='relative flex items-center gap-3 border-b px-6 py-4'>
+    <header className='border-gray5 relative flex items-center gap-3 border-b px-6 py-4'>
       <Image
         src={chat.avatar}
         alt={chat.name}
