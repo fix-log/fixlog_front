@@ -2,7 +2,7 @@
 
 import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
-import FormFields from '@/widgets/signup/step3/FormFields';
+import FormFields from '@/widgets/auth/signup/step3/FormFields';
 import { useRouter } from 'next/navigation';
 import { Dispatch, SetStateAction } from 'react';
 import { useFormContext } from 'react-hook-form';
