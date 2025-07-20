@@ -77,9 +77,9 @@ export default function FormDropdownButton<T extends FieldValues>({
       </button>
 
       {/* 선택된 아이템 태그로 표시 */}
-      {typeof selectedItem === 'object' && (
+      {typeof selectedItem !== 'string' && (
         <div className='flex flex-wrap'>
-          {selectedItem.map((item: string) => (
+          {selectedItem?.map((item: string) => (
             <div
               key={item}
               className='text-mainRed bg-mainRed20 -mt-1 mr-[10px] mb-4 flex cursor-pointer items-center gap-x-2 rounded-full px-[10px] py-[5px] font-bold'
