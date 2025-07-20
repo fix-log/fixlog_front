@@ -1,7 +1,7 @@
 'use client';
 
-import OAuthButton from '@/features/login/ui/OAuthButton';
-import AuthLinkButton from '@/features/login/ui/AuthLinkButton';
+import OAuthButton from '@/features/auth/login/ui/OAuthButton';
+import AuthLinkButton from '@/features/auth/login/ui/AuthLinkButton';
 import { useRouter } from 'next/navigation';
 import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';

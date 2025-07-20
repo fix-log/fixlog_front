@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import FormDropdownToggle from './FormDropdownToggle';
-import { selectOptions, selectOptionsType } from '@/features/signup/model/selectOptions';
+import { selectOptions, selectOptionsType } from '@/features/auth/signup/model/selectOptions';
 import DropdownIcon from './DropdownIcon';
 import { FieldValues, Path, useFormContext } from 'react-hook-form';
 import { X } from 'lucide-react';

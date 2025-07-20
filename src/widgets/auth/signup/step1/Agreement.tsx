@@ -1,4 +1,4 @@
-import TermsAgreement from '@/features/signup/ui/TermsAgreement';
+import TermsAgreement from '@/features/auth/signup/ui/TermsAgreement';
 import { useEffect, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
