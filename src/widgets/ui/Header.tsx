@@ -1,6 +1,11 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { NavigationItems } from '@/shared/types/navigation';
+import { isLoginedStore } from '@/entities/auth/IsLoginedStore';
+import { hasHydratedStore } from '@/entities/model/HasHydratedStore';
+import { useEffect } from 'react';
 
 const navItems: NavigationItems = [
   { name: '크루모집', href: '/crew' },
@@ -8,10 +13,19 @@ const navItems: NavigationItems = [
   { name: '픽레드', href: '/fixred' },
 ];
 
-// 임시 로그인 여부 (나중에 전역 상태로 바꿔야댐 true 로 하면 로그인 후 헤더로 변경)
-const isLoggedIn = true;
-
 export default function Header() {
+  const { isLoggedIn } = isLoginedStore();
+
+  // 로그인 버튼 부분 깜빡임등으로 UX 관련 문제 때문에 추가 (hasHydrated)
+  const { hasHydrated, setHasHydrated } = hasHydratedStore();
+
+  useEffect(() => {
+    setHasHydrated();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (!hasHydrated) return;
+
   return (
     <header className='fixed top-0 right-0 left-0 z-10 flex h-[110px] justify-center bg-white font-sans'>
       <div className='flex h-full w-full max-w-[1440px] items-center justify-between px-6'>

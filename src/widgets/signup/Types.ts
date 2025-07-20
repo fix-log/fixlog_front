@@ -7,9 +7,9 @@ import z, { ZodObject } from 'zod';
 
 export interface dataType {
   [key: number]: {
-    element: ReactElement<any, any>;
+    element: ReactElement<number, string>;
     schema: ZodObject;
-    default: { [key: string]: any } | null;
+    default: { [key: string]: string[] } | null;
   };
 }
 
