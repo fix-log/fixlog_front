@@ -1,11 +1,13 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import FormDropdownToggle from './FormDropdownToggle';
 import { selectOptions, selectOptionsType } from '@/features/signup/model/selectOptions';
 import DropdownIcon from './DropdownIcon';
 import { FieldValues, Path, useFormContext } from 'react-hook-form';
-import { lengthLimits } from '../model/LengthLimits';
+import { X } from 'lucide-react';
+import FormDropdownToggleSingle from './FormDropdownToggleSingle';
 
 interface FormDropdownButtonProps {
+  type: 'single' | 'multi';
   id: keyof selectOptionsType;
   label: string;
   open: string | undefined;
@@ -15,6 +17,7 @@ interface FormDropdownButtonProps {
 }
 
 export default function FormDropdownButton<T extends FieldValues>({
+  type,
   id,
   open,
   setOpen,
@@ -22,11 +25,29 @@ export default function FormDropdownButton<T extends FieldValues>({
   placeholder,
   isRequired,
 }: FormDropdownButtonProps) {
+  const [displayText, setDisplayText] = useState(placeholder);
+  const displayToggle = {
+    single: (
+      <FormDropdownToggleSingle
+        id={id as Path<T>}
+        data={selectOptions[id]}
+        setDisplayText={setDisplayText}
+      />
+    ),
+    multi: (
+      <FormDropdownToggle<T>
+        id={id as Path<T>}
+        data={selectOptions[id]}
+        setDisplayText={setDisplayText}
+      />
+    ),
+  };
   const {
+    getValues,
+    setValue,
     formState: { errors },
   } = useFormContext<T>();
-  const selectionMessage =
-    lengthLimits[id] !== 0 ? `최대 ${lengthLimits[id]}개 선택 가능` : '많이 선택 가능';
+  const selectedItem = getValues(id as Path<T>);
 
   function handleClick() {
     setOpen(open === label ? undefined : label);
@@ -48,12 +69,34 @@ export default function FormDropdownButton<T extends FieldValues>({
           (open === label ? ' !pt-[14px]' : '')
         }
       >
-        <div className='flex w-full'>
-          <p className='grow !pl-[17px]'>{open === label ? selectionMessage : placeholder}</p>
-          <DropdownIcon form={open} target={label} />
+        <div className='flex w-full items-center'>
+          <p className='grow !pl-[17px]'>{displayText}</p>
+          <DropdownIcon type={type} form={open} target={label} />
         </div>
-        {open === label && <FormDropdownToggle<T> id={id as Path<T>} data={selectOptions[id]} />}
+        {open === label && displayToggle[type]}
       </button>
+
+      {/* 선택된 아이템 태그로 표시 */}
+      {typeof selectedItem === 'object' && (
+        <div className='flex flex-wrap'>
+          {selectedItem.map((item: string) => (
+            <div
+              key={item}
+              className='text-mainRed bg-mainRed20 -mt-1 mr-[10px] mb-4 flex cursor-pointer items-center gap-x-2 rounded-full px-[10px] py-[5px] font-bold'
+              onClick={(e) =>
+                setValue(
+                  id as Path<T>,
+                  selectedItem.filter((item: string) => item !== e.currentTarget.textContent),
+                )
+              }
+            >
+              {item}
+              <X width={15} height={15} />
+            </div>
+          ))}
+        </div>
+      )}
+
       {errors[id] && (
         <p className='text-pointDarkYellow -mt-3 pb-3 pl-3'>{errors[id].message?.toString()}</p>
       )}

@@ -19,6 +19,7 @@ export default function FormFields() {
     <>
       {DATA.map((item) => (
         <FormDropdownButton
+          type='multi'
           key={item.id}
           id={item.id}
           label={item.label}

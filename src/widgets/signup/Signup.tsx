@@ -35,13 +35,7 @@ export default function Signup() {
       default: { devLanguage: [], stackAndTool: [], designAndCollab: [] },
     },
     4: {
-      element: (
-        <Step4
-          setStep={setStep}
-          signupData={signupData}
-          setSignupData={setSignupData}
-        />
-      ),
+      element: <Step4 setStep={setStep} signupData={signupData} setSignupData={setSignupData} />,
       schema: step4Schema,
       default: {
         devInterestField: [],
