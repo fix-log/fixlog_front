@@ -17,7 +17,7 @@ export default function ProjectNav({ workroomId }: { workroomId: string }) {
   // console.log(pathname);
 
   return (
-    <nav className='w-full'>
+    <nav className='sticky top-[110px] z-10 w-full bg-white'>
       <ul className='flex w-full'>
         {navItems.map((item) => (
           <li key={item.href} className='flex h-[90px] w-1/5 items-center justify-center'>

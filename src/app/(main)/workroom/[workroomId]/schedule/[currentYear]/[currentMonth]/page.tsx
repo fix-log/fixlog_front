@@ -1,0 +1,33 @@
+import { getDate, getMonth, getYear } from 'date-fns';
+import { redirect } from 'next/navigation';
+
+interface PageProps {
+  params: Promise<{ workroomId: string; currentYear: string; currentMonth: string }>;
+}
+
+export default async function Page({ params }: PageProps) {
+  const { workroomId, currentYear, currentMonth } = await params;
+  const firstDateOfMonth = new Date(parseInt(currentYear), parseInt(currentMonth) - 1, 1);
+  redirect(
+    `/workroom/${workroomId}/schedule/${getYear(firstDateOfMonth)}/${getMonth(firstDateOfMonth) + 1}/${getDate(firstDateOfMonth)}`,
+  );
+}
+
+// import Calender from '@/features/schedule/ui/Calender';
+// import DailySchedule from '@/features/schedule/ui/DailySchedule';
+
+// export default async function Page() {
+//   // TODO: 프로젝트 일정 데이터 가져오기 (선택된 일자가 포함된 월)
+
+//   return (
+//     // 데이터를 통째로 밑에 컴포넌트에 전달해서 하이드레이션 (오늘 일정 포함, 캘린더 전체 컴포넌트는 클라이언트 컴포넌트로)
+//     <section className='flex w-full gap-2 md:py-28'>
+//       {/* 선택된 날짜를 상태로 관리하고 캘린더와 오늘 일정 컴포넌트에 각각 내려서 사용 */}
+//       <div className='border-gray5 w-2/3 rounded-[10px] border'>
+//         {/* TODO: 라우팅 정리하고 파라미터 받아서 초기값 설정 */}
+//         <Calender initialMonth={new Date(2025, 6, 1)} initialDate={new Date(2025, 6, 15)} />
+//       </div>
+//       <DailySchedule />
+//     </section>
+//   );
+// }
