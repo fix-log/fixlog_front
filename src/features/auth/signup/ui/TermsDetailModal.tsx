@@ -18,7 +18,10 @@ export default function TermsDetailModal({ id, terms, setIsModalOpen }: TermsDet
   };
 
   return (
-    <Modal setIsOpen={setIsModalOpen} className='w-screen max-w-[450px] cursor-default p-3'>
+    <Modal
+      setIsOpen={setIsModalOpen}
+      className='w-screen max-w-[450px] cursor-default overflow-hidden p-3'
+    >
       <div className='border-gray3 flex border-b pb-2'>
         <h1 className='grow text-center'>{terms}</h1>
         <X
@@ -27,7 +30,7 @@ export default function TermsDetailModal({ id, terms, setIsModalOpen }: TermsDet
           onClick={() => setIsModalOpen(false)}
         />
       </div>
-      <div className='pt-2'>{viewTerm[id]}</div>
+      <div className='mt-4 max-h-[700px] overflow-y-auto pr-2'>{viewTerm[id]}</div>
     </Modal>
   );
 }
