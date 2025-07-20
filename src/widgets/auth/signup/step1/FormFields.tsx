@@ -22,7 +22,7 @@ export default function FormFields() {
     formState: { errors },
   } = useFormContext();
   const emailWatch = watch('isEmailVerified');
-  console.log('emailWatch==', emailWatch);
+  
   const verfiedButton = (
     <button
       className={

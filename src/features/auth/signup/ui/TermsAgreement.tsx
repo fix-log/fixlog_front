@@ -21,9 +21,7 @@ export default function TermsAgreement({
   const { register, watch } = useFormContext();
   const isTermsOpen = id === 'isTermsAgreed' || id === 'isPrivacyAgreed';
   if (!className) className = '';
-
-  console.log(text, isRequired);
-
+  
   return (
     <>
       <input id={id} type='checkbox' className='hidden' {...register(id)} />
