@@ -15,7 +15,7 @@ export default function ChatInput() {
         setValue('');
       }}
     >
-      <button type='button' className='p-2 text-gray-400'>
+      <button type='button' className='text-gray3 p-2'>
         <Camera size={22} />
       </button>
       <input
