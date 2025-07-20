@@ -21,27 +21,25 @@ export default function FormDropdownToggle<T extends FieldValues>({
   if (watch(id) === false) setValue(id, [] as PathValue<T, Path<T>>);
 
   return (
-    <ul className="flex w-full flex-wrap !py-[25px] !pl-[17px]">
+    <ul className='flex w-full flex-wrap !py-[25px] !pl-[17px]'>
       {data.map((item) => (
         <div
           key={item}
           onClick={(e) => e.stopPropagation()}
           className={
             'border-gray6 bg-gray6 text-gray1 !my-[5px] !mr-[15px] rounded-[20px] border !px-[10px] !py-[5px]' +
-            (watch(id)?.includes(item)
-              ? ' border-mainRed bg-mainWhite text-mainRed border'
-              : '')
+            (watch(id)?.includes(item) ? ' border-mainRed bg-mainWhite text-mainRed border' : '')
           }
         >
           <input
             id={item}
-            type="checkbox"
+            type='checkbox'
             value={item}
             disabled={maxLength ? isFullAndMissing(item) : false}
-            className="hidden"
+            className='hidden'
             {...register(id)}
           />
-          <label htmlFor={item} className="cursor-pointer">
+          <label htmlFor={item} className='cursor-pointer'>
             {item}
           </label>
         </div>
