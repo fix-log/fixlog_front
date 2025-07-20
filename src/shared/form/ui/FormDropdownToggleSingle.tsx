@@ -17,7 +17,7 @@ export default function FormDropdownToggleSingle<T extends FieldValues>({
   data,
   setDisplayText,
 }: FormDropdownToggleSingleProps<T>) {
-  const { register, setValue } = useFormContext<T>();
+  const { register, setValue, trigger } = useFormContext<T>();
 
   return (
     <ul className='mt-[15px]'>
@@ -30,6 +30,7 @@ export default function FormDropdownToggleSingle<T extends FieldValues>({
             onClick={(e) => {
               setDisplayText(item);
               setValue(id as Path<T>, e.currentTarget.textContent as PathValue<T, Path<T>>);
+              trigger(id);
             }}
           >
             {item}
