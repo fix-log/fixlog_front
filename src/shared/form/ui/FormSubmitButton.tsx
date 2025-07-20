@@ -6,6 +6,9 @@ interface FormSubmitButtonProps {
   className?: string;
 }
 
+/**
+ * @param isSubmitting RHF의 useForm().formState{isSubmitting}를 받음
+ */
 export default function FormSubmitButton({ text, isSubmitting, className }: FormSubmitButtonProps) {
   if (!className) className = '';
   return (

@@ -16,6 +16,9 @@ interface FormDropdownButtonProps {
   isRequired?: boolean;
 }
 
+/**
+ * @param id  selectOptions.ts 파일에 있는 key (zod 스키마의 key와 동일하여야 함)
+ */
 export default function FormDropdownButton<T extends FieldValues>({
   type,
   id,

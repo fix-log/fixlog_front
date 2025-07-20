@@ -8,6 +8,10 @@ interface FormRadioSelectProps<T extends FieldValues> {
   isRequired?: boolean;
 }
 
+/**
+ * @param id zod 스키마 키와 동일하여야 함
+ * @param button 각 버튼 안에 넣을 문구들
+ */
 export default function FormRadioSelect<T extends FieldValues>({
   label,
   id,
