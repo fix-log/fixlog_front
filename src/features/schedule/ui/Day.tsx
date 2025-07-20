@@ -20,6 +20,7 @@ export default async function Day({ date, nthWeek, selectedDate, workroomId }: D
     <td>
       {/* TODO: 링크 태그를 어디에 넣어야 할지 다시 고민하기 (클릭이 일정바랑 겹칠 가능성에 대해 생각해봐야함) */}
       <Link
+        draggable={false}
         href={`/workroom/${workroomId}/schedule/${getYear(date)}/${getMonth(date) + 1}/${getDate(date)}`}
         className={cn(
           'box-border flex h-[160px] flex-col border-[1.5px] border-transparent p-3',
