@@ -51,9 +51,9 @@ export default function Header() {
             <button>
               <Image src='/icon_search.png' alt='검색' width={20} height={20} />
             </button>
-            <button>
+            <Link href='/notification' aria-label='알림으로 이동'>
               <Image src='/icon_notification.png' alt='알림' width={20} height={20} />
-            </button>
+            </Link>
             <Link href='/fixletter' aria-label='픽레터로 이동'>
               <Image src='/icon_message.png' alt='메시지' width={20} height={20} />
             </Link>
