@@ -6,10 +6,14 @@ import { createPortal } from 'react-dom';
 interface ModalProps {
   children: React.ReactNode;
   className?: string;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  setIsOpen?: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function Modal({ children, className, setIsOpen }: ModalProps) {
+export default function Modal({
+  children,
+  className,
+  setIsOpen,
+}: ModalProps) {
   const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
@@ -18,6 +22,7 @@ export default function Modal({ children, className, setIsOpen }: ModalProps) {
   }, []);
 
   const onClose = () => {
+    if (!setIsOpen) return;
     setIsOpen(false);
   };
 
