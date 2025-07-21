@@ -27,7 +27,7 @@ export default function Header() {
   if (!hasHydrated) return;
 
   return (
-    <header className='fixed top-0 right-0 left-0 z-10 flex h-[110px] justify-center bg-white font-sans'>
+    <header className='fixed top-0 right-0 left-0 z-10 flex h-[110px] justify-center bg-white'>
       <div className='flex h-full w-full max-w-[1440px] items-center justify-between px-6'>
         {/* 로고 */}
         <Link href='/' className='flex items-center'>
