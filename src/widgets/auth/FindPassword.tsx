@@ -32,7 +32,8 @@ export default function FindEmail() {
         await form.trigger('email');
         //이메일 입력이 안된 상태라면 빠꾸
         const isEnteredEmail =
-          Object.keys(form.formState.errors).length > 0 && (form.formState.errors['email']?.message as string).includes('인증');
+          Object.keys(form.formState.errors).length > 0 &&
+          (form.formState.errors['email']?.message as string).includes('인증');
         if (isEnteredEmail) {
           form.setValue('isEmailVerified' as const, true);
           form.trigger('email');
@@ -43,20 +44,20 @@ export default function FindEmail() {
     </button>
   );
 
-  const fromHandleSubmit = async(data: object)  => {
+  const fromHandleSubmit = async (data: object) => {
     try {
-      const respones = await findPassword(data)
-      router.push('/edit-password');
+      // const respones = await findPassword(data)
+      router.push('/login/edit-password');
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
   return (
     <FormProvider {...form}>
       <div className='flex w-full max-w-[500px] flex-col items-center'>
         <FormHeader title='비밀번호 찾기' />
-        <form className='w-full' onSubmit={form.handleSubmit(data => fromHandleSubmit(data))}>
+        <form className='w-full' onSubmit={form.handleSubmit((data) => fromHandleSubmit(data))}>
           {DATA.map((item) => (
             <FormInputString
               key={item.id}
