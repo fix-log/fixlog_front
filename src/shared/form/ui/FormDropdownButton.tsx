@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import FormDropdownToggle from './FormDropdownToggle';
-import { selectOptions, selectOptionsType } from '@/features/signup/model/selectOptions';
+import { selectOptions, selectOptionsType } from '@/features/auth/signup/model/selectOptions';
 import DropdownIcon from './DropdownIcon';
 import { FieldValues, Path, useFormContext } from 'react-hook-form';
 import { X } from 'lucide-react';
@@ -16,6 +16,9 @@ interface FormDropdownButtonProps {
   isRequired?: boolean;
 }
 
+/**
+ * @param id  selectOptions.ts 파일에 있는 key (zod 스키마의 key와 동일하여야 함)
+ */
 export default function FormDropdownButton<T extends FieldValues>({
   type,
   id,
@@ -77,9 +80,9 @@ export default function FormDropdownButton<T extends FieldValues>({
       </button>
 
       {/* 선택된 아이템 태그로 표시 */}
-      {typeof selectedItem === 'object' && (
+      {typeof selectedItem !== 'string' && (
         <div className='flex flex-wrap'>
-          {selectedItem.map((item: string) => (
+          {selectedItem?.map((item: string) => (
             <div
               key={item}
               className='text-mainRed bg-mainRed20 -mt-1 mr-[10px] mb-4 flex cursor-pointer items-center gap-x-2 rounded-full px-[10px] py-[5px] font-bold'

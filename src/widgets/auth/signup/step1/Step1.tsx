@@ -4,8 +4,8 @@ import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
 import { useRouter } from 'next/navigation';
 import { FieldErrors, useFormContext } from 'react-hook-form';
-import Agreement from '@/widgets/signup/step1/Agreement';
-import FormFields from '@/widgets/signup/step1/FormFields';
+import Agreement from '@/widgets/auth/signup/step1/Agreement';
+import FormFields from '@/widgets/auth/signup/step1/FormFields';
 import { Dispatch, SetStateAction } from 'react';
 import { SetStateType } from '../Types';
 

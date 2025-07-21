@@ -1,9 +1,11 @@
-import { useFormContext } from "react-hook-form";
+import { useState } from 'react';
+import { useFormContext } from 'react-hook-form';
+import TermsDetailModal from './TermsDetailModal';
 
 interface TermsAgreementProps {
   id: string;
   text: string;
-  isRequired?: boolean;
+  isRequired?: 'required' | 'optional' | undefined;
   className?: string;
   onClick?: () => void;
 }
@@ -15,10 +17,11 @@ export default function TermsAgreement({
   className,
   onClick,
 }: TermsAgreementProps) {
-  const { register, watch } = useFormContext()
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { register, watch } = useFormContext();
   const isTermsOpen = id === 'isTermsAgreed' || id === 'isPrivacyAgreed';
   if (!className) className = '';
-
+  
   return (
     <>
       <input id={id} type='checkbox' className='hidden' {...register(id)} />
@@ -36,13 +39,28 @@ export default function TermsAgreement({
           </div>
           <p className={className}>
             {text}
-            {isRequired && <span className='!ml-1'>{isRequired ? '(필수)' : '(선택)'}</span>}
+            {isRequired && (
+              <span className='!ml-1'>{isRequired === 'required' ? '(필수)' : '(선택)'}</span>
+            )}
           </p>
         </div>
         {isTermsOpen && (
-          <button className='text-mainRed !ml-auto cursor-pointer font-bold'>보기</button>
+          <button
+            type='button'
+            className='text-mainRed !ml-auto cursor-pointer font-bold'
+            onClick={() => setIsModalOpen(true)}
+          >
+            보기
+          </button>
         )}
       </label>
+      {isModalOpen && (
+        <TermsDetailModal
+          id={id as 'isPrivacyAgreed' | 'isTermsAgreed'}
+          terms={text}
+          setIsModalOpen={setIsModalOpen}
+        />
+      )}
     </>
   );
 }

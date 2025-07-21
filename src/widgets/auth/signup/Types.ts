@@ -1,7 +1,7 @@
-import { step1Schema } from '@/features/signup/model/schema/Step1';
-import { step2Schema } from '@/features/signup/model/schema/Step2';
-import { step3Schema } from '@/features/signup/model/schema/Step3';
-import { step4Schema } from '@/features/signup/model/schema/Step4';
+import { step1Schema } from '@/features/auth/signup/model/schema/Step1';
+import { step2Schema } from '@/features/auth/signup/model/schema/Step2';
+import { step3Schema } from '@/features/auth/signup/model/schema/Step3';
+import { step4Schema } from '@/features/auth/signup/model/schema/Step4';
 import { Dispatch, ReactElement, SetStateAction } from 'react';
 import z, { ZodObject } from 'zod';
 
