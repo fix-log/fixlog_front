@@ -33,7 +33,7 @@ export default function Schedule() {
         onClick={() => {
           setIsDropdownOpen((prev) => !prev);
         }}
-        className='mx-1 p-2 transition-all duration-200 hover:scale-120 hover:cursor-pointer'
+        className='mx-1 cursor-pointer p-2 transition-all duration-200 hover:scale-120'
       >
         <EllipsisVertical size={26} />
       </button>
@@ -58,7 +58,7 @@ export default function Schedule() {
             onClick={() => {
               console.log('해당 일정 삭제');
             }}
-            className='bg-mainRed text-body-m hover:bg-mainRed/85 mt-[25px] rounded-[5px] px-25 py-3 font-extrabold text-white transition duration-200 hover:cursor-pointer'
+            className='bg-mainRed text-body-m hover:bg-mainRed/85 mt-[25px] cursor-pointer rounded-[5px] px-24.5 py-3 font-extrabold text-white transition duration-200'
           >
             해당 일정 삭제하기
           </button>

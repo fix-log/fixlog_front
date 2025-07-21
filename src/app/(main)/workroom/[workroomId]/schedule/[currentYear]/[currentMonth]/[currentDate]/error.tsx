@@ -18,7 +18,7 @@ export default function Error({ error, reset }: ErrorProps) {
       <p className='text-gray-600'>요청하신 날짜가 유효하지 않거나 페이지에 문제가 발생했습니다.</p>
       <button
         onClick={reset}
-        className='bg-mainRed hover:bg-mainRed/90 rounded-lg px-4 py-2 text-white'
+        className='bg-mainRed hover:bg-mainRed/90 cursor-pointer rounded-lg px-4 py-2 text-white'
       >
         다시 시도
       </button>

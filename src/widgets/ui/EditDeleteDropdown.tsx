@@ -30,7 +30,7 @@ export default forwardRef<HTMLDivElement, EditDeleteDropdownProps>(function Edit
       </Link>
       <button
         onClick={handleDelete}
-        className='text-mainRed hover:bg-gray6 px-8 py-5 transition-all duration-200 hover:cursor-pointer'
+        className='text-mainRed hover:bg-gray6 cursor-pointer px-8 py-5 transition-all duration-200'
       >
         삭제하기
       </button>

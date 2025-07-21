@@ -25,7 +25,7 @@ export default function MyWorkroomCardOptionButton({
         onClick={() => {
           setIsDropdownOpen((prev) => !prev);
         }}
-        className='hover:cursor-pointer'
+        className='cursor-pointer'
       >
         <Ellipsis className='text-gray5 hover:text-gray4 size-7 transition-all duration-200' />
       </button>

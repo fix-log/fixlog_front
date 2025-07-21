@@ -11,14 +11,14 @@ export default function DailyScheduleButtons() {
     <>
       <div className='flex h-30 items-center gap-2 px-4 py-5.5'>
         {/* 버튼이 아니라 링크여야 하나? */}
-        <button className='border-gray5 text-h4 hover:bg-gray6 h-full grow rounded-[10px] border px-3.5 text-left font-extrabold transition duration-200 hover:cursor-pointer'>
+        <button className='border-gray5 text-h4 hover:bg-gray6 h-full grow cursor-pointer rounded-[10px] border px-3.5 text-left font-extrabold transition duration-200'>
           + 새로운 일정 추가
         </button>
         <button
           onClick={() => {
             setIsModalOpen(true);
           }}
-          className='border-gray5 hover:bg-gray6 h-full w-[75px] rounded-[10px] border transition duration-200 hover:cursor-pointer'
+          className='border-gray5 hover:bg-gray6 h-full w-[75px] cursor-pointer rounded-[10px] border transition duration-200'
         >
           <Trash2 size={26} className='m-auto' />
         </button>
@@ -35,7 +35,7 @@ export default function DailyScheduleButtons() {
             onClick={() => {
               console.log('하루 일정 전체 삭제');
             }}
-            className='bg-mainRed text-body-m hover:bg-mainRed/85 mt-[25px] rounded-[5px] px-25 py-3 font-extrabold text-white transition duration-200 hover:cursor-pointer'
+            className='bg-mainRed text-body-m hover:bg-mainRed/85 mt-[25px] cursor-pointer rounded-[5px] px-25 py-3 font-extrabold text-white transition duration-200'
           >
             전체 삭제하기
           </button>

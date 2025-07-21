@@ -32,7 +32,7 @@ export default async function CalenderHeader({ workroomId, selectedDate }: Calen
       <div className='flex items-center gap-8'>
         <Link
           href={`/workroom/${workroomId}/schedule/${getYear(prevMonth)}/${getMonth(prevMonth) + 1}/${getDate(prevMonth)}`}
-          className='hover:bg-gray5 rounded-md transition-all duration-200 hover:cursor-pointer'
+          className='hover:bg-gray5 cursor-pointer rounded-md transition-all duration-200'
         >
           <ChevronLeft className='size-6' />
         </Link>
@@ -47,7 +47,7 @@ export default async function CalenderHeader({ workroomId, selectedDate }: Calen
 
         <Link
           href={`/workroom/${workroomId}/schedule/${getYear(nextMonth)}/${getMonth(nextMonth) + 1}/${getDate(nextMonth)}`}
-          className='hover:bg-gray5 rounded-md transition-all duration-200 hover:cursor-pointer'
+          className='hover:bg-gray5 cursor-pointer rounded-md transition-all duration-200'
         >
           <ChevronRight className='size-6' />
         </Link>
