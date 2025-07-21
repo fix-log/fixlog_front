@@ -1,5 +1,6 @@
 'use client';
 
+import { findPassword } from '@/features/findPassword/api/FindPassword';
 import { FormValues, schema } from '@/features/findPassword/FindPasswordSchema';
 import FormHeader from '@/shared/form/ui/FormHeader';
 import FormInputString from '@/shared/form/ui/FormInputString';
@@ -42,15 +43,20 @@ export default function FindEmail() {
     </button>
   );
 
-  function fromHandleSubmit() {
-    router.push('/edit-password');
+  const fromHandleSubmit = async(data: object)  => {
+    try {
+      const respones = await findPassword(data)
+      router.push('/edit-password');
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
     <FormProvider {...form}>
       <div className='flex w-full max-w-[500px] flex-col items-center'>
         <FormHeader title='비밀번호 찾기' />
-        <form className='w-full' onSubmit={form.handleSubmit(fromHandleSubmit)}>
+        <form className='w-full' onSubmit={form.handleSubmit(data => fromHandleSubmit(data))}>
           {DATA.map((item) => (
             <FormInputString
               key={item.id}
