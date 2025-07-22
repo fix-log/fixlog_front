@@ -19,7 +19,7 @@ export interface ProjectDetail {
   is_estimated_period: string;
   description: string;
   count: number;
-  status: 'recruiting' | 'closed'; // 또는 string
+  status: 'recruiting' | 'closed'; // 타입 확인 필요
   project_positions: {
     position: number;
     position_name: string;
