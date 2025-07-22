@@ -1,13 +1,13 @@
 'use client';
 
-import Step1 from '@/widgets/signup/step1/Step1';
-import Step2 from '@/widgets/signup/step2/Step2';
-import Step3 from '@/widgets/signup/step3/Step3';
-import Step4 from '@/widgets/signup/step4/Step4';
-import { step1Schema } from '@/features/signup/model/schema/Step1';
-import { step2Schema } from '@/features/signup/model/schema/Step2';
-import { step3Schema } from '@/features/signup/model/schema/Step3';
-import { step4Schema } from '@/features/signup/model/schema/Step4';
+import Step1 from '@/widgets/auth/signup/step1/Step1';
+import Step3 from '@/widgets/auth/signup/step3/Step3';
+import Step4 from '@/widgets/auth/signup/step4/Step4';
+import Step2 from '@/widgets/auth/signup/step2/Step2';
+import { step1Schema } from '@/features/auth/signup/model/schema/Step1';
+import { step2Schema } from '@/features/auth/signup/model/schema/Step2';
+import { step3Schema } from '@/features/auth/signup/model/schema/Step3';
+import { step4Schema } from '@/features/auth/signup/model/schema/Step4';
 
 import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';

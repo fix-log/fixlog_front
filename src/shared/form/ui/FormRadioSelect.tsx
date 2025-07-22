@@ -1,3 +1,4 @@
+import { colorChangeAnimation } from '@/shared/ui/Animation';
 import { FieldValues, Path, useFormContext } from 'react-hook-form';
 
 interface FormRadioSelectProps<T extends FieldValues> {
@@ -7,6 +8,10 @@ interface FormRadioSelectProps<T extends FieldValues> {
   isRequired?: boolean;
 }
 
+/**
+ * @param id zod 스키마 키와 동일하여야 함
+ * @param button 각 버튼 안에 넣을 문구들
+ */
 export default function FormRadioSelect<T extends FieldValues>({
   label,
   id,
@@ -33,7 +38,8 @@ export default function FormRadioSelect<T extends FieldValues>({
             key={item}
             className={
               'border-gray4 text-gray4 !mr-[20px] h-[60px] grow rounded-[5px] border text-center leading-14 last:!mr-0' +
-              (watch(id) === item ? ' bg-mainRed text-mainWhite' : '')
+              (watch(id) === item ? ' bg-mainRed text-mainWhite' : '') +
+              colorChangeAnimation
             }
           >
             <input id={item} type='radio' className='hidden' value={item} {...register(id)} />

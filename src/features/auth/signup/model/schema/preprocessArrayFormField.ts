@@ -2,8 +2,8 @@ import z from 'zod';
 
 export default function preprocessArrayFormField(text: string) {
   return z.preprocess(
-    (val) => (val === undefined ? [] : val) || (val === false ? [] : val),
-    z.array(z.string()).min(1, text)
+    (val) => val || [],
+    z.array(z.string()).min(1, text),
   );
 }
 

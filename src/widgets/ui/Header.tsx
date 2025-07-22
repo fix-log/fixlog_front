@@ -67,7 +67,7 @@ export default function Header() {
               로그인
             </Link>
             <Link
-              href='/login/signup/step1'
+              href='/login/signup'
               className='bg-mainRed text-mainWhite text-body-l rounded-[5px] p-[8px_21px] pb-[9px] font-bold'
             >
               회원가입

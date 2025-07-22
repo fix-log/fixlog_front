@@ -1,4 +1,4 @@
-import { FormValues } from '@/features/signup/model/schema/Step1';
+import { FormValues } from '@/features/auth/signup/model/schema/Step1';
 import FormInputString from '@/shared/form/ui/FormInputString';
 import { useFormContext } from 'react-hook-form';
 
@@ -15,17 +15,30 @@ const DATA = [
 ] as const;
 
 export default function FormFields() {
-  const form = useFormContext();
-  const emailWatch = form.watch('isEmailVerified');
+  const {
+    watch,
+    setValue,
+    trigger,
+    formState: { errors },
+  } = useFormContext();
+  const emailWatch = watch('isEmailVerified');
+  
   const verfiedButton = (
     <button
       className={
-        'bg-mainBlack text-mainWhite !my-[15px] !ml-3 h-[60px] w-[90px] cursor-pointer rounded-[5px] font-bold'
+        'bg-mainBlack text-mainWhite !my-[15px] !ml-3 h-[60px] w-[90px] cursor-pointer rounded-[5px] font-bold' +
+        (emailWatch ? ' !bg-gray3 !cursor-default' : '')
       }
       type='button'
-      onClick={() => {
-        form.setValue('isEmailVerified' as const, true);
-        form.trigger('email');
+      onClick={async () => {
+        await trigger('email');
+        //이메일 입력이 안된 상태라면 빠꾸
+        const isEnteredEmail =
+          Object.keys(errors).length > 0 && (errors['email']?.message as string).includes('인증');
+        if (isEnteredEmail) {
+          setValue('isEmailVerified' as const, true);
+          trigger('email');
+        } // 이메일 인증 로직 추가
       }}
     >
       {emailWatch ? '완료' : '인증'}

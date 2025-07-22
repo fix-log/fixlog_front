@@ -16,7 +16,7 @@ export const step2Schema = z.object({
     }),
   phoneNumber: z.string().nonempty('전화번호를 입력해주세요'),
   position: preprocessArrayFormField('포지션을 선택해주세요'),
-  career: z.string().nonempty('경력을 선택해주세요'),
+  career: z.preprocess((val) => val || '', z.string().nonempty('경력을 선택해주세요')),
 });
 
 export type FormValues = z.infer<typeof step2Schema>;
