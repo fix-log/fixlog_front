@@ -1,19 +1,32 @@
 'use client';
 
 import Modal from '@/shared/ui/Modal';
+import { getDate, getMonth, getYear } from 'date-fns';
 import { Trash2 } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 
-export default function DailyScheduleButtons() {
+interface DailyScheduleButtonsProps {
+  workroomId: string;
+  selectedDate: Date;
+}
+
+export default function DailyScheduleButtons({
+  workroomId,
+  selectedDate,
+}: DailyScheduleButtonsProps) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
     <>
       <div className='flex h-30 items-center gap-2 px-4 py-5.5'>
         {/* 버튼이 아니라 링크여야 하나? */}
-        <button className='border-gray5 text-h4 hover:bg-gray6 h-full grow cursor-pointer rounded-[10px] border px-3.5 text-left font-extrabold transition duration-200'>
+        <Link
+          href={`/workroom/${workroomId}/schedule/${getYear(selectedDate)}/${getMonth(selectedDate) + 1}/${getDate(selectedDate)}/create`}
+          className='border-gray5 text-h4 hover:bg-gray6 flex h-full grow cursor-pointer items-center rounded-[10px] border px-3.5 text-left font-extrabold transition duration-200'
+        >
           + 새로운 일정 추가
-        </button>
+        </Link>
         <button
           onClick={() => {
             setIsModalOpen(true);

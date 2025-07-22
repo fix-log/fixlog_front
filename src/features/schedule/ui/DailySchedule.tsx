@@ -33,7 +33,7 @@ export default async function DailySchedule({ workroomId, selectedDate }: DailyS
         <Schedule />
       </ul>
 
-      <DailyScheduleButtons />
+      <DailyScheduleButtons workroomId={workroomId} selectedDate={selectedDate} />
     </section>
   );
 }
