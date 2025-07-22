@@ -74,3 +74,20 @@ body {
 .swiper {
   overflow: visible !important;
 }
+
+/* 픽레드 멘션 시 */
+.mention {
+  color: 	#00376b;
+  background-color: transparent;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* 픽레드 placeholder 거지같은거 적용 안돼서 여기다 넣음*/
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: #aaa;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
