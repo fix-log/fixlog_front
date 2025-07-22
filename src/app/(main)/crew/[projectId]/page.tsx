@@ -40,6 +40,7 @@ export default function CrewProjectPage() {
         title={MOCK_PROJECT.title}
         createdAt={MOCK_PROJECT.created_at}
         status={MOCK_PROJECT.status}
+        userNickname={MOCK_PROJECT.user_nickname}
       />
       <ProjectInfoBox project={MOCK_PROJECT} />
       <div className='mt-[70px] flex items-center justify-center gap-[20px]'>
@@ -49,4 +50,3 @@ export default function CrewProjectPage() {
     </>
   );
 }
-

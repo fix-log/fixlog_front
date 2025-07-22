@@ -1,6 +1,6 @@
 'use client';
 
-import { format } from 'date-fns';
+import { formatDistanceToNowStrict, parseISO } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -8,12 +8,16 @@ import { useRouter } from 'next/navigation';
 interface Props {
   title: string;
   createdAt: string;
-  status: 'recruiting' | 'closed';
+  status: 'recruiting' | 'closed'; //이거 타입 확인
+  userNickname: string;
 }
 
-export default function ProjectHeader({ title, createdAt, status }: Props) {
+export default function ProjectHeader({ title, createdAt, status, userNickname }: Props) {
   const router = useRouter();
-  const formattedDate = format(new Date(createdAt), 'yyyy.MM.dd', { locale: ko });
+  const relativeTime = formatDistanceToNowStrict(parseISO(createdAt), {
+    locale: ko,
+    addSuffix: true,
+  });
 
   const statusText = status === 'recruiting' ? '모집중' : '모집 완료';
 
@@ -26,10 +30,12 @@ export default function ProjectHeader({ title, createdAt, status }: Props) {
       >
         <ArrowLeft className='h-6 w-6' />
       </button>
-      <div className='mt-[92px] ml-[100px] mr-[142px]'>
+      <div className='mt-[92px] mr-[142px] ml-[100px]'>
         <p className='text-pointDarkGreen mb-2 text-sm font-semibold'>{statusText}</p>
         <h1 className='text-[42px] font-semibold'>{title}</h1>
-        <p className='mt-[29px] text-[16px] text-gray-400'>{formattedDate}</p>
+        <p className='mt-[29px] text-[16px] text-gray-400'>
+          {userNickname} · {relativeTime}
+        </p>
         <hr className='mt-6 border-t border-gray-200' />
       </div>
     </header>
