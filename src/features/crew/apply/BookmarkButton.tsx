@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Star } from 'lucide-react';
+import { StarIcon as StarOutline } from '@heroicons/react/24/outline';
+import { StarIcon as StarSolid } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 
 interface Props {
@@ -23,18 +24,17 @@ export default function BookmarkButton({ projectId, initialBookmarked = false }:
     <button
       onClick={handleClick}
       className={clsx(
-        'border-gray4 flex items-center justify-center rounded-[5px] border',
-        'h-[60px] w-[68px] flex-shrink-0 transition',
+        'flex items-center justify-center rounded-[5px] border transition',
+        'h-[60px] w-[60px] flex-shrink-0',
+        'border-gray4',
       )}
       aria-label='북마크'
     >
-      <Star
-        strokeWidth={1.2}
-        className={clsx(
-          'h-[40px] w-[40px] transition',
-          bookmarked ? 'fill-pointYellow text-pointYellow' : 'text-pointYellow',
-        )}
-      />
+      {bookmarked ? (
+        <StarSolid className='text-pointYellow h-[40px] w-[40px]' strokeWidth={1.2} />
+      ) : (
+        <StarOutline className='text-pointYellow h-[40px] w-[40px]' strokeWidth={1.2} />
+      )}
     </button>
   );
 }
