@@ -14,3 +14,4 @@ export const lengthLimits: lengthLimitsType = {
 };
 
 // value: 0 = 최대 선택 제한 없음
+// 각 드롭다운 옵션의 최대 선택 설정
