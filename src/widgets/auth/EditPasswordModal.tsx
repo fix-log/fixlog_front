@@ -1,3 +1,4 @@
+import { colorChangeAnimation } from '@/shared/ui/Animation';
 import Modal from '@/shared/ui/Modal';
 import { Check } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -11,7 +12,7 @@ export default function EidtPasswordModal({ setIsModalOpen }: EidtPasswordModalP
   const router = useRouter();
 
   return (
-    <Modal className='flex w-[700px] px-[75px] py-[70px]' setIsOpen={setIsModalOpen}>
+    <Modal className='flex w-[700px] px-[75px] py-[70px]'>
       <Check
         strokeWidth={3}
         className='bg-mainRed20 text-mainRed h-[58px] w-[58px] rounded-full p-3'
@@ -21,7 +22,10 @@ export default function EidtPasswordModal({ setIsModalOpen }: EidtPasswordModalP
         <p>비밀번호가 변경되었습니다</p>
       </div>
       <button
-        className='bg-mainRed w-full cursor-pointer rounded-[5px] py-[10px] text-white'
+        className={
+          'bg-mainRed hover:bg-mainDarkRed w-full cursor-pointer rounded-[5px] py-[10px] text-white' +
+          colorChangeAnimation
+        }
         type='button'
         onClick={() => {
           router.push('/login');
