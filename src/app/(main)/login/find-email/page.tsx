@@ -1,4 +1,4 @@
-import FindEmail from '@/widgets/fineEmail/FineEmail';
+import FindEmail from '@/widgets/findEmail/FindEmail';
 
 export default function FindEmailPage() {
   return <FindEmail />;

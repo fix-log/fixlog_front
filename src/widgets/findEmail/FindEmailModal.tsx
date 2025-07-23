@@ -2,6 +2,7 @@ import Modal from '@/shared/ui/Modal';
 import { Dispatch, SetStateAction } from 'react';
 import { Check } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { colorChangeAnimation } from '@/shared/ui/Animation';
 
 interface FindEmailModalProps {
   foundEmail: string;
@@ -24,7 +25,10 @@ export default function FindEmailModal({ foundEmail, setIsModalOpen }: FindEmail
       </div>
       <div className='flex justify-around text-white'>
         <button
-          className='bg-mainBlack mr-[18px] cursor-pointer rounded-[5px] px-6 py-[10px]'
+          className={
+            'bg-mainBlack mr-[18px] cursor-pointer rounded-[5px] px-6 py-[10px] hover:bg-black' +
+            colorChangeAnimation
+          }
           type='button'
           onClick={() => {
             router.push('/login');
@@ -33,7 +37,10 @@ export default function FindEmailModal({ foundEmail, setIsModalOpen }: FindEmail
           로그인 하러 가기
         </button>
         <button
-          className='bg-mainRed cursor-pointer rounded-[5px] px-6 py-[10px]'
+          className={
+            'bg-mainRed hover:bg-mainDarkRed cursor-pointer rounded-[5px] px-6 py-[10px]' +
+            colorChangeAnimation
+          }
           type='button'
           onClick={() => {
             router.push('/find-password');
