@@ -13,7 +13,7 @@ export default function FindEmailModal({ foundEmail, setIsModalOpen }: FindEmail
   const router = useRouter();
 
   return (
-    <Modal className='flex w-[700px] px-[75px] py-[70px]' setIsOpen={setIsModalOpen}>
+    <Modal className='flex w-[700px] px-[75px] py-[70px]'>
       <Check
         strokeWidth={3}
         className='bg-mainRed20 text-mainRed h-[58px] w-[58px] rounded-full p-3'
