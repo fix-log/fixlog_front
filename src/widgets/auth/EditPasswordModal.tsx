@@ -28,7 +28,7 @@ export default function EidtPasswordModal({ setIsModalOpen }: EidtPasswordModalP
         }
         type='button'
         onClick={() => {
-          router.push('/login');
+          router.replace('/login');
         }}
       >
         로그인 하러 가기
