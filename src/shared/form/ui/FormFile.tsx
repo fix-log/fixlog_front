@@ -6,6 +6,9 @@ interface FormFileProps<T extends FieldValues> {
   isRequired?: boolean;
 }
 
+/**
+ * @param id zod 스키마 키와 동일하여야 함
+ */
 export default function FormFile<T extends FieldValues>({
   label,
   id,

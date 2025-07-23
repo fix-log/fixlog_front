@@ -10,6 +10,9 @@ interface FormInputStringProps<T> {
   children?: React.ReactNode;
 }
 
+/**
+ * @param id zod 스키마 키와 동일하여야 함
+ */
 export default function FormInputString<T extends FieldValues>({
   type,
   id,
