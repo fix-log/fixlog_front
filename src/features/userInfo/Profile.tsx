@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 import { useEffect } from 'react';
+import { ChevronRight, UserPlus } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Profile() {
   useEffect(() => {
@@ -23,17 +25,17 @@ export default function Profile() {
   };
 
   return (
-    <div className='flex w-full items-center'>
+    <div className='flex items-center gap-7'>
       <Image
         src='/icon_profile.png'
         alt='프로필'
         width={125}
         height={125}
-        className='h-auto w-[125px]'
+        className='h-auto w-[125px] cursor-pointer'
       />
-      <div className='flex flex-col'>
-        <div className='flex font-bold'>
-          <h1>{userInfoData.nickname}</h1>
+      <div className='text-body-m flex flex-col !leading-[1.5]'>
+        <div className='flex gap-3 font-bold'>
+          <h1 className='text-h3'>{userInfoData.nickname}</h1>
           <p className='border-mainRed text-mainRed rounded-full border-2 px-[10px] py-[4px]'>
             LV. {userInfoData.level}
           </p>
@@ -41,12 +43,17 @@ export default function Profile() {
             경력 {userInfoData.career}
           </p>
         </div>
-        <p className='inline-block'>{userInfoData.email}</p>
-        <div className='text-gray3 flex items-center'>
-          <svg className='h-[15px] w-[15px]' />
-          <p>팔로워 {userInfoData.followers}명</p>
+        <p className='text-body-l mt-1 inline-block'>{userInfoData.email}</p>
+        <div className='text-gray3 mt-3 flex items-center gap-1'>
+          <UserPlus className='h-[15px] w-[15px]' />
+          <p className='text-body-m cursor-pointer !leading-[1.5] hover:underline'>
+            팔로워 {userInfoData.followers}명
+          </p>
         </div>
       </div>
+      <Link href={`/user-review/1`} className='ml-auto'>
+        <ChevronRight className='text-gray3 h-[70px] w-[60px] cursor-pointer' />
+      </Link>
     </div>
   );
 }
