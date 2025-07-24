@@ -141,7 +141,7 @@ body {
 
 /* 픽레드 멘션 시 */
 .mention {
-  color: 	#00376b;
+  color: #00376b;
   background-color: transparent;
   font-weight: 500;
   cursor: pointer;
