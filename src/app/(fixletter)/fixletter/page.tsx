@@ -1,4 +1,4 @@
-import ChatEmpty from '@/widgets/fixletter/ChatEmpty';
+import ChatEmpty from '@/features/fixletter/ui/ChatEmpty';
 import ChatSidebar from '@/widgets/fixletter/ChatSidebar';
 import ChatDetail from '@/widgets/fixletter/ChatDetail';
 
