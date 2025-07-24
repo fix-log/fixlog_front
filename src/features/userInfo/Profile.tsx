@@ -1,18 +1,23 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect } from 'react';
 import { ChevronRight, UserPlus } from 'lucide-react';
 import Link from 'next/link';
 
-export default function Profile() {
-  useEffect(() => {
-    const api = async () => {
-      // 임시공간
-      // API 유저정보 조회 (userId 대조)
-      // API 팔로워/팔로잉 조회
-    };
-  }, []);
+interface ProfileProps {
+  isMe: boolean;
+  viewedUserId: number;
+}
+
+export default function Profile({ isMe, viewedUserId }: ProfileProps) {
+  console.log(isMe);
+  // useEffect(() => {
+  //   const api = async () => {
+  //     // 임시공간
+  //     // API 유저정보 조회 (userId 대조)
+  //     // API 팔로워/팔로잉 조회
+  //   };
+  // }, []);
 
   // 더미데이터
   const userInfoData = {
@@ -36,14 +41,17 @@ export default function Profile() {
       <div className='text-body-m flex flex-col !leading-[1.5]'>
         <div className='flex gap-3 font-bold'>
           <h1 className='text-h3'>{userInfoData.nickname}</h1>
+
           <p className='border-mainRed text-mainRed rounded-full border-2 px-[10px] py-[4px]'>
             LV. {userInfoData.level}
           </p>
+
           <p className='border-pointDarkGreen text-pointDarkGreen rounded-full border-2 px-[10px] py-[4px]'>
             경력 {userInfoData.career}
           </p>
         </div>
         <p className='text-body-l mt-1 inline-block'>{userInfoData.email}</p>
+
         <div className='text-gray3 mt-3 flex items-center gap-1'>
           <UserPlus className='h-[15px] w-[15px]' />
           <p className='text-body-m cursor-pointer !leading-[1.5] hover:underline'>
@@ -51,7 +59,9 @@ export default function Profile() {
           </p>
         </div>
       </div>
-      <Link href={`/user-review/1`} className='ml-auto'>
+
+      {/* 유저리뷰페이지 이동버튼 */}
+      <Link href={`${viewedUserId}/review`} className='ml-auto'>
         <ChevronRight className='text-gray3 h-[70px] w-[60px] cursor-pointer' />
       </Link>
     </div>
