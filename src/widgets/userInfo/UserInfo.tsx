@@ -1,6 +1,6 @@
 'use client';
 
-import CategoryTabs from '@/features/userInfo/CategoryTabs';
+import CategoryTabs from '@/widgets/userInfo/CategoryTabs';
 import InfoButton from '@/features/userInfo/InfoButton';
 import Profile from '@/features/userInfo/Profile';
 
