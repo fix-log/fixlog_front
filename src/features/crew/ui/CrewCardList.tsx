@@ -1,4 +1,4 @@
-import { CrewProject } from '@/shared/types/crew';
+import { CrewProject } from '@/entities/crew/type';
 import CrewCard from './CrewCard';
 
 interface Props {

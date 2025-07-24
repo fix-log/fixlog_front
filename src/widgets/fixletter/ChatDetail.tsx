@@ -1,6 +1,6 @@
 import ChatHeader from './ChatHeader';
-import ChatMessages from './ChatMessages';
-import ChatInput from './ChatInput';
+import ChatMessages from '../../features/fixletter/ui/ChatMessages';
+import ChatInput from '../../features/fixletter/ui/ChatInput';
 
 // 실제로는 "선택된 채팅방" 여부에 따라 빈 화면/상세 화면 분기!
 // 일단 임시로 '선택됨' 상태라고 가정해서 보여줌

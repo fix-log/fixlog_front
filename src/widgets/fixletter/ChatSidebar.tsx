@@ -1,7 +1,7 @@
 import { dummyChats } from '@/entities/fixletter/dummyChats';
 import Image from 'next/image';
 
-export default function CahtSidebar() {
+export default function ChatSidebar() {
   return (
     <div className='slim-scrollbar border-gray5 flex h-[100vh] w-[450px] flex-col gap-3 border-r'>
       <ul className='flex h-full flex-col gap-3 overflow-y-auto px-4 py-6'>

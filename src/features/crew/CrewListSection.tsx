@@ -1,6 +1,6 @@
 'use client';
 
-import { CrewProject } from '@/shared/types/crew';
+import { CrewProject } from '@/entities/crew/type';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 import CreateCrewBanner from './ui/CreateCrewBanner';
