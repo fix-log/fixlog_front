@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import { ChevronRight, UserPlus } from 'lucide-react';
 import Link from 'next/link';
+import { cn } from '@/shared/lib/util';
+import { colorChangeAnimation } from '@/shared/ui/Animation';
 
 interface ProfileProps {
   isMe: boolean;
@@ -36,7 +38,7 @@ export default function Profile({ isMe, viewedUserId }: ProfileProps) {
         alt='프로필'
         width={125}
         height={125}
-        className='h-auto w-[125px] cursor-pointer'
+        className={'h-auto w-[125px] ' + cn(isMe && 'cursor-pointer')}
       />
       <div className='text-body-m flex flex-col !leading-[1.5]'>
         <div className='flex gap-3 font-bold'>
@@ -62,7 +64,11 @@ export default function Profile({ isMe, viewedUserId }: ProfileProps) {
 
       {/* 유저리뷰페이지 이동버튼 */}
       <Link href={`${viewedUserId}/review`} className='ml-auto'>
-        <ChevronRight className='text-gray3 h-[70px] w-[60px] cursor-pointer' />
+        <ChevronRight
+          className={
+            'text-gray3 hover:text-gray1 h-[70px] w-[60px] cursor-pointer' + colorChangeAnimation
+          }
+        />
       </Link>
     </div>
   );
