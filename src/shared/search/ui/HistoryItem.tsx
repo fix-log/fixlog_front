@@ -2,14 +2,15 @@
 
 import { dummySearchHistory } from '@/entities/search/dummySearchHistoy';
 import { X } from 'lucide-react';
-import { useState } from 'react';
 
-export default function HistoryItem() {
-  const [tags, setTags] = useState(dummySearchHistory);
-
-  const HendlrDeleteTag = (id: number) => {
-    setTags((prev) => prev.filter((item) => item.id !== id));
-  };
+export default function HistoryItem({
+  tags,
+  onRemove,
+}: {
+  tags: typeof dummySearchHistory;
+  onRemove: (id: number) => void;
+}) {
+  if (!tags.length) return null;
 
   return (
     <div className='mb-[5px] flex h-[90px] flex-wrap justify-start gap-3 overflow-x-auto px-1'>
@@ -21,7 +22,7 @@ export default function HistoryItem() {
           {item.keyword}
           <button
             onClick={() => {
-              HendlrDeleteTag(item.id);
+              onRemove(item.id);
             }}
             aria-label='삭제'
           >
