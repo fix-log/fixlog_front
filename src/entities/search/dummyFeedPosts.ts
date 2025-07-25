@@ -2,14 +2,13 @@ export interface dummyFeedItems {
   id: number;
   author: string;
   profileImage: string;
-  isNew: boolean;
+  follow: boolean;
   title: string;
   content: string;
   date: string;
   time: string;
   likes: number;
   comments: number;
-  isBookmarked: boolean;
 }
 
 export const dummyFeedPosts = [
@@ -17,7 +16,7 @@ export const dummyFeedPosts = [
     id: 1,
     author: '개발자작냐고',
     profileImage: '/avatar2.png',
-    flow: true,
+    follow: true,
     title: '오늘의 주제: "프론트엔드 언어의 역사"',
     content: `너 진짜 프론트엔드 할 거야? 그게 진짜 까다롭구 어려워 생각보다 아니 그니까 일단 눈에 보이는 거라서 어쩌면 더 어려울 수 있다니까는? 눈에 보이기만 하면 뭐하냐고 예뻐보여야하는데... 이런 거면 디자이너랑 뭐가 다른데 진짜 돈 더 줘라 돈 더 줘! 프론트 연봉 올려줘라 줘!!!!. `,
     date: '2025.06.13',
@@ -29,7 +28,7 @@ export const dummyFeedPosts = [
     id: 2,
     author: '개발자작냐고',
     profileImage: '/avatar2.png',
-    flow: true,
+    follow: true,
     title: '오늘의 주제: "프론트엔드 언어의 역사"',
     content: `너 진짜 프론트엔드 할 거야? 그게 진짜 까다롭구 어려워 생각보다 아니 그니까 일단 눈에 보이는 거라서 어쩌면 더 어려울 수 있다니까는? 눈에 보이기만 하면 뭐하냐고 예뻐보여야하는데... 이런 거면 디자이너랑 뭐가 다른데 진짜 돈 더 줘라 돈 더 줘! 프론트 연봉 올려줘라 줘!!!!`,
     date: '2025.06.13',
@@ -41,7 +40,7 @@ export const dummyFeedPosts = [
     id: 3,
     author: '개발자작냐고',
     profileImage: '/avatar2.png',
-    flow: false,
+    follow: false,
     title: '오늘의 주제: "프론트엔드 언어의 역사"',
     content: `너 진짜 프론트엔드 할 거야? 그게 진짜 까다롭구 어려워 생각보다 아니 그니까 일단 눈에 보이는 거라서 어쩌면 더 어려울 수 있다니까는? 눈에 보이기만 하면 뭐하냐고 예뻐보여야하는데... 이런 거면 디자이너랑 뭐가 다른데 진짜 돈 더 줘라 돈 더 줘! 프론트 연봉 올려줘라 줘!!!!`,
     date: '2025.06.13',
@@ -53,7 +52,7 @@ export const dummyFeedPosts = [
     id: 4,
     author: '개발자작냐고',
     profileImage: '/avatar2.png',
-    flow: true,
+    follow: true,
     title: '오늘의 주제: "프론트엔드 언어의 역사"',
     content: `너 진짜 프론트엔드 할 거야? 그게 진짜 까다롭구 어려워 생각보다 아니 그니까 일단 눈에 보이는 거라서 어쩌면 더 어려울 수 있다니까는? 눈에 보이기만 하면 뭐하냐고 예뻐보여야하는데... 이런 거면 디자이너랑 뭐가 다른데 진짜 돈 더 줘라 돈 더 줘! 프론트 연봉 올려줘라 줘!!!!`,
     date: '2025.06.13',
@@ -65,7 +64,7 @@ export const dummyFeedPosts = [
     id: 5,
     author: '개발자작냐고',
     profileImage: '/avatar2.png',
-    flow: false,
+    follow: false,
     title: '오늘의 주제: "프론트엔드 언어의 역사"',
     content: `너 진짜 프론트엔드 할 거야? 그게 진짜 까다롭구 어려워 생각보다 아니 그니까 일단 눈에 보이는 거라서 어쩌면 더 어려울 수 있다니까는? 눈에 보이기만 하면 뭐하냐고 예뻐보여야하는데... 이런 거면 디자이너랑 뭐가 다른데 진짜 돈 더 줘라 돈 더 줘! 프론트 연봉 올려줘라 줘!!!!`,
     date: '2025.06.13',
@@ -77,7 +76,7 @@ export const dummyFeedPosts = [
     id: 6,
     author: '개발자작냐고',
     profileImage: '/avatar2.png',
-    flow: true,
+    follow: true,
     title: '오늘의 주제: "프론트엔드 언어의 역사"',
     content: `너 진짜 프론트엔드 할 거야? 그게 진짜 까다롭구 어려워 생각보다 아니 그니까 일단 눈에 보이는 거라서 어쩌면 더 어려울 수 있다니까는? 눈에 보이기만 하면 뭐하냐고 예뻐보여야하는데... 이런 거면 디자이너랑 뭐가 다른데 진짜 돈 더 줘라 돈 더 줘! 프론트 연봉 올려줘라 줘!!!!`,
     date: '2025.06.13',
@@ -89,7 +88,7 @@ export const dummyFeedPosts = [
     id: 7,
     author: '개발자작냐고',
     profileImage: '/avatar2.png',
-    flow: false,
+    follow: false,
     title: '오늘의 주제: "프론트엔드 언어의 역사"',
     content: `너 진짜 프론트엔드 할 거야? 그게 진짜 까다롭구 어려워 생각보다 아니 그니까 일단 눈에 보이는 거라서 어쩌면 더 어려울 수 있다니까는? 눈에 보이기만 하면 뭐하냐고 예뻐보여야하는데... 이런 거면 디자이너랑 뭐가 다른데 진짜 돈 더 줘라 돈 더 줘! 프론트 연봉 올려줘라 줘!!!!`,
     date: '2025.06.13',
@@ -101,7 +100,7 @@ export const dummyFeedPosts = [
     id: 8,
     author: '개발자작냐고',
     profileImage: '/avatar2.png',
-    flow: true,
+    follow: true,
     title: '오늘의 주제: "프론트엔드 언어의 역사"',
     content: `너 진짜 프론트엔드 할 거야? 그게 진짜 까다롭구 어려워 생각보다 아니 그니까 일단 눈에 보이는 거라서 어쩌면 더 어려울 수 있다니까는? 눈에 보이기만 하면 뭐하냐고 예뻐보여야하는데... 이런 거면 디자이너랑 뭐가 다른데 진짜 돈 더 줘라 돈 더 줘! 프론트 연봉 올려줘라 줘!!!!`,
     date: '2025.06.13',
@@ -113,7 +112,7 @@ export const dummyFeedPosts = [
     id: 9,
     author: '개발자작냐고',
     profileImage: '/avatar2.png',
-    flow: false,
+    follow: false,
     title: '오늘의 주제: "프론트엔드 언어의 역사"',
     content: `너 진짜 프론트엔드 할 거야? 그게 진짜 까다롭구 어려워 생각보다 아니 그니까 일단 눈에 보이는 거라서 어쩌면 더 어려울 수 있다니까는? 눈에 보이기만 하면 뭐하냐고 예뻐보여야하는데... 이런 거면 디자이너랑 뭐가 다른데 진짜 돈 더 줘라 돈 더 줘! 프론트 연봉 올려줘라 줘!!!!`,
     date: '2025.06.13',
@@ -125,7 +124,7 @@ export const dummyFeedPosts = [
     id: 10,
     author: '개발자작냐고',
     profileImage: '/avatar2.png',
-    flow: true,
+    follow: true,
     title: '오늘의 주제: "프론트엔드 언어의 역사"',
     content: `너 진짜 프론트엔드 할 거야? 그게 진짜 까다롭구 어려워 생각보다 아니 그니까 일단 눈에 보이는 거라서 어쩌면 더 어려울 수 있다니까는? 눈에 보이기만 하면 뭐하냐고 예뻐보여야하는데... 이런 거면 디자이너랑 뭐가 다른데 진짜 돈 더 줘라 돈 더 줘! 프론트 연봉 올려줘라 줘!!!!`,
     date: '2025.06.13',
@@ -137,7 +136,7 @@ export const dummyFeedPosts = [
     id: 11,
     author: '개발자작냐고',
     profileImage: '/avatar2.png',
-    flow: false,
+    follow: false,
     title: '오늘의 주제: "프론트엔드 언어의 역사"',
     content: `너 진짜 프론트엔드 할 거야? 그게 진짜 까다롭구 어려워 생각보다 아니 그니까 일단 눈에 보이는 거라서 어쩌면 더 어려울 수 있다니까는? 눈에 보이기만 하면 뭐하냐고 예뻐보여야하는데... 이런 거면 디자이너랑 뭐가 다른데 진짜 돈 더 줘라 돈 더 줘! 프론트 연봉 올려줘라 줘!!!!`,
     date: '2025.06.13',

@@ -1,25 +1,34 @@
+'use client';
+
 import { dummyFeedPosts } from '@/entities/search/dummyFeedPosts';
 import Image from 'next/image';
+import { useState } from 'react';
+import { dummyFeedItems } from '@/entities/search/dummyFeedPosts';
 
 export default function SearFeedCard() {
-  const data = dummyFeedPosts;
+  const [feeds, setFeeds] = useState<dummyFeedItems[]>(dummyFeedPosts);
+
+  const HandlerFollow = (id: number) => {
+    setFeeds((prev) => prev.map((item) => (item.id === id ? { ...item, follow: true } : item)));
+  };
 
   return (
     <div>
-      {data.slice(0, 4).map((item) => (
+      {feeds.slice(0, 4).map((item) => (
         <div
           key={item.id}
           className='border-gray5 my-[20px] flex items-center border-b pb-[20px] pl-[40px] last:border-b-0'
         >
           <div className='relative mr-[20px] w-[85px]'>
             <Image src={item.profileImage} alt='프로필이미지' width={85} height={85} />
-            {item.flow ? (
+            {item.follow ? (
               <Image
                 src='/plus-circle.png'
                 alt='팔로우여부확인'
                 width={30}
                 height={30}
                 className='absolute right-0 bottom-0 z-50'
+                onClick={() => HandlerFollow(item.id)}
               />
             ) : (
               ''

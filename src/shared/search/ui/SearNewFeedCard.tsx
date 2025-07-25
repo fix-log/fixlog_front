@@ -13,7 +13,7 @@ export default function SearNewFeedCard() {
         >
           <div className='relative mr-[20px] w-[85px]'>
             <Image src={item.profileImage} alt='프로필이미지' width={85} height={85} />
-            {item.flow ? (
+            {item.follow ? (
               <Image
                 src='/plus-circle.png'
                 alt='팔로우여부확인'
