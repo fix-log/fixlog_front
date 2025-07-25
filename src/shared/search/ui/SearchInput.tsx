@@ -3,7 +3,7 @@ import { Search } from 'lucide-react';
 
 export default function SearchInput() {
   return (
-    <div className='relative flex w-[1135px] justify-center'>
+    <div className='relative flex w-full justify-center'>
       <Search
         className='text-mainBlack text-bold absolute top-[30px] left-[25px]'
         strokeWidth={3}

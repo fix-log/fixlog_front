@@ -8,7 +8,7 @@ export default function SearchHistory() {
   return (
     <>
       {hasSearch ? (
-        <div className='border-gray5 mt-[20px] w-[1135px] rounded-[5px] border p-[20px]'>
+        <div className='border-gray5 mt-[20px] w-full rounded-[5px] border p-[20px]'>
           <div className='mb-[10px] flex justify-between'>
             <p className='text-[20px] font-extrabold'> 최근 검색</p>
             <div className='flex'>
