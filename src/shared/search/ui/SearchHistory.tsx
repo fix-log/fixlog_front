@@ -38,7 +38,7 @@ export default function SearchHistory() {
             tags.length === 0 ? (
               <div className='py-10 text-center text-gray-300'>최근 검색어가 없습니다</div>
             ) : (
-              <HistoryItem tags={tags} onRemove={HendlrDeleteTagAll} />
+              <HistoryItem tags={tags} onRemove={HendlrDeleteTag} />
             )
           ) : (
             <div className='py-10 text-center text-gray-300'>
