@@ -5,6 +5,7 @@ import { ChevronRight, UserPlus } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/shared/lib/util';
 import { colorChangeAnimation } from '@/shared/ui/Animation';
+import ProfileImage from './ProfileImage';
 
 interface ProfileProps {
   isMe: boolean;
@@ -31,15 +32,28 @@ export default function Profile({ isMe, viewedUserId }: ProfileProps) {
     email: 'test@fixlog.com',
   };
 
+  // my 일 때 이미지등록 input 추가
+  const viewImage = isMe ? (
+    <>
+      <input
+        id='profileImg'
+        type='file'
+        className='hidden'
+        accept='image/*'
+        onChange={() => console.log(true)}
+      />
+      <label htmlFor='profileImg'>
+        <ProfileImage imageUrl='/icon_profile.png' isMe={isMe} />
+      </label>
+    </>
+  ) : (
+    <ProfileImage imageUrl='/icon_profile.png' isMe={isMe} />
+  );
+
   return (
     <div className='flex items-center gap-7'>
-      <Image
-        src='/icon_profile.png'
-        alt='프로필'
-        width={125}
-        height={125}
-        className={'h-auto w-[125px] ' + cn(isMe && 'cursor-pointer')}
-      />
+      {viewImage}
+
       <div className='text-body-m flex flex-col !leading-[1.5]'>
         <div className='flex gap-3 font-bold'>
           <h1 className='text-h3'>{userInfoData.nickname}</h1>
