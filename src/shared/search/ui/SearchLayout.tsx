@@ -14,7 +14,6 @@ export default function SearchLayout({
   children: React.ReactNode;
   searchId: string;
 }) {
-  console.log(navItems);
   const matchedNavItem = navItems.find((item) => item.name === title);
 
   return (
