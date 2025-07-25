@@ -1,6 +1,7 @@
 import localFont from 'next/font/local';
 import './globals.css';
 import type { Metadata } from 'next';
+import QueryProvider from './queryProvider';
 
 export const metadata: Metadata = {
   title: 'fixlog',
@@ -30,7 +31,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ko' className={suit.className}>
-      <body className={suit.className}>{children}</body>
+      <QueryProvider>
+        <body className={suit.className}>{children}</body>
+      </QueryProvider>
     </html>
   );
 }
