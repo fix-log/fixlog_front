@@ -28,8 +28,8 @@ export default function SearchLayout({
           href={matchedNavItem.href.replace('id', searchId)}
           className='border-gray5 flex items-center justify-center border-t py-[18px]'
         >
-          <p className='text-gray3 text-[18px]'>더보기</p>
-          <ChevronRight size={20} className='text-gray3' />
+          <p className='text-gray3 text-[14px]'>더보기</p>
+          <ChevronRight size={16} className='text-gray3' />
         </Link>
       )}
     </section>

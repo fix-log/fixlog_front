@@ -5,6 +5,9 @@ interface PageProps {
 import SearchEmpty from '@/features/search/ui/SearchEmpty';
 import SearchLayout from '@/shared/search/ui/SearchLayout';
 import SearCrewCard from '@/shared/search/ui/SearCrewCard';
+import SearFeedCard from '@/shared/search/ui/SearFeedCard';
+import SearNewFeedCard from '@/shared/search/ui/SearNewFeedCard';
+
 import SearProfileCard from '@/shared/search/ui/SearProfileCard';
 
 const hasSearch = true;
@@ -23,6 +26,12 @@ export default async function Page({ params }: PageProps) {
       </SearchLayout>
       <SearchLayout title='프로필' searchId={searchId}>
         <SearProfileCard />
+      </SearchLayout>
+      <SearchLayout title='인기 픽레드' searchId={searchId}>
+        <SearFeedCard />
+      </SearchLayout>
+      <SearchLayout title='최신 픽레드' searchId={searchId}>
+        <SearNewFeedCard />
       </SearchLayout>
     </div>
   );

@@ -1,7 +1,7 @@
 import { dummyFeedPosts } from '@/entities/search/dummyFeedPosts';
 import Image from 'next/image';
 
-export default function SearFeedCard() {
+export default function SearNewFeedCard() {
   const data = dummyFeedPosts;
 
   return (

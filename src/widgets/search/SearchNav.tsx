@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 export const navItems: NavigationItems = [
   { name: '전체', href: '/search/id/all', content: 'all' },
   { name: '크루모집', href: '/search/id/searchcrew', content: 'searchcrew' },
-  { name: '최신 픽래드', href: '/search/id/newestfixred', content: 'newestfixred' },
+  { name: '최신 픽레드', href: '/search/id/newestfixred', content: 'newestfixred' },
   { name: '인기 픽레드', href: '/search/id/popularityfixred', content: 'popularityfixred' },
   { name: '프로필', href: '/search/id/searchprofile', content: 'searchprofile' },
 ];
