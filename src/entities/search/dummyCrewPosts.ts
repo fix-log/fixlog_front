@@ -35,7 +35,7 @@ export const dummyCrewPosts = [
   },
   {
     id: 3,
-    status: '모집중',
+    status: '모집완료',
     date: '2025.06.13',
     title: '[프론트엔드] 모집! 감성 블로그 기반 커뮤니티 플랫폼을 함께하실 분을 모집합니다!',
     skills: ['Figma', 'Illustrator', 'Notion'],

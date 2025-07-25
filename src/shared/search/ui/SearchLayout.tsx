@@ -18,7 +18,7 @@ export default function SearchLayout({
   const matchedNavItem = navItems.find((item) => item.name === title);
 
   return (
-    <section className='mb-8 rounded-[12px] bg-white shadow'>
+    <section className='mx-auto mt-[40px] mb-8 w-[92%] rounded-[5px] bg-white shadow'>
       <h3 className='border-gray5 border-b pt-[20px] pb-[20px] pl-[40px] text-[18px] font-extrabold'>
         {title}
       </h3>
