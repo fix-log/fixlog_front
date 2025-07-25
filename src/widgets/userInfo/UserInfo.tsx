@@ -22,7 +22,7 @@ export default function UserInfo() {
           <Profile isMe={userValue.isMe} viewedUserId={userValue.viewedUserId} />
           <InfoButton isMe={userValue.isMe} />
         </div>
-        <CategoryTabs />
+        <CategoryTabs isMe={userValue.isMe} />
         <svg className='bg-gray6 h-screen w-full'></svg>
       </div>
     </>

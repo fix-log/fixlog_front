@@ -1,8 +1,12 @@
 import { colorChangeAnimation } from '@/shared/ui/Animation';
 import { useState } from 'react';
 
-export default function CategoryTabs() {
-  const category = ['유저 정보', '픽레드', '크루 모집'] as const;
+interface CategoryTabsProps {
+  isMe: boolean;
+}
+
+export default function CategoryTabs({ isMe }: CategoryTabsProps) {
+  const category = ['유저 정보', '픽레드', isMe ? '크루 모집' : '워크룸'] as const;
   const [isSelectedCategory, setIsSelectedCategory] = useState('유저 정보');
   function selectedStyle(item: (typeof category)[number]) {
     if (isSelectedCategory === item) return ' border-b-mainBlack text-black font-bold ';
