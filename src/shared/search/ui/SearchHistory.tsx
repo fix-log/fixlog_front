@@ -86,7 +86,7 @@ export default function SearchHistory() {
                         중지하기
                       </button>
                       <button
-                        onClick={() => setIsOpen(false)}
+                        onClick={() => setIsAutoModalOpen(false)}
                         className='text-mainWhite bg-mainBlack rounded-[5px] px-[50px] py-[10px] text-[16px]'
                       >
                         취소
