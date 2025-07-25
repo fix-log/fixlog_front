@@ -1,5 +1,3 @@
-'use client';
-
 import UserInfo from '@/widgets/userInfo/UserInfo';
 
 export default function UserInfoPage() {
