@@ -1,39 +1,20 @@
 'use client';
 
-import Image from 'next/image';
 import { ChevronRight, UserPlus } from 'lucide-react';
 import Link from 'next/link';
-import { cn } from '@/shared/lib/util';
 import { colorChangeAnimation } from '@/shared/ui/Animation';
 import ProfileImage from './ProfileImage';
+import { userInfoStore } from '@/entities/userInfo/UserInfoStore';
 
 interface ProfileProps {
-  isMe: boolean;
-  viewedUserId: number;
+  totalFollower: number
 }
 
-export default function Profile({ isMe, viewedUserId }: ProfileProps) {
-  console.log(isMe);
-  // useEffect(() => {
-  //   const api = async () => {
-  //     // 임시공간
-  //     // API 유저정보 조회 (userId 대조)
-  //     // API 팔로워/팔로잉 조회
-  //   };
-  // }, []);
-
-  // 더미데이터
-  const userInfoData = {
-    img: '/icon_profile.png',
-    level: 1,
-    followers: 5,
-    nickname: '이운',
-    career: '신입',
-    email: 'test@fixlog.com',
-  };
+export default function Profile({totalFollower}:ProfileProps) {
+  const userInfoData = userInfoStore((s) => s.userInfo);
 
   // my 일 때 이미지등록 input 추가
-  const viewImage = isMe ? (
+  const viewImage = userInfoData.isMe ? (
     <>
       <input
         id='profileImg'
@@ -43,11 +24,11 @@ export default function Profile({ isMe, viewedUserId }: ProfileProps) {
         onChange={() => console.log(true)}
       />
       <label htmlFor='profileImg'>
-        <ProfileImage imageUrl='/icon_profile.png' isMe={isMe} />
+        <ProfileImage imageUrl='/icon_profile.png' isMe={userInfoData.isMe} />
       </label>
     </>
   ) : (
-    <ProfileImage imageUrl='/icon_profile.png' isMe={isMe} />
+    <ProfileImage imageUrl='/icon_profile.png' isMe={userInfoData.isMe} />
   );
 
   return (
@@ -71,13 +52,13 @@ export default function Profile({ isMe, viewedUserId }: ProfileProps) {
         <div className='text-gray3 mt-3 flex items-center gap-1'>
           <UserPlus className='h-[15px] w-[15px]' />
           <p className='text-body-m cursor-pointer !leading-[1.5] hover:underline'>
-            팔로워 {userInfoData.followers}명
+            팔로워 {totalFollower}명
           </p>
         </div>
       </div>
 
       {/* 유저리뷰페이지 이동버튼 */}
-      <Link href={`${viewedUserId}/review`} className='ml-auto'>
+      <Link href={`${userInfoData.viewUserId}/review`} className='ml-auto'>
         <ChevronRight
           className={
             'text-gray3 hover:text-gray1 h-[70px] w-[60px] cursor-pointer' + colorChangeAnimation

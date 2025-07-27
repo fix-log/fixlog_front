@@ -3,26 +3,23 @@
 import CategoryTabs from '@/widgets/userInfo/CategoryTabs';
 import InfoButton from '@/widgets/userInfo/InfoButton';
 import Profile from '@/features/userInfo/Profile';
-import { useParams } from 'next/navigation';
-import { isLoginedStore } from '@/entities/auth/IsLoginedStore';
+import FetchMyFollowings from '@/features/user/api/FetchFollowings';
+import FetchMyFollowers from '@/features/user/api/FetchFollowers';
+import { userInfoStore } from '@/entities/userInfo/UserInfoStore';
 
 export default function UserInfo() {
-  const { userId } = isLoginedStore();
-  const viewedUserId = Number(useParams().userid);
-  const userValue = {
-    viewedUserId: viewedUserId,
-    myUserId: userId,
-    isMe: userId === viewedUserId,
-  };
+  const userid = userInfoStore((s) => s.userInfo.viewUserId);
+  const following = FetchMyFollowings(userid);
+  const totalFollower = FetchMyFollowers(userid).total_count;
 
   return (
     <>
       <div className='w-full cursor-default'>
         <div className='px-10 pt-12'>
-          <Profile isMe={userValue.isMe} viewedUserId={userValue.viewedUserId} />
-          <InfoButton isMe={userValue.isMe} />
+          <Profile totalFollower={totalFollower} />
+          <InfoButton />
         </div>
-        <CategoryTabs isMe={userValue.isMe} />
+        <CategoryTabs />
         <svg className='bg-gray6 h-screen w-full'></svg>
       </div>
     </>

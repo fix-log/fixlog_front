@@ -1,12 +1,10 @@
+import { userInfoStore } from '@/entities/userInfo/UserInfoStore';
 import EditProfileButton from '@/features/userInfo/EditProfileButton';
 import FollowButton from '@/features/userInfo/FollowButton';
 import ProfileShareButton from '@/features/userInfo/ProfileShareButton';
 
-interface InfoButtonProps {
-  isMe: boolean;
-}
-
-export default function InfoButton({ isMe }: InfoButtonProps) {
+export default function InfoButton() {
+  const isMe = userInfoStore((s) => s.userInfo.isMe);
   const profileActionButton = isMe ? <EditProfileButton /> : <FollowButton />;
 
   return (

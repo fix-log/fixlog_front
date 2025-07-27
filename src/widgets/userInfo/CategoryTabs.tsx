@@ -1,11 +1,9 @@
+import { userInfoStore } from '@/entities/userInfo/UserInfoStore';
 import { colorChangeAnimation } from '@/shared/ui/Animation';
 import { useState } from 'react';
 
-interface CategoryTabsProps {
-  isMe: boolean;
-}
-
-export default function CategoryTabs({ isMe }: CategoryTabsProps) {
+export default function CategoryTabs() {
+  const isMe = userInfoStore((s) => s.userInfo.isMe);
   const category = ['유저 정보', '픽레드', isMe ? '크루 모집' : '워크룸'] as const;
   const [isSelectedCategory, setIsSelectedCategory] = useState('유저 정보');
   function selectedStyle(item: (typeof category)[number]) {
