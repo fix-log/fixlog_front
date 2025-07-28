@@ -1,6 +1,16 @@
 'use client';
 
-import { Bell, Calendar, Clock, Link, MapPin, Pencil, RotateCw, X } from 'lucide-react';
+import {
+  Bell,
+  Calendar,
+  ChevronDown,
+  Clock,
+  Link,
+  MapPin,
+  Pencil,
+  RotateCw,
+  X,
+} from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import ColorPalette from './ColorPalette';
@@ -26,6 +36,10 @@ export default function ScheduleForm({ workroomId, selectedDate, schedule }: Sch
   // 색깔 팔레트
   const [selectedColor, setSelectedColor] = useState<string>('#F74627'); // TODO: 색상 변수 및 타입 추가하기
   const [isColorPaletteOpen, setIsColorPaletteOpen] = useState<boolean>(false);
+
+  // 알림
+  const [notification, setNotification] = useState<string>('');
+  const [isNotificationModalOpen, setIsNotificationModalOpen] = useState<boolean>(false);
 
   // 두개밖에 없는데 하지 말까...
   const textInputPlaceholderClass =
@@ -91,7 +105,7 @@ export default function ScheduleForm({ workroomId, selectedDate, schedule }: Sch
             // 동적으로 생성된 클래스명은 빌드 타임에 감지되지 않아서 클래스명으로 적용 불가 -> style로 적용
             style={{ backgroundColor: selectedColor }}
           />
-          <span className='text-h6 text-gray3 font-medium'>Calendar</span>
+          <span className='text-h6 text-mainBlack font-medium'>Calendar</span>
         </button>
 
         {isColorPaletteOpen && (
@@ -106,12 +120,22 @@ export default function ScheduleForm({ workroomId, selectedDate, schedule }: Sch
       {/* 알림 */}
       <label htmlFor='alarm' className='text-h6 flex h-9 items-center gap-4 font-extrabold'>
         <Bell className='text-gray2' size={22} />
-        <input
+        {/* <input
           id='alarm'
           type='text'
           placeholder='알림'
           className='text-h5 w-full placeholder:font-medium'
-        />
+        /> */}
+        <button
+          type='button'
+          onClick={() => {
+            setIsNotificationModalOpen((prev) => !prev);
+          }}
+          className='bg-gray6 hover:bg-gray5 flex h-9 w-32 cursor-pointer items-center justify-center gap-2 rounded-[5px] transition-all duration-200'
+        >
+          <ChevronDown />
+          <span className='text-h6 text-mainBlack font-medium'>알림 추가</span>
+        </button>
       </label>
 
       {/* 위치 */}
