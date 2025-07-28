@@ -1,19 +1,47 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { cn } from '@/shared/lib/util';
 import Link from 'next/link';
-import { forwardRef } from 'react';
 
 interface EditDeleteDropdownProps {
   position: string;
   href: string;
   handleDelete: () => void; // TODO: 삭제 API에 맞게 타입 수정하기
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-export default forwardRef<HTMLDivElement, EditDeleteDropdownProps>(function EditDeleteDropdown(
-  { position, href, handleDelete },
-  ref,
-) {
+export default function EditDeleteDropdown({
+  position,
+  href,
+  handleDelete,
+  isOpen,
+  onClose,
+}: EditDeleteDropdownProps) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  // 외부 클릭 시 닫히는 효과
+  useEffect(() => {
+    if (!isOpen) return;
+
+    function handleClick(event: MouseEvent | TouchEvent) {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        onClose();
+      }
+    }
+
+    document.addEventListener('mousedown', handleClick);
+    document.addEventListener('touchstart', handleClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener('touchstart', handleClick);
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
   return (
     <div
       ref={ref}
@@ -36,4 +64,4 @@ export default forwardRef<HTMLDivElement, EditDeleteDropdownProps>(function Edit
       </button>
     </div>
   );
-});
+}

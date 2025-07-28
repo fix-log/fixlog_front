@@ -24,7 +24,7 @@ export default async function CalenderContent({ selectedDate, workroomId }: Cale
   // console.log(weeks);
 
   return (
-    <table className='w-full'>
+    <table className='border-gray5 w-full border-b'>
       <thead className='border-gray5 border-b'>
         <tr>
           {days.map((day) => (
