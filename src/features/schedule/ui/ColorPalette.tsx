@@ -81,16 +81,20 @@ const ColorList = [
 
 interface ColorPaletteProps {
   setSelectedColor: Dispatch<SetStateAction<string>>;
+  isColorPaletteOpen: boolean;
   setIsColorPaletteOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function ColorPalette({
   setSelectedColor,
+  isColorPaletteOpen,
   setIsColorPaletteOpen,
 }: ColorPaletteProps) {
   return (
     <Dropdown
       position='top-9.5 left-9.5'
+      isOpen={isColorPaletteOpen}
+      onClose={() => setIsColorPaletteOpen(false)}
       className='border-gray5 flex h-19 flex-col flex-wrap justify-center gap-2 rounded-[5px] border bg-white p-3'
     >
       {ColorList.map((color) => (

@@ -52,7 +52,7 @@ export default function Schedule() {
             onClick={() => {
               console.log('해당 일정 삭제');
             }}
-            className='bg-mainRed text-body-m hover:bg-mainRed/85 mt-[25px] cursor-pointer rounded-[5px] px-24.5 py-3 font-extrabold text-white transition duration-200'
+            className='bg-mainRed text-body-m hover:bg-mainRed/85 mt-[25px] cursor-pointer rounded-[5px] px-23.5 py-3 font-extrabold text-white transition duration-200'
           >
             해당 일정 삭제하기
           </button>

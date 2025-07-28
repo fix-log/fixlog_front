@@ -97,6 +97,7 @@ export default function ScheduleForm({ workroomId, selectedDate, schedule }: Sch
         {isColorPaletteOpen && (
           <ColorPalette
             setSelectedColor={setSelectedColor}
+            isColorPaletteOpen={isColorPaletteOpen}
             setIsColorPaletteOpen={setIsColorPaletteOpen}
           />
         )}

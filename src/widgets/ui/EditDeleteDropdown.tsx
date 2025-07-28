@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { cn } from '@/shared/lib/util';
 import Link from 'next/link';
+import Dropdown from '@/shared/ui/Dropdown';
 
 interface EditDeleteDropdownProps {
   position: string;
@@ -19,32 +19,11 @@ export default function EditDeleteDropdown({
   isOpen,
   onClose,
 }: EditDeleteDropdownProps) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  // 외부 클릭 시 닫히는 효과
-  useEffect(() => {
-    if (!isOpen) return;
-
-    function handleClick(event: MouseEvent | TouchEvent) {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        onClose();
-      }
-    }
-
-    document.addEventListener('mousedown', handleClick);
-    document.addEventListener('touchstart', handleClick);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClick);
-      document.removeEventListener('touchstart', handleClick);
-    };
-  }, [isOpen, onClose]);
-
-  if (!isOpen) return null;
-
   return (
-    <div
-      ref={ref}
+    <Dropdown
+      position={position}
+      isOpen={isOpen}
+      onClose={onClose}
       className={cn(
         'border-gray5 absolute z-10 flex min-w-31 flex-col rounded-[5px] border bg-white',
         position,
@@ -62,6 +41,6 @@ export default function EditDeleteDropdown({
       >
         삭제하기
       </button>
-    </div>
+    </Dropdown>
   );
 }
