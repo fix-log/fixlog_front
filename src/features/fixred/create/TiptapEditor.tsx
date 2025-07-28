@@ -1,10 +1,17 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { JSONContent } from '@tiptap/react';
 
-// SSR 비활성화된 내부 컴포넌트 동적 로딩
 const TiptapEditorInner = dynamic(() => import('./TiptapEditorInner'), {
   ssr: false,
 });
 
-export default TiptapEditorInner;
+interface Props {
+  content: JSONContent | null;
+  setContent: (value: JSONContent) => void;
+}
+
+export default function TiptapEditor({ content, setContent }: Props) {
+  return <TiptapEditorInner content={content} setContent={setContent} />;
+}

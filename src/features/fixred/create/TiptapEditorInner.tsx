@@ -1,13 +1,13 @@
 'use client';
 
-import { useEditor, EditorContent } from '@tiptap/react';
+import { useEffect } from 'react';
+import { useEditor, EditorContent, JSONContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
-import { useEffect } from 'react';
 
 interface Props {
-  content: string;
-  setContent: (value: string) => void;
+  content: JSONContent | null;
+  setContent: (value: JSONContent) => void;
 }
 
 export default function TiptapEditorInner({ content, setContent }: Props) {
@@ -15,32 +15,33 @@ export default function TiptapEditorInner({ content, setContent }: Props) {
     extensions: [
       StarterKit,
       Placeholder.configure({
-        placeholder: '오늘은 무엇을 기록해볼까요?',
+        placeholder: '프로젝트 설명을 입력해주세요.',
         showOnlyWhenEditable: true,
-        showOnlyCurrent: false,
       }),
     ],
+    content,
     editorProps: {
       attributes: {
-        class: 'min-h-[120px] px-3 py-2 focus:outline-none',
+        class: 'min-h-[200px] px-3 py-2 focus:outline-none',
       },
     },
-    content,
-    onUpdate: ({ editor }) => setContent(editor.getHTML()),
+    onUpdate: ({ editor }) => {
+      setContent(editor.getJSON()); // JSON 기반
+    },
     autofocus: false,
     editable: true,
     injectCSS: true,
-    immediatelyRender: false, // ssr hydration 방지
+    immediatelyRender: false,
   });
 
   useEffect(() => {
-    if (editor && content !== editor.getHTML()) {
+    if (editor && content && JSON.stringify(editor.getJSON()) !== JSON.stringify(content)) {
       editor.commands.setContent(content);
     }
   }, [content, editor]);
 
   return (
-    <div className="border border-gray-300 rounded-md min-h-[120px] overflow-visible">
+    <div className='rounded-md border border-gray-300'>
       <EditorContent editor={editor} />
     </div>
   );
