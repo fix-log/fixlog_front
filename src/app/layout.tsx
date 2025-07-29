@@ -2,6 +2,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import type { Metadata } from 'next';
 import QueryProvider from './queryProvider';
+import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
   title: 'fixlog',
@@ -32,7 +33,10 @@ export default function RootLayout({
   return (
     <html lang='ko' className={suit.className}>
       <QueryProvider>
-        <body className={suit.className}>{children}</body>
+        <body className={suit.className}>
+          <Toaster />
+          {children}
+        </body>
       </QueryProvider>
     </html>
   );
