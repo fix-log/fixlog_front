@@ -10,8 +10,25 @@ const TiptapEditorInner = dynamic(() => import('./TiptapEditorInner'), {
 interface Props {
   content: JSONContent | null;
   setContent: (value: JSONContent) => void;
+  placeholder?: string;
+  minHeight?: string;
+  className?: string;
 }
 
-export default function TiptapEditor({ content, setContent }: Props) {
-  return <TiptapEditorInner content={content} setContent={setContent} />;
+export default function TiptapEditor({
+  content,
+  setContent,
+  placeholder,
+  minHeight,
+  className,
+}: Props) {
+  return (
+    <TiptapEditorInner
+      content={content}
+      setContent={setContent}
+      placeholder={placeholder}
+      minHeight={minHeight}
+      className={className}
+    />
+  );
 }

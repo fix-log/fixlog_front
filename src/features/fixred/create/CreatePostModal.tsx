@@ -7,7 +7,7 @@ import { JSONContent } from '@tiptap/react';
 
 interface Props {
   setIsOpen: (open: boolean) => void;
-  onSubmit: (html: string) => void;
+  onSubmit: (json: JSONContent) => void; // HTML → JSONContent로 수정
 }
 
 export default function CreatePostModal({ setIsOpen, onSubmit }: Props) {
@@ -21,8 +21,8 @@ export default function CreatePostModal({ setIsOpen, onSubmit }: Props) {
   const handlePost = () => {
     if (!content || !content.content?.length) return;
 
-    // 이 부분은 editor.getHTML()이 있는 곳에서 처리해서 html을 넘겨야 함.....??? 현재 구조로는..
-    onSubmit('');
+    //  JSONContent 그대로 전달하게 수정했어요
+    onSubmit(content);
     setIsOpen(false);
     setContent({ type: 'doc', content: [] });
   };
@@ -67,7 +67,14 @@ export default function CreatePostModal({ setIsOpen, onSubmit }: Props) {
           </div>
 
           <div>
-            <TiptapEditor content={content} setContent={setContent} />
+            {/* 여기도 공통으로 사용하는걸로 수정했어요 잘 되는지 확인해주세요 ㅠ.ㅠ */}
+            <TiptapEditor
+              content={content}
+              setContent={setContent}
+              placeholder='프로젝트 설명을 입력해주세요.'
+              minHeight='min-h-[120px]'
+              className=''
+            />
           </div>
         </div>
 

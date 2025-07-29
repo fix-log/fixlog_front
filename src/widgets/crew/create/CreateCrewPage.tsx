@@ -74,7 +74,7 @@ export default function CreateCrewPage() {
 
   return (
     <FormProvider {...methods}>
-      <div className='relative w-full max-w-[1440px] mt-[60px]'>
+      <div className='relative mt-[60px] w-full max-w-[1440px]'>
         <button
           type='button'
           className='absolute top-0 left-0 z-10 flex items-center gap-1 text-gray-700 hover:text-black'
@@ -84,7 +84,7 @@ export default function CreateCrewPage() {
           <ArrowLeft className='h-6 w-6' strokeWidth={2} />
         </button>
       </div>
-      <div className='flex w-full max-w-[700px] flex-col items-center mt-[50px]'>
+      <div className='mt-[50px] flex w-full max-w-[700px] flex-col items-center'>
         <FormHeader title='크루 모집하기' />
         <form className='w-full' onSubmit={methods.handleSubmit(onSubmit)}>
           <FormInputString
@@ -134,7 +134,13 @@ export default function CreateCrewPage() {
             <label className='mb-2 block text-[18px] font-semibold text-gray-800'>
               프로젝트 설명 <span className='text-mainRed ml-1'>*</span>
             </label>
-            <TiptapEditor content={editorContent} setContent={setEditorContent} />
+            <TiptapEditor
+              content={editorContent}
+              setContent={setEditorContent}
+              placeholder='프로젝트 설명을 입력해주세요.'
+              minHeight='min-h-[200px]'
+              className=''
+            />
           </div>
           <div className='mb-[158px]'>
             <FormSubmitButton

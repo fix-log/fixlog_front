@@ -8,21 +8,30 @@ import Placeholder from '@tiptap/extension-placeholder';
 interface Props {
   content: JSONContent | null;
   setContent: (value: JSONContent) => void;
+  className?: string;
+  minHeight?: string;
+  placeholder?: string;
 }
 
-export default function TiptapEditorInner({ content, setContent }: Props) {
+export default function TiptapEditorInner({
+  content,
+  setContent,
+  className,
+  minHeight = 'min-h-[200px]',
+  placeholder = '프로젝트 설명을 입력해주세요.',
+}: Props) {
   const editor = useEditor({
     extensions: [
       StarterKit,
       Placeholder.configure({
-        placeholder: '프로젝트 설명을 입력해주세요.',
+        placeholder,
         showOnlyWhenEditable: true,
       }),
     ],
     content,
     editorProps: {
       attributes: {
-        class: 'min-h-[200px] px-3 py-2 focus:outline-none',
+        class: `${minHeight} px-3 py-2 focus:outline-none ${className ?? ''}`,
       },
     },
     onUpdate: ({ editor }) => {
@@ -31,7 +40,7 @@ export default function TiptapEditorInner({ content, setContent }: Props) {
     autofocus: false,
     editable: true,
     injectCSS: true,
-    immediatelyRender: false,
+    immediatelyRender: false, // ssr hydration 방지
   });
 
   useEffect(() => {
