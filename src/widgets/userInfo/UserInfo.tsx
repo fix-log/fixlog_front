@@ -29,7 +29,7 @@ export default function UserInfo() {
       <div className='w-full cursor-default'>
         <div className='px-10 pt-12'>
           <Profile totalFollower={follower.total_count} setIsModalOpen={setIsModalOpen} />
-          <InfoButton />
+          <InfoButton followingIds={followingIds} />
         </div>
         <CategoryTabs />
         <svg className='bg-gray6 h-screen w-full'></svg>
