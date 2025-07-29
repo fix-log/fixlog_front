@@ -1,9 +1,9 @@
-interface user {
+interface followUser {
   user_id: number;
   username: string;
 }
 
 export interface followData {
-  following: user[];
+  following: followUser[];
   total_count: number;
 }

@@ -5,12 +5,14 @@ import Link from 'next/link';
 import { colorChangeAnimation } from '@/shared/ui/Animation';
 import ProfileImage from './ProfileImage';
 import { userInfoStore } from '@/entities/userInfo/UserInfoStore';
+import { Dispatch, SetStateAction } from 'react';
 
 interface ProfileProps {
-  totalFollower: number
+  totalFollower: number;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function Profile({totalFollower}:ProfileProps) {
+export default function Profile({ totalFollower, setIsModalOpen }: ProfileProps) {
   const userInfoData = userInfoStore((s) => s.userInfo);
 
   // my 일 때 이미지등록 input 추가
@@ -51,7 +53,10 @@ export default function Profile({totalFollower}:ProfileProps) {
 
         <div className='text-gray3 mt-3 flex items-center gap-1'>
           <UserPlus className='h-[15px] w-[15px]' />
-          <p className='text-body-m cursor-pointer !leading-[1.5] hover:underline'>
+          <p
+            className='text-body-m cursor-pointer !leading-[1.5] hover:underline'
+            onClick={() => setIsModalOpen(true)}
+          >
             팔로워 {totalFollower}명
           </p>
         </div>
