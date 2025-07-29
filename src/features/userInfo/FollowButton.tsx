@@ -13,7 +13,7 @@ export default function FollowButton() {
         팔로우
       </button>
       <Link
-        href={'profile/edit'}
+        href={'/fixletter'}
         className={
           'border-mainBlack hover:bg-gray5 grow rounded-[5px] border py-3 leading-[1.8]' +
           colorChangeAnimation

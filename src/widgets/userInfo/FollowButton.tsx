@@ -7,9 +7,10 @@ import { useRouter } from 'next/navigation';
 interface FollowButtonProps {
   followUsers: any;
   tap: 'follower' | 'following';
+  followingIds: number[];
 }
 
-export default function FollowButton({ followUsers, tap }: FollowButtonProps) {
+export default function FollowButton({ followUsers, tap, followingIds }: FollowButtonProps) {
   const router = useRouter();
   const isMe = userInfoStore((s) => s.userInfo.isMe);
   const baseStyle = 'h-[30px] w-[80px] rounded-[5px] text-[14px] font-bold';
@@ -46,13 +47,8 @@ export default function FollowButton({ followUsers, tap }: FollowButtonProps) {
     user_id: number;
     username: string;
   }
-
-  const following = Object.values(followUsers.following.following as following).map(
-    (item) => item.user_id,
-  );
-
   return followUsers[tap].following.map((item: following) => {
-    const ss = following.includes(item.user_id) ? 'following' : 'follower';
+    const ss = followingIds.includes(item.user_id) ? 'following' : 'follower';
 
     return (
       <div

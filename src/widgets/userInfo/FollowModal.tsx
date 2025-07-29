@@ -15,9 +15,10 @@ interface FollowModalProps {
     following: followData;
   };
   setIsOpen: Dispatch<SetStateAction<boolean>>;
+  followingIds: number[];
 }
 
-export default function FollowModal({ followData, setIsOpen }: FollowModalProps) {
+export default function FollowModal({ followData, setIsOpen, followingIds }: FollowModalProps) {
   const [followTap, setFollowTap] = useState<followTap>('follower');
   return (
     <div className='h-[800px] w-[600px]'>
@@ -48,7 +49,7 @@ export default function FollowModal({ followData, setIsOpen }: FollowModalProps)
           {followData.following.total_count} 팔로잉
         </button>
       </div>
-      <FollowButton followUsers={followData} tap={followTap} />
+      <FollowButton followUsers={followData} tap={followTap} followingIds={followingIds} />
     </div>
   );
 }

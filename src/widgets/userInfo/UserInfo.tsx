@@ -21,6 +21,9 @@ export default function UserInfo() {
     follower: follower,
   };
 
+  const followingIds = Object.values(following.following).map((item) => item.user_id);
+  console.log(followingIds);
+
   return (
     <>
       <div className='w-full cursor-default'>
@@ -32,7 +35,11 @@ export default function UserInfo() {
         <svg className='bg-gray6 h-screen w-full'></svg>
         {isModalOpen && (
           <Modal setIsOpen={setIsModalOpen}>
-            <FollowModal setIsOpen={setIsModalOpen} followData={follow} />
+            <FollowModal
+              setIsOpen={setIsModalOpen}
+              followData={follow}
+              followingIds={followingIds}
+            />
           </Modal>
         )}
       </div>
