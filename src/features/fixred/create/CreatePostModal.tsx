@@ -71,7 +71,7 @@ export default function CreatePostModal({ setIsOpen, onSubmit }: Props) {
             <TiptapEditor
               content={content}
               setContent={setContent}
-              placeholder='프로젝트 설명을 입력해주세요.'
+              placeholder='오늘은 무엇을 기록해볼까요?'
               minHeight='min-h-[120px]'
               className=''
             />
