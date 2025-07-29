@@ -6,6 +6,8 @@ import { colorChangeAnimation } from '@/shared/ui/Animation';
 import ProfileImage from './ProfileImage';
 import { userInfoStore } from '@/entities/userInfo/UserInfoStore';
 import { Dispatch, SetStateAction } from 'react';
+import Image from 'next/image';
+import { cn } from '@/shared/lib/util';
 
 interface ProfileProps {
   totalFollower: number;
@@ -15,27 +17,15 @@ interface ProfileProps {
 export default function Profile({ totalFollower, setIsModalOpen }: ProfileProps) {
   const userInfoData = userInfoStore((s) => s.userInfo);
 
-  // my 일 때 이미지등록 input 추가
-  const viewImage = userInfoData.isMe ? (
-    <>
-      <input
-        id='profileImg'
-        type='file'
-        className='hidden'
-        accept='image/*'
-        onChange={() => console.log(true)}
-      />
-      <label htmlFor='profileImg'>
-        <ProfileImage imageUrl='/icon_profile.png' isMe={userInfoData.isMe} />
-      </label>
-    </>
-  ) : (
-    <ProfileImage imageUrl='/icon_profile.png' isMe={userInfoData.isMe} />
-  );
-
   return (
     <div className='flex items-center gap-7'>
-      {viewImage}
+      <Image
+        src='/icon_profile.png'
+        alt='유저 프로필'
+        width={125}
+        height={125}
+        className={'h-auto w-[125px]'}
+      />
 
       <div className='text-body-m flex flex-col !leading-[1.5]'>
         <div className='flex gap-3 font-bold'>
