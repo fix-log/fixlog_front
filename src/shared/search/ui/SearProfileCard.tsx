@@ -8,7 +8,7 @@ export default function SearProfileCard() {
       {data.slice(0, 5).map((item) => (
         <div
           key={item.id}
-          className='border-gray4 flex h-[320px] w-[230px] flex-col items-center rounded-[5px] border p-[40px]'
+          className='border-gray4 bg-mainWhite flex h-[320px] w-[230px] flex-col items-center rounded-[5px] border p-[40px]'
         >
           <Image src={item.avatar} alt='프로필이미지' width={100} height={100} />
           <h3 className='mt-[20px] text-[20px] font-extrabold'>{item.name}</h3>
@@ -18,7 +18,7 @@ export default function SearProfileCard() {
               팔로잉
             </button>
           ) : (
-            <button className='bg-mainWhite border-gray5 h-[40px] w-[140px] rounded-[5px] border'>
+            <button className='bg-mainWhite border-mainBlack h-[40px] w-[140px] rounded-[5px] border'>
               팔로우
             </button>
           )}

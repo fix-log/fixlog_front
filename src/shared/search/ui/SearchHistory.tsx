@@ -17,9 +17,9 @@ export default function SearchHistory() {
     setTags((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const HendlrDeleteTagAll = () => setTags([]);
+  const HandlerDeleteTagAll = () => setTags([]);
 
-  const handleToggleAutoComplete = () => setAutoCompleteOn(false);
+  const HandlerToggleAutoComplete = () => setAutoCompleteOn(false);
 
   return (
     <>
@@ -44,7 +44,7 @@ export default function SearchHistory() {
                     <div className='mt-[10px] flex justify-center gap-3'>
                       <button
                         onClick={() => {
-                          HendlrDeleteTagAll();
+                          HandlerDeleteTagAll();
                           setIsDeleteModalOpen(false);
                         }}
                         className='text-mainWhite bg-mainRed rounded-[5px] px-[50px] py-[10px] text-[16px]'
@@ -78,7 +78,7 @@ export default function SearchHistory() {
                     <div className='mt-[10px] flex justify-center gap-3'>
                       <button
                         onClick={() => {
-                          handleToggleAutoComplete();
+                          HandlerToggleAutoComplete();
                           setIsAutoModalOpen(false);
                         }}
                         className='text-mainWhite bg-mainRed rounded-[5px] px-[50px] py-[10px] text-[16px]'

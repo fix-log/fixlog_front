@@ -1,3 +1,5 @@
+import SearProfileCard from '@/shared/search/ui/SearProfileCard';
+
 interface PageProps {
   params: Promise<{ searchId: string }>;
 }
@@ -6,5 +8,9 @@ export default async function Page({ params }: PageProps) {
   const { searchId } = await params;
   console.log(searchId);
 
-  return <div>프로필 검색</div>;
+  return (
+    <div className='bg-gray6 mb-[80px] w-full'>
+      <SearProfileCard />
+    </div>
+  );
 }

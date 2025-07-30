@@ -17,6 +17,8 @@ const hasSearch = true;
 export default function SearchNav({ searchId }: { searchId: string }) {
   const pathname = usePathname();
 
+  console.log('현재 URL:', pathname);
+
   return (
     <nav className='mt-[30px] w-full'>
       <ul className='flex w-full'>
