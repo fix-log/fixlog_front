@@ -29,10 +29,9 @@ export default function indPassword() {
       type='button'
       onClick={async () => {
         await form.trigger('email');
-        //이메일 입력이 안된 상태라면 빠꾸
-        const isEnteredEmail =
-          Object.keys(form.formState.errors).length > 0 &&
-          (form.formState.errors['email']?.message as string).includes('인증');
+        // 이메일 입력이 안된 상태라면 빠꾸
+        const emailErr = form.formState.errors.email?.message;
+        const isEnteredEmail = emailErr?.includes('인증'); // 이메일 에러 메세지로 분기처리 (인증 메세지는 바뀔 일이 없을 거 같아서 적용했습니다)
         if (isEnteredEmail) {
           form.setValue('isEmailVerified' as const, true);
           form.trigger('email');
