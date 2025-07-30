@@ -9,6 +9,8 @@ import FormInputString from '@/shared/form/ui/FormInputString';
 import { FormProvider, useForm } from 'react-hook-form';
 import { isLoginedStore } from '@/entities/auth/IsLoginedStore';
 
+const DUMMY_ID = 99;
+
 export default function Login() {
   const { setUser } = isLoginedStore();
   const router = useRouter();
@@ -20,7 +22,8 @@ export default function Login() {
     //   password: form.getValues('password'),
     // };
 
-    setUser(99);
+    setUser(DUMMY_ID);
+    document.cookie = `userStatus=${DUMMY_ID}; path=/; max-age=3600`;
     router.push('/');
     // try {
     //   const respones = loginAPI(loginData);
