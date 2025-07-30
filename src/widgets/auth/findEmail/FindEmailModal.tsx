@@ -43,7 +43,7 @@ export default function FindEmailModal({ foundEmail }: FindEmailModalProps) {
           }
           type='button'
           onClick={() => {
-            router.push('/find-password');
+            router.push('/login/find-password');
           }}
         >
           비밀번호 찾기
