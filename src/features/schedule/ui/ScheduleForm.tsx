@@ -15,6 +15,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import ColorPalette from './ColorPalette';
 import RepeatModal from './RepeatModal';
+import NotificationModal from './NotificationModal';
 
 interface ScheduleFormProps {
   workroomId: string;
@@ -173,6 +174,10 @@ export default function ScheduleForm({ workroomId, selectedDate, schedule }: Sch
           <ChevronDown />
           <span className='text-h6 text-mainBlack font-medium'>알림 추가</span>
         </button>
+
+        {isNotificationModalOpen && (
+          <NotificationModal setIsNotificationModalOpen={setIsNotificationModalOpen} />
+        )}
       </label>
 
       {/* 위치 */}
