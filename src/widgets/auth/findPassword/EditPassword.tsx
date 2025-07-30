@@ -1,6 +1,6 @@
 'use client';
 
-import { FormValues, schema } from '@/features/editPassword/EditPasswordSchema';
+import { FormValues, schema } from '@/features/auth/editPassword/EditPasswordSchema';
 import FormHeader from '@/shared/form/ui/FormHeader';
 import FormInputString from '@/shared/form/ui/FormInputString';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';

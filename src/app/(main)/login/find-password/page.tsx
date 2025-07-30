@@ -1,4 +1,4 @@
-import FindPassword from '@/widgets/auth/FindPassword';
+import FindPassword from '@/widgets/auth/findPassword/FindPassword';
 
 export default function FindPasswordPage() {
   return <FindPassword />;

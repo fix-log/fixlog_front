@@ -1,6 +1,6 @@
 'use client';
 
-import { FormValues, schema } from '@/features/findPassword/FindPasswordSchema';
+import { FormValues, schema } from '@/features/auth/findPassword/FindPasswordSchema';
 import FormHeader from '@/shared/form/ui/FormHeader';
 import FormInputString from '@/shared/form/ui/FormInputString';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
