@@ -1,3 +1,5 @@
+'use client';
+
 import { Dispatch, SetStateAction } from 'react';
 import { FieldValues, Path, PathValue, useFormContext } from 'react-hook-form';
 

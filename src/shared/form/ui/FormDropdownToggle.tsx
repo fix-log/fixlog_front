@@ -1,3 +1,5 @@
+'use client';
+
 import { FieldValues, Path, PathValue, useFormContext } from 'react-hook-form';
 import { lengthLimits } from '../model/LengthLimits';
 import { Dispatch, SetStateAction, useEffect } from 'react';

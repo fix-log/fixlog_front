@@ -1,3 +1,5 @@
+'use client';
+
 import { Dispatch, SetStateAction, useState } from 'react';
 import FormDropdownToggle from './FormDropdownToggle';
 import { selectOptions, selectOptionsType } from '@/features/auth/signup/model/selectOptions';
