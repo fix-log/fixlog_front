@@ -14,7 +14,7 @@ const DATA = [
   { label: '전화번호', type: 'text', id: 'phoneNumber', placeholder: '전화번호를 입력해주세요' },
 ] as const;
 
-export default function FindEmail() {
+export default function indPassword() {
   const router = useRouter();
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),

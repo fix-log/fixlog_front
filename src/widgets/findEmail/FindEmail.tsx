@@ -52,9 +52,7 @@ export default function FindEmail() {
           <FormSubmitButton text='이메일 찾기' isSubmitting={form.formState.isSubmitting} />
         </form>
       </div>
-      {isModalOpen && (
-        <FindEmailModal foundEmail={foundEmail as string} setIsModalOpen={setIsModalOpen} />
-      )}
+      {isModalOpen && <FindEmailModal foundEmail={foundEmail as string} />}
     </FormProvider>
   );
 }

@@ -2,13 +2,8 @@ import { colorChangeAnimation } from '@/shared/ui/Animation';
 import Modal from '@/shared/ui/Modal';
 import { Check } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { Dispatch, SetStateAction } from 'react';
 
-interface EidtPasswordModalProps {
-  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
-}
-
-export default function EidtPasswordModal({ setIsModalOpen }: EidtPasswordModalProps) {
+export default function EidtPasswordModal() {
   const router = useRouter();
 
   return (
