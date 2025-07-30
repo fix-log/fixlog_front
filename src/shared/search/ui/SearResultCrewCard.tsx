@@ -10,9 +10,12 @@ const project = dummyCrewPosts;
 
 export default function SearResultCrewCard() {
   return (
-    <div className='mx-auto my-[50px] flex w-[800px] flex-col gap-[25px]'>
+    <div className='mx-auto my-[50px] flex w-[90%] flex-col gap-[25px]'>
       {project.map((project) => (
-        <div key={project.id} className='border-gray4 h-auto rounded-md border bg-white p-[20px]'>
+        <div
+          key={project.id}
+          className='border-gray4 h-auto rounded-md border bg-white p-[20px] px-[30px]'
+        >
           {/* 모집상태 + 마감일 */}
           <div className='flex items-start'>
             {project.status === '모집중' ? (
