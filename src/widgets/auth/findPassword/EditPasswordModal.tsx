@@ -1,3 +1,5 @@
+'use client';
+
 import { colorChangeAnimation } from '@/shared/ui/Animation';
 import Modal from '@/shared/ui/Modal';
 import { Check } from 'lucide-react';
