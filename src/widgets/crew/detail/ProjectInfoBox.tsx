@@ -16,7 +16,7 @@ export default function ProjectInfoBox({ project }: Props) {
   const valueClass = 'text-[18px] text-[#202020] font-semibold leading-[23px] font-[SUIT]';
 
   return (
-    <section className='mt-[70px] ml-[100px] mr-[142px]'>
+    <section className='mt-[70px] mr-[142px] ml-[100px]'>
       <div className='mb-8 grid grid-cols-[112px_1fr] gap-x-[33px] gap-y-[35px]'>
         <p className={labelClass}>모집 마감일</p>
         <p className={valueClass}>{formattedDeadline}</p>
@@ -25,7 +25,7 @@ export default function ProjectInfoBox({ project }: Props) {
         <p className={valueClass}>
           {formattedPeriod}
           {project.is_estimated_period === 'estimated' && (
-            <div className='text-mainRed text-[12px]'>협의예정</div>
+            <span className='text-mainRed ml-2 text-[12px]'>협의예정</span>
           )}
         </p>
 

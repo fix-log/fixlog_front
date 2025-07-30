@@ -1,8 +1,8 @@
 import { ProjectDetail } from '@/entities/crew/type';
 import ApplyButton from '@/features/crew/apply/ApplyButton';
 import BookmarkButton from '@/features/crew/apply/BookmarkButton';
-import ProjectHeader from '@/widgets/crew-detail/ProjectHeader';
-import ProjectInfoBox from '@/widgets/crew-detail/ProjectInfoBox';
+import ProjectHeader from '@/widgets/crew/detail/ProjectHeader';
+import ProjectInfoBox from '@/widgets/crew/detail/ProjectInfoBox';
 
 const MOCK_PROJECT: ProjectDetail = {
   id: 1,
