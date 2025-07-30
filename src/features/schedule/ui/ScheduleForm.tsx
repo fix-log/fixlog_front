@@ -14,6 +14,7 @@ import {
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import ColorPalette from './ColorPalette';
+import RepeatModal from './RepeatModal';
 
 interface ScheduleFormProps {
   workroomId: string;
@@ -21,6 +22,16 @@ interface ScheduleFormProps {
   // schedule?: Schedule;
   schedule?: {}; // 스케쥴 타입 설정 전에 일단 임시
 }
+
+// TODO: 어떻게 해야하나 고민해보기 (텍스트랑 실제 value 연동할 방법을 찾아봐야 할듯)
+const TIME_OPTIONS = [
+  '09:00 AM',
+  '09:10 AM',
+  '09:20 AM',
+  '09:30 AM',
+  '09:40 AM',
+  '09:50 AM',
+] as const;
 
 export default function ScheduleForm({ workroomId, selectedDate, schedule }: ScheduleFormProps) {
   const router = useRouter();
@@ -30,7 +41,7 @@ export default function ScheduleForm({ workroomId, selectedDate, schedule }: Sch
   const [isPeriodModalOpen, setIsPeriodModalOpen] = useState<boolean>(false);
 
   // 반복
-  const [repeat, setRepeat] = useState<string>('');
+  const [repeat, setRepeat] = useState<string>('반복 없음'); // TODO: 백엔드 스키마 확인
   const [isRepeatModalOpen, setIsRepeatModalOpen] = useState<boolean>(false);
 
   // 색깔 팔레트
@@ -38,7 +49,7 @@ export default function ScheduleForm({ workroomId, selectedDate, schedule }: Sch
   const [isColorPaletteOpen, setIsColorPaletteOpen] = useState<boolean>(false);
 
   // 알림
-  const [notification, setNotification] = useState<string>('');
+  const [notification, setNotification] = useState<string>(''); // TODO: UI 없음
   const [isNotificationModalOpen, setIsNotificationModalOpen] = useState<boolean>(false);
 
   // 두개밖에 없는데 하지 말까...
@@ -66,36 +77,68 @@ export default function ScheduleForm({ workroomId, selectedDate, schedule }: Sch
       </div>
 
       {/* 날짜 + 시간 */}
-      <label htmlFor='date' className='text-h6 flex h-9 items-center gap-4 font-extrabold'>
-        <Clock className='text-gray2' size={22} />
-        <input
-          id='date'
-          type='text'
-          placeholder='날짜 + 시간'
-          className='text-h5 w-full placeholder:font-medium'
-        />
+      <label htmlFor='date' className='text-h6 text-mainBlack flex gap-4 font-medium'>
+        <Clock className='text-gray2 my-[5px]' size={22} />
+        {/* 컴포넌트 분리? */}
+        <div className='flex grow flex-col justify-between gap-4'>
+          <div className='flex items-center justify-between gap-2'>
+            {/* TODO: datepicker로 */}
+            <input type='date' className='border-gray5 w-20 rounded-[5px] border px-2 py-1' />
+            <span>~</span>
+            {/* TODO: datepicker로 */}
+            <input type='date' className='border-gray5 w-20 rounded-[5px] border px-2 py-1' />
+            <label htmlFor='allDay'>
+              <input type='checkbox' id='allDay' />
+              <span>하루 종일</span>
+            </label>
+          </div>
+
+          {/* 하루 종일 체크 시에만 조건부 렌더링 (보이지만 비활성 처리가 더 예쁠듯) */}
+          {/* 시작 시간보다 앞선 시간은 고르지 못하게하는 로직도 필요함 */}
+          <div className='flex items-center gap-4'>
+            <select name='' id=''>
+              {TIME_OPTIONS.map((time) => (
+                <option key={time} value={time}>
+                  {time}
+                </option>
+              ))}
+            </select>
+            <span>~</span>
+            <select name='' id=''>
+              {TIME_OPTIONS.map((time) => (
+                <option key={time} value={time}>
+                  {time}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
       </label>
 
       {/* 반복 */}
-      <label htmlFor='repeat' className='text-h6 flex h-9 items-center gap-4 font-extrabold'>
+      <label htmlFor='repeat' className='text-h6 flex h-9 items-center gap-4 font-medium'>
         <RotateCw className='text-gray2' size={22} />
-        <input
-          id='repeat'
-          type='text'
-          placeholder='반복'
-          className='text-h5 w-full placeholder:font-medium'
-        />
+        <button
+          type='button'
+          onClick={() => {
+            setIsRepeatModalOpen((prev) => !prev);
+          }}
+          className='text-h5 bg-gray6 hover:bg-gray5 flex h-9 w-32 cursor-pointer items-center justify-center gap-2 rounded-[5px] font-medium transition-all duration-200'
+          style={{ color: repeat === '반복 없음' ? '#808080' : '#202020' }}
+        >
+          {repeat}
+        </button>
       </label>
 
+      {isRepeatModalOpen && <RepeatModal setIsRepeatModalOpen={setIsRepeatModalOpen} />}
+
       {/* 색깔 */}
-      <label
-        htmlFor='color'
-        className='text-h6 relative flex h-9 items-center gap-4 font-extrabold'
-      >
+      <label htmlFor='color' className='text-h6 relative flex h-9 items-center gap-4 font-medium'>
         <Calendar className='text-gray2' size={22} />
         <button
           type='button'
           onClick={() => {
+            // TODO: 오픈 상태에서 다시 클릭하면, 드롭다운 바깥 클릭 -> 버튼 (다시 열림)
             setIsColorPaletteOpen((prev) => !prev);
           }}
           className='bg-gray6 hover:bg-gray5 flex h-9 w-32 cursor-pointer items-center justify-center gap-2 rounded-[5px] transition-all duration-200'
@@ -118,14 +161,8 @@ export default function ScheduleForm({ workroomId, selectedDate, schedule }: Sch
       </label>
 
       {/* 알림 */}
-      <label htmlFor='alarm' className='text-h6 flex h-9 items-center gap-4 font-extrabold'>
+      <label htmlFor='alarm' className='text-h6 flex h-9 items-center gap-4 font-medium'>
         <Bell className='text-gray2' size={22} />
-        {/* <input
-          id='alarm'
-          type='text'
-          placeholder='알림'
-          className='text-h5 w-full placeholder:font-medium'
-        /> */}
         <button
           type='button'
           onClick={() => {
@@ -139,19 +176,19 @@ export default function ScheduleForm({ workroomId, selectedDate, schedule }: Sch
       </label>
 
       {/* 위치 */}
-      <label htmlFor='location' className='text-h6 flex h-9 items-center gap-4 font-extrabold'>
+      <label htmlFor='location' className='text-h6 flex h-9 items-center gap-4 font-medium'>
         <MapPin className='text-gray2' size={22} />
         <input id='location' type='text' placeholder='위치' className={textInputPlaceholderClass} />
       </label>
 
       {/* URL */}
-      <label htmlFor='url' className='text-h6 flex h-9 items-center gap-4 font-extrabold'>
+      <label htmlFor='url' className='text-h6 flex h-9 items-center gap-4 font-medium'>
         <Link className='text-gray2' size={22} />
         <input id='url' type='text' placeholder='URL' className={textInputPlaceholderClass} />
       </label>
 
       {/* 메모 */}
-      <label htmlFor='memo' className='text-h6 flex flex-col gap-3 font-extrabold'>
+      <label htmlFor='memo' className='text-h6 flex flex-col gap-3 font-medium'>
         <div className='flex items-center gap-4'>
           <Pencil className='text-gray2' size={22} />
           <span className='text-h5 text-gray3 font-medium'>메모</span>
