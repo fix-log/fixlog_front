@@ -10,9 +10,8 @@ interface UserInfoPageProps {
 export default async function UserInfoPage({ params }: UserInfoPageProps) {
   const viewUserId = Number(params.userid);
   const cookie = await cookies();
-  const userStatus = cookie.get('userStatus')?.value;
-  const isMe = viewUserId === Number(userStatus);
-  console.log(userStatus);
+  const userId = cookie.get('userId')?.value;
+  const isMe = viewUserId === Number(userId);
 
   // 더미
   const response: userValueType = {

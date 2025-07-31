@@ -3,11 +3,9 @@
 import { ChevronRight, UserPlus } from 'lucide-react';
 import Link from 'next/link';
 import { colorChangeAnimation } from '@/shared/ui/Animation';
-import ProfileImage from './ProfileImage';
 import { userInfoStore } from '@/entities/userInfo/UserInfoStore';
 import { Dispatch, SetStateAction } from 'react';
 import Image from 'next/image';
-import { cn } from '@/shared/lib/util';
 
 interface ProfileProps {
   totalFollower: number;
