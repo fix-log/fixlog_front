@@ -21,10 +21,7 @@ export default function ProfileShareButton() {
   return (
     <>
       <button
-        className={
-          'border-mainBlack hover:bg-gray5 mr-4 grow cursor-pointer rounded-[5px] border py-3' +
-          colorChangeAnimation
-        }
+        className={'border-mainBlack mr-4 grow cursor-pointer rounded-[5px] border py-3'}
         onClick={() => copyToClipboard(`http://localhost:3000/user/${params}`)}
       >
         프로필 공유

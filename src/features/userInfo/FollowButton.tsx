@@ -13,7 +13,7 @@ export default function FollowButton({ followingIds }: FollowButtonProps) {
   const isFollowing = followingIds.includes(userid);
   const followButton = {
     text: isFollowing ? '팔로잉' : '팔로우',
-    style: isFollowing ? 'border hover:gray5' : 'bg-mainBlack text-white hover:bg-black ',
+    style: isFollowing ? 'border' : 'bg-mainBlack text-white hover:bg-black ',
   };
 
   return (
@@ -29,10 +29,7 @@ export default function FollowButton({ followingIds }: FollowButtonProps) {
       </button>
       <Link
         href={'/fixletter'}
-        className={
-          'border-mainBlack hover:bg-gray5 grow rounded-[5px] border py-3 leading-[1.8]' +
-          colorChangeAnimation
-        }
+        className={'border-mainBlack grow rounded-[5px] border py-3 leading-[1.8]'}
       >
         픽레터 보내기
       </Link>
