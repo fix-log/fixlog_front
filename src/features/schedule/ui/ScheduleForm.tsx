@@ -21,7 +21,7 @@ interface ScheduleFormProps {
   workroomId: string;
   selectedDate: Date;
   // schedule?: Schedule;
-  schedule?: {}; // 스케쥴 타입 설정 전에 일단 임시
+  schedule?: { title: string }; // 스케쥴 타입 설정 전에 일단 임시
 }
 
 // TODO: 어떻게 해야하나 고민해보기 (텍스트랑 실제 value 연동할 방법을 찾아봐야 할듯)
@@ -38,19 +38,20 @@ export default function ScheduleForm({ workroomId, selectedDate, schedule }: Sch
   const router = useRouter();
 
   // 일정
-  const [period, setPeriod] = useState<string>('');
-  const [isPeriodModalOpen, setIsPeriodModalOpen] = useState<boolean>(false);
+  // const [period, setPeriod] = useState<string>('');
+  // const [isPeriodModalOpen, setIsPeriodModalOpen] = useState<boolean>(false);
 
   // 반복
   const [repeat, setRepeat] = useState<string>('반복 없음'); // TODO: 백엔드 스키마 확인
   const [isRepeatModalOpen, setIsRepeatModalOpen] = useState<boolean>(false);
+  console.log(setRepeat); // 일단 에러 방지
 
   // 색깔 팔레트
   const [selectedColor, setSelectedColor] = useState<string>('#F74627'); // TODO: 색상 변수 및 타입 추가하기
   const [isColorPaletteOpen, setIsColorPaletteOpen] = useState<boolean>(false);
 
   // 알림
-  const [notification, setNotification] = useState<string>(''); // TODO: UI 없음
+  // const [notification, setNotification] = useState<string>('');
   const [isNotificationModalOpen, setIsNotificationModalOpen] = useState<boolean>(false);
 
   // 두개밖에 없는데 하지 말까...

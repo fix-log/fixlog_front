@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { Ellipsis } from 'lucide-react';
-import Link from 'next/link';
 import EditDeleteDropdown from '@/widgets/ui/EditDeleteDropdown';
 
 interface MyWorkroomCardOptionButtonProps {
@@ -35,6 +34,8 @@ export default function MyWorkroomCardOptionButton({
           position='top-8 -right-0.5'
           href={`/workroom/${workroomId}/edit`}
           handleDelete={handleDelete}
+          isOpen={isDropdownOpen}
+          onClose={() => setIsDropdownOpen(false)}
         />
       )}
     </div>

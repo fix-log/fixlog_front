@@ -1,4 +1,4 @@
-import { isValid, parseISO } from 'date-fns';
+import { isValid } from 'date-fns';
 
 // TODO: 다른 곳에 타입 모아줘야 하나?
 export type DateValidationResult =
