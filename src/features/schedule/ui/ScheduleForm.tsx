@@ -37,6 +37,10 @@ const TIME_OPTIONS = [
 export default function ScheduleForm({ workroomId, selectedDate, schedule }: ScheduleFormProps) {
   const router = useRouter();
 
+  console.log(schedule); // 일단 에러 방지
+  console.log(selectedDate); // 일단 에러 방지
+  console.log(workroomId); // 일단 에러 방지
+
   // 일정
   // const [period, setPeriod] = useState<string>('');
   // const [isPeriodModalOpen, setIsPeriodModalOpen] = useState<boolean>(false);
