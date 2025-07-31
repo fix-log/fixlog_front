@@ -1,6 +1,6 @@
 'use client';
 
-import { FormValues, schema } from '@/features/findPassword/FindPasswordSchema';
+import { FormValues, schema } from '@/features/auth/findPassword/FindPasswordSchema';
 import FormHeader from '@/shared/form/ui/FormHeader';
 import FormInputString from '@/shared/form/ui/FormInputString';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
@@ -14,7 +14,7 @@ const DATA = [
   { label: '전화번호', type: 'text', id: 'phoneNumber', placeholder: '전화번호를 입력해주세요' },
 ] as const;
 
-export default function FindEmail() {
+export default function indPassword() {
   const router = useRouter();
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
@@ -29,10 +29,9 @@ export default function FindEmail() {
       type='button'
       onClick={async () => {
         await form.trigger('email');
-        //이메일 입력이 안된 상태라면 빠꾸
-        const isEnteredEmail =
-          Object.keys(form.formState.errors).length > 0 &&
-          (form.formState.errors['email']?.message as string).includes('인증');
+        // 이메일 입력이 안된 상태라면 빠꾸
+        const emailErr = form.formState.errors.email?.message;
+        const isEnteredEmail = emailErr?.includes('인증'); // 이메일 에러 메세지로 분기처리 (인증 메세지는 바뀔 일이 없을 거 같아서 적용했습니다)
         if (isEnteredEmail) {
           form.setValue('isEmailVerified' as const, true);
           form.trigger('email');

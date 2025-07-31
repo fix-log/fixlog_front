@@ -1,7 +1,6 @@
 'use client';
 
-import { editPassword } from '@/features/editPassword/api/EditPassword';
-import { FormValues, schema } from '@/features/editPassword/EditPasswordSchema';
+import { FormValues, schema } from '@/features/auth/editPassword/EditPasswordSchema';
 import FormHeader from '@/shared/form/ui/FormHeader';
 import FormInputString from '@/shared/form/ui/FormInputString';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
@@ -58,7 +57,7 @@ export default function FindEmail() {
           <FormSubmitButton text='비밀번호 변경하기' isSubmitting={form.formState.isSubmitting} />
         </form>
       </div>
-      {isModalOpen && <EidtPasswordModal setIsModalOpen={setIsModalOpen} />}
+      {isModalOpen && <EidtPasswordModal />}
     </FormProvider>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { FormValues, schema } from '@/features/finedEmail/FinedEmailSchema';
+import { FormValues, schema } from '@/features/auth/findEmail/FindEmailSchema';
 import FormHeader from '@/shared/form/ui/FormHeader';
 import FormInputString from '@/shared/form/ui/FormInputString';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
@@ -52,9 +52,7 @@ export default function FindEmail() {
           <FormSubmitButton text='이메일 찾기' isSubmitting={form.formState.isSubmitting} />
         </form>
       </div>
-      {isModalOpen && (
-        <FindEmailModal foundEmail={foundEmail as string} setIsModalOpen={setIsModalOpen} />
-      )}
+      {isModalOpen && <FindEmailModal foundEmail={foundEmail as string} />}
     </FormProvider>
   );
 }

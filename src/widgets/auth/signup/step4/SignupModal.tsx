@@ -1,3 +1,5 @@
+'use client';
+
 import Modal from '@/shared/ui/Modal';
 import { Check } from 'lucide-react';
 import { useRouter } from 'next/navigation';

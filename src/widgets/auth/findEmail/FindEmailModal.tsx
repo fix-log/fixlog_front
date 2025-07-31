@@ -1,15 +1,15 @@
+'use client';
+
 import Modal from '@/shared/ui/Modal';
-import { Dispatch, SetStateAction } from 'react';
 import { Check } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { colorChangeAnimation } from '@/shared/ui/Animation';
 
 interface FindEmailModalProps {
   foundEmail: string;
-  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function FindEmailModal({ foundEmail, setIsModalOpen }: FindEmailModalProps) {
+export default function FindEmailModal({ foundEmail }: FindEmailModalProps) {
   const router = useRouter();
 
   return (
@@ -43,7 +43,7 @@ export default function FindEmailModal({ foundEmail, setIsModalOpen }: FindEmail
           }
           type='button'
           onClick={() => {
-            router.push('/find-password');
+            router.push('/login/find-password');
           }}
         >
           비밀번호 찾기

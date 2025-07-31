@@ -1,3 +1,5 @@
+'use client';
+
 import { FieldValues, Path, PathValue, useFormContext } from 'react-hook-form';
 
 interface FormFileProps<T extends FieldValues> {

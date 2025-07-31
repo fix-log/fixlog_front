@@ -1,3 +1,5 @@
+'use client';
+
 import { ChevronDown } from 'lucide-react';
 import { ChevronUp } from 'lucide-react';
 import { Plus } from 'lucide-react';

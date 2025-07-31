@@ -1,6 +1,8 @@
 import localFont from 'next/font/local';
 import './globals.css';
 import type { Metadata } from 'next';
+import { cookies } from 'next/headers';
+import LoginSync from './LoginSync';
 
 export const metadata: Metadata = {
   title: 'fixlog',
@@ -23,14 +25,19 @@ const suit = localFont({
   variable: '--font-suit',
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookie = await cookies();
+  const userId = cookie.get('userId')?.value;
   return (
     <html lang='ko' className={suit.className}>
-      <body className={suit.className}>{children}</body>
+      <body className={suit.className}>
+        {userId && <LoginSync id={Number(userId)} />}
+        {children}
+      </body>
     </html>
   );
 }

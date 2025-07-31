@@ -1,3 +1,5 @@
+'use client';
+
 import { colorChangeAnimation } from '@/shared/ui/Animation';
 import { FieldValues, Path, useFormContext } from 'react-hook-form';
 

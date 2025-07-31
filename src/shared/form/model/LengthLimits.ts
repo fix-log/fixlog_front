@@ -1,3 +1,5 @@
+'use client';
+
 interface lengthLimitsType {
   [key: string]: number;
 }

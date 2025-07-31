@@ -1,3 +1,5 @@
+'use client';
+
 import { colorChangeAnimation } from '@/shared/ui/Animation';
 
 interface FormSubmitButtonProps {

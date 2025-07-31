@@ -1,3 +1,5 @@
+'use client';
+
 import { FieldValues, Path, useFormContext } from 'react-hook-form';
 import { focus, errorFocus } from './TailwindcssUtil';
 
