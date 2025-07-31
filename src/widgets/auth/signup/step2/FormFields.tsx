@@ -1,3 +1,5 @@
+'use client';
+
 import FormDropdownButton from '@/shared/form/ui/FormDropdownButton';
 import FormInputString from '@/shared/form/ui/FormInputString';
 import FormRadioSelect from '@/shared/form/ui/FormRadioSelect';

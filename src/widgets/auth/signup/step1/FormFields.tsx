@@ -1,3 +1,5 @@
+'use client';
+
 import { FormValues } from '@/features/auth/signup/model/schema/Step1';
 import FormInputString from '@/shared/form/ui/FormInputString';
 import { useFormContext } from 'react-hook-form';

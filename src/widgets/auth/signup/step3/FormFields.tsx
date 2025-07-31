@@ -1,3 +1,5 @@
+'use client';
+
 import FormDropdownButton from '@/shared/form/ui/FormDropdownButton';
 import { useState } from 'react';
 

@@ -1,32 +1,42 @@
 'use client';
 
-import { useEditor, EditorContent } from '@tiptap/react';
+import { useEffect } from 'react';
+import { useEditor, EditorContent, JSONContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
-import { useEffect } from 'react';
 
 interface Props {
-  content: string;
-  setContent: (value: string) => void;
+  content: JSONContent | null;
+  setContent: (value: JSONContent) => void;
+  className?: string;
+  minHeight?: string;
+  placeholder?: string;
 }
 
-export default function TiptapEditorInner({ content, setContent }: Props) {
+export default function TiptapEditorInner({
+  content,
+  setContent,
+  className,
+  minHeight = 'min-h-[200px]',
+  placeholder = '프로젝트 설명을 입력해주세요.',
+}: Props) {
   const editor = useEditor({
     extensions: [
       StarterKit,
       Placeholder.configure({
-        placeholder: '오늘은 무엇을 기록해볼까요?',
+        placeholder,
         showOnlyWhenEditable: true,
-        showOnlyCurrent: false,
       }),
     ],
+    content,
     editorProps: {
       attributes: {
-        class: 'min-h-[120px] px-3 py-2 focus:outline-none',
+        class: `${minHeight} px-3 py-2 focus:outline-none ${className ?? ''}`,
       },
     },
-    content,
-    onUpdate: ({ editor }) => setContent(editor.getHTML()),
+    onUpdate: ({ editor }) => {
+      setContent(editor.getJSON()); // JSON 기반
+    },
     autofocus: false,
     editable: true,
     injectCSS: true,
@@ -34,13 +44,13 @@ export default function TiptapEditorInner({ content, setContent }: Props) {
   });
 
   useEffect(() => {
-    if (editor && content !== editor.getHTML()) {
+    if (editor && content && JSON.stringify(editor.getJSON()) !== JSON.stringify(content)) {
       editor.commands.setContent(content);
     }
   }, [content, editor]);
 
   return (
-    <div className="border border-gray-300 rounded-md min-h-[120px] overflow-visible">
+    <div className='rounded-md border border-gray-300'>
       <EditorContent editor={editor} />
     </div>
   );

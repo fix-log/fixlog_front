@@ -1,7 +1,9 @@
+import MemberList from '@/widgets/workrome/MemberList';
+
 export default async function Page() {
   return (
-    <>
-      <div>프로젝트 참여 멤버 (미니님?)</div>
-    </>
+    <section className='flex w-full flex-col items-center gap-26 py-10 md:py-22'>
+      <MemberList />
+    </section>
   );
 }
