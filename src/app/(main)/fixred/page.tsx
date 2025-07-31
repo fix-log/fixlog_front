@@ -5,8 +5,6 @@ import { Heart, MessageCircle, Mail, MoreHorizontal } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
 
-import ReportModal from '@/features/fixred/report/ReportModal';
-import BlockModal from '@/features/fixred/block/BlockModal';
 import CreatePostModal from '@/features/fixred/create/CreatePostModal';
 import FloatingWriteButton from '@/features/fixred/create/FloatingWriteButton';
 import StarterKit from '@tiptap/starter-kit';
@@ -25,8 +23,6 @@ interface Post {
 export default function PickreadMainPage() {
   const [activeTab, setActiveTab] = useState<'all' | 'following'>('all');
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(null);
-  const [isReportModalOn, setIsReportModalOn] = useState(false);
-  const [isBlockModalOn, setIsBlockModalOn] = useState(false);
   const [isCreateModalOn, setIsCreateModalOn] = useState(false);
   const [posts, setPosts] = useState<Post[]>([]);
 
@@ -51,6 +47,15 @@ export default function PickreadMainPage() {
     };
 
     setPosts((prev) => [newPost, ...prev]);
+  };
+  const handleEditPost = (postId: number) => {
+    console.log(`게시물 ${postId} 수정`);
+    // TODO: 나중에...
+  };
+
+  const handleDeletePost = (postId: number) => {
+    console.log(`게시물 ${postId} 삭제`);
+    setPosts((prev) => prev.filter((post) => post.id !== postId));
   };
 
   return (
@@ -101,7 +106,7 @@ export default function PickreadMainPage() {
                 </div>
               </div>
 
-              {/* 드롭다운 버튼 */}
+              {/* 드롭다운 버튼 -일단 모든 게시물에 적용*/}
               <div className='relative'>
                 <button
                   className='text-gray3 hover:text-gray1'
@@ -120,21 +125,21 @@ export default function PickreadMainPage() {
                   >
                     <button
                       onClick={() => {
-                        setIsReportModalOn(true);
+                        handleEditPost(post.id);
+                        setOpenDropdownIndex(null);
+                      }}
+                      className='hover:bg-gray6 text-gray1 block w-full px-4 py-2 text-sm'
+                    >
+                      수정하기
+                    </button>
+                    <button
+                      onClick={() => {
+                        handleDeletePost(post.id);
                         setOpenDropdownIndex(null);
                       }}
                       className='hover:bg-gray6 block w-full px-4 py-2 text-sm text-red-500'
                     >
-                      신고하기
-                    </button>
-                    <button
-                      onClick={() => {
-                        setIsBlockModalOn(true);
-                        setOpenDropdownIndex(null);
-                      }}
-                      className='text-gray2 hover:bg-gray6 block w-full px-4 py-2 text-sm'
-                    >
-                      차단하기
+                      삭제하기
                     </button>
                   </div>
                 )}
@@ -172,16 +177,6 @@ export default function PickreadMainPage() {
       {/* 작성 모달 */}
       {isCreateModalOn && (
         <CreatePostModal setIsOpen={setIsCreateModalOn} onSubmit={handleSubmitPost} />
-      )}
-
-      {/* 신고 모달 */}
-      {isReportModalOn && (
-        <ReportModal setIsOpen={setIsReportModalOn} onComplete={() => alert('신고 완료')} />
-      )}
-
-      {/* 차단 모달 */}
-      {isBlockModalOn && (
-        <BlockModal setIsOpen={setIsBlockModalOn} onComplete={() => alert('차단 완료')} />
       )}
     </main>
   );
