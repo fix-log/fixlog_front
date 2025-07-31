@@ -1,4 +1,4 @@
-import MemberList from '@/widgets/workrome/MemberList';
+import MemberList from '@/widgets/workroom/MemberList';
 
 export default async function Page() {
   return (
