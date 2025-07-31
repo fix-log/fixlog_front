@@ -1,6 +1,7 @@
 import { userValueType } from '@/entities/userInfo/Types';
 import UserHydration from '@/entities/userInfo/UserHydration';
 import UserInfo from '@/widgets/userInfo/UserInfo';
+import { cookies } from 'next/headers';
 
 interface UserInfoPageProps {
   params: { userid: string };
@@ -8,10 +9,13 @@ interface UserInfoPageProps {
 
 export default async function UserInfoPage({ params }: UserInfoPageProps) {
   const viewUserId = Number(params.userid);
-  const isMe = viewUserId === 99;
+  const cookie = await cookies();
+  const userStatus = cookie.get('userStatus')?.value;
+  const isMe = viewUserId === Number(userStatus);
+  console.log(userStatus);
 
   // 더미
-  const response:userValueType = {
+  const response: userValueType = {
     viewUserId: viewUserId,
     isMe: isMe,
     level: 1,
