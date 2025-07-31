@@ -21,46 +21,46 @@ const dummyApplicants: Applicant[] = Array.from({ length: 18 }, (_, i) => ({
 
 export default function ApplicantListPage() {
   return (
-    <main className="bg-gray6 min-h-screen py-10 px-4">
-      <div className="mx-auto max-w-[1200px]">
+    <main className='bg-gray6 min-h-screen px-4 py-10'>
+      <div className='mx-auto max-w-[1200px]'>
         {/* Header */}
-        <div className="flex items-center gap-2 pb-6">
-          <ChevronLeft className="h-5 w-5 text-gray3" />
+        <div className='flex items-center gap-2 pb-6'>
+          <ChevronLeft className='text-gray3 h-5 w-5' />
         </div>
 
-        <h1 className="text-[28px] font-bold mb-8 text-center text-mainBlack">지원자 확인</h1>
+        <h1 className='text-mainBlack mb-8 text-center text-[28px] font-bold'>지원자 확인</h1>
 
         {/* Main Layout */}
-        <div className="flex gap-6 items-start">
+        <div className='flex items-start gap-6'>
           {/* Left - Project Card */}
-          <div className="w-[380px] h-[400px] shrink-0">
-            <div className="border border-gray4 rounded-lg p-6 bg-white w-full h-full flex flex-col justify-between">
+          <div className='h-[400px] w-[380px] shrink-0'>
+            <div className='border-gray4 flex h-full w-full flex-col justify-between rounded-lg border bg-white p-6'>
               <div>
-                <p className="text-[12px] text-pointGreen font-semibold mb-1">
-                  모집중 <span className="text-gray3">| 2025.06.13</span>
+                <p className='text-pointGreen mb-1 text-[12px] font-semibold'>
+                  모집중 <span className='text-gray3'>| 2025.06.13</span>
                 </p>
-                <p className="text-[20px] font-bold leading-snug mb-4 text-mainBlack">
+                <p className='text-mainBlack mb-4 text-[20px] leading-snug font-bold'>
                   [디자이너 모집] 감성 블로그 기반 커뮤니티 플랫폼
                 </p>
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className='mb-4 flex flex-wrap gap-2'>
                   {['Figma', 'Illustrator', 'Notion'].map((skill) => (
                     <span
                       key={skill}
-                      className="text-[12px] bg-gray5 text-gray3 px-3 py-1 rounded-full"
+                      className='bg-gray5 text-gray3 rounded-full px-3 py-1 text-[12px]'
                     >
                       {skill}
                     </span>
                   ))}
                 </div>
-                <span className="text-[12px] border border-mainRed text-mainRed px-3 py-[2px] rounded-full font-semibold inline-block">
+                <span className='border-mainRed text-mainRed inline-block rounded-full border px-3 py-[2px] text-[12px] font-semibold'>
                   Designer
                 </span>
               </div>
-              <div className="flex gap-2">
-                <button className="flex-1 bg-mainBlack text-white py-2 rounded text-[14px] font-bold">
+              <div className='flex gap-2'>
+                <button className='bg-mainBlack flex-1 rounded py-2 text-[14px] font-bold text-white'>
                   모집글 보러가기
                 </button>
-                <button className="flex-1 bg-mainRed text-white py-2 rounded text-[14px] font-bold">
+                <button className='bg-mainRed flex-1 rounded py-2 text-[14px] font-bold text-white'>
                   워크룸 만들기
                 </button>
               </div>
@@ -68,37 +68,37 @@ export default function ApplicantListPage() {
           </div>
 
           {/* Right - Applicants */}
-          <div className="grid grid-cols-3 gap-4 flex-1">
+          <div className='grid flex-1 grid-cols-3 gap-4'>
             {dummyApplicants.map((applicant) => (
               <div
                 key={applicant.id}
-                className="w-[260px] h-[320px] border border-gray4 rounded-lg p-4 flex flex-col items-center bg-white"
+                className='border-gray4 flex h-[320px] w-[260px] flex-col items-center rounded-lg border bg-white p-4'
               >
-                <div className="flex flex-col items-center mt-10">
+                <div className='mt-10 flex flex-col items-center'>
                   <Image
                     src={applicant.profileImage}
                     alt={applicant.name}
                     width={100}
                     height={100}
-                    className="rounded-full"
+                    className='rounded-full'
                   />
-                  <p className="mt-3 text-[18px] font-bold text-mainBlack">{applicant.name}</p>
-                  <p className="text-[14px] text-gray3">{applicant.role}</p>
+                  <p className='text-mainBlack mt-3 text-[18px] font-bold'>{applicant.name}</p>
+                  <p className='text-gray3 text-[14px]'>{applicant.role}</p>
                 </div>
 
                 {applicant.isCanceled ? (
-                    <button
-                        className="mt-4 w-[200px] h-[35px] bg-gray5 text-gray3 rounded text-[14px] font-semibold cursor-not-allowed"
-                        disabled
-                    >
-                        지원 취소 되었습니다
-                    </button>
+                  <button
+                    className='bg-gray5 text-gray3 mt-4 h-[35px] w-[200px] cursor-not-allowed rounded text-[14px] font-semibold'
+                    disabled
+                  >
+                    지원 취소 되었습니다
+                  </button>
                 ) : (
-                  <div className="flex gap-2 mt-4">
-                    <button className="w-[100px] h-[35px] bg-mainBlack text-white rounded text-[14px] font-semibold">
+                  <div className='mt-4 flex gap-2'>
+                    <button className='bg-mainBlack h-[35px] w-[100px] rounded text-[14px] font-semibold text-white'>
                       프로필 보기
                     </button>
-                    <button className="w-[100px] h-[35px] bg-white text-mainBlack border border-mainBlack rounded text-[14px] font-semibold">
+                    <button className='text-mainBlack border-mainBlack h-[35px] w-[100px] rounded border bg-white text-[14px] font-semibold'>
                       픽레터 보내기
                     </button>
                   </div>

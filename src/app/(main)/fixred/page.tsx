@@ -107,20 +107,20 @@ export default function PickreadMainPage() {
               </div>
 
               {/* 드롭다운 버튼 -일단 모든 게시물에 적용*/}
-              <div className="relative">
+              <div className='relative'>
                 <button
-                  className="text-gray3 hover:text-gray1"
+                  className='text-gray3 hover:text-gray1'
                   onClick={(e) => {
                     e.stopPropagation();
                     setOpenDropdownIndex(openDropdownIndex === index ? null : index);
                   }}
                 >
-                  <MoreHorizontal className="h-5 w-5" />
+                  <MoreHorizontal className='h-5 w-5' />
                 </button>
 
                 {openDropdownIndex === index && (
                   <div
-                    className="border-gray4 absolute right-0 z-10 mt-2 w-28 rounded border bg-white shadow"
+                    className='border-gray4 absolute right-0 z-10 mt-2 w-28 rounded border bg-white shadow'
                     onClick={(e) => e.stopPropagation()}
                   >
                     <button
@@ -128,7 +128,7 @@ export default function PickreadMainPage() {
                         handleEditPost(post.id);
                         setOpenDropdownIndex(null);
                       }}
-                      className="hover:bg-gray6 block w-full px-4 py-2 text-sm text-gray1"
+                      className='hover:bg-gray6 text-gray1 block w-full px-4 py-2 text-sm'
                     >
                       수정하기
                     </button>
@@ -137,7 +137,7 @@ export default function PickreadMainPage() {
                         handleDeletePost(post.id);
                         setOpenDropdownIndex(null);
                       }}
-                      className="text-red-500 hover:bg-gray6 block w-full px-4 py-2 text-sm"
+                      className='hover:bg-gray6 block w-full px-4 py-2 text-sm text-red-500'
                     >
                       삭제하기
                     </button>
@@ -178,7 +178,6 @@ export default function PickreadMainPage() {
       {isCreateModalOn && (
         <CreatePostModal setIsOpen={setIsCreateModalOn} onSubmit={handleSubmitPost} />
       )}
-
     </main>
   );
 }
