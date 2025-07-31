@@ -47,21 +47,25 @@ export default function FollowButton({ followUsers, tap, followingIds }: FollowB
     user_id: number;
     username: string;
   }
-  return followUsers[tap].following.map((item: following) => {
-    const ss = followingIds.includes(item.user_id) ? 'following' : 'follower';
-
-    return (
-      <div
-        className='border-gray5 flex cursor-default items-center gap-[18px] border py-[20px] pr-[44px] pl-[37px]'
-        key={item.user_id}
-      >
-        <Image src={'/icon_profile.png'} alt='유저 프로필' width={50} height={50} />
-        <div className='grow'>
-          <p className='text-[18px] font-bold'>{item.username}</p>
-          <p className='text-gray4 text-[12px]'>text@fixlog.com</p>
-        </div>
-        <button {...button[ss].options}>{button[ss].name}</button>
-      </div>
-    );
-  });
+  return (
+    <div className='h-[730px] overflow-y-scroll'>
+      {followUsers[tap].following.map((item: following) => {
+        const ss = followingIds.includes(item.user_id) ? 'following' : 'follower';
+        return (
+          <div
+            className='border-gray5 flex cursor-default items-center gap-[18px] border py-[20px] pr-[44px] pl-[37px]'
+            key={item.user_id}
+          >
+            <Image src={'/icon_profile.png'} alt='유저 프로필' width={50} height={50} />
+            <div className='grow'>
+              <p className='text-[18px] font-bold'>{item.username}</p>
+              <p className='text-gray4 text-[12px]'>text@fixlog.com</p>
+            </div>
+            <button {...button[ss].options}>{button[ss].name}</button>
+          </div>
+        );
+      })}
+      ;
+    </div>
+  );
 }
