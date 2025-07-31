@@ -1,7 +1,11 @@
+import ModifyInfo from '@/widgets/workroom/admin/ui/ModifyInfo';
+import ProjectProgress from '@/widgets/workroom/admin/ui/ProjectProgress';
+
 export default async function Page() {
   return (
-    <>
-      <div>프로젝트 관리 (미니님?)</div>
-    </>
+    <div className='flex w-full flex-col gap-[30px] p-[40px]'>
+      <ProjectProgress />
+      <ModifyInfo />
+    </div>
   );
 }
