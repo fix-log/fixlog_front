@@ -11,7 +11,7 @@ export default function ProfileShareButton() {
       await navigator.clipboard.writeText(text);
       toast.success('링크가 복사되었습니다', {
         position: 'top-center',
-        duration: 600,
+        duration: 1600,
         style: { marginTop: '40vh' },
       });
     } catch (err) {
