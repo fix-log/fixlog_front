@@ -1,3 +1,5 @@
+import SearResultPopulCard from '@/shared/search/ui/SearResultPopulCard';
+
 interface PageProps {
   params: Promise<{ searchId: string }>;
 }
@@ -6,5 +8,9 @@ export default async function Page({ params }: PageProps) {
   const { searchId } = await params;
   console.log(searchId);
 
-  return <div>인기 픽레드</div>;
+  return (
+    <div className='bg-gray6 mb-[80px] w-full'>
+      <SearResultPopulCard />
+    </div>
+  );
 }
