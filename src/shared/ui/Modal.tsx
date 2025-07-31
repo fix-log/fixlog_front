@@ -9,16 +9,16 @@ interface ModalProps {
   setIsOpen?: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function Modal({
-  children,
-  className,
-  setIsOpen,
-}: ModalProps) {
+export default function Modal({ children, className, setIsOpen }: ModalProps) {
   const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
     setMounted(true);
-    return () => setMounted(false);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      setMounted(false);
+      document.body.style.overflow = '';
+    };
   }, []);
 
   const onClose = () => {

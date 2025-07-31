@@ -22,7 +22,6 @@ export default function UserInfo() {
   };
 
   const followingIds = Object.values(following.following).map((item) => item.user_id);
-  console.log(followingIds);
 
   return (
     <>
