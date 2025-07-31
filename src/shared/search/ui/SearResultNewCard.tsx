@@ -31,10 +31,8 @@ export default function SearResultNewCard() {
           </div>
 
           {/* 본문 */}
-          <div
-            className='text-mainBlack text-sm leading-relaxed'
-            dangerouslySetInnerHTML={{ __html: ex.content }}
-          />
+          <div />
+          <p className='text-mainBlack text-sm leading-relaxed'>{ex.content}</p>
 
           {/* 아이콘 */}
           <div className='text-gray2 flex items-center gap-6 text-sm'>

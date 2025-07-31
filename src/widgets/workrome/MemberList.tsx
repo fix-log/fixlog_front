@@ -19,9 +19,12 @@ export default function MemberList() {
     <div>
       {/* Object.entries() 객체를 배열로 바꿔줌 */}
       {Object.entries(data).map(([job, members]) => (
-        <div key={job} className='border-gray5 mb-[70px] border-b pb-[60px] last:border-b-0'>
-          <h2 className='text-h3 mt-[20px] font-bold'>{job}</h2>
-          <div className='flex flex-wrap gap-4'>
+        <div
+          key={job}
+          className='border-gray5 mb-[70px] border-b pb-[50px] pl-[30px] last:border-b-0'
+        >
+          <h2 className='text-h3 font-bold'>{job}</h2>
+          <div className='flex flex-wrap gap-[15px]'>
             {members.map((member) => (
               <MemberCard key={member.id} data={member} />
             ))}
