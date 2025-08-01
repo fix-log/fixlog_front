@@ -4,10 +4,11 @@ import UserInfo from '@/widgets/userInfo/UserInfo';
 import { cookies } from 'next/headers';
 
 interface UserInfoPageProps {
-  params: { userid: string };
+  params: Promise<{ userid: string }>;
 }
 
-export default async function UserInfoPage({ params }: UserInfoPageProps) {
+export default async function UserInfoPage(props: UserInfoPageProps) {
+  const params = await props.params;
   const viewUserId = Number(params.userid);
   const cookie = await cookies();
   const userId = cookie.get('userId')?.value;
