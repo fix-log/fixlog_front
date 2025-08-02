@@ -1,0 +1,98 @@
+'use client';
+
+import { step2Schema } from '@/features/userInfo/model/Step2';
+import { step3Schema } from '@/features/auth/signup/model/schema/Step3';
+import { step4Schema } from '@/features/auth/signup/model/schema/Step4';
+import Step2 from '@/widgets/auth/signup/step2/Step2';
+import Step3 from '@/widgets/auth/signup/step3/Step3';
+import Step4 from '@/widgets/auth/signup/step4/Step4';
+import { useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { dataType } from './Types';
+import z from 'zod';
+
+export default function EditProfile() {
+  // 더미
+  const response = {
+    viewUserId: 99,
+    isMe: true,
+    level: 1,
+    name: '이희정',
+    nickname: '이운',
+    email: 'test@fixlog.com',
+    password: '123456!A',
+    password_check: '123456!A',
+    phone_number: '010-1111-2222',
+    birth: '001231',
+    position: ['FrontEnd'],
+    experience: ['개발 공부 / 학습', '포트폴리오 만들기', '커뮤니티 활동'],
+    language: ['TypeScript', 'JavaScript'],
+    tech: ['react', 'nextjs', 'GitHub', 'Git'],
+    coop_tool: ['Figma', 'Notion'],
+    interest_field: ['프론트엔드', '안드로이드', '게임 개발'],
+    interest_trend: ['사이드 프로젝트', '스타트업', '코드 리뷰'],
+    career: '신입',
+    portfolio: undefined,
+    ref_link: 'https://fixlog.com',
+  };
+  const basicInfo = {
+    name: response.name,
+    birthDate: response.birth,
+    phoneNumber: response.phone_number,
+    gender: '여성', // 더미 데이터로 설정
+    position: response.position,
+    career: response.career,
+    profileImage: '', // 더미 데이터로 설정
+  };
+  const skillInfo = {
+    devLanguage: response.language,
+    stackAndTool: response.tech,
+    designAndCollab: response.coop_tool,
+  };
+  const interestInfo = {
+    devInterestField: response.interest_field,
+    techTrendsInterest: response.interest_trend,
+    careerGrowth: response.experience,
+    portfolio: response.portfolio,
+    ref_link: response.ref_link,
+  };
+
+  const [EditData, setEditData] = useState({});
+  const [step, setStep] = useState(1);
+  const maxStep = 3;
+
+  const formData: dataType = {
+    1: {
+      element: (
+        <Step2
+          maxStep={maxStep}
+          step={step}
+          setStep={setStep}
+          setData={setEditData}
+          disabled={true}
+        />
+      ),
+      schema: useForm<z.infer<typeof step2Schema>>({
+        resolver: zodResolver(step2Schema),
+        defaultValues: { ...basicInfo },
+      }),
+    },
+    2: {
+      element: <Step3 maxStep={maxStep} step={step} setStep={setStep} setData={setEditData} />,
+      schema: useForm<z.infer<typeof step3Schema>>({
+        resolver: zodResolver(step3Schema),
+        defaultValues: { ...skillInfo },
+      }),
+    },
+    3: {
+      element: <Step4 step={maxStep} setStep={setStep} data={EditData} setData={setEditData} />,
+      schema: useForm<z.infer<typeof step4Schema>>({
+        resolver: zodResolver(step4Schema),
+        defaultValues: { ...interestInfo },
+      }),
+    },
+  } as const;
+
+  return <FormProvider {...formData[step].schema}>{formData[step].element}</FormProvider>;
+}

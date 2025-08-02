@@ -8,20 +8,36 @@ import { useFormContext } from 'react-hook-form';
 import { SetStateType, StateType } from '../Types';
 import { submitSignup } from '@/features/auth/signup/model/submitSignup';
 import SignupModal from './SignupModal';
+import EditProfileModal from '@/features/userInfo/model/EditProfileModal';
 
 interface Step1Props {
+  step: 3 | 4; // 3: 프로필 수정, 4: 회원가입
   setStep: Dispatch<SetStateAction<number>>;
-  signupData: StateType;
-  setSignupData: SetStateType;
+  data: StateType;
+  setData: SetStateType;
 }
 
-export default function Step1({ setStep, signupData, setSignupData }: Step1Props) {
+export default function Step1({ step, setStep, data, setData }: Step1Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const form = useFormContext();
+  console.log(step, 'step');
+  const submitConfig =
+    step === 4 // 회원가입일 때
+      ? {
+          text: '회원가입하기',
+          api: '',
+          modal: <SignupModal setStep={setStep} setIsModalOpen={setIsModalOpen} />,
+        }
+      : // 프로필 수정일 때
+        {
+          text: '프로필 수정하기',
+          api: '',
+          modal: <EditProfileModal setStep={setStep} setIsModalOpen={setIsModalOpen} />,
+        };
 
   const handleClick = async (data: object) => {
-    const mergedData = { ...signupData, ...data };
-    setSignupData(mergedData);
+    const mergedData = { ...data, ...data };
+    setData(mergedData);
     try {
       const isSuccess = await submitSignup<typeof mergedData>(mergedData);
       console.log(isSuccess);
@@ -36,9 +52,11 @@ export default function Step1({ setStep, signupData, setSignupData }: Step1Props
       <FormHeader title='기타 정보' />
       <form className='w-full' onSubmit={form.handleSubmit((data) => handleClick(data))}>
         <FormFields />
-        <FormSubmitButton text='회원가입하기' isSubmitting={form.formState.isSubmitting} />
+        <FormSubmitButton text={submitConfig.text} isSubmitting={form.formState.isSubmitting} />
       </form>
-      {isModalOpen && <SignupModal setStep={setStep} setIsModalOpen={setIsModalOpen} />}
+      {isModalOpen && submitConfig.modal}
     </div>
   );
 }
+
+// 유저 프로필 수정과 공유함

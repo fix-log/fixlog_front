@@ -10,6 +10,7 @@ interface FormInputStringProps<T> {
   label?: string;
   isRequired?: boolean;
   children?: React.ReactNode;
+  disabled?: boolean;
 }
 
 /**
@@ -22,6 +23,7 @@ export default function FormInputString<T extends FieldValues>({
   label,
   isRequired,
   children,
+  disabled,
 }: FormInputStringProps<T>) {
   const {
     register,
@@ -29,6 +31,7 @@ export default function FormInputString<T extends FieldValues>({
     formState: { errors },
   } = useFormContext<T>();
   const focusClassName = errors[id] ? errorFocus : focus;
+  const disabledClassName = disabled ? ' bg-gray5 text-gray4 ' : '';
 
   return (
     <div className='w-full'>
@@ -42,10 +45,12 @@ export default function FormInputString<T extends FieldValues>({
         <input
           className={
             'border-gray4 !my-[15px] h-[60px] w-full rounded-[5px] border-1 !pr-[20px] !pl-[17px] text-[20px] focus:outline-none' +
-            focusClassName
+            focusClassName +
+            disabledClassName
           }
           type={type}
           placeholder={placeholder}
+          disabled={disabled}
           {...register(id)}
         />
         {children}

@@ -11,10 +11,10 @@ import { SetStateType } from '../Types';
 
 interface Step1Props {
   setStep: Dispatch<SetStateAction<number>>;
-  setSignupData: SetStateType;
+  setData: SetStateType;
 }
 
-export default function Step1({ setStep, setSignupData }: Step1Props) {
+export default function Step1({ setStep, setData }: Step1Props) {
   const router = useRouter();
   const form = useFormContext();
 
@@ -29,7 +29,7 @@ export default function Step1({ setStep, setSignupData }: Step1Props) {
 
   function handleClick(data: object) {
     setStep(2);
-    setSignupData((val) => ({ ...val, ...data }));
+    setData((val) => ({ ...val, ...data }));
     router.push('/login/signup');
   }
 

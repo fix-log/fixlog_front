@@ -17,25 +17,26 @@ import { dataType, FormDataType, StateType } from './Types';
 export default function Signup() {
   const [signupData, setSignupData] = useState<StateType>({});
   const [step, setStep] = useState(1);
+  const maxStep = 4;
 
   const formData: dataType = {
     1: {
-      element: <Step1 setStep={setStep} setSignupData={setSignupData} />,
+      element: <Step1 setStep={setStep} setData={setSignupData} />,
       schema: step1Schema,
       default: null,
     },
     2: {
-      element: <Step2 setStep={setStep} setSignupData={setSignupData} />,
+      element: <Step2  maxStep={maxStep} step={step} setStep={setStep} setData={setSignupData} />,
       schema: step2Schema,
       default: { position: [], career: [] },
     },
     3: {
-      element: <Step3 setStep={setStep} setSignupData={setSignupData} />,
+      element: <Step3 maxStep={maxStep} step={step} setStep={setStep} setData={setSignupData} />,
       schema: step3Schema,
       default: { devLanguage: [], stackAndTool: [], designAndCollab: [] },
     },
     4: {
-      element: <Step4 setStep={setStep} signupData={signupData} setSignupData={setSignupData} />,
+      element: <Step4 step={maxStep} setStep={setStep} data={signupData} setData={setSignupData} />,
       schema: step4Schema,
       default: {
         devInterestField: [],
