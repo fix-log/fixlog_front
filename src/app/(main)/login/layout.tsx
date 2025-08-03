@@ -1,9 +1,13 @@
-export default function RootLayout({
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <div className="flex w-screen max-w-[500px] justify-center">{children}</div>
-  );
+  const cookieStore = await cookies();
+  const userStatus = cookieStore.get('userStatus')?.value;
+  if (userStatus) redirect('/');
+  return <div className='flex w-screen max-w-[500px] justify-center pb-[100px]'>{children}</div>;
 }

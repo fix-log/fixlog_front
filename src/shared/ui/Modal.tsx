@@ -7,10 +7,14 @@ import { cn } from '../lib/util';
 interface ModalProps {
   children: React.ReactNode;
   className?: string;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  setIsOpen?: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function Modal({ children, className, setIsOpen }: ModalProps) {
+export default function Modal({
+  children,
+  className,
+  setIsOpen,
+}: ModalProps) {
   const [mounted, setMounted] = useState<boolean>(false);
 
   // SSR, CSR 간의 불일치 해결 (Hydration Error 방지)
@@ -20,6 +24,7 @@ export default function Modal({ children, className, setIsOpen }: ModalProps) {
   }, []);
 
   const onClose = () => {
+    if (!setIsOpen) return;
     setIsOpen(false);
   };
 

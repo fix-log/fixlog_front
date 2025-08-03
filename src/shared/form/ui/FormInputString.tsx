@@ -1,3 +1,5 @@
+'use client';
+
 import { FieldValues, Path, useFormContext } from 'react-hook-form';
 import { focus, errorFocus } from './TailwindcssUtil';
 
@@ -10,6 +12,9 @@ interface FormInputStringProps<T> {
   children?: React.ReactNode;
 }
 
+/**
+ * @param id zod 스키마 키와 동일하여야 함
+ */
 export default function FormInputString<T extends FieldValues>({
   type,
   id,
@@ -26,14 +31,14 @@ export default function FormInputString<T extends FieldValues>({
   const focusClassName = errors[id] ? errorFocus : focus;
 
   return (
-    <div className="w-full">
+    <div className='w-full'>
       {label && (
-        <p className="!-mb-3 cursor-default font-bold">
+        <p className='!-mb-3 cursor-default font-bold'>
           {label}
-          {isRequired && <span className="text-mainRed">*</span>}
+          {isRequired && <span className='text-mainRed'>*</span>}
         </p>
       )}
-      <div className="flex w-full">
+      <div className='flex w-full'>
         <input
           className={
             'border-gray4 !my-[15px] h-[60px] w-full rounded-[5px] border-1 !pr-[20px] !pl-[17px] text-[20px] focus:outline-none' +
@@ -46,9 +51,7 @@ export default function FormInputString<T extends FieldValues>({
         {children}
       </div>
       {errors[id] && (id === 'url' ? watch(id) !== '' : true) && (
-        <p className="text-pointDarkYellow -mt-3 pb-3 pl-3">
-          {errors[id].message?.toString()}
-        </p>
+        <p className='text-pointDarkYellow -mt-3 pb-3 pl-3'>{errors[id].message?.toString()}</p>
       )}
     </div>
   );

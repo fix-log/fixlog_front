@@ -2,15 +2,29 @@
 
 import { useState, useEffect } from 'react';
 import { Heart, MessageCircle, Mail, MoreHorizontal } from 'lucide-react';
+import { formatDistanceToNow } from 'date-fns';
+import { ko } from 'date-fns/locale';
 
-import ReportModal from '@/features/fixred/report/ReportModal';
-import BlockModal from '@/features/fixred/block/BlockModal';
+import CreatePostModal from '@/features/fixred/create/CreatePostModal';
+import FloatingWriteButton from '@/features/fixred/create/FloatingWriteButton';
+import StarterKit from '@tiptap/starter-kit';
+import { generateHTML, JSONContent } from '@tiptap/core';
+
+interface Post {
+  id: number;
+  author: string;
+  content: string;
+  createdAt: Date;
+  likes: number;
+  comments: number;
+  shares: number;
+}
 
 export default function PickreadMainPage() {
   const [activeTab, setActiveTab] = useState<'all' | 'following'>('all');
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(null);
-  const [showReportModal, setShowReportModal] = useState(false);
-  const [showBlockModal, setShowBlockModal] = useState(false);
+  const [isCreateModalOn, setIsCreateModalOn] = useState(false);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     const handleClickOutside = () => setOpenDropdownIndex(null);
@@ -18,19 +32,43 @@ export default function PickreadMainPage() {
     return () => window.removeEventListener('click', handleClickOutside);
   }, []);
 
+  //수정님 여기.. JSON으로 저장하고, 렌더할 때만 HTML 변환하는 방식으로 수정했어요.. 맞는지는 모르겠어요..
+  const handleSubmitPost = (json: JSONContent) => {
+    const html = generateHTML(json, [StarterKit]);
+
+    const newPost: Post = {
+      id: Date.now(),
+      author: '슈가수가',
+      content: html,
+      createdAt: new Date(),
+      likes: 0,
+      comments: 0,
+      shares: 0,
+    };
+
+    setPosts((prev) => [newPost, ...prev]);
+  };
+  const handleEditPost = (postId: number) => {
+    console.log(`게시물 ${postId} 수정`);
+    // TODO: 나중에...
+  };
+
+  const handleDeletePost = (postId: number) => {
+    console.log(`게시물 ${postId} 삭제`);
+    setPosts((prev) => prev.filter((post) => post.id !== postId));
+  };
+
   return (
-    <main className="flex justify-center bg-white py-8 min-h-screen">
-      <section className="w-full max-w-[1440px] px-6 space-y-6">
+    <main className='relative flex min-h-screen w-full justify-center bg-white px-4 py-8'>
+      <section className='w-full max-w-[800px] space-y-6'>
         {/* 탭 필터 */}
-        <div className="inline-flex bg-white border border-[var(--color-gray4)] p-1 rounded-md w-fit">
+        <div className='border-gray4 inline-flex w-fit rounded-md border bg-white p-1'>
           {(['all', 'following'] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`px-4 py-1.5 text-sm font-bold transition-all ${
-                activeTab === tab
-                  ? 'bg-[var(--color-mainRed)] text-white rounded-md'
-                  : 'text-[var(--color-gray3)]'
+                activeTab === tab ? 'bg-mainRed rounded-md text-white' : 'text-gray3'
               }`}
             >
               {tab === 'all' ? '전체' : '팔로잉'}
@@ -39,61 +77,69 @@ export default function PickreadMainPage() {
         </div>
 
         {/* 입력창 */}
-        <div className="bg-white border border-[var(--color-gray4)] p-5 flex items-center gap-4 rounded-md">
-          <div className="w-10 h-10 bg-[var(--color-gray5)] rounded-full" />
-          <span className="text-[var(--color-gray3)]">오늘은 무엇을 기록해볼까요?</span>
+        <div
+          className='border-gray4 flex cursor-pointer items-center gap-4 rounded-md border bg-white p-5'
+          onClick={() => setIsCreateModalOn(true)}
+        >
+          <div className='bg-gray5 h-10 w-10 rounded-full' />
+          <span className='text-gray3'>오늘은 무엇을 기록해볼까요?</span>
         </div>
 
         {/* 게시물 카드 */}
-        {[1, 2, 3].map((item, index) => (
+        {posts.map((post, index) => (
           <div
-            key={item}
-            className="bg-white border border-[var(--color-gray4)] p-5 space-y-3 rounded-md relative"
+            key={post.id}
+            className='border-gray4 relative w-full space-y-3 rounded-md border bg-white p-5'
           >
             {/* 작성자 */}
-            <div className="flex justify-between items-start">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-[var(--color-gray5)] rounded-full" />
+            <div className='flex items-start justify-between'>
+              <div className='flex items-center gap-3'>
+                <div className='bg-gray5 h-10 w-10 rounded-full' />
                 <div>
-                  <p className="font-semibold text-[var(--color-mainBlack)]">슈가수가</p>
-                  <p className="text-xs text-[var(--color-gray3)]">3시간 전</p>
+                  <p className='text-mainBlack font-semibold'>{post.author}</p>
+                  <p className='text-gray3 text-xs'>
+                    {formatDistanceToNow(new Date(post.createdAt), {
+                      addSuffix: true,
+                      locale: ko,
+                    })}
+                  </p>
                 </div>
               </div>
 
-              {/* 드롭다운 버튼 */}
-              <div className="relative">
+              {/* 드롭다운 버튼 -일단 모든 게시물에 적용*/}
+              <div className='relative'>
                 <button
-                  className="text-[var(--color-gray3)] hover:text-[var(--color-gray1)]"
+                  className='text-gray3 hover:text-gray1'
                   onClick={(e) => {
-                    e.stopPropagation(); // 드롭다운 안 닫히게
+                    e.stopPropagation();
                     setOpenDropdownIndex(openDropdownIndex === index ? null : index);
                   }}
                 >
-                  <MoreHorizontal className="w-5 h-5" />
+                  <MoreHorizontal className='h-5 w-5' />
                 </button>
 
                 {openDropdownIndex === index && (
                   <div
-                    className="absolute right-0 mt-2 w-28 bg-white border border-gray-300 rounded shadow z-10"
+                    className='border-gray4 absolute right-0 z-10 mt-2 w-28 rounded border bg-white shadow'
                     onClick={(e) => e.stopPropagation()}
                   >
                     <button
                       onClick={() => {
-                        setShowReportModal(true);
+                        handleEditPost(post.id);
                         setOpenDropdownIndex(null);
                       }}
-                      className="block w-full px-4 py-2 text-sm text-red-500 hover:bg-gray-50"
+                      className='hover:bg-gray6 text-gray1 block w-full px-4 py-2 text-sm'
                     >
-                      신고하기
+                      수정하기
                     </button>
                     <button
                       onClick={() => {
-                        setShowBlockModal(true);
+                        handleDeletePost(post.id);
                         setOpenDropdownIndex(null);
                       }}
-                      className="block w-full px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
+                      className='hover:bg-gray6 block w-full px-4 py-2 text-sm text-red-500'
                     >
-                      차단하기
+                      삭제하기
                     </button>
                   </div>
                 )}
@@ -101,49 +147,36 @@ export default function PickreadMainPage() {
             </div>
 
             {/* 본문 */}
-            <p className="text-[var(--color-mainBlack)] text-sm leading-relaxed">
-              핀터레스트에서 봤는데, 이런식의 뜨개질은 어떻게 하는 거야? 너무 예뻐서 장식용으로 만들고 싶은데 <br />
-              이런 뜨개질 처음봐서 너무 신기해! 배워보고 싶다🥹
-            </p>
-
-            {/* 이미지 */}
-            <div className="grid grid-cols-3 gap-2 overflow-hidden">
-              <div className="h-48 bg-[var(--color-gray5)]" />
-              <div className="h-48 bg-[var(--color-gray5)]" />
-              <div className="h-48 bg-[var(--color-gray5)]" />
-            </div>
+            <div
+              className='text-mainBlack text-sm leading-relaxed'
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
 
             {/* 아이콘 */}
-            <div className="flex gap-6 text-sm text-[var(--color-gray2)] items-center">
-              <div className="flex items-center gap-1">
-                <Heart className="w-4 h-4" />
-                <span>358</span>
+            <div className='text-gray2 flex items-center gap-6 text-sm'>
+              <div className='flex items-center gap-1'>
+                <Heart className='h-4 w-4' />
+                <span>{post.likes}</span>
               </div>
-              <div className="flex items-center gap-1">
-                <MessageCircle className="w-4 h-4" />
-                <span>18</span>
+              <div className='flex items-center gap-1'>
+                <MessageCircle className='h-4 w-4' />
+                <span>{post.comments}</span>
               </div>
-              <div className="flex items-center gap-1">
-                <Mail className="w-4 h-4" />
-                <span>18</span>
+              <div className='flex items-center gap-1'>
+                <Mail className='h-4 w-4' />
+                <span>{post.shares}</span>
               </div>
             </div>
           </div>
         ))}
       </section>
 
-      {/* 모달 */}
-      {showReportModal && (
-        <ReportModal
-          setIsOpen={setShowReportModal}
-          onComplete={() => alert(' 신고 완료')}
-        />
-      )}
-      {showBlockModal && (
-        <BlockModal
-          setIsOpen={setShowBlockModal}
-          onComplete={() => alert('차단 완료')}
-        />
+      {/* 고정된 작성 버튼 */}
+      <FloatingWriteButton onClick={() => setIsCreateModalOn(true)} />
+
+      {/* 작성 모달 */}
+      {isCreateModalOn && (
+        <CreatePostModal setIsOpen={setIsCreateModalOn} onSubmit={handleSubmitPost} />
       )}
     </main>
   );

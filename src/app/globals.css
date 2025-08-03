@@ -4,7 +4,7 @@
   /* text-h1, text-body-m 이렇게 사용 */
   --font-h1: 50px;
   --font-h2: 40px;
-  --font-h3: 30px;
+  --font-h3: 28px;
   --font-h4: 22px;
   --font-h5: 20px;
   --font-h6: 18px;
@@ -68,6 +68,8 @@
 @theme {
   --color-mainBlack: #202020;
   --color-mainRed: #ff4427;
+  --color-mainRed20: #ff442719;
+  --color-mainRed50: #ff442750;
   --color-mainDarkRed: #e41e00;
   --color-mainWhite: #fff;
 
@@ -118,4 +120,21 @@ body {
 
 .swiper {
   overflow: visible !important;
+}
+
+/* 픽레드 멘션 시 */
+.mention {
+  color: #00376b;
+  background-color: transparent;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* 픽레드 placeholder 거지같은거 적용 안돼서 여기다 넣음*/
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: #aaa;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
 }
