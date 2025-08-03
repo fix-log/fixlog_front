@@ -26,6 +26,7 @@
     "react-datepicker": "^8.4.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.60.0",
+    "sonner": "^2.0.6",
     "swiper": "^11.2.10",
     "tailwind-scrollbar": "^4.0.2",
     "zod": "^4.0.5",
