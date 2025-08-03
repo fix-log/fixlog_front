@@ -1,6 +1,8 @@
 import localFont from 'next/font/local';
 import './globals.css';
 import type { Metadata } from 'next';
+import QueryProvider from './queryProvider';
+import { Toaster } from 'sonner';
 import { cookies } from 'next/headers';
 import LoginSync from './LoginSync';
 
@@ -34,10 +36,13 @@ export default async function RootLayout({
   const userId = cookie.get('userId')?.value;
   return (
     <html lang='ko' className={suit.className}>
-      <body className={suit.className}>
-        {userId && <LoginSync id={Number(userId)} />}
-        {children}
-      </body>
+      <QueryProvider>
+        <body className={suit.className}>
+          <Toaster />
+          {userId && <LoginSync id={Number(userId)} />}
+          {children}
+        </body>
+      </QueryProvider>
     </html>
   );
 }
