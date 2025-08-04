@@ -1,6 +1,6 @@
-import { userValueType } from '@/entities/userInfo/Types';
-import UserHydration from '@/entities/userInfo/UserHydration';
-import UserInfo from '@/widgets/userInfo/UserInfo';
+import { userValueType } from '@/entities/profile/Types';
+import UserHydration from '@/entities/profile/UserHydration';
+import UserInfo from '@/widgets/profile/UserInfo';
 import { cookies } from 'next/headers';
 
 interface UserInfoPageProps {

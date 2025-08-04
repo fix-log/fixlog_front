@@ -1,6 +1,6 @@
 'use client';
 
-import { userInfoStore } from '@/entities/userInfo/UserInfoStore';
+import { userInfoStore } from '@/entities/profile/UserInfoStore';
 import { colorChangeAnimation } from '@/shared/ui/Animation';
 import Link from 'next/link';
 

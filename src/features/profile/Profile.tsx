@@ -3,7 +3,7 @@
 import { ChevronRight, UserPlus } from 'lucide-react';
 import Link from 'next/link';
 import { colorChangeAnimation } from '@/shared/ui/Animation';
-import { userInfoStore } from '@/entities/userInfo/UserInfoStore';
+import { userInfoStore } from '@/entities/profile/UserInfoStore';
 import { Dispatch, SetStateAction } from 'react';
 import Image from 'next/image';
 

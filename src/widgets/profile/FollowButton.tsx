@@ -1,6 +1,6 @@
 'use clinet';
 
-import { userInfoStore } from '@/entities/userInfo/UserInfoStore';
+import { userInfoStore } from '@/entities/profile/UserInfoStore';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 

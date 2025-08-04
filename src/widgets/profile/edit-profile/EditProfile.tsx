@@ -1,6 +1,6 @@
 'use client';
 
-import { step2Schema } from '@/features/userInfo/model/Step2';
+import { step2Schema } from '@/features/profile/model/Step2';
 import { step3Schema } from '@/features/auth/signup/model/schema/Step3';
 import { step4Schema } from '@/features/auth/signup/model/schema/Step4';
 import Step2 from '@/widgets/auth/signup/step2/Step2';
