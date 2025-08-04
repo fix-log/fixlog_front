@@ -3,7 +3,7 @@
 import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
 import FormFields from '@/widgets/auth/signup/step4/FormFields';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { SetStateType, StateType } from '../Types';
 import { submitSignup } from '@/features/auth/signup/model/submitSignup';
@@ -20,7 +20,17 @@ interface Step1Props {
 export default function Step1({ step, setStep, data, setData }: Step1Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const form = useFormContext();
-  console.log(step, 'step');
+
+  useEffect(() => {
+    if (step === 4) return; // 회원가입 상태에서는 사용하지 않음
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (form.formState.isDirty) e.preventDefault();
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [form.formState.isDirty]);
+
   const submitConfig =
     step === 4 // 회원가입일 때
       ? {
