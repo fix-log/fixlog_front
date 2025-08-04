@@ -5,7 +5,7 @@ export default function EditProfileButton() {
   return (
     <>
       <Link
-        href={'account/edit'}
+        href={'edit-account'}
         className={
           'bg-mainRed hover:bg-mainDarkRed grow-2 rounded-[5px] py-3 leading-[1.8] text-white' +
           colorChangeAnimation
@@ -14,7 +14,7 @@ export default function EditProfileButton() {
         계정 정보 수정
       </Link>
       <Link
-        href={'profile/edit'}
+        href={'edit-profile'}
         className={
           'bg-mainBlack grow-2 rounded-[5px] py-3 leading-[1.8] text-white hover:bg-black' +
           colorChangeAnimation
