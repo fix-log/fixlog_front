@@ -9,6 +9,7 @@ import FormFields from '@/widgets/auth/signup/step1/FormFields';
 import { Dispatch, SetStateAction } from 'react';
 import { SetStateType } from '../Types';
 import ScrollToPosition from '@/shared/lib/ScrollToPosition';
+import BackIconButton from '@/shared/ui/BackIconButton';
 
 interface Step1Props {
   setStep: Dispatch<SetStateAction<number>>;
@@ -36,11 +37,13 @@ export default function Step1({ setStep, setData }: Step1Props) {
   }
 
   return (
-    <div className='flex w-full max-w-[500px] flex-col items-center'>
-      <FormHeader title='회원가입' />
-      <form className='w-full' onSubmit={form.handleSubmit((data) => handleClick(data), onError)}>
-        <FormFields />
-        <hr className='border-gray5 !my-10 w-full' />
+    <>
+      <BackIconButton />
+      <div className='flex w-full max-w-[500px] flex-col items-center'>
+        <FormHeader title='회원가입' />
+        <form className='w-full' onSubmit={form.handleSubmit((data) => handleClick(data), onError)}>
+          <FormFields />
+          <hr className='border-gray5 !my-10 w-full' />
         <Agreement />
         <FormSubmitButton
           text='다음 (1/4)'
@@ -49,5 +52,6 @@ export default function Step1({ setStep, setData }: Step1Props) {
         />
       </form>
     </div>
+    </>
   );
 }

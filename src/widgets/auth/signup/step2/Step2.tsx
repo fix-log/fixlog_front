@@ -7,6 +7,7 @@ import FormFields from '@/widgets/auth/signup/step2/FormFields';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import { SetStateType } from '../Types';
 import ScrollToPosition from '@/shared/lib/ScrollToPosition';
+import BackIconButton from '@/shared/ui/BackIconButton';
 
 interface Step2Props {
   maxStep: number;
@@ -39,16 +40,20 @@ export default function Step2({ maxStep, step, setStep, setData, disabled }: Ste
   }
 
   return (
-    <div className='flex w-full !max-w-[500px] flex-col items-center'>
-      <FormHeader title='기본 정보' />
-      <form className='w-full' onSubmit={form.handleSubmit((data) => handleClick(data))}>
-        <FormFields disabled={disabled} />
-        <FormSubmitButton
-          text={`다음 (${step}/${maxStep})`}
-          isSubmitting={form.formState.isSubmitting}
-        />
-      </form>
-    </div>
+    <>
+    {/* 회원가입일 땐 이전스텝, 프로필 수정일 땐 프로필페이지 */}
+      {maxStep === 4 ? <BackIconButton onclick={() => setStep(step - 1)} /> : <BackIconButton />}
+      <div className='flex w-full !max-w-[500px] flex-col items-center'>
+        <FormHeader title='기본 정보' />
+        <form className='w-full' onSubmit={form.handleSubmit((data) => handleClick(data))}>
+          <FormFields disabled={disabled} />
+          <FormSubmitButton
+            text={`다음 (${step}/${maxStep})`}
+            isSubmitting={form.formState.isSubmitting}
+          />
+        </form>
+      </div>
+    </>
   );
 }
 

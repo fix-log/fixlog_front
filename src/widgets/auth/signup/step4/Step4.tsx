@@ -9,6 +9,7 @@ import { SetStateType, StateType } from '../Types';
 import { submitSignup } from '@/features/auth/signup/model/submitSignup';
 import SignupModal from './SignupModal';
 import EditProfileModal from '@/features/profile/EditProfileModal';
+import BackIconButton from '@/shared/ui/BackIconButton';
 
 interface Step1Props {
   step: 3 | 4; // 3: 프로필 수정, 4: 회원가입
@@ -58,14 +59,17 @@ export default function Step1({ step, setStep, data, setData }: Step1Props) {
   };
 
   return (
-    <div className='flex w-full !max-w-[500px] flex-col items-center'>
-      <FormHeader title='기타 정보' />
-      <form className='w-full' onSubmit={form.handleSubmit((data) => handleClick(data))}>
-        <FormFields />
-        <FormSubmitButton text={submitConfig.text} isSubmitting={form.formState.isSubmitting} />
-      </form>
-      {isModalOpen && submitConfig.modal}
-    </div>
+    <>
+      <BackIconButton onclick={() => setStep(step - 1)} />
+      <div className='flex w-full !max-w-[500px] flex-col items-center'>
+        <FormHeader title='기타 정보' />
+        <form className='w-full' onSubmit={form.handleSubmit((data) => handleClick(data))}>
+          <FormFields />
+          <FormSubmitButton text={submitConfig.text} isSubmitting={form.formState.isSubmitting} />
+        </form>
+        {isModalOpen && submitConfig.modal}
+      </div>
+    </>
   );
 }
 
