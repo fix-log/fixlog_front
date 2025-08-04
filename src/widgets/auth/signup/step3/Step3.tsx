@@ -6,6 +6,7 @@ import FormFields from '@/widgets/auth/signup/step3/FormFields';
 import { Dispatch, SetStateAction } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { SetStateType } from '../Types';
+import ScrollToPosition from '@/shared/lib/ScrollToPosition';
 
 interface Step3Props {
   maxStep: number;
@@ -18,6 +19,7 @@ export default function Step3({ maxStep, step, setStep, setData }: Step3Props) {
   const form = useFormContext();
 
   function handleClick(data: object) {
+    ScrollToPosition();
     setStep(step + 1);
     setData((val) => ({ ...val, ...data }));
   }

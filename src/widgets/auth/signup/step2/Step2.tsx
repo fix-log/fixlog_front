@@ -6,6 +6,7 @@ import { useFormContext } from 'react-hook-form';
 import FormFields from '@/widgets/auth/signup/step2/FormFields';
 import { Dispatch, SetStateAction } from 'react';
 import { SetStateType } from '../Types';
+import ScrollToPosition from '@/shared/lib/ScrollToPosition';
 
 interface Step2Props {
   maxStep: number;
@@ -19,6 +20,7 @@ export default function Step2({ maxStep, step, setStep, setData, disabled }: Ste
   const form = useFormContext();
 
   function handleClick(data: object) {
+    ScrollToPosition();
     setStep(step + 1);
     setData((val) => ({ ...val, ...data }));
   }
@@ -28,7 +30,10 @@ export default function Step2({ maxStep, step, setStep, setData, disabled }: Ste
       <FormHeader title='기본 정보' />
       <form className='w-full' onSubmit={form.handleSubmit((data) => handleClick(data))}>
         <FormFields disabled={disabled} />
-        <FormSubmitButton text={`다음 (${step}/${maxStep})`} isSubmitting={form.formState.isSubmitting} />
+        <FormSubmitButton
+          text={`다음 (${step}/${maxStep})`}
+          isSubmitting={form.formState.isSubmitting}
+        />
       </form>
     </div>
   );

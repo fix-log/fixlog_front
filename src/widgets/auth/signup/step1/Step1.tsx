@@ -8,6 +8,7 @@ import Agreement from '@/widgets/auth/signup/step1/Agreement';
 import FormFields from '@/widgets/auth/signup/step1/FormFields';
 import { Dispatch, SetStateAction } from 'react';
 import { SetStateType } from '../Types';
+import ScrollToPosition from '@/shared/lib/ScrollToPosition';
 
 interface Step1Props {
   setStep: Dispatch<SetStateAction<number>>;
@@ -28,25 +29,23 @@ export default function Step1({ setStep, setData }: Step1Props) {
   }
 
   function handleClick(data: object) {
+    ScrollToPosition();
     setStep(2);
     setData((val) => ({ ...val, ...data }));
     router.push('/login/signup');
   }
 
   return (
-    <div className="flex w-full max-w-[500px] flex-col items-center">
-      <FormHeader title="회원가입" />
-      <form
-        className="w-full"
-        onSubmit={form.handleSubmit((data) => handleClick(data), onError)}
-      >
+    <div className='flex w-full max-w-[500px] flex-col items-center'>
+      <FormHeader title='회원가입' />
+      <form className='w-full' onSubmit={form.handleSubmit((data) => handleClick(data), onError)}>
         <FormFields />
-        <hr className="border-gray5 !my-10 w-full" />
+        <hr className='border-gray5 !my-10 w-full' />
         <Agreement />
         <FormSubmitButton
-          text="다음 (1/4)"
+          text='다음 (1/4)'
           isSubmitting={form.formState.isSubmitting}
-          className=""
+          className=''
         />
       </form>
     </div>
