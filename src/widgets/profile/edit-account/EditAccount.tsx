@@ -1,6 +1,6 @@
 'use client';
 
-import { FormValues, schema } from '@/features/user/model/AccountEditSchema';
+import { FormValues, schema } from '@/features/profile/model/AccountEditSchema';
 import FormHeader from '@/shared/form/ui/FormHeader';
 import FormInputString from '@/shared/form/ui/FormInputString';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';

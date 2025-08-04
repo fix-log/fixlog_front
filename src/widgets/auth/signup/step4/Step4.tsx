@@ -8,7 +8,7 @@ import { useFormContext } from 'react-hook-form';
 import { SetStateType, StateType } from '../Types';
 import { submitSignup } from '@/features/auth/signup/model/submitSignup';
 import SignupModal from './SignupModal';
-import EditProfileModal from '@/features/profile/model/EditProfileModal';
+import EditProfileModal from '@/features/profile/EditProfileModal';
 
 interface Step1Props {
   step: 3 | 4; // 3: 프로필 수정, 4: 회원가입

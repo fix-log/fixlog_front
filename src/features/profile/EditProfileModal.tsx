@@ -12,8 +12,8 @@ interface EditProfileModalProps {
 }
 
 export default function EditProfileModal({ setStep, setIsModalOpen }: EditProfileModalProps) {
-  const userId = isLoginedStore(s => s.userId);
-  const router = useRouter()
+  const userId = isLoginedStore((s) => s.userId);
+  const router = useRouter();
 
   return (
     <Modal className='flex px-[75px] py-[70px]' setIsOpen={setIsModalOpen}>
@@ -30,7 +30,7 @@ export default function EditProfileModal({ setStep, setIsModalOpen }: EditProfil
         className='bg-mainRed w-full cursor-pointer rounded-[5px] py-[10px] text-white'
         type='button'
         onClick={() => {
-          router.push(`/user/${userId}`);
+          router.push(`/profile/${userId}`);
           setStep(1);
         }}
       >
