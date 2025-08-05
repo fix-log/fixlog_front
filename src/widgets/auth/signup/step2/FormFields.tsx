@@ -5,6 +5,7 @@ import FormProfileImg from '@/shared/form/ui/FormProfileImg';
 import FormInputString from '@/shared/form/ui/FormInputString';
 import FormRadioSelect from '@/shared/form/ui/FormRadioSelect';
 import { useState } from 'react';
+import { useFormContext } from 'react-hook-form';
 
 interface FormFieldsProps {
   disabled?: boolean;
@@ -15,6 +16,9 @@ interface FormFieldsProps {
 export default function FormFields({ disabled }: FormFieldsProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState<string | undefined>(undefined);
   // 드롭다운 오픈 여부 + 오픈된 드롭다운이 무엇인지 판단하기 위함이기도 함
+
+  const {getValues} = useFormContext()
+  const careerDisplayValue = disabled ? getValues('career') : '경력을 선택해주세요'
 
   return (
     <>
@@ -52,7 +56,7 @@ export default function FormFields({ disabled }: FormFieldsProps) {
       <FormDropdownButton
         type='single'
         label='경력'
-        placeholder='경력을 선택해주세요'
+        placeholder={careerDisplayValue}
         id='career'
         open={isDropdownOpen}
         setOpen={setIsDropdownOpen}

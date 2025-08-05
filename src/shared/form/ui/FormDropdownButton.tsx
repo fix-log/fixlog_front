@@ -48,11 +48,11 @@ export default function FormDropdownButton<T extends FieldValues>({
     ),
   };
   const {
-    getValues,
+    watch,
     setValue,
     formState: { errors },
   } = useFormContext<T>();
-  const selectedItem = getValues(id as Path<T>);
+  const selectedItem = watch(id as Path<T>);
 
   function handleClick() {
     setOpen(open === label ? undefined : label);
