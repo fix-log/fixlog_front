@@ -10,6 +10,7 @@ import { submitSignup } from '@/features/auth/signup/model/submitSignup';
 import SignupModal from './SignupModal';
 import EditProfileModal from '@/features/profile/EditProfileModal';
 import BackIconButton from '@/shared/ui/BackIconButton';
+import LeaveConfirmModal from '@/features/profile/LeaveConfirmModal';
 
 interface Step1Props {
   step: 3 | 4; // 3: 프로필 수정, 4: 회원가입
@@ -19,7 +20,8 @@ interface Step1Props {
 }
 
 export default function Step1({ step, setStep, data, setData }: Step1Props) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false); // 완료 모달
+  const [isLeaveConfirmModalOpen, setIsLeaveConfirmModalOpen] = useState(false); // 이탈 모달
   const form = useFormContext();
 
   useEffect(() => {
@@ -37,13 +39,13 @@ export default function Step1({ step, setStep, data, setData }: Step1Props) {
       ? {
           text: '회원가입하기',
           api: '',
-          modal: <SignupModal setStep={setStep} setIsModalOpen={setIsModalOpen} />,
+          modal: <SignupModal setStep={setStep} setIsModalOpen={setIsCompleteModalOpen} />,
         }
       : // 프로필 수정일 때
         {
           text: '프로필 수정하기',
           api: '',
-          modal: <EditProfileModal setStep={setStep} setIsModalOpen={setIsModalOpen} />,
+          modal: <EditProfileModal setStep={setStep} setIsModalOpen={setIsCompleteModalOpen} />,
         };
 
   const handleClick = async (data: object) => {
@@ -52,22 +54,35 @@ export default function Step1({ step, setStep, data, setData }: Step1Props) {
     try {
       const isSuccess = await submitSignup<typeof mergedData>(mergedData);
       console.log(isSuccess);
-      setIsModalOpen(true);
+      setIsCompleteModalOpen(true);
     } catch (err) {
       console.log(err, '실패');
     }
   };
 
+  function handleBack() {
+    if (form.formState.isDirty && step === 3) {
+      // 프로필 수정일 때만
+      setIsLeaveConfirmModalOpen(true);
+      return;
+    }
+    setStep(step - 1);
+  }
+
   return (
     <>
-      <BackIconButton onclick={() => setStep(step - 1)} />
+      <BackIconButton
+        onclick={() => handleBack()}
+        className={step === 4 ? 'absolute top-30 left-6' : ''}
+      />
       <div className='flex w-full !max-w-[500px] flex-col items-center'>
         <FormHeader title='기타 정보' />
         <form className='w-full' onSubmit={form.handleSubmit((data) => handleClick(data))}>
           <FormFields />
           <FormSubmitButton text={submitConfig.text} isSubmitting={form.formState.isSubmitting} />
         </form>
-        {isModalOpen && submitConfig.modal}
+        {isCompleteModalOpen && submitConfig.modal}
+        {isLeaveConfirmModalOpen && <LeaveConfirmModal setOpen={setIsLeaveConfirmModalOpen} />}
       </div>
     </>
   );

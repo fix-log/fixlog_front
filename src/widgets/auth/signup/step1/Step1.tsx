@@ -38,20 +38,20 @@ export default function Step1({ setStep, setData }: Step1Props) {
 
   return (
     <>
-      <BackIconButton />
+      <BackIconButton className='absolute top-30 left-6' />
       <div className='flex w-full max-w-[500px] flex-col items-center'>
         <FormHeader title='회원가입' />
         <form className='w-full' onSubmit={form.handleSubmit((data) => handleClick(data), onError)}>
           <FormFields />
           <hr className='border-gray5 !my-10 w-full' />
-        <Agreement />
-        <FormSubmitButton
-          text='다음 (1/4)'
-          isSubmitting={form.formState.isSubmitting}
-          className=''
-        />
-      </form>
-    </div>
+          <Agreement />
+          <FormSubmitButton
+            text='다음 (1/4)'
+            isSubmitting={form.formState.isSubmitting}
+            className=''
+          />
+        </form>
+      </div>
     </>
   );
 }

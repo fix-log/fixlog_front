@@ -4,10 +4,12 @@ import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
 import { useFormContext } from 'react-hook-form';
 import FormFields from '@/widgets/auth/signup/step2/FormFields';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { SetStateType } from '../Types';
 import ScrollToPosition from '@/shared/lib/ScrollToPosition';
 import BackIconButton from '@/shared/ui/BackIconButton';
+import LeaveConfirmModal from '@/features/profile/LeaveConfirmModal';
+import { useRouter } from 'next/navigation';
 
 interface Step2Props {
   maxStep: number;
@@ -18,6 +20,8 @@ interface Step2Props {
 }
 
 export default function Step2({ maxStep, step, setStep, setData, disabled }: Step2Props) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
   const form = useFormContext();
 
   useEffect(() => {
@@ -39,10 +43,20 @@ export default function Step2({ maxStep, step, setStep, setData, disabled }: Ste
     setData((val) => ({ ...val, ...data }));
   }
 
+  function handleBack() {
+    if (form.formState.isDirty) {
+      setIsModalOpen(true);
+    } else router.back();
+  }
+
   return (
     <>
-    {/* 회원가입일 땐 이전스텝, 프로필 수정일 땐 프로필페이지 */}
-      {maxStep === 4 ? <BackIconButton onclick={() => setStep(step - 1)} /> : <BackIconButton />}
+      {/* maxStep 4 = 회원가입, 3 = 프로필수정 */}
+      {maxStep === 4 ? (
+        <BackIconButton onclick={() => setStep(step - 1)} className='absolute top-30 left-6' />
+      ) : (
+        <BackIconButton onclick={() => handleBack()} />
+      )}
       <div className='flex w-full !max-w-[500px] flex-col items-center'>
         <FormHeader title='기본 정보' />
         <form className='w-full' onSubmit={form.handleSubmit((data) => handleClick(data))}>
@@ -52,6 +66,7 @@ export default function Step2({ maxStep, step, setStep, setData, disabled }: Ste
             isSubmitting={form.formState.isSubmitting}
           />
         </form>
+        {isModalOpen && <LeaveConfirmModal setOpen={setIsModalOpen} />}
       </div>
     </>
   );

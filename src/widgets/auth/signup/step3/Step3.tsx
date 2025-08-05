@@ -3,11 +3,12 @@
 import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
 import FormFields from '@/widgets/auth/signup/step3/FormFields';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { SetStateType } from '../Types';
 import ScrollToPosition from '@/shared/lib/ScrollToPosition';
 import BackIconButton from '@/shared/ui/BackIconButton';
+import LeaveConfirmModal from '@/features/profile/LeaveConfirmModal';
 
 interface Step3Props {
   maxStep: number;
@@ -17,6 +18,7 @@ interface Step3Props {
 }
 
 export default function Step3({ maxStep, step, setStep, setData }: Step3Props) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const form = useFormContext();
 
   useEffect(() => {
@@ -35,9 +37,17 @@ export default function Step3({ maxStep, step, setStep, setData }: Step3Props) {
     setData((val) => ({ ...val, ...data }));
   }
 
+  function handleBack() {
+    if (form.formState.isDirty && maxStep === 3) { // 프로필 수정일 때만
+      setIsModalOpen(true);
+      return
+    }
+    setStep(step - 1);
+  }
+
   return (
     <>
-      <BackIconButton onclick={() => setStep(step - 1)} />
+      <BackIconButton onclick={() => handleBack()} className={maxStep === 4 ? 'absolute top-30 left-6' : ''} />
       <div className='flex w-full !max-w-[500px] flex-col items-center'>
         <FormHeader title='기술 역량' />
         <form className='w-full' onSubmit={form.handleSubmit((data) => handleClick(data))}>
@@ -47,6 +57,7 @@ export default function Step3({ maxStep, step, setStep, setData }: Step3Props) {
           isSubmitting={form.formState.isSubmitting}
         />
       </form>
+      {isModalOpen && <LeaveConfirmModal setOpen={setIsModalOpen} />}
     </div>
     </>
   );
