@@ -9,7 +9,7 @@ export const step4Schema = z.object({
   url: z.preprocess(
     (val) => (val === '' ? undefined : val),
     z.string().url('올바른 URL 형식이 아닙니다').optional(),
-  ) as ZodType<string | undefined>,
+  ) as ZodType<string | undefined, any, any>,
 });
 
 export type FormValues = z.infer<typeof step4Schema>;
