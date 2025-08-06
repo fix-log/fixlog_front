@@ -4,12 +4,13 @@ import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
 import { useFormContext } from 'react-hook-form';
 import FormFields from '@/widgets/auth/signup/step2/FormFields';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { SetStateType } from '../Types';
 import ScrollToPosition from '@/shared/lib/ScrollToPosition';
 import BackIconButton from '@/shared/ui/BackIconButton';
 import LeaveConfirmModal from '@/features/profile/LeaveConfirmModal';
 import { useRouter } from 'next/navigation';
+import preventLeave from '@/shared/form/model/PreventLeave';
 
 interface Step2Props {
   maxStep: number;
@@ -21,21 +22,11 @@ interface Step2Props {
 
 export default function Step2({ maxStep, step, setStep, setData, disabled }: Step2Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const router = useRouter();
   const form = useFormContext();
+  const router = useRouter();
 
-  useEffect(() => {
-    if (maxStep === 4) return; // 회원가입 상태에서는 사용하지 않음
-    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (form.formState.isDirty) {
-        e.preventDefault();
-        e.returnValue = ''; // 일부 브라우저 호환성 문제
-      }
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, [form.formState.isDirty]);
+  const enabled = maxStep === 3 ? form.formState.isDirty : false; // 프로필 수정 페이지면서 정보 수정한 상태일 때
+  preventLeave({ enabled, isModalOpen, setIsModalOpen });
 
   function handleClick(data: object) {
     ScrollToPosition();
