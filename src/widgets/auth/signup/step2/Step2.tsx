@@ -8,7 +8,6 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { SetStateType } from '../Types';
 import ScrollToPosition from '@/shared/lib/ScrollToPosition';
 import BackIconButton from '@/shared/ui/BackIconButton';
-import LeaveConfirmModal from '@/features/profile/LeaveConfirmModal';
 import { useRouter } from 'next/navigation';
 import preventLeave from '@/shared/form/model/PreventLeave';
 
@@ -26,7 +25,7 @@ export default function Step2({ maxStep, step, setStep, setData, disabled }: Ste
   const router = useRouter();
 
   const enabled = maxStep === 3 ? form.formState.isDirty : false; // 프로필 수정 페이지면서 정보 수정한 상태일 때
-  preventLeave({ enabled, isModalOpen, setIsModalOpen });
+  const leaveGuard = preventLeave({ enabled, isModalOpen, setIsModalOpen });
 
   function handleClick(data: object) {
     ScrollToPosition();
@@ -57,7 +56,7 @@ export default function Step2({ maxStep, step, setStep, setData, disabled }: Ste
             isSubmitting={form.formState.isSubmitting}
           />
         </form>
-        {isModalOpen && <LeaveConfirmModal setOpen={setIsModalOpen} />}
+        {isModalOpen && leaveGuard}
       </div>
     </>
   );

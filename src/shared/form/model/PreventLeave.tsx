@@ -1,20 +1,27 @@
 'use client';
 
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import LeaveConfirmModal from '@/features/profile/LeaveConfirmModal';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 interface PreventLeaveProps {
   enabled: boolean;
   isModalOpen: boolean;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
+  customBack?: () => void;
 }
 
-export default function preventLeave({
-  enabled,
-  isModalOpen,
-  setIsModalOpen,
-}: PreventLeaveProps) {
+export default function preventLeave({ enabled, isModalOpen, setIsModalOpen, customBack }: PreventLeaveProps) {
   console.log('함수 실행됨', enabled);
   const [initialUrl, setInitialUrl] = useState('');
+
+  const handleLeave = () => {
+    customBack || history.back();
+  };
+
+  const handleStay = () => {
+    history.pushState(null, '', location.href);
+    setIsModalOpen(false);
+  };
 
   // 뒤로가기 감지
   useEffect(() => {
@@ -28,15 +35,10 @@ export default function preventLeave({
       }
       return;
     }
-    
+
     const handlePopState = (e: PopStateEvent) => {
       console.log('뒤로가기 감지됨. 그래서 모달 열림');
       setIsModalOpen(true);
-      // if (enabled) {
-      //   console.log('정보 수정사항 없는 상태. 그래서 경로 저장함');
-      //   history.pushState(null, '', location.href);
-      //   setInitialUrl(location.href);
-      // }
     };
 
     if (!initialUrl) {
@@ -63,5 +65,7 @@ export default function preventLeave({
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
   }, [enabled]);
-  return;
+
+  if (!enabled) return false;
+  return <LeaveConfirmModal onLeave={handleLeave} onStay={handleStay} />;
 }

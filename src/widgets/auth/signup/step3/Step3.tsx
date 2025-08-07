@@ -9,6 +9,7 @@ import { SetStateType } from '../Types';
 import ScrollToPosition from '@/shared/lib/ScrollToPosition';
 import BackIconButton from '@/shared/ui/BackIconButton';
 import LeaveConfirmModal from '@/features/profile/LeaveConfirmModal';
+import preventLeave from '@/shared/form/model/PreventLeave';
 
 interface Step3Props {
   maxStep: number;
@@ -20,7 +21,7 @@ interface Step3Props {
 export default function Step3({ maxStep, step, setStep, setData }: Step3Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const form = useFormContext();
-
+  
   useEffect(() => {
     if (maxStep === 4) return; // 회원가입 상태에서는 사용하지 않음
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
@@ -57,7 +58,7 @@ export default function Step3({ maxStep, step, setStep, setData }: Step3Props) {
           isSubmitting={form.formState.isSubmitting}
         />
       </form>
-      {isModalOpen && <LeaveConfirmModal setOpen={setIsModalOpen} />}
+      {isModalOpen && leaveGuard}
     </div>
     </>
   );

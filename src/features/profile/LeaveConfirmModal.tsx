@@ -2,18 +2,16 @@
 
 import { colorChangeAnimation } from '@/shared/ui/Animation';
 import Modal from '@/shared/ui/Modal';
-import { useRouter } from 'next/navigation';
-import { Dispatch, SetStateAction } from 'react';
 
 interface LeaveConfirmModalProps {
-  setOpen: Dispatch<SetStateAction<boolean>>;
+  onLeave: () => void;
+  onStay: () => void;
 }
 
-export default function LeaveConfirmModal({ setOpen }: LeaveConfirmModalProps) {
-  const router = useRouter();
+export default function LeaveConfirmModal({ onLeave, onStay }: LeaveConfirmModalProps) {
 
   return (
-    <Modal className='flex px-[75px] py-[70px]' setIsOpen={setOpen}>
+    <Modal className='flex px-[75px] py-[70px]'>
       <h1 className='text-[35px] font-extrabold'>저장하지 않은</h1>
       <h1 className='text-[34px] font-extrabold'>변경사항이 있습니다</h1>
       <div className='text-gray3 text-h5 flex flex-col items-center pt-[14px] pb-[42px]'>
@@ -27,8 +25,7 @@ export default function LeaveConfirmModal({ setOpen }: LeaveConfirmModalProps) {
           }
           type='button'
           onClick={() => {
-            router.back();
-            setOpen(false);
+            onLeave();
           }}
         >
           나가기
@@ -40,7 +37,7 @@ export default function LeaveConfirmModal({ setOpen }: LeaveConfirmModalProps) {
           }
           type='button'
           onClick={() => {
-            setOpen(false);
+            onStay();
           }}
         >
           머무르기
