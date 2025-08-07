@@ -24,9 +24,6 @@ export default function Step2({ maxStep, step, setStep, setData, disabled }: Ste
   const form = useFormContext();
   const router = useRouter();
 
-  const enabled = maxStep === 3 ? form.formState.isDirty : false; // 프로필 수정 페이지면서 정보 수정한 상태일 때
-  const leaveGuard = preventLeave({ enabled, isModalOpen, setIsModalOpen });
-
   function handleClick(data: object) {
     ScrollToPosition();
     setStep(step + 1);
@@ -34,9 +31,7 @@ export default function Step2({ maxStep, step, setStep, setData, disabled }: Ste
   }
 
   function handleBack() {
-    if (form.formState.isDirty) {
-      setIsModalOpen(true);
-    } else router.back();
+    history.back();
   }
 
   return (
@@ -56,7 +51,6 @@ export default function Step2({ maxStep, step, setStep, setData, disabled }: Ste
             isSubmitting={form.formState.isSubmitting}
           />
         </form>
-        {isModalOpen && leaveGuard}
       </div>
     </>
   );

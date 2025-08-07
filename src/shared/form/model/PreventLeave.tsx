@@ -15,7 +15,7 @@ export default function preventLeave({ enabled, isModalOpen, setIsModalOpen, cus
   const [initialUrl, setInitialUrl] = useState('');
 
   const handleLeave = () => {
-    customBack || history.back();
+    customBack ? customBack() : history.back();
   };
 
   const handleStay = () => {

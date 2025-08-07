@@ -11,6 +11,8 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { dataType } from './Types';
 import z from 'zod';
+import preventLeave from '@/shared/form/model/PreventLeave';
+import { allSchema, profileAllSchema, Schema } from '@/features/profile/model/ProfileEditSchema';
 
 export default function EditProfile() {
   // 더미
@@ -58,6 +60,7 @@ export default function EditProfile() {
     ref_link: response.ref_link,
   };
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [EditData, setEditData] = useState({});
   const [step, setStep] = useState(1);
   const maxStep = 3;
@@ -94,5 +97,16 @@ export default function EditProfile() {
     },
   } as const;
 
-  return <FormProvider {...formData[step].schema}>{formData[step].element}</FormProvider>;
+  const allSchema = useForm<z.infer<typeof profileAllSchema>>({
+    resolver: zodResolver(profileAllSchema),
+  });
+  const enabled = allSchema.formState.isDirty;
+  const leaveGuard = preventLeave({ enabled, isModalOpen, setIsModalOpen });
+
+  return (
+    <FormProvider {...formData[step].schema}>
+      {formData[step].element}
+      {isModalOpen && leaveGuard}
+    </FormProvider>
+  );
 }

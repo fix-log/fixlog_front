@@ -11,6 +11,7 @@ import SignupModal from './SignupModal';
 import EditProfileModal from '@/features/profile/EditProfileModal';
 import BackIconButton from '@/shared/ui/BackIconButton';
 import LeaveConfirmModal from '@/features/profile/LeaveConfirmModal';
+import preventLeave from '@/shared/form/model/PreventLeave';
 
 interface Step1Props {
   step: 3 | 4; // 3: 프로필 수정, 4: 회원가입
@@ -21,18 +22,7 @@ interface Step1Props {
 
 export default function Step1({ step, setStep, data, setData }: Step1Props) {
   const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false); // 완료 모달
-  const [isLeaveConfirmModalOpen, setIsLeaveConfirmModalOpen] = useState(false); // 이탈 모달
   const form = useFormContext();
-
-  useEffect(() => {
-    if (step === 4) return; // 회원가입 상태에서는 사용하지 않음
-    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (form.formState.isDirty) e.preventDefault();
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, [form.formState.isDirty]);
 
   const submitConfig =
     step === 4 // 회원가입일 때
@@ -61,11 +51,6 @@ export default function Step1({ step, setStep, data, setData }: Step1Props) {
   };
 
   function handleBack() {
-    if (form.formState.isDirty && step === 3) {
-      // 프로필 수정일 때만
-      setIsLeaveConfirmModalOpen(true);
-      return;
-    }
     setStep(step - 1);
   }
 
@@ -82,7 +67,6 @@ export default function Step1({ step, setStep, data, setData }: Step1Props) {
           <FormSubmitButton text={submitConfig.text} isSubmitting={form.formState.isSubmitting} />
         </form>
         {isCompleteModalOpen && submitConfig.modal}
-        {isLeaveConfirmModalOpen && <LeaveConfirmModal setOpen={setIsLeaveConfirmModalOpen} />}
       </div>
     </>
   );
