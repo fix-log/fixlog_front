@@ -12,8 +12,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { dataType } from './Types';
 import z from 'zod';
 import preventLeave from '@/shared/form/model/PreventLeave';
-import { allSchema, profileAllSchema, Schema } from '@/features/profile/model/ProfileEditSchema';
-
 export default function EditProfile() {
   // 더미
   const response = {
@@ -97,10 +95,9 @@ export default function EditProfile() {
     },
   } as const;
 
-  const allSchema = useForm<z.infer<typeof profileAllSchema>>({
-    resolver: zodResolver(profileAllSchema),
-  });
-  const enabled = allSchema.formState.isDirty;
+  // 프로필수정 페이지 뒤로가기 이탈 감지
+  const formSteps = [formData[1].schema, formData[2].schema, formData[3].schema];
+  const enabled = formSteps.some((item) => item.formState.isDirty);
   const leaveGuard = preventLeave({ enabled, isModalOpen, setIsModalOpen });
 
   return (
