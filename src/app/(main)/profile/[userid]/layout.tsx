@@ -2,14 +2,16 @@ import { userValueType } from '@/entities/userInfo/Types';
 import UserHydration from '@/entities/userInfo/UserHydration';
 import UserInfo from '@/widgets/userInfo/UserInfo';
 import { cookies } from 'next/headers';
+import { ReactNode } from 'react';
 
 interface ProfilePageProps {
   params: Promise<{ userid: string }>;
+  children: ReactNode;
 }
 
-export default async function ProfilePage(props: ProfilePageProps) {
-  const params = await props.params;
-  const viewUserId = Number(params.userid);
+export default async function ProfilePage({ params, children }: ProfilePageProps) {
+  const userParams = await params;
+  const viewUserId = Number(userParams.userid);
   const cookie = await cookies();
   const userId = cookie.get('userId')?.value;
   const isMe = viewUserId === Number(userId);
@@ -41,7 +43,7 @@ export default async function ProfilePage(props: ProfilePageProps) {
   return (
     <div className='border-gray4 mt-[47px] mb-[62px] h-[1053px] w-[865px] overflow-hidden rounded-[5px] border'>
       <UserHydration userData={response} />
-      <UserInfo />
+      <UserInfo children={children} />
     </div>
   );
 }
