@@ -3,11 +3,11 @@ import UserHydration from '@/entities/userInfo/UserHydration';
 import UserInfo from '@/widgets/userInfo/UserInfo';
 import { cookies } from 'next/headers';
 
-interface UserInfoPageProps {
+interface ProfilePageProps {
   params: Promise<{ userid: string }>;
 }
 
-export default async function UserInfoPage(props: UserInfoPageProps) {
+export default async function ProfilePage(props: ProfilePageProps) {
   const params = await props.params;
   const viewUserId = Number(params.userid);
   const cookie = await cookies();
