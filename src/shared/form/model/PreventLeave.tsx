@@ -4,14 +4,13 @@ import LeaveConfirmModal from '@/features/profile/LeaveConfirmModal';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 interface PreventLeaveProps {
-  enabled: boolean;
+  enabled: boolean; // 폼 수정 감지 상태
   isModalOpen: boolean;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
-  customBack?: () => void;
+  customBack?: () => void; // 모달의 '나가기' 버튼 커스텀함수
 }
 
 export default function preventLeave({ enabled, isModalOpen, setIsModalOpen, customBack }: PreventLeaveProps) {
-  console.log('함수 실행됨', enabled);
   const [initialUrl, setInitialUrl] = useState('');
 
   const handleLeave = () => {
@@ -25,11 +24,8 @@ export default function preventLeave({ enabled, isModalOpen, setIsModalOpen, cus
 
   // 뒤로가기 감지
   useEffect(() => {
-    console.log('뒤로가기 useeffect');
     if (!enabled && !isModalOpen) {
-      console.log('정보 수정사항 없음');
       if (initialUrl) {
-        console.log('경로가 저장되어 있음. 그래서 복사된 페이지 제거됨');
         history.back();
         setInitialUrl('');
       }
@@ -37,12 +33,10 @@ export default function preventLeave({ enabled, isModalOpen, setIsModalOpen, cus
     }
 
     const handlePopState = (e: PopStateEvent) => {
-      console.log('뒤로가기 감지됨. 그래서 모달 열림');
       setIsModalOpen(true);
     };
 
     if (!initialUrl) {
-      console.log('저장된 경로가 없음. 그래서 저장함');
       history.pushState(null, '', location.href);
       setInitialUrl(location.href);
     }

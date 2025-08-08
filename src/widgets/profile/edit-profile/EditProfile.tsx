@@ -12,6 +12,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { dataType } from './Types';
 import z from 'zod';
 import preventLeave from '@/shared/form/model/PreventLeave';
+
 export default function EditProfile() {
   // 더미
   const response = {
