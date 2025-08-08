@@ -46,7 +46,7 @@ export default function CategoryTabs({ children }: CategoryTabsProps) {
           </button>
         ))}
       </div>
-      <div className='bg-gray6 h-screen p-[25px]'>{children}</div>
+      <div className='bg-gray6 h-screen p-[5px]'>{children}</div>
     </div>
   );
 }

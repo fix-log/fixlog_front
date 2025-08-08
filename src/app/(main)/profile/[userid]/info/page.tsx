@@ -40,7 +40,7 @@ export default function ProfileInfoPage() {
     },
   ];  
   return userInfoList.map((item) => (
-    <div className='bg-mainWhite text-mainRed flex items-center py-[30px] pl-[104px] font-semibold my-[19px]'>
+    <div key={Date.now()} className='bg-mainWhite text-mainRed flex items-center py-[30px] pl-[104px] font-semibold my-[19px]'>
       <div className='flex w-full max-w-[280px] items-center'>
         {item.icon}
         <p className='pl-[28px]'>{item.label}</p>
