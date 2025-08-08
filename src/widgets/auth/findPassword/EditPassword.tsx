@@ -32,6 +32,8 @@ export default function FindEmail() {
 
   const fromHandleSubmit = async (data: object) => {
     try {
+      // TODO: 선언 후 사용하지 않아서, 빌드 에러 때문에 일단 콘솔에 한번 찍어 놓을게요! (기태)
+      console.log(data);
       // const respones = await editPassword(data)
       setIsModalOpen(true);
     } catch (err) {

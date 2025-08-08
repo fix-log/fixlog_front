@@ -21,7 +21,8 @@ export default function FormDateRange<T extends FieldValues>({
 }: FormDateRangeProps<T>) {
   const {
     register,
-    watch,
+    // TODO: 선언 후 사용하지 않아서, 빌드 에러 때문에 일단 주석처리 할게요! (기태)
+    // watch,
     formState: { errors },
   } = useFormContext<T>();
 
@@ -41,13 +42,13 @@ export default function FormDateRange<T extends FieldValues>({
         <input
           type='date'
           {...register(startId)}
-          className={`h-[60px] w-full rounded-[5px] border border-gray4 px-[17px] text-[20px] focus:outline-none ${startFocusClass}`}
+          className={`border-gray4 h-[60px] w-full rounded-[5px] border px-[17px] text-[20px] focus:outline-none ${startFocusClass}`}
         />
-        <span className='text-lg text-gray3'>~</span>
+        <span className='text-gray3 text-lg'>~</span>
         <input
           type='date'
           {...register(endId)}
-          className={`h-[60px] w-full rounded-[5px] border border-gray4 px-[17px] text-[20px] focus:outline-none ${endFocusClass}`}
+          className={`border-gray4 h-[60px] w-full rounded-[5px] border px-[17px] text-[20px] focus:outline-none ${endFocusClass}`}
         />
       </div>
       {(startError || endError) && (

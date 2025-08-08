@@ -1,7 +1,7 @@
 'use client';
 
 import { dummyFeedPosts } from '@/entities/search/dummyFeedPosts';
-import { Heart, MessageCircle, Mail, MoreHorizontal } from 'lucide-react';
+import { Heart, MessageCircle, Mail } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import Link from 'next/link';

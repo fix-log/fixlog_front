@@ -1,10 +1,12 @@
-import { CrewProject } from '@/entities/crew/type';
-import { dummyCrewItems, dummyCrewPosts } from '@/entities/search/dummyCrewPosts';
+// import { CrewProject } from '@/entities/crew/type';
+// import { dummyCrewItems } from '@/entities/search/dummyCrewPosts';
+import { dummyCrewPosts } from '@/entities/search/dummyCrewPosts';
 
-function formatDate(dateStr: string) {
-  const d = new Date(dateStr);
-  return `${d.getFullYear()}.${(d.getMonth() + 1).toString().padStart(2, '0')}.${d.getDate().toString().padStart(2, '0')}`;
-}
+// TODO: 선언 후 사용하지 않아서, 빌드 에러 때문에 일단 주석처리 할게요! (기태)
+// function formatDate(dateStr: string) {
+//   const d = new Date(dateStr);
+//   return `${d.getFullYear()}.${(d.getMonth() + 1).toString().padStart(2, '0')}.${d.getDate().toString().padStart(2, '0')}`;
+// }
 
 const project = dummyCrewPosts;
 
