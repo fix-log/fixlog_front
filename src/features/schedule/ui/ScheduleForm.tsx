@@ -16,6 +16,7 @@ import { useState } from 'react';
 import ColorPalette from './ColorPalette';
 import RepeatModal from './RepeatModal';
 import NotificationModal from './NotificationModal';
+import ScheduleDatePicker from './ScheduleDatePicker';
 
 interface ScheduleFormProps {
   workroomId: string;
@@ -87,15 +88,27 @@ export default function ScheduleForm({ workroomId, selectedDate, schedule }: Sch
         <Clock className='text-gray2 my-[5px]' size={22} />
         {/* 컴포넌트 분리? */}
         <div className='flex grow flex-col justify-between gap-4'>
-          <div className='flex items-center justify-between gap-2'>
-            {/* TODO: datepicker로 */}
-            <input type='date' className='border-gray5 w-20 rounded-[5px] border px-2 py-1' />
+          <div className='relative z-10 flex items-center justify-between gap-2'>
+            {/* TODO: datepicker 꾸미기 */}
+            <ScheduleDatePicker
+              value='시작 날짜'
+              onClick={() => {
+                console.log('시작 날짜');
+              }}
+              // className='bg-gray6 hover:bg-gray5 h-[35px] w-[115px] cursor-pointer rounded-[5px] px-2 py-1 transition-all duration-200 outline-none'
+            />
             <span>~</span>
             {/* TODO: datepicker로 */}
-            <input type='date' className='border-gray5 w-20 rounded-[5px] border px-2 py-1' />
-            <label htmlFor='allDay'>
+            <ScheduleDatePicker
+              value='종료 날짜'
+              onClick={() => {
+                console.log('종료 날짜');
+              }}
+              // className='bg-gray6 hover:bg-gray5 h-[35px] w-[115px] cursor-pointer rounded-[5px] px-2 py-1 transition-all duration-200 outline-none'
+            />
+            <label htmlFor='allDay' className='flex items-center gap-2'>
               <input type='checkbox' id='allDay' />
-              <span>하루 종일</span>
+              <span>종일</span>
             </label>
           </div>
 
