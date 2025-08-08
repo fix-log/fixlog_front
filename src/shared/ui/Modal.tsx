@@ -13,11 +13,17 @@ export default function Modal({ children, className, setIsOpen }: ModalProps) {
   const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
+    const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const header = document.querySelector('#fixed-header');
     setMounted(true);
     document.body.style.overflow = 'hidden';
+    document.body.style.marginRight = `${scrollBarWidth}px`; // 스크롤 제거 후 공백 처리
+    (header as HTMLElement).style.marginRight = `${scrollBarWidth}px`; // 헤더쪽 공백 처리
     return () => {
       setMounted(false);
       document.body.style.overflow = '';
+      document.body.style.marginRight = '';
+      (header as HTMLElement).style.marginRight = '';
     };
   }, []);
 
