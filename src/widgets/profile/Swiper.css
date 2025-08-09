@@ -1,0 +1,22 @@
+.swiper {
+  height: 480px;
+  overflow: hidden !important;
+}
+
+.swiper-slide {
+  width: 380px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* swiper 동그라미 공간 */
+.swiper-pagination {
+  bottom: 1px !important;
+  transform: scale(1.5) !important;
+}
+
+/* swiper 동그라미  */
+.swiper-pagination-bullet {
+  margin: 0 10px !important;
+}
