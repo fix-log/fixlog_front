@@ -18,7 +18,8 @@ export default function FormDate<T extends FieldValues>({
 }: FormDateProps<T>) {
   const {
     register,
-    watch,
+    // TODO: 선언 후 사용하지 않아서, 빌드 에러 때문에 일단 주석처리 할게요! (기태)
+    // watch,
     formState: { errors },
   } = useFormContext<T>();
 

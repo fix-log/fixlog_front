@@ -1,9 +1,5 @@
-'use client';
-
-import { useState } from 'react';
 import CalenderContent from './CalenderContent';
 import CalenderHeader from './CalenderHeader';
-import { startOfMonth } from 'date-fns';
 
 // 구글 캘린더 베끼기
 // TODO: URL에 날짜 파라미터 넣어서 히스토리 처리 가능해야함
@@ -12,22 +8,15 @@ import { startOfMonth } from 'date-fns';
 // TODO: currentDate와 selectedDay 전역 상태로 관리? (zustand)
 
 interface CalenderProps {
-  initialMonth: Date; // 표시할 연월 (해당 월 1일)
-  initialDate?: Date; // 선택된 날짜 (없으면 날짜 선택 안된 상태)
+  workroomId: string;
+  selectedDate: Date;
 }
 
-export default function Calender({ initialMonth, initialDate }: CalenderProps) {
-  const [currentMonth, setCurrentMonth] = useState(startOfMonth(initialMonth));
-  const [selectedDate, setSelectedDate] = useState<Date | null>(initialDate ?? null);
-
+export default async function Calender({ workroomId, selectedDate }: CalenderProps) {
   return (
     <section className='px-3 py-[6px]'>
-      <CalenderHeader currentMonth={currentMonth} setCurrentMonth={setCurrentMonth} />
-      <CalenderContent
-        currentMonth={currentMonth}
-        selectedDate={selectedDate}
-        setSelectedDate={setSelectedDate}
-      />
+      <CalenderHeader workroomId={workroomId} selectedDate={selectedDate} />
+      <CalenderContent workroomId={workroomId} selectedDate={selectedDate} />
     </section>
   );
 }

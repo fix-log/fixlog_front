@@ -10,7 +10,8 @@ interface Props {
 export default function ProjectInfoBox({ project }: Props) {
   const formattedDeadline = format(new Date(project.deadline), 'yyyy.MM.dd');
   const formattedPeriod = `${format(new Date(project.start_date), 'yyyy.MM.dd')} ~ ${format(new Date(project.end_date), 'yyyy.MM.dd')}`;
-  const formattedCreatedAt = format(new Date(project.created_at), 'yyyy.MM.dd');
+  // TODO: 선언 후 사용하지 않아서, 빌드 에러 때문에 일단 주석처리 할게요! (기태)
+  // const formattedCreatedAt = format(new Date(project.created_at), 'yyyy.MM.dd');
 
   const labelClass = 'text-[18px] text-[#AAA] font-semibold leading-[23px] font-[SUIT]';
   const valueClass = 'text-[18px] text-[#202020] font-semibold leading-[23px] font-[SUIT]';

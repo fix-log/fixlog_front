@@ -19,7 +19,8 @@ export default function ChatMessages() {
     dateA > dateB ? 1 : -1,
   );
 
-  const dateList = sortedDates.map(([date]) => date);
+  // TODO: 선언 후 사용하지 않아서, 빌드 에러 때문에 일단 주석처리 할게요! (기태)
+  // const dateList = sortedDates.map(([date]) => date);
 
   return (
     <div className='slim-scrollbar flex flex-1 flex-col gap-2 overflow-y-auto px-8 py-4'>

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Ellipsis } from 'lucide-react';
-import Link from 'next/link';
+import EditDeleteDropdown from '@/widgets/ui/EditDeleteDropdown';
 
 interface MyWorkroomCardOptionButtonProps {
   workroomId: string;
@@ -24,26 +24,19 @@ export default function MyWorkroomCardOptionButton({
         onClick={() => {
           setIsDropdownOpen((prev) => !prev);
         }}
-        className='hover:cursor-pointer'
+        className='cursor-pointer'
       >
         <Ellipsis className='text-gray5 hover:text-gray4 size-7 transition-all duration-200' />
       </button>
 
       {isDropdownOpen && (
-        <div className='border-gray5 absolute top-8 -right-0.5 flex min-w-31 flex-col rounded-[5px] border bg-white'>
-          <Link
-            href={`/workroom/${workroomId}/edit`}
-            className='text-gray2 border-gray5 hover:bg-gray6 border-b px-8 py-5 transition-all'
-          >
-            수정하기
-          </Link>
-          <button
-            onClick={handleDelete}
-            className='text-mainRed hover:bg-gray6 px-8 py-5 transition-all duration-200 hover:cursor-pointer'
-          >
-            삭제하기
-          </button>
-        </div>
+        <EditDeleteDropdown
+          position='top-8 -right-0.5'
+          href={`/workroom/${workroomId}/edit`}
+          handleDelete={handleDelete}
+          isOpen={isDropdownOpen}
+          onClose={() => setIsDropdownOpen(false)}
+        />
       )}
     </div>
   );
