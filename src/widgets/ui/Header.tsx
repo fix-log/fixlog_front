@@ -58,7 +58,9 @@ export default function Header() {
               <Image src='/icon_message.png' alt='메시지' width={20} height={20} />
             </Link>
             <Link href={`/profile/${userId}`}>
+            <button>
               <Image src='/icon_profile.png' alt='프로필' width={56} height={56} />
+            </button>
             </Link>
           </div>
         ) : (

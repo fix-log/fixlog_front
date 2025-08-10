@@ -37,7 +37,8 @@ export default function PositionCountInput() {
     setValue('positions', updated);
   };
 
-  const isDisabled = !selectedPosition || !selectedCount;
+  // TODO: 선언 후 사용하지 않아서, 빌드 에러 때문에 일단 주석처리 할게요! (기태)
+  // const isDisabled = !selectedPosition || !selectedCount;
 
   return (
     <div>

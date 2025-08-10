@@ -1,5 +1,3 @@
-'use client';
-
 import { addDays, eachDayOfInterval, eachWeekOfInterval, endOfMonth, startOfMonth } from 'date-fns';
 import Week from './Week';
 
@@ -7,20 +5,15 @@ import Week from './Week';
 const days = ['일', '월', '화', '수', '목', '금', '토'] as const;
 
 interface CalenderContentProps {
-  currentMonth: Date;
-  selectedDate: Date | null;
-  setSelectedDate: (date: Date | null) => void;
+  selectedDate: Date;
+  workroomId: string;
 }
 
-export default function CalenderContent({
-  currentMonth,
-  selectedDate,
-  setSelectedDate,
-}: CalenderContentProps) {
+export default async function CalenderContent({ selectedDate, workroomId }: CalenderContentProps) {
   // 그 달의 주 별 첫 날 배열
   const firstDaysOfWeeks = eachWeekOfInterval({
-    start: startOfMonth(currentMonth),
-    end: endOfMonth(currentMonth),
+    start: startOfMonth(selectedDate),
+    end: endOfMonth(selectedDate),
   }); // 오브젝트 (배열 아님)
 
   // 주 별 날짜 배열
@@ -31,7 +24,7 @@ export default function CalenderContent({
   // console.log(weeks);
 
   return (
-    <table className='w-full'>
+    <table className='border-gray5 w-full border-b'>
       <thead className='border-gray5 border-b'>
         <tr>
           {days.map((day) => (
@@ -49,7 +42,7 @@ export default function CalenderContent({
             nthWeek={index + 1}
             week={week}
             selectedDate={selectedDate}
-            setSelectedDate={setSelectedDate}
+            workroomId={workroomId}
           />
         ))}
       </tbody>

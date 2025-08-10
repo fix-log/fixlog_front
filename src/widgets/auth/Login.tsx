@@ -23,7 +23,7 @@ export default function Login() {
     // };
 
     setUser(DUMMY_ID);
-    document.cookie = `userId=${DUMMY_ID}; path=/; max-age=3600`;
+    document.cookie = `userStatus=${DUMMY_ID}; path=/; max-age=3600`;
     router.push('/');
     // try {
     //   const respones = loginAPI(loginData);
