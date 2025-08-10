@@ -38,9 +38,12 @@ export default function ProfileInfoPage() {
       label: '참고 링크',
       value: userData.ref_link,
     },
-  ];  
+  ];
   return userInfoList.map((item) => (
-    <div key={Date.now()} className='bg-mainWhite text-mainRed flex items-center py-[30px] pl-[104px] font-semibold my-[19px]'>
+    <div
+      key={item.label}
+      className='bg-mainWhite text-mainRed my-[19px] flex items-center py-[30px] pl-[104px] font-semibold'
+    >
       <div className='flex w-full max-w-[280px] items-center'>
         {item.icon}
         <p className='pl-[28px]'>{item.label}</p>

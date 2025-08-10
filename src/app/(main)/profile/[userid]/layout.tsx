@@ -2,6 +2,7 @@ import { userValueType } from '@/entities/userInfo/Types';
 import UserHydration from '@/entities/userInfo/UserHydration';
 import UserInfo from '@/widgets/userInfo/UserInfo';
 import { cookies } from 'next/headers';
+import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
 
 interface ProfilePageProps {
@@ -16,7 +17,7 @@ export default async function ProfilePage({ params, children }: ProfilePageProps
   const userId = cookie.get('userId')?.value;
   const isMe = viewUserId === Number(userId);
 
-  // 더미
+  // 더미 나중에 api로 변경 (유저정보)
   const response: userValueType = {
     viewUserId: viewUserId,
     isMe: isMe,
@@ -39,6 +40,8 @@ export default async function ProfilePage({ params, children }: ProfilePageProps
     portfolio: '내_포트폴리오_파일.pdf',
     ref_link: 'https://fixlog.com',
   };
+
+  if (!response) notFound(); // api 호출 실패 시 404 페이지
 
   return (
     <div className='border-gray4 mt-[47px] mb-[62px] h-[1053px] w-[865px] overflow-hidden rounded-[5px] border'>
