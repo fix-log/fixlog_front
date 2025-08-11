@@ -10,13 +10,21 @@ interface PreventLeaveProps {
   customBack?: () => void; // 모달의 '나가기' 버튼 커스텀함수
 }
 
-export default function preventLeave({ enabled, isModalOpen, setIsModalOpen, customBack }: PreventLeaveProps) {
+export default function usePreventLeave({
+  enabled,
+  isModalOpen,
+  setIsModalOpen,
+  customBack,
+}: PreventLeaveProps) {
   const [initialUrl, setInitialUrl] = useState('');
 
+  // 이탈 모달 내 '나가기' 버튼 함수
   const handleLeave = () => {
-    customBack ? customBack() : history.back();
+    if (customBack) customBack();
+    else history.back();
   };
 
+  // 이탈 모달 내 '머무르기' 버튼 함수
   const handleStay = () => {
     history.pushState(null, '', location.href);
     setIsModalOpen(false);
@@ -32,7 +40,7 @@ export default function preventLeave({ enabled, isModalOpen, setIsModalOpen, cus
       return;
     }
 
-    const handlePopState = (e: PopStateEvent) => {
+    const handlePopState = () => {
       setIsModalOpen(true);
     };
 
@@ -45,7 +53,7 @@ export default function preventLeave({ enabled, isModalOpen, setIsModalOpen, cus
     return () => {
       window.removeEventListener('popstate', handlePopState);
     };
-  }, [enabled, isModalOpen]);
+  }, [enabled, isModalOpen, initialUrl, setInitialUrl, setIsModalOpen]);
 
   // 새로고침, 탭닫기 감지
   useEffect(() => {

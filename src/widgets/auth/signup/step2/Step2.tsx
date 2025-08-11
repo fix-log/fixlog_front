@@ -4,12 +4,10 @@ import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
 import { useFormContext } from 'react-hook-form';
 import FormFields from '@/widgets/auth/signup/step2/FormFields';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { SetStateType } from '../Types';
 import ScrollToPosition from '@/shared/lib/ScrollToPosition';
 import BackIconButton from '@/shared/ui/BackIconButton';
-import { useRouter } from 'next/navigation';
-import preventLeave from '@/shared/form/model/PreventLeave';
 
 interface Step2Props {
   maxStep: number;
@@ -20,9 +18,7 @@ interface Step2Props {
 }
 
 export default function Step2({ maxStep, step, setStep, setData, disabled }: Step2Props) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const form = useFormContext();
-  const router = useRouter();
 
   function handleClick(data: object) {
     ScrollToPosition();

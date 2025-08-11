@@ -19,6 +19,8 @@ export default function Signup() {
   const [step, setStep] = useState(1);
   const maxStep = 4;
 
+  console.log('임시호출', signupData);
+
   const formData: dataType = {
     1: {
       element: <Step1 setStep={setStep} setData={setSignupData} />,
@@ -26,7 +28,7 @@ export default function Signup() {
       default: null,
     },
     2: {
-      element: <Step2  maxStep={maxStep} step={step} setStep={setStep} setData={setSignupData} />,
+      element: <Step2 maxStep={maxStep} step={step} setStep={setStep} setData={setSignupData} />,
       schema: step2Schema,
       default: { position: [], career: [] },
     },
@@ -36,7 +38,7 @@ export default function Signup() {
       default: { devLanguage: [], stackAndTool: [], designAndCollab: [] },
     },
     4: {
-      element: <Step4 step={maxStep} setStep={setStep} data={signupData} setData={setSignupData} />,
+      element: <Step4 step={maxStep} setStep={setStep} setData={setSignupData} />,
       schema: step4Schema,
       default: {
         devInterestField: [],

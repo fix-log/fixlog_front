@@ -1,11 +1,12 @@
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 interface FormProfileImgProps {
   profileImg?: string;
 }
 
 export default function FormProfileImg({ profileImg }: FormProfileImgProps) {
+  console.log('임시호출', profileImg);
   const [img, setImg] = useState<string | ArrayBuffer | null>('/icon_profile.png');
 
   const saveImgFile = (e: React.ChangeEvent<HTMLInputElement>) => {

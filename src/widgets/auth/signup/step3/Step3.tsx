@@ -3,12 +3,11 @@
 import FormHeader from '@/shared/form/ui/FormHeader';
 import FormSubmitButton from '@/shared/form/ui/FormSubmitButton';
 import FormFields from '@/widgets/auth/signup/step3/FormFields';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { SetStateType } from '../Types';
 import ScrollToPosition from '@/shared/lib/ScrollToPosition';
 import BackIconButton from '@/shared/ui/BackIconButton';
-import preventLeave from '@/shared/form/model/PreventLeave';
 
 interface Step3Props {
   maxStep: number;
@@ -18,7 +17,6 @@ interface Step3Props {
 }
 
 export default function Step3({ maxStep, step, setStep, setData }: Step3Props) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const form = useFormContext();
 
   function handleClick(data: object) {

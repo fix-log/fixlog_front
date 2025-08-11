@@ -1,11 +1,15 @@
 'use clinet';
 
 import { userInfoStore } from '@/entities/profile/UserInfoStore';
+import { followData } from '@/features/user/api/Types';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 interface FollowButtonProps {
-  followUsers: any;
+  followUsers: {
+      follower: followData;
+      following: followData;
+    };
   tap: 'follower' | 'following';
   followingIds: number[];
 }

@@ -1,6 +1,5 @@
 'use client';
 
-import { colorChangeAnimation } from '@/shared/ui/Animation';
 import { useParams } from 'next/navigation';
 import { toast } from 'sonner';
 

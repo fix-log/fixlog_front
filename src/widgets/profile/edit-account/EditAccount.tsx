@@ -16,6 +16,7 @@ export default function EditAccount() {
   });
 
   function handleSubmit(data: FormValues) {
+    console.log('임시호출',data)
     // 계정정보수정 api 연결
     redirect(`/user/${userId}`);
   }

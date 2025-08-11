@@ -7,13 +7,13 @@ import Step2 from '@/widgets/auth/signup/step2/Step2';
 import Step3 from '@/widgets/auth/signup/step3/Step3';
 import Step4 from '@/widgets/auth/signup/step4/Step4';
 import { useState } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FieldValues, FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { dataType } from './Types';
 import z from 'zod';
 import preventLeave from '@/shared/form/model/PreventLeave';
 
-export default function EditProfile() {
+export default function EditProfile<T extends FieldValues = FieldValues>() {
   // 더미
   const response = {
     viewUserId: 99,
@@ -64,7 +64,7 @@ export default function EditProfile() {
   const [step, setStep] = useState(1);
   const maxStep = 3;
 
-  const formData: dataType = {
+  const formData: dataType<T> = {
     1: {
       element: (
         <Step2
@@ -88,7 +88,7 @@ export default function EditProfile() {
       }),
     },
     3: {
-      element: <Step4 step={maxStep} setStep={setStep} data={EditData} setData={setEditData} />,
+      element: <Step4 step={maxStep} setStep={setStep} setData={setEditData} />,
       schema: useForm<z.infer<typeof step4Schema>>({
         resolver: zodResolver(step4Schema),
         defaultValues: { ...interestInfo },
