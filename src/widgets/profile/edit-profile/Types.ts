@@ -3,13 +3,17 @@ import { step3Schema } from '@/features/auth/signup/model/schema/Step3';
 import { step4Schema } from '@/features/auth/signup/model/schema/Step4';
 import { Dispatch, JSX, SetStateAction } from 'react';
 import z from 'zod';
-import { UseFormReturn } from 'react-hook-form';
+import { FieldValues, UseFormReturn } from 'react-hook-form';
+
+type StepConfig<T extends FieldValues> = {
+  element: JSX.Element;
+  schema: UseFormReturn<T, unknown, unknown>;
+};
 
 export interface dataType {
-  [key: number]: {
-    element: JSX.Element;
-    schema: UseFormReturn<any>; // 당장은 any로 설정, 1~3단계에 따라 타입이 달라짐
-  };
+  1: StepConfig<Step2Type>;
+  2: StepConfig<Step3Type>;
+  3: StepConfig<Step4Type>;
 }
 
 export type Step2Type = z.infer<typeof step2Schema>;

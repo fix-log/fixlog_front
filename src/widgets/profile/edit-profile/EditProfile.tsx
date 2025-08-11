@@ -7,13 +7,13 @@ import Step2 from '@/widgets/auth/signup/step2/Step2';
 import Step3 from '@/widgets/auth/signup/step3/Step3';
 import Step4 from '@/widgets/auth/signup/step4/Step4';
 import { useState } from 'react';
-import { FieldValues, FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, useForm, UseFormReturn } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { dataType } from './Types';
+import { dataType, FormDataType } from './Types';
 import z from 'zod';
 import preventLeave from '@/shared/form/model/PreventLeave';
 
-export default function EditProfile<T extends FieldValues = FieldValues>() {
+export default function EditProfile() {
   // 더미
   const response = {
     viewUserId: 99,
@@ -64,7 +64,9 @@ export default function EditProfile<T extends FieldValues = FieldValues>() {
   const [step, setStep] = useState(1);
   const maxStep = 3;
 
-  const formData: dataType<T> = {
+  console.log('임시호출', EditData);
+
+  const formData: dataType = {
     1: {
       element: (
         <Step2
@@ -101,9 +103,26 @@ export default function EditProfile<T extends FieldValues = FieldValues>() {
   const enabled = formSteps.some((item) => item.formState.isDirty);
   const leaveGuard = preventLeave({ enabled, isModalOpen, setIsModalOpen });
 
+  // 눈물의 똥꼬쇼... 타입 호환(number, literal) 때문에 어떻게든 온 몸 비틀어서 연결
+  // step의 number도 포기할 수 없다. formData의 literal도 포기할 수 없다ㅠ
+
+  // step=number, formData[literal] 타입 충돌로 각각 호출
+  function getFormData(): UseFormReturn<FormDataType> {
+    if (step === 1) return formData[step as 1].schema as UseFormReturn<FormDataType>;
+    if (step === 2) return formData[step as 2].schema as UseFormReturn<FormDataType>;
+    else return formData[step as 3].schema as UseFormReturn<FormDataType>;
+  }
+
+  // ''
+  function getElement() {
+    if (step === 1) return formData[step as 1].element;
+    if (step === 2) return formData[step as 2].element;
+    else return formData[step as 3].element;
+  }
+
   return (
-    <FormProvider {...formData[step].schema}>
-      {formData[step].element}
+    <FormProvider {...getFormData()}>
+      {getElement()}
       {isModalOpen && leaveGuard}
     </FormProvider>
   );
