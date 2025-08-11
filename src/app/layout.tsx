@@ -3,6 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import LoginSync from './LoginSync';
+import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
   title: 'fixlog',
@@ -35,6 +36,7 @@ export default async function RootLayout({
   return (
     <html lang='ko' className={suit.className}>
       <body className={suit.className}>
+        <Toaster />
         {userId && <LoginSync id={Number(userId)} />}
         {children}
       </body>
