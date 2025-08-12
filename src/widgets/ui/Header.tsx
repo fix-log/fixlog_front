@@ -14,7 +14,7 @@ const navItems: NavigationItems = [
 ];
 
 export default function Header() {
-  const { isLoggedIn } = isLoginedStore();
+  const { isLoggedIn, userId } = isLoginedStore();
 
   // 로그인 버튼 부분 깜빡임등으로 UX 관련 문제 때문에 추가 (hasHydrated)
   const { hasHydrated, setHasHydrated } = hasHydratedStore();
@@ -27,7 +27,7 @@ export default function Header() {
   if (!hasHydrated) return;
 
   return (
-    <header className='border-gray6 fixed top-0 right-0 left-0 z-10 flex h-[110px] justify-center border-b bg-white'>
+    <header id='fixed-header' className='border-gray6 fixed top-0 right-0 left-0 z-10 flex h-[110px] justify-center border-b bg-white'>
       <div className='flex h-full w-full max-w-[1440px] items-center justify-between px-6'>
         {/* 로고 */}
         <Link href='/' className='flex items-center'>
@@ -57,9 +57,11 @@ export default function Header() {
             <Link href='/fixletter' aria-label='픽레터로 이동'>
               <Image src='/icon_message.png' alt='메시지' width={20} height={20} />
             </Link>
+            <Link href={`/profile/${userId}`}>
             <button>
               <Image src='/icon_profile.png' alt='프로필' width={56} height={56} />
             </button>
+            </Link>
           </div>
         ) : (
           <div className='flex items-center gap-[46px]'>
