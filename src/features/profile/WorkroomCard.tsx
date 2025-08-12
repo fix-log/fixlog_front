@@ -1,12 +1,10 @@
-'use client';
-
 import { dummyType } from './dummy';
 
-interface CrewCardProps {
+interface WorkroomCardProps {
   data: dummyType;
 }
 
-export default function CrewCard({ data }: CrewCardProps) {
+export default function WorkroomCard({ data }: WorkroomCardProps) {
   return (
     <div className='bg-mainWhite border-gray5 flex h-[380px] w-[400px] flex-col gap-[13px] rounded-[5px] border-2 p-[32px_47px]'>
       <div className='text-gray3 flex'>
@@ -17,11 +15,6 @@ export default function CrewCard({ data }: CrewCardProps) {
         <p>{data.모집날짜}</p>
       </div>
       <h1 className='text-[24px] leading-[130%] font-extrabold'>{data.제목}</h1>
-      <ul className='flex gap-3 font-medium'>
-        {data.태그.map((item) => (
-          <li key={item} className='bg-gray6 text-gray3 rounded-[5px] p-[4px_15px]'>{item}</li>
-        ))}
-      </ul>
       <span className='border-mainRed bg-mainWhite text-mainRed my-[5px] mr-[15px] self-start rounded-[20px] border px-[10px] py-[5px] font-bold'>
         {data.포지션}
       </span>

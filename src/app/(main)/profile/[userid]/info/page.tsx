@@ -1,6 +1,6 @@
 'use client';
 
-import { userInfoStore } from '@/entities/userInfo/UserInfoStore';
+import { userInfoStore } from '@/entities/profile/UserInfoStore';
 import { FileText, IdCard, Languages, Link, MousePointerClick, PenTool } from 'lucide-react';
 
 const ICON_SIZE = 17;
