@@ -64,7 +64,7 @@ export default function EditProfile() {
   const [step, setStep] = useState(1);
   const maxStep = 3;
 
-  console.log('임시호출', EditData);
+  console.log('임시호출 EditProfile -> EditData', EditData);
 
   const formData: dataType = {
     1: {

@@ -1,12 +1,11 @@
 'use clinet';
 
-import { followData } from "./Types";
-
+import { followData } from './Types';
 
 // import { useQuery } from '@tanstack/react-query';
 
 export default function FetchMyFollowers(userid: number) {
-  console.log('임시호출',userid)
+  console.log('임시호출 FetchMyFollowers', userid);
   // const { data } = useQuery({
   //   queryKey: ['followers'],
   //   queryFn: () => fetch(`/api/user/${userid}/followers`).then((res) => res.json()),

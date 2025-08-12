@@ -39,7 +39,7 @@ export default function Agreement() {
     const isAllTrue = agreementWatch.every(Boolean);
     setIsAllAgreed(isAllTrue);
     form.setValue('isAllAgreed' as const, isAllTrue);
-  }, [form, agreementWatch]);
+  }, [agreementWatch]);
 
   return (
     <div>

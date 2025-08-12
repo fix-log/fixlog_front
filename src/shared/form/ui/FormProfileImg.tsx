@@ -6,7 +6,7 @@ interface FormProfileImgProps {
 }
 
 export default function FormProfileImg({ profileImg }: FormProfileImgProps) {
-  console.log('임시호출', profileImg);
+  console.log('임시호출 FormProfileImg', profileImg);
   const [img, setImg] = useState<string | ArrayBuffer | null>('/icon_profile.png');
 
   const saveImgFile = (e: React.ChangeEvent<HTMLInputElement>) => {

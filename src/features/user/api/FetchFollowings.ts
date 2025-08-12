@@ -5,7 +5,7 @@ import { followData } from './Types';
 // import { useQuery } from '@tanstack/react-query';
 
 export default function FetchMyFollowings(userid: number) {
-  console.log('임시호출',userid)
+  console.log('임시호출 FetchMyFollowings',userid)
   // const { data } = useQuery({
   //   queryKey: ['followings'],
   //   queryFn: () => fetch(`/api/user/${userid}/following`).then((res) => res.json()),
