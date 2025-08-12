@@ -8,15 +8,10 @@ export default function CrewPage() {
   const respones = {};
   return (
     <div className='h-screen max-h-[675px] overflow-y-auto'>
-      <SwiperCards category='myCrew' title={`✨ ${userNickname}님의 크루모집`} />
+      <SwiperCards category='createdWorkroom' title={`👑 ${userNickname}님이 만든 워크룸`} />
       <SwiperCards
-        category='appliedCrew'
-        title={`✨ ${userNickname}님이 지원한 크루 모집`}
-        className='bg-mainWhite'
-      />
-      <SwiperCards
-        category='favoritedCrew'
-        title={`✨ ${userNickname}님 즐겨찾기한 크루 모집`}
+        category='joinedWorkroom'
+        title={`👑 ${userNickname}님이 참여한 워크룸`}
         className='bg-mainWhite'
       />
     </div>
