@@ -2,21 +2,25 @@
 
 import { userInfoStore } from '@/entities/profile/UserInfoStore';
 import SwiperCards from '@/widgets/profile/SwiperCards';
+import { notFound } from 'next/navigation';
 
 export default function CrewPage() {
-  const userNickname = userInfoStore((s) => s.userInfo.nickname);
-  const respones = {};
+  const { nickname, isMe } = userInfoStore((s) => s.userInfo);
+  // const respones = {};
+
+  if (!isMe) notFound();
+
   return (
     <div className='h-screen max-h-[675px] overflow-y-auto'>
-      <SwiperCards category='myCrew' title={`✨ ${userNickname}님의 크루모집`} />
+      <SwiperCards category='myCrew' title={`✨ ${nickname}님의 크루모집`} />
       <SwiperCards
         category='appliedCrew'
-        title={`✨ ${userNickname}님이 지원한 크루 모집`}
+        title={`✨ ${nickname}님이 지원한 크루 모집`}
         className='bg-mainWhite'
       />
       <SwiperCards
         category='favoritedCrew'
-        title={`✨ ${userNickname}님 즐겨찾기한 크루 모집`}
+        title={`✨ ${nickname}님 즐겨찾기한 크루 모집`}
         className='bg-mainWhite'
       />
     </div>

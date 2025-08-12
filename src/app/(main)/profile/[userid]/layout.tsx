@@ -46,7 +46,7 @@ export default async function ProfilePage({ params, children }: ProfilePageProps
   return (
     <div className='border-gray4 mt-[47px] mb-[62px] h-[1053px] w-[865px] overflow-hidden rounded-[5px] border'>
       <UserHydration userData={response} />
-      <UserInfo children={children} />
+      <UserInfo>{children}</UserInfo>
     </div>
   );
 }

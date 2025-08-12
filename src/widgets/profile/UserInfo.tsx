@@ -34,7 +34,7 @@ export default function UserInfo({ children }: UserInfoProps) {
           <Profile totalFollower={follower.total_count} setIsModalOpen={setIsModalOpen} />
           <InfoButton followingIds={followingIds} />
         </div>
-        <CategoryTabs children={children} />
+        <CategoryTabs>{children}</CategoryTabs>
         {isModalOpen && (
           <Modal setIsOpen={setIsModalOpen}>
             <FollowModal
