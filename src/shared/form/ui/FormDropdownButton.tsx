@@ -48,11 +48,11 @@ export default function FormDropdownButton<T extends FieldValues>({
     ),
   };
   const {
-    getValues,
+    watch,
     setValue,
     formState: { errors },
   } = useFormContext<T>();
-  const selectedItem = getValues(id as Path<T>);
+  const selectedItem = watch(id as Path<T>);
 
   function handleClick() {
     setOpen(open === label ? undefined : label);
@@ -82,18 +82,18 @@ export default function FormDropdownButton<T extends FieldValues>({
       </button>
 
       {/* 선택된 아이템 태그로 표시 */}
-      {typeof selectedItem !== 'string' && (
+      {Array.isArray(selectedItem) && (
         <div className='flex flex-wrap'>
           {selectedItem?.map((item: string) => (
             <div
               key={item}
               className='text-mainRed bg-mainRed20 -mt-1 mr-[10px] mb-4 flex cursor-pointer items-center gap-x-2 rounded-full px-[10px] py-[5px] font-bold'
-              onClick={(e) =>
-                setValue(
-                  id as Path<T>,
-                  selectedItem.filter((item: string) => item !== e.currentTarget.textContent),
-                )
-              }
+              onClick={() => {
+              const newItems = selectedItem.filter((v: string) => v !== item);
+              setValue(id as Path<T>, newItems, {
+                shouldDirty: true,
+              });
+            }}
             >
               {item}
               <X width={15} height={15} />

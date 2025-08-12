@@ -22,7 +22,8 @@ export default function Agreement() {
   ] as const;
 
   // 전체동의
-  function selectAllAgreements() {
+  function selectAllAgreements(e: React.MouseEvent<HTMLLabelElement>) {
+    e.preventDefault(); // input checkbox 동작 방지 (아래의 useeffect로만 의존)
     agreementKeys.map((item) => form.setValue(item, !isAllAgreed));
     setIsAllAgreed(!isAllAgreed);
   }
@@ -38,8 +39,6 @@ export default function Agreement() {
     const isAllTrue = agreementWatch.every(Boolean);
     setIsAllAgreed(isAllTrue);
     form.setValue('isAllAgreed' as const, isAllTrue);
-    // ESLint가 의존성 잔소리해서 강제 무시 주석 추가
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [agreementWatch]);
 
   return (
@@ -48,7 +47,7 @@ export default function Agreement() {
         id='isAllAgreed'
         text='전체 동의'
         className='!ml-2 text-[18px] font-bold'
-        onClick={selectAllAgreements}
+        onClick={(e) => selectAllAgreements(e)}
       />
       <div>
         {DATA.map((item) => (

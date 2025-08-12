@@ -1,14 +1,9 @@
 'use client';
 
-import { userInfoStore } from '@/entities/userInfo/UserInfoStore';
+import { userInfoStore } from '@/entities/profile/UserInfoStore';
 import { colorChangeAnimation } from '@/shared/ui/Animation';
 import { usePathname, useRouter } from 'next/navigation';
-import { ReactNode, useState } from 'react';
-
-type dd = {
-  label: string;
-  value: string;
-};
+import { ReactNode } from 'react';
 
 interface CategoryTabsProps {
   children: ReactNode;

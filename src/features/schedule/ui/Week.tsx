@@ -1,15 +1,13 @@
-'use client';
-
 import Day from './Day';
 
 interface WeekProps {
   nthWeek: number;
   week: Date[];
-  selectedDate: Date | null;
-  setSelectedDate: (date: Date | null) => void;
+  selectedDate: Date;
+  workroomId: string;
 }
 
-export default function Week({ nthWeek, week, selectedDate, setSelectedDate }: WeekProps) {
+export default async function Week({ nthWeek, week, selectedDate, workroomId }: WeekProps) {
   return (
     <tr>
       {week.map((date) => (
@@ -18,7 +16,7 @@ export default function Week({ nthWeek, week, selectedDate, setSelectedDate }: W
           date={date}
           nthWeek={nthWeek}
           selectedDate={selectedDate}
-          setSelectedDate={setSelectedDate}
+          workroomId={workroomId}
         />
       ))}
     </tr>

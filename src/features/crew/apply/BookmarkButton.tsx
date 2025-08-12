@@ -13,6 +13,9 @@ interface Props {
 export default function BookmarkButton({ projectId, initialBookmarked = false }: Props) {
   const [bookmarked, setBookmarked] = useState(initialBookmarked);
 
+  // TODO: 선언 후 사용하지 않아서, 빌드 에러 때문에 일단 콘솔에 한번 찍어 놓을게요! (기태)
+  console.log(projectId);
+
   const handleClick = () => {
     // UI만 바뀌는 임시 토글
     setBookmarked((prev) => !prev);

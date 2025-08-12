@@ -7,7 +7,7 @@ interface TermsAgreementProps {
   text: string;
   isRequired?: 'required' | 'optional' | undefined;
   className?: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLLabelElement>) => void;
 }
 
 export default function TermsAgreement({
@@ -21,6 +21,7 @@ export default function TermsAgreement({
   const { register, watch } = useFormContext();
   const isTermsOpen = id === 'isTermsAgreed' || id === 'isPrivacyAgreed';
   if (!className) className = '';
+  if (id === 'isAllAgreed') console.log(watch(id), 'isAllAgreed 상태 확인');
   
   return (
     <>
@@ -28,7 +29,7 @@ export default function TermsAgreement({
       <label
         htmlFor={id}
         className='!my-2 flex items-center text-[13px]'
-        onClick={() => onClick && onClick()}
+        onClick={(e) => onClick && onClick(e)}
       >
         <div className='flex cursor-pointer items-center'>
           <div

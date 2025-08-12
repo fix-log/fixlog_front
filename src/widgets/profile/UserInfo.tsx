@@ -1,12 +1,12 @@
 'use client';
 
-import CategoryTabs from '@/widgets/userInfo/CategoryTabs';
-import InfoButton from '@/widgets/userInfo/InfoButton';
-import Profile from '@/features/userInfo/Profile';
+import CategoryTabs from '@/widgets/profile/CategoryTabs';
+import InfoButton from '@/widgets/profile/InfoButton';
+import Profile from '@/features/profile/Profile';
 import FetchMyFollowings from '@/features/user/api/FetchFollowings';
 import FetchMyFollowers from '@/features/user/api/FetchFollowers';
-import { userInfoStore } from '@/entities/userInfo/UserInfoStore';
 import { ReactNode, useState } from 'react';
+import { userInfoStore } from '@/entities/profile/UserInfoStore';
 import Modal from '@/shared/ui/Modal';
 import FollowModal from './FollowModal';
 

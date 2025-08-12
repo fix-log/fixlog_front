@@ -1,17 +1,14 @@
-import Calender from '@/features/schedule/ui/Calender';
+import { getDate, getMonth, getYear } from 'date-fns';
+import { redirect } from 'next/navigation';
 
-export default async function Page() {
-  // TODO: 프로젝트 일정 데이터 가져오기 (선택된 일자가 포함된 월)
+interface PageProps {
+  params: Promise<{ workroomId: string }>;
+}
 
-  return (
-    // 데이터를 통째로 밑에 컴포넌트에 전달해서 하이드레이션 (오늘 일정 포함, 캘린더 전체 컴포넌트는 클라이언트 컴포넌트로)
-    <section className='flex w-full gap-2 md:py-28'>
-      {/* 선택된 날짜를 상태로 관리하고 캘린더와 오늘 일정 컴포넌트에 각각 내려서 사용 */}
-      <div className='border-gray5 w-2/3 rounded-[10px] border'>
-        {/* TODO: 라우팅 정리하고 파라미터 받아서 초기값 설정 */}
-        <Calender initialMonth={new Date(2025, 6, 1)} initialDate={new Date(2025, 6, 15)} />
-      </div>
-      <div className='border-gray5 w-1/3 rounded-[10px] border'>해당 날짜 상세 컴포넌트</div>
-    </section>
+export default async function Page({ params }: PageProps) {
+  const { workroomId } = await params;
+  const today = new Date();
+  redirect(
+    `/workroom/${workroomId}/schedule/${getYear(today)}/${getMonth(today) + 1}/${getDate(today)}`,
   );
 }
