@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
 
 interface ProfilePageProps {
-  params: Promise<{ userid: string }>;
+  params: { userid: string };
   children: ReactNode;
 }
 
