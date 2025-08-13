@@ -3,14 +3,12 @@ import UserHydration from '@/entities/profile/UserHydration';
 import UserInfo from '@/widgets/profile/UserInfo';
 import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
-import { ReactNode } from 'react';
 
 interface ProfilePageProps {
-  params: { userid: string };
-  children: ReactNode;
+  params: Promise<{ userid: string }>;
 }
 
-export default async function ProfilePage({ params, children }: ProfilePageProps) {
+export default async function ProfilePage({ params }: ProfilePageProps) {
   const userParams = await params;
   const viewUserId = Number(userParams.userid);
   const cookie = await cookies();
