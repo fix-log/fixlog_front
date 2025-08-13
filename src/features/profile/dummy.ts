@@ -1,7 +1,8 @@
 // 임시 더미 데이터
 // 크루 모집 api 모르겟서요
 
-export interface dummyType {
+export type crew = 'myCrew' | 'appliedCrew' | 'favoritedCrew';
+export interface crewType {
   id: number;
   모집현황: boolean;
   모집날짜: string;
@@ -10,13 +11,24 @@ export interface dummyType {
   포지션: string;
 }
 
-export const dummy = {
+export type workroom = 'createdWorkroom' | 'joinedWorkroom';
+export interface workroomType {
+  id: number;
+  모집현황: boolean;
+  모집시작날짜: string;
+  모집종료날짜: string;
+  제목: string;
+  소개글: string;
+  포지션: string;
+}
+
+export const crewDummy: Record<crew, crewType[]> = {
   // 내 크루모집
   myCrew: [
     {
       id: 1,
       모집현황: true,
-      모집날짜: '2025.06.13',
+      모집날짜: '25.06.13',
       제목: '[내크루모집] 감성 블로그 기반 커뮤니티 플랫폼',
       태그: ['Figma', 'Illustrator', 'Notion'],
       포지션: 'Desiginer',
@@ -24,7 +36,7 @@ export const dummy = {
     {
       id: 2,
       모집현황: true,
-      모집날짜: '2025.06.13',
+      모집날짜: '25.06.13',
       제목: '[내크루모집] 감성 블로그 기반 커뮤니티 플랫폼',
       태그: ['Figma', 'Illustrator', 'Notion'],
       포지션: 'Desiginer',
@@ -92,6 +104,9 @@ export const dummy = {
       포지션: 'Desiginer',
     },
   ],
+};
+
+export const workroomDummy: Record<workroom, workroomType[]> = {
   // 생성한 워크룸
   createdWorkroom: [
     {
@@ -125,3 +140,4 @@ export const dummy = {
   // 참여한 워크룸
   joinedWorkroom: [],
 };
+

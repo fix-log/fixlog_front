@@ -1,9 +1,10 @@
 'use client';
 
-import { dummyType } from './dummy';
+import { crewType } from "./dummy";
+
 
 interface CrewCardProps {
-  data: dummyType;
+  data: crewType;
 }
 
 export default function CrewCard({ data }: CrewCardProps) {

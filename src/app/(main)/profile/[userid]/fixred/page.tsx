@@ -4,29 +4,29 @@ import PostCard from './PostCard';
 
 export default function FixredPage() {
   // api 반환값
-  const respones = {
-    id: 0,
-    user: 'string',
-    content: 'string',
-    images: [
-      {
-        image_url: 'http://example.com',
-      },
-    ],
-    like_count: 0,
-    is_liked: 'string',
-    comment_count: 0,
-    read_permission: 'public',
-    created_at: '2019-08-24T14:15:22Z',
-    comments: [
-      {
-        id: 0,
-        user: 'string',
-        comment: 'string',
-        created_at: '2019-08-24T14:15:22Z',
-      },
-    ],
-  };
+  // const respones = {
+  //   id: 0,
+  //   user: 'string',
+  //   content: 'string',
+  //   images: [
+  //     {
+  //       image_url: 'http://example.com',
+  //     },
+  //   ],
+  //   like_count: 0,
+  //   is_liked: 'string',
+  //   comment_count: 0,
+  //   read_permission: 'public',
+  //   created_at: '2019-08-24T14:15:22Z',
+  //   comments: [
+  //     {
+  //       id: 0,
+  //       user: 'string',
+  //       comment: 'string',
+  //       created_at: '2019-08-24T14:15:22Z',
+  //     },
+  //   ],
+  // };
 
   // 임시
   const responess = [

@@ -5,46 +5,50 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import './Swiper.css';
 import { Pagination } from 'swiper/modules';
-import CrewCard from '@/features/profile/CrewCard';
-import { dummy } from '@/features/profile/dummy';
 import { cn } from '@/shared/lib/util';
-import WorkroomCard from '@/features/profile/WorkroomCard';
 import Empty from '@/features/profile/Empty';
+import {
+  crew,
+  crewDummy,
+  crewType,
+  workroom,
+  workroomDummy,
+  workroomType,
+} from '@/features/profile/dummy';
+import CrewCard from '@/features/profile/CrewCard';
+import WorkroomCard from '@/features/profile/WorkroomCard';
 
-const crew = ['myCrew', 'appliedCrew', 'favoritedCrew'] as const;
-const workroom = ['createdWorkroom', 'joinedWorkroom'] as const;
+const EMPTY_TEXT = {
+  crew: {
+    heading: '관련 크루모집이 없습니다',
+    subtext: '크루모집을 확인해보세요!',
+  },
+  workroom: {
+    heading: '관련 워크룸이 없습니다',
+    subtext: '워크룸을 확인해보세요!',
+  },
+};
 
-type crewType = (typeof crew)[number];
-type workroomType = (typeof workroom)[number];
+const crewList = ['myCrew', 'appliedCrew', 'favoritedCrew'];
 
 interface SwiperCardsProps {
-  category: crewType | workroomType;
+  category: string;
   title: string;
   className?: string;
 }
 
 export default function SwiperCards({ category, title, className }: SwiperCardsProps) {
-  const data = dummy[category];
-  const emptyText = {
-    crew: {
-      heading: '관련 크루모집이 없습니다',
-      subtext: '크루모집을 확인해보세요!'
-    },
-    workroom: {
-      heading: '관련 워크룸이 없습니다',
-      subtext: '워크룸을 확인해보세요!'
-    }
+  const data = crewList.includes(category)
+    ? crewDummy[category as crew]
+    : workroomDummy[category as workroom];
+  function isCrew(item: crewType | workroomType): item is crewType {
+    return '모집날짜' in item; // crewType에만 있는 속성으로 판별
   }
-
-  function isCrew(category: string): category is crewType {
-    return (crew as readonly string[]).includes(category);
-  }
-
   return (
     <div className={'py-[50px] pl-[42px] ' + cn(className)}>
       <h1 className='mb-2 text-[32px] font-extrabold'>{title}</h1>
-      {data.length === 0 ? (
-        <Empty {...isCrew(category) ? emptyText.crew : emptyText.workroom} />
+      {data?.length === 0 ? (
+        <Empty {...(crewList.includes(category) ? EMPTY_TEXT.crew : EMPTY_TEXT.workroom)} />
       ) : (
         <Swiper
           slidesPerView={2}
@@ -56,7 +60,11 @@ export default function SwiperCards({ category, title, className }: SwiperCardsP
         >
           {data.map((item) => (
             <SwiperSlide key={item.id}>
-              {isCrew(category) ? <CrewCard data={item} /> : <WorkroomCard data={item} />}
+              {crewList.includes(category) && isCrew(item) ? (
+                <CrewCard data={item} />
+              ) : (
+                <WorkroomCard data={item as workroomType} />
+              )}
             </SwiperSlide>
           ))}
         </Swiper>

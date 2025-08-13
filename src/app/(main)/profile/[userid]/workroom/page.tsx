@@ -8,7 +8,7 @@ export default function WorkroomPage() {
   const { nickname, isMe } = userInfoStore((s) => s.userInfo);
   // const respones = {};
 
-  if (!isMe) notFound();
+  if (isMe) notFound();
 
   return (
     <div className='h-screen max-h-[675px] overflow-y-auto'>
