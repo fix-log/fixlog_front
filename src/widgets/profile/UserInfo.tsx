@@ -5,12 +5,16 @@ import InfoButton from '@/widgets/profile/InfoButton';
 import Profile from '@/features/profile/Profile';
 import FetchMyFollowings from '@/features/user/api/FetchFollowings';
 import FetchMyFollowers from '@/features/user/api/FetchFollowers';
+import { ReactNode, useState } from 'react';
 import { userInfoStore } from '@/entities/profile/UserInfoStore';
-import { useState } from 'react';
 import Modal from '@/shared/ui/Modal';
 import FollowModal from './FollowModal';
 
-export default function UserInfo() {
+interface UserInfoProps {
+  children: ReactNode;
+}
+
+export default function UserInfo({ children }: UserInfoProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const userid = userInfoStore((s) => s.userInfo.viewUserId);
 
@@ -30,8 +34,7 @@ export default function UserInfo() {
           <Profile totalFollower={follower.total_count} setIsModalOpen={setIsModalOpen} />
           <InfoButton followingIds={followingIds} />
         </div>
-        <CategoryTabs />
-        <svg className='bg-gray6 h-screen w-full'></svg>
+        <CategoryTabs>{children}</CategoryTabs>
         {isModalOpen && (
           <Modal setIsOpen={setIsModalOpen}>
             <FollowModal

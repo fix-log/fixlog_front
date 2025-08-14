@@ -57,10 +57,8 @@ export default function Header() {
             <Link href='/fixletter' aria-label='픽레터로 이동'>
               <Image src='/icon_message.png' alt='메시지' width={20} height={20} />
             </Link>
-            <Link href={`/profile/${userId}`}>
-            <button>
+            <Link href={`/profile/${userId}/info`}>
               <Image src='/icon_profile.png' alt='프로필' width={56} height={56} />
-            </button>
             </Link>
           </div>
         ) : (

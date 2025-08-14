@@ -35,10 +35,12 @@ export default function Agreement() {
     name: agreementKeys,
   }) as boolean[];
 
+  
   useEffect(() => {
     const isAllTrue = agreementWatch.every(Boolean);
     setIsAllAgreed(isAllTrue);
     form.setValue('isAllAgreed' as const, isAllTrue);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [agreementWatch]);
 
   return (

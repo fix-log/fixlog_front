@@ -2,19 +2,22 @@ import { userValueType } from '@/entities/profile/Types';
 import UserHydration from '@/entities/profile/UserHydration';
 import UserInfo from '@/widgets/profile/UserInfo';
 import { cookies } from 'next/headers';
+import { notFound } from 'next/navigation';
+import { ReactNode } from 'react';
 
-interface UserInfoPageProps {
+interface ProfilePageProps {
   params: Promise<{ userid: string }>;
+  children: ReactNode;
 }
 
-export default async function UserInfoPage(props: UserInfoPageProps) {
-  const params = await props.params;
-  const viewUserId = Number(params.userid);
+export default async function ProfilePage({ params, children }: ProfilePageProps) {
+  const userParams = await params;
+  const viewUserId = Number(userParams.userid);
   const cookie = await cookies();
   const userId = cookie.get('userId')?.value;
   const isMe = viewUserId === Number(userId);
 
-  // 더미
+  // 더미 나중에 api로 변경 (유저정보)
   const response: userValueType = {
     viewUserId: viewUserId,
     isMe: isMe,
@@ -38,10 +41,12 @@ export default async function UserInfoPage(props: UserInfoPageProps) {
     ref_link: 'https://fixlog.com',
   };
 
+  if (!response) notFound(); // api 호출 실패 시 404 페이지
+
   return (
     <div className='border-gray4 mt-[47px] mb-[62px] h-[1053px] w-[865px] overflow-hidden rounded-[5px] border'>
       <UserHydration userData={response} />
-      <UserInfo />
+      <UserInfo>{children}</UserInfo>
     </div>
   );
 }
