@@ -93,7 +93,7 @@ body {
 
 /* PC */
 @media (hover: hover) and (pointer: fine) {
-   /* 항상 스크롤바 표시 */
+  /* 항상 스크롤바 표시 */
   body {
     overflow-y: scroll;
   }
@@ -112,15 +112,16 @@ body {
 
 /* 모바일, 태블릿 */
 @media (hover: none) and (pointer: coarse) {
-  html, body {
+  html,
+  body {
     overflow-y: auto;
-    -ms-overflow-style: none;  /* IE, Edge */
-    scrollbar-width: none;     /* Firefox */
+    -ms-overflow-style: none; /* IE, Edge */
+    scrollbar-width: none; /* Firefox */
   }
 
   html::-webkit-scrollbar,
   body::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari, Opera */
+    display: none; /* Chrome, Safari, Opera */
   }
 }
 
@@ -213,4 +214,29 @@ body {
 
 .react-datepicker__triangle {
   display: none;
+}
+
+/* PC */
+@media (hover: hover) and (pointer: fine) {
+  .form-dynamic-header {
+    margin: 56px 0;
+  }
+  .form-dynamic-login-gap {
+    gap: 50px;
+  }
+}
+
+/* 모바일, 태블릿+펜 */
+@media (hover: none) {
+  .form-dynamic-header {
+    margin: 0;
+    margin-bottom: 30px;
+  }
+  /* 버튼과 hr 사이 공간 */
+  .form-dynamic-neg40 {
+    margin-top: -40px;
+  }
+  .form-dynamic-login-gap {
+    gap: 30px;
+  }
 }

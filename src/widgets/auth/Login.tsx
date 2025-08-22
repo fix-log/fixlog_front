@@ -47,23 +47,28 @@ export default function Login() {
           <FormInputString type='password' id='password' placeholder='비밀번호를 입력해주세요' />
           <FormSubmitButton text='로그인하기' isSubmitting={form.formState.isSubmitting} />
         </form>
-        <hr className='border-gray5 w-full' />
-        <div className='!my-10 flex'>
-          <OAuthButton provider='github' />
-          <OAuthButton provider='naver' />
-          <OAuthButton provider='kakao' />
-        </div>
-        <div>
-          <AuthLinkButton text='이메일 찾기' handleClick={() => router.push('/login/find-email')} />
-          <AuthLinkButton
-            text='비밀번호 찾기'
-            handleClick={() => router.push('/login/find-password')}
-          />
-          <AuthLinkButton
-            text='회원가입'
-            handleClick={() => router.push('/login/signup')}
-            className='text-mainRed'
-          />
+        <div className='form-dynamic-login-gap form-dynamic-neg40 flex w-full flex-col items-center'>
+          <hr className='border-gray5 w-full' />
+          <div className='flex'>
+            <OAuthButton provider='github' />
+            <OAuthButton provider='naver' />
+            <OAuthButton provider='kakao' />
+          </div>
+          <div>
+            <AuthLinkButton
+              text='이메일 찾기'
+              handleClick={() => router.push('/login/find-email')}
+            />
+            <AuthLinkButton
+              text='비밀번호 찾기'
+              handleClick={() => router.push('/login/find-password')}
+            />
+            <AuthLinkButton
+              text='회원가입'
+              handleClick={() => router.push('/login/signup')}
+              className='text-mainRed'
+            />
+          </div>
         </div>
       </div>
     </FormProvider>
