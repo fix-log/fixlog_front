@@ -1,6 +1,7 @@
 'use client';
 
 import ScheduleDatePicker from '@/features/schedule/ui/ScheduleDatePicker';
+import CheckboxDropdown from '@/shared/ui/CheckboxDropdown';
 
 interface WorkroomFromProps {
   type: '등록' | '정보 수정';
@@ -82,15 +83,24 @@ export default function WorkroomFrom({ type }: WorkroomFromProps) {
       </label>
 
       {/* 개발 언어 */}
-      <label htmlFor='language' className='flex flex-col gap-2'>
-        <span className='text-h6 font-semibold'>개발 언어</span>
-        <input
-          type='text'
-          id='language'
-          placeholder='개발 언어를 입력해주세요.'
-          className={inputClassName}
-        />
-      </label>
+      <CheckboxDropdown
+        name='languages'
+        options={[
+          'JavaScript',
+          'TypeScript',
+          'Python',
+          'Java',
+          'Go',
+          'Swift',
+          'Kotlin',
+          'C',
+          'PHP',
+          'SQL',
+        ]}
+        placeholder='개발 언어를 선택해주세요'
+        openText='최대 10개 선택 가능'
+        className={inputClassName}
+      />
 
       {/* 기술 스택 $ 협업 툴 */}
       <label htmlFor='techStack' className='flex flex-col gap-2'>
@@ -139,3 +149,5 @@ export default function WorkroomFrom({ type }: WorkroomFromProps) {
 function RequiredStar() {
   return <sup className='text-red-500'>*</sup>;
 }
+
+// TODO: name, value 등등 연결하기 (React Hook Form 추가시)

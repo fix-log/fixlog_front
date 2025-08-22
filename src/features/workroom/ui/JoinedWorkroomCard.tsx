@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import JoinedWorkroomCardOptionButton from './JoinedWorkroomCardOptionButton';
+import Badge from '@/shared/ui/Badge';
 
 // 워크룸 임시 타입
 interface Workroom {
@@ -36,18 +37,8 @@ export default async function JoinedWorkroomCard({ workroom }: JoinedWorkroomCar
         <h3 className='text-[16px] font-extrabold md:text-[24px]'>{workroom.name}</h3>
         <span className='text-gray3 text-[10px] md:text-[18px]'>{workroom.period}</span>
         {/* 역할 */}
-        <Badge name='Designer' />
+        <Badge tag='Designer' />
       </div>
     </li>
   );
 }
-
-// 나중에 공통 컴포넌트에 제대로 (일단 임시)
-
-const Badge = ({ name }: { name: string }) => {
-  return (
-    <span className='text-mainRed border-mainRed w-fit rounded-full border px-2 py-0.5 text-[10px] max-md:my-2 md:px-3 md:text-lg'>
-      {name}
-    </span>
-  );
-};
