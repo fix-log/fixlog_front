@@ -89,6 +89,7 @@
 html,
 body {
   height: 100vh;
+  position: relative;
 }
 
 /* PC */
@@ -214,29 +215,4 @@ body {
 
 .react-datepicker__triangle {
   display: none;
-}
-
-/* PC */
-@media (hover: hover) and (pointer: fine) {
-  .form-dynamic-header {
-    margin: 56px 0;
-  }
-  .form-dynamic-login-gap {
-    gap: 50px;
-  }
-}
-
-/* 모바일, 태블릿+펜 */
-@media (hover: none) {
-  .form-dynamic-header {
-    margin: 0;
-    margin-bottom: 30px;
-  }
-  /* 버튼과 hr 사이 공간 */
-  .form-dynamic-neg40 {
-    margin-top: -40px;
-  }
-  .form-dynamic-login-gap {
-    gap: 30px;
-  }
 }

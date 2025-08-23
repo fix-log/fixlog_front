@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <main className='mx-auto flex min-h-[calc(100vh-110px)] w-full max-w-[1440px] flex-col items-center px-6 pt-[110px]'>
         {children}
       </main>

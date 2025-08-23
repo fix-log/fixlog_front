@@ -47,7 +47,7 @@ export default function Login() {
           <FormInputString type='password' id='password' placeholder='비밀번호를 입력해주세요' />
           <FormSubmitButton text='로그인하기' isSubmitting={form.formState.isSubmitting} />
         </form>
-        <div className='form-dynamic-login-gap form-dynamic-neg40 flex w-full flex-col items-center'>
+        <div className='gap-8 lg:gap-y-12 lg:mt-0 flex w-full flex-col items-center'>
           <hr className='border-gray5 w-full' />
           <div className='flex'>
             <OAuthButton provider='github' />
