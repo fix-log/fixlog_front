@@ -45,7 +45,7 @@ export default function FormRadioSelect<T extends FieldValues>({
             }
           >
             <input id={item} type='radio' className='hidden' value={item} {...register(id)} />
-            <label htmlFor={item} className='inline-block h-full w-full cursor-pointer'>
+            <label htmlFor={item} className='inline-block h-full w-full cursor-pointer font-extrabold'>
               {item}
             </label>
           </div>

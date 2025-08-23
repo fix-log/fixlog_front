@@ -54,7 +54,7 @@ export default function Login() {
             <OAuthButton provider='naver' />
             <OAuthButton provider='kakao' />
           </div>
-          <div>
+          <div className='flex mb-5'>
             <AuthLinkButton
               text='이메일 찾기'
               handleClick={() => router.push('/login/find-email')}

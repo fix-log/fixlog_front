@@ -30,7 +30,7 @@ export default function FormFile<T extends FieldValues>({
       <label
         htmlFor='form_file'
         className={
-          'border-gray4 bg-mainWhite text-gray4 !my-[15px] inline-block max-h-[60px] min-h-[60px] w-full cursor-pointer overflow-hidden rounded-[5px] border-1 !pl-[17px] text-[20px] leading-14' +
+          'border-gray4 bg-mainWhite text-gray3 !my-[15px] inline-block max-h-[60px] min-h-[60px] w-full cursor-pointer overflow-hidden rounded-[5px] border-1 !pl-[17px] text-[18px] font-semibold leading-14' +
           (isFile ? ' !text-gray1' : '')
         }
       >
