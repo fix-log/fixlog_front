@@ -74,12 +74,28 @@ export default function WorkroomFrom({ type }: WorkroomFromProps) {
           포지션 별 인원 <RequiredStar />
         </span>
         {/* TODO: React Hook Form - useFieldArray 사용해서 포지션 별 인원 입력 컴포넌트 만들기 */}
-        <input
-          type='text'
-          id='member'
-          placeholder='포지션 별 인원을 입력해주세요.'
-          className={inputClassName}
-        />
+        <div className='flex items-center gap-3'>
+          <select name='' id='' className={`${inputClassName} w-[70%]`}>
+            <option value=''>포지션을 선택해주세요.</option>
+            <option value=''>프론트엔드</option>
+            <option value=''>백엔드</option>
+            <option value=''>디자이너</option>
+            <option value=''>기획자</option>
+            <option value=''>PM</option>
+            <option value=''>기타</option>
+          </select>
+          <input
+            type='number'
+            placeholder='인원을 입력해주세요.'
+            className={`${inputClassName} w-[20%]`}
+          />
+          <button
+            type='button'
+            className='text-gray3 text-h5 border-gray4 h-15 w-15 cursor-pointer rounded-[5px] border bg-white font-extrabold'
+          >
+            +
+          </button>
+        </div>
       </label>
 
       {/* 개발 언어 */}
