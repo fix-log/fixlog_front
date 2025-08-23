@@ -22,6 +22,8 @@ export default function CheckboxDropdown({
 }: CheckboxDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  // const [shouldRender, setShouldRender] = useState(false);
+  // const [isAnimating, setIsAnimating] = useState(false);
 
   // 체크박스 토글 함수
   const toggleOption = (option: string) => {
@@ -29,6 +31,22 @@ export default function CheckboxDropdown({
       prev.includes(option) ? prev.filter((item) => item !== option) : [...prev, option],
     );
   };
+
+  // 애니메이션을 위한 지연된 렌더링
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     setShouldRender(true);
+  //     requestAnimationFrame(() => {
+  //       requestAnimationFrame(() => {
+  //         setIsAnimating(true);
+  //       });
+  //     });
+  //   } else {
+  //     setIsAnimating(false);
+  //     const timer = setTimeout(() => setShouldRender(false), 200);
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [isOpen]);
 
   return (
     <div
@@ -46,25 +64,26 @@ export default function CheckboxDropdown({
       </div>
 
       {/* 옵션 목록 */}
-      <ul
-        className={cn(
-          'flex flex-wrap gap-3 bg-white transition-all duration-200',
-          isOpen ? 'mt-5 max-h-96 opacity-100' : 'max-h-0 opacity-0',
-        )}
-      >
-        {options.map((option) => (
-          // TODO: 체크박스로 변경
-          // <Badge key={option} name={option} />
-          <BadgeCheckbox
-            key={option}
-            name={name}
-            tag={option}
-            id={option}
-            isChecked={selectedOptions.includes(option)}
-            onToggle={() => toggleOption(option)}
-          />
-        ))}
-      </ul>
+      {isOpen && (
+        <ul
+          className={cn(
+            'mt-5 flex w-full flex-wrap gap-3 bg-white transition-all duration-200 ease-out',
+            isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0',
+          )}
+        >
+          {options.map((option) => (
+            <li key={option}>
+              <BadgeCheckbox
+                name={name}
+                tag={option}
+                id={option}
+                isChecked={selectedOptions.includes(option)}
+                onToggle={() => toggleOption(option)}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

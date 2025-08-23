@@ -83,50 +83,74 @@ export default function WorkroomFrom({ type }: WorkroomFromProps) {
       </label>
 
       {/* 개발 언어 */}
-      <CheckboxDropdown
-        name='languages'
-        options={[
-          'JavaScript',
-          'TypeScript',
-          'Python',
-          'Java',
-          'Go',
-          'Swift',
-          'Kotlin',
-          'C',
-          'PHP',
-          'SQL',
-        ]}
-        placeholder='개발 언어를 선택해주세요'
-        openText='최대 10개 선택 가능'
-        className={inputClassName}
-      />
-
-      {/* 기술 스택 $ 협업 툴 */}
-      <label htmlFor='techStack' className='flex flex-col gap-2'>
-        <span className='text-h6 font-semibold'>기술 스택</span>
-        <input
-          type='text'
-          id='techStack'
-          placeholder='기술 스택을 입력해주세요.'
+      <div className='flex flex-col gap-2'>
+        <span className='text-h6 font-semibold'>개발 언어</span>
+        <CheckboxDropdown
+          name='languages'
+          options={[
+            'JavaScript',
+            'TypeScript',
+            'Python',
+            'Java',
+            'Go',
+            'Swift',
+            'Kotlin',
+            'C',
+            'PHP',
+            'SQL',
+          ]}
+          placeholder='개발 언어를 선택해주세요'
+          openText='최대 10개 선택 가능'
           className={inputClassName}
         />
-      </label>
+      </div>
+
+      {/* 기술 스택 & 협업 툴 */}
+      {/* TODO: 스키마 확인 후 수정 */}
+      <div className='flex flex-col gap-2'>
+        <span className='text-h6 font-semibold'>기술 스택 & 협업 툴</span>
+        <CheckboxDropdown
+          name='techStacks'
+          options={[
+            'React',
+            'Next.js',
+            'Node.js',
+            'Express',
+            'MongoDB',
+            'MySQL',
+            'PostgreSQL',
+            'Docker',
+            'AWS',
+            'GCP',
+            'Azure',
+            'Firebase',
+            'Vercel',
+            'Netlify',
+            'Kubernetes',
+          ]}
+          placeholder='기술 스택 & 협업 툴을 선택해주세요'
+          openText='최대 -개 선택 가능'
+          className={inputClassName}
+        />
+      </div>
 
       {/* 디자인 & 협업 툴 */}
-      <label htmlFor='design' className='flex flex-col gap-2'>
+      {/* TODO: 스키마 확인 후 수정 */}
+      <div className='flex flex-col gap-2'>
         <span className='text-h6 font-semibold'>디자인 & 협업 툴</span>
-        <input
-          type='text'
-          id='design'
-          placeholder='디자인 & 협업 툴을 입력해주세요.'
+        <CheckboxDropdown
+          name='designTools'
+          options={['Figma', 'Notion', 'Slack', 'Jira', 'Trello', 'Discord', 'GitHub']}
+          placeholder='디자인 & 협업 툴을 선택해주세요'
+          openText='최대 -개 선택 가능'
           className={inputClassName}
         />
-      </label>
+      </div>
 
       {/* 프로젝트 설명 */}
       <label htmlFor='description' className='flex flex-col gap-2'>
         <span className='text-h6 font-semibold'>프로젝트 설명</span>
+        {/* TODO: 텍스트 에디터 추가 */}
         <textarea
           id='description'
           placeholder='프로젝트 설명을 입력해주세요.'
