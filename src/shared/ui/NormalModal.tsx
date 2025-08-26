@@ -2,6 +2,7 @@ import { Check } from 'lucide-react';
 import Modal from './Modal';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { colorChangeAnimation } from './Animation';
+import { Dispatch, SetStateAction } from 'react';
 
 const MOBILE_STYLE = {
   // 태블릿과 동일함
@@ -35,15 +36,16 @@ interface NormalModalProps {
   title: string;
   subtext: string[];
   buttons: buttonsType[];
-  check?: boolean;
+  check?: boolean; // 체크 이미지 유무
+  setIsOpen?: Dispatch<SetStateAction<boolean>> | undefined // 모달 밖 클릭 시 close 유무
 }
 
-export default function NormalModal({ title, subtext, buttons, check }: NormalModalProps) {
+export default function NormalModal({ title, subtext, buttons, check, setIsOpen }: NormalModalProps) {
   const viewPort = useMediaQuery();
   const responsiveStyle = RESPONSIVE_STYLES[viewPort];
 
   return (
-    <Modal className={'flex ' + responsiveStyle.container}>
+    <Modal className={'flex ' + responsiveStyle.container} setIsOpen={setIsOpen}>
       {/* 체크 아이콘 */}
       {check && (
         <Check
