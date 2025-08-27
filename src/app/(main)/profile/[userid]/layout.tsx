@@ -1,5 +1,6 @@
 import { userValueType } from '@/entities/profile/Types';
 import UserHydration from '@/entities/profile/UserHydration';
+import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
 import UserInfo from '@/widgets/profile/UserInfo';
 import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
@@ -44,7 +45,7 @@ export default async function ProfilePage({ params, children }: ProfilePageProps
   if (!response) notFound(); // api 호출 실패 시 404 페이지
 
   return (
-    <div className='border-gray4 mt-[47px] mb-[62px] h-[1053px] w-[865px] overflow-hidden rounded-[5px] border'>
+    <div className='lg:border-gray4 lg:mt-[47px] lg:mb-[62px] lg:h-[1053px] lg:w-[865px] lg:overflow-hidden lg:rounded-[5px] lg:border'>
       <UserHydration userData={response} />
       <UserInfo>{children}</UserInfo>
     </div>

@@ -20,7 +20,7 @@ export default function FollowButton({ followingIds }: FollowButtonProps) {
     <>
       <button
         className={
-          'grow-3 cursor-pointer rounded-[5px] py-3 leading-[1.8] ' +
+          'grow-3 cursor-pointer rounded-[5px] py-3 leading-[0.7] lg:leading-[1.5] ' +
           colorChangeAnimation +
           followButton.style
         }
@@ -29,7 +29,7 @@ export default function FollowButton({ followingIds }: FollowButtonProps) {
       </button>
       <Link
         href={'/fixletter'}
-        className={'border-mainBlack grow rounded-[5px] border py-3 leading-[1.8]'}
+        className={'border-mainBlack grow rounded-[5px] border py-3 leading-[0.5] lg:leading-[1.5]'}
       >
         픽레터 보내기
       </Link>

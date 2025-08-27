@@ -20,7 +20,7 @@ export default function ProfileShareButton() {
   return (
     <>
       <button
-        className={'border-mainBlack mr-4 grow cursor-pointer rounded-[5px] border py-3'}
+        className={'border-mainBlack mr-4 grow cursor-pointer rounded-[5px] border py-3 leading-[0.5] lg:leading-[1.5]'}
         onClick={() => copyToClipboard(`http://localhost:3000/user/${params}`)}
       >
         프로필 공유

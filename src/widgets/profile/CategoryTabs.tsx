@@ -29,7 +29,7 @@ export default function CategoryTabs({ children }: CategoryTabsProps) {
 
   return (
     <div>
-      <div className='border-gray4 text-gray4 mt-6 flex h-[90px] border-t text-[20px]'>
+      <div className='border-gray4 text-gray4 mt-6 flex h-[53px] lg:h-[90px] border-t text-[14px] lg:text-[20px]'>
         {category.map((item) => (
           <button
             key={item.value}

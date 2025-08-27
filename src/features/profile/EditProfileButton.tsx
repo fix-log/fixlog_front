@@ -7,7 +7,7 @@ export default function EditProfileButton() {
       <Link
         href={'edit-account'}
         className={
-          'bg-mainRed hover:bg-mainDarkRed grow-2 rounded-[5px] py-3 leading-[1.8] text-white' +
+          'bg-mainRed hover:bg-mainDarkRed grow-2 rounded-[5px] py-[30px] lg:py-3 leading-[0.5] lg:leading-[1.5] text-white' +
           colorChangeAnimation
         }
       >
@@ -16,7 +16,7 @@ export default function EditProfileButton() {
       <Link
         href={'edit-profile'}
         className={
-          'bg-mainBlack grow-2 rounded-[5px] py-3 leading-[1.8] text-white hover:bg-black' +
+          'bg-mainBlack grow-2 rounded-[5px] py-[30px] lg:py-3 leading-[0.5] lg:leading-[1.5] text-white hover:bg-black' +
           colorChangeAnimation
         }
       >
