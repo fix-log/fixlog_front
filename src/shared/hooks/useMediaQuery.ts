@@ -22,6 +22,7 @@ export function useMediaQuery(styles: stylesType): Record<string, string> {
   const [size, setSize] = useState(0);
   useEffect(() => {
     const handleResize = () => setSize(window.innerWidth);
+    handleResize()
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
