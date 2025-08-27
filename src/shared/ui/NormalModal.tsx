@@ -10,7 +10,7 @@ const MOBILE_STYLE = {
   check: 'h-[37px] w-[37px]',
   title: 'pt-[20px] text-[22px]',
   subtext: 'text-[12px] pb-[20px]',
-  button: 'text-[10px] font-bold gap-1.5',
+  button: 'text-[13px] font-bold gap-1.5',
 };
 const DESKTOP_STYLE = {
   container: 'px-[75px] py-[70px]',
@@ -41,8 +41,7 @@ interface NormalModalProps {
 }
 
 export default function NormalModal({ title, subtext, buttons, check, setIsOpen }: NormalModalProps) {
-  const viewPort = useMediaQuery();
-  const responsiveStyle = RESPONSIVE_STYLES[viewPort];
+  const responsiveStyle = useMediaQuery(RESPONSIVE_STYLES);
 
   return (
     <Modal className={'flex ' + responsiveStyle.container} setIsOpen={setIsOpen}>

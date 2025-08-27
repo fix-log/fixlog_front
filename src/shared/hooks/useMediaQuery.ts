@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+'use client';
+
+import { useEffect, useState } from 'react';
 
 const VIEW_PORT = {
   mobile: 640,
@@ -6,17 +8,20 @@ const VIEW_PORT = {
   desktop: 1024,
 };
 
-type viewPortType = 'mobile' | 'tablet' | 'desktop';
+type viewPortKey = keyof typeof VIEW_PORT;
+type stylesType = {
+  [key in viewPortKey]: Record<string, string>;
+};
 
-export function useMediaQuery(): viewPortType {
-  const [size, setSize] = useState(window.innerWidth)
-  useEffect(()=>{
-    const handleResize = () => setSize(window.innerWidth)
+export function useMediaQuery(styles: stylesType): Record<string, string> {
+  const [size, setSize] = useState(0);
+  useEffect(() => {
+    const handleResize = () => setSize(window.innerWidth);
 
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize',handleResize)
-  },[])
-  if (VIEW_PORT.desktop <= size) return 'desktop';
-  else if (VIEW_PORT.tablet <= size) return 'tablet';
-  else return 'mobile';
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  if (VIEW_PORT.desktop <= size) return styles.desktop;
+  else if (VIEW_PORT.tablet <= size) return styles.tablet;
+  else return styles.mobile;
 }

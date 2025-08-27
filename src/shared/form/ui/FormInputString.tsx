@@ -2,6 +2,7 @@
 
 import { FieldValues, Path, useFormContext } from 'react-hook-form';
 import { focus, errorFocus } from './TailwindcssUtil';
+import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
 
 interface FormInputStringProps<T> {
   type: 'text' | 'number' | 'email' | 'password' | 'url';
@@ -44,7 +45,7 @@ export default function FormInputString<T extends FieldValues>({
       <div className='flex w-full'>
         <input
           className={
-            'border-gray4 my-[15px] h-[60px] w-full rounded-[5px] border-1 pr-[20px] pl-[17px] text-[18px] font-semibold focus:outline-none' +
+            'border-gray4 my-[15px] h-[60px] w-full rounded-[5px] border-1 pr-[20px] pl-[17px] font-semibold focus:outline-none' +
             focusClassName +
             disabledClassName
           }
