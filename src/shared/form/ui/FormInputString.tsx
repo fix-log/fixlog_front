@@ -2,7 +2,6 @@
 
 import { FieldValues, Path, useFormContext } from 'react-hook-form';
 import { focus, errorFocus } from './TailwindcssUtil';
-import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
 
 interface FormInputStringProps<T> {
   type: 'text' | 'number' | 'email' | 'password' | 'url';
