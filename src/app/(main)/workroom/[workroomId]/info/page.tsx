@@ -1,3 +1,5 @@
+import Badge from '@/shared/ui/Badge';
+
 interface PageProps {
   params: Promise<{ workroomId: string }>;
 }
@@ -51,36 +53,36 @@ export default async function Page({ params }: PageProps) {
           <div className='flex flex-col gap-4'>
             <h4 className='text-xl font-[800]'>• 개발 언어</h4>
             <div className='flex flex-wrap gap-2 pl-6'>
-              <Badge name='JavaScript' />
-              <Badge name='TypeScript' />
-              <Badge name='Python' />
-              <Badge name='Java' />
-              <Badge name='C#' />
+              <Badge tag='JavaScript' />
+              <Badge tag='TypeScript' />
+              <Badge tag='Python' />
+              <Badge tag='Java' />
+              <Badge tag='C#' />
             </div>
           </div>
 
           <div className='flex flex-col gap-4'>
             <h4 className='text-xl font-[800]'>• 기술 스택</h4>
             <div className='flex flex-wrap gap-2 pl-6'>
-              <Badge name='Express' />
-              <Badge name='Node.js' />
-              <Badge name='React' />
-              <Badge name='Next.js' />
-              <Badge name='AWS' />
-              <Badge name='PostgreSQL' />
-              <Badge name='Redis' />
-              <Badge name='Docker' />
+              <Badge tag='Express' />
+              <Badge tag='Node.js' />
+              <Badge tag='React' />
+              <Badge tag='Next.js' />
+              <Badge tag='AWS' />
+              <Badge tag='PostgreSQL' />
+              <Badge tag='Redis' />
+              <Badge tag='Docker' />
             </div>
           </div>
 
           <div className='flex flex-col gap-4'>
             <h4 className='text-xl font-[800]'>• 디자인 & 협업 툴</h4>
             <div className='flex flex-wrap gap-2 pl-6'>
-              <Badge name='Figma' />
-              <Badge name='Notion' />
-              <Badge name='Slack' />
-              <Badge name='Jira' />
-              <Badge name='Trello' />
+              <Badge tag='Figma' />
+              <Badge tag='Notion' />
+              <Badge tag='Slack' />
+              <Badge tag='Jira' />
+              <Badge tag='Trello' />
             </div>
           </div>
         </div>
@@ -214,13 +216,3 @@ export default async function Page({ params }: PageProps) {
     </section>
   );
 }
-
-// 나중에 공통 컴포넌트에 제대로 (일단 임시)
-
-const Badge = ({ name }: { name: string }) => {
-  return (
-    <span className='text-mainRed border-mainRed rounded-full border px-3 py-0.5 text-lg'>
-      {name}
-    </span>
-  );
-};
