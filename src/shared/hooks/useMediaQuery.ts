@@ -13,6 +13,11 @@ type stylesType = {
   [key in viewPortKey]: Record<string, string>;
 };
 
+// styles = {
+// mobile: {string: 'tailwindcss', ...},
+// tablet: {string: 'tailwindcss', ...},
+// desktop: {string: 'tailwindcss', ...}
+// }
 export function useMediaQuery(styles: stylesType): Record<string, string> {
   const [size, setSize] = useState(0);
   useEffect(() => {
