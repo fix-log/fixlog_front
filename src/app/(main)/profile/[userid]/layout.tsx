@@ -45,7 +45,7 @@ export default async function ProfilePage({ params, children }: ProfilePageProps
   if (!response) notFound(); // api 호출 실패 시 404 페이지
 
   return (
-    <div className='lg:border-gray4 lg:mt-[47px] lg:mb-[62px] lg:h-[1053px] lg:w-[865px] lg:overflow-hidden lg:rounded-[5px] lg:border'>
+    <div className='w-full lg:border-gray4 lg:mt-[47px] lg:mb-[62px] lg:h-[1053px] lg:w-[865px] lg:overflow-hidden lg:rounded-[5px] lg:border'>
       <UserHydration userData={response} />
       <UserInfo>{children}</UserInfo>
     </div>
