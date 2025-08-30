@@ -70,12 +70,12 @@ export default function FormDropdownButton<T extends FieldValues>({
         type='button'
         onClick={() => handleClick()}
         className={
-          'border-gray4 bg-mainWhite text-gray4 !my-[15px] min-h-[60px] w-full cursor-pointer rounded-[5px] border-1 text-left text-[20px]' +
+          'border-gray4 bg-mainWhite text-gray2 !my-[15px] min-h-[60px] w-full cursor-pointer rounded-[5px] border-1 text-left text-[18px]' +
           (open === label ? ' !pt-[14px]' : '')
         }
       >
         <div className='flex w-full items-center'>
-          <p className='grow !pl-[17px]'>{displayText}</p>
+          <p className='grow pl-[17px]'>{displayText}</p>
           <DropdownIcon type={type} form={open} target={label} />
         </div>
         {open === label && displayToggle[type]}

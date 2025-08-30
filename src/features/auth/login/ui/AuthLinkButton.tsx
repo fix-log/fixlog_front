@@ -11,7 +11,7 @@ export default function AuthLinkButton({ text, handleClick, className }: AuthLin
   return (
     <button
       className={
-        `text-gray5 cursor-pointer border-r-1 !px-3 text-[18px] font-bold last:border-none ` +
+        `text-gray5 flex-none cursor-pointer border-r-1 !px-3 text-[18px] font-bold last:border-none ` +
         className
       }
       onClick={handleClick}
