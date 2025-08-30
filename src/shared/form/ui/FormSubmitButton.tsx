@@ -16,7 +16,7 @@ export default function FormSubmitButton({ text, isSubmitting, className }: Form
   return (
     <button
       className={
-        `bg-mainBlack text-mainWhite !my-20 h-[60px] w-full cursor-pointer rounded-[5px] text-[20px] font-bold ` +
+        `bg-mainBlack text-mainWhite my-20 mb-5 lg:my-20 h-[60px] w-full cursor-pointer rounded-[5px] text-[20px] font-bold ` +
         className +
         ' hover:bg-mainRed' +
         colorChangeAnimation

@@ -10,6 +10,6 @@ export default async function RootLayout({
   const userStatus = cookieStore.get('userStatus')?.value;
   if (userStatus) redirect('/');
   return (
-    <div className='flex w-screen max-w-[500px] flex-col justify-center pb-[100px]'>{children}</div>
+    <div className='flex w-screen max-w-[500px] flex-col justify-center pb-0 lg:pb-[100px] px-5'>{children}</div>
   );
 }

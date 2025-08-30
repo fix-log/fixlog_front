@@ -44,7 +44,7 @@ export default function FormInputString<T extends FieldValues>({
       <div className='flex w-full'>
         <input
           className={
-            'border-gray4 !my-[15px] h-[60px] w-full rounded-[5px] border-1 !pr-[20px] !pl-[17px] text-[20px] focus:outline-none' +
+            'border-gray4 my-[15px] h-[60px] w-full rounded-[5px] border-1 pr-[20px] pl-[17px] font-semibold focus:outline-none' +
             focusClassName +
             disabledClassName
           }

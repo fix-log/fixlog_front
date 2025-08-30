@@ -26,7 +26,7 @@ export default function Step1({ step, setStep, setData }: Step1Props) {
       ? {
           text: '회원가입하기',
           api: '',
-          modal: <SignupModal setStep={setStep} setIsModalOpen={setIsCompleteModalOpen} />,
+          modal: <SignupModal setStep={setStep} />,
         }
       : // 프로필 수정일 때
         {

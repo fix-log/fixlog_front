@@ -3,5 +3,5 @@ interface FormHeaderProps {
 }
 
 export default function FormHeader({ title }: FormHeaderProps) {
-  return <h1 className='!my-14 cursor-default text-[34px] font-bold'>{title}</h1>;
+  return <h1 className='my-8 lg:m-[56px_0] cursor-default text-[34px] font-extrabold'>{title}</h1>;
 }

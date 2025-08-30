@@ -89,24 +89,41 @@
 html,
 body {
   height: 100vh;
+  position: relative;
 }
 
-body {
-  overflow-y: scroll; /* 항상 스크롤바 표시 */
+/* PC */
+@media (hover: hover) and (pointer: fine) {
+  /* 항상 스크롤바 표시 */
+  body {
+    overflow-y: scroll;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+  }
 }
 
-/* 스크롤바 스타일링으로 레이아웃 변화 최소화 */
-::-webkit-scrollbar {
-  width: 8px;
-}
+/* 모바일, 태블릿 */
+@media (hover: none) and (pointer: coarse) {
+  html,
+  body {
+    overflow-y: auto;
+    -ms-overflow-style: none; /* IE, Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 4px;
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
 }
 
 /* Swiper */
