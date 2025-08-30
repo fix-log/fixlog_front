@@ -6,7 +6,7 @@ interface WorkroomCardProps {
 
 export default function WorkroomCard({ data }: WorkroomCardProps) {
   return (
-    <div className='border-gray5 w-[253px] rounded-[5px] border-2 lg:h-[380px] lg:w-[400px]mb-[54px]'>
+    <div className='border-gray5 w-[253px] rounded-[5px] border-2 lg:w-[400px] mb-[54px]'>
       {/* 상단 모집현황 & 모집날짜 */}
       <div className='bg-mainWhite text-gray3 border-gray5 flex w-full items-center border-b p-[12px_22px] lg:p-[22px_36px]'>
         <div className='h-[12px] w-[12px] overflow-hidden rounded-full lg:h-[15px] lg:w-[15px]'>

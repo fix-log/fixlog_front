@@ -17,7 +17,6 @@ import {
 } from '@/features/profile/dummy';
 import CrewCard from '@/features/profile/CrewCard';
 import WorkroomCard from '@/features/profile/WorkroomCard';
-import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
 
 const EMPTY_TEXT = {
   crew: {
