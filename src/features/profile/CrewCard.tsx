@@ -1,7 +1,6 @@
 'use client';
 
-import { crewType } from "./dummy";
-
+import { crewType } from './dummy';
 
 interface CrewCardProps {
   data: crewType;
@@ -9,26 +8,37 @@ interface CrewCardProps {
 
 export default function CrewCard({ data }: CrewCardProps) {
   return (
-    <div className='bg-mainWhite border-gray5 flex h-[380px] w-[400px] flex-col gap-[13px] rounded-[5px] border-2 p-[32px_47px]'>
-      <div className='text-gray3 flex'>
+    <div className='bg-mainWhite border-gray5 flex w-[253px] flex-col gap-[8px] rounded-[5px] border-2 p-[26px_20px] text-[10px] lg:h-[380px] lg:w-[400px] lg:gap-[13px] lg:p-[32px_47px] lg:text-[18px]'>
+      {/* 상단 모집현황 & 모집날짜 */}
+      <div className='text-gray3 flex text-[10px] lg:text-[14px] mb-3 lg:mb-0'>
         <p className='text-pointDarkGreen font-extrabold'>
           {data.모집현황 ? '모집중' : '모집완료'}
         </p>
         <p>ㅣ</p>
         <p>{data.모집날짜}</p>
       </div>
-      <h1 className='text-[24px] leading-[130%] font-extrabold'>{data.제목}</h1>
+
+      {/* 내용 */}
+      <h1 className='text-[18px] leading-[130%] font-extrabold lg:text-[24px]'>{data.제목}</h1>
       <ul className='flex gap-3 font-medium'>
         {data.태그.map((item) => (
-          <li key={item} className='bg-gray6 text-gray3 rounded-[5px] p-[4px_15px]'>{item}</li>
+          <li key={item} className='bg-gray6 text-gray3 rounded-[5px] p-[2px_5px] lg:p-[4px_15px]'>
+            {item}
+          </li>
         ))}
       </ul>
-      <span className='border-mainRed bg-mainWhite text-mainRed my-[5px] mr-[15px] self-start rounded-[20px] border px-[10px] py-[5px] font-bold'>
+      <span className='border-mainRed bg-mainWhite text-mainRed my-[5px] mr-[15px] self-start rounded-[20px] border p-[4px_8px] font-bold lg:p-[5px_10px]'>
         {data.포지션}
       </span>
-      <div className='mt-auto flex h-[50px] justify-between gap-4 font-extrabold text-white'>
-        <button className='bg-mainBlack grow cursor-pointer rounded-[5px]'>모집글 수정</button>
-        <button className='bg-mainRed grow cursor-pointer rounded-[5px]'>지원자 확인</button>
+
+      {/* 버튼들 */}
+      <div className='mt-auto flex justify-between gap-4 font-bold text-white lg:font-extrabold'>
+        <button className='bg-mainBlack mt-2 h-[26px] grow cursor-pointer rounded-[5px] lg:mt-3.5 lg:h-[50px]'>
+          모집글 수정
+        </button>
+        <button className='bg-mainRed mt-2 h-[26px] grow cursor-pointer rounded-[5px] lg:mt-3.5 lg:h-[50px]'>
+          지원자 확인
+        </button>
       </div>
     </div>
   );

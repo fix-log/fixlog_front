@@ -42,11 +42,11 @@ export default function ProfileInfoPage() {
   return userInfoList.map((item) => (
     <div
       key={item.label}
-      className='bg-mainWhite text-mainRed my-[19px] flex items-center py-[30px] pl-[104px] font-semibold'
+      className='border-b-1 border-gray5 bg-mainWhite text-mainRed text-[12px] lg:text-[18px] lg:my-[19px] flex items-center py-[20px] lg:py-[30px] pl-[30px] lg:pl-[104px] font-semibold'
     >
-      <div className='flex w-full max-w-[280px] items-center'>
+      <div className='flex w-full max-w-[150px] lg:max-w-[280px] items-center'>
         {item.icon}
-        <p className='pl-[28px]'>{item.label}</p>
+        <p className='pl-[5px] lg:pl-[28px]'>{item.label}</p>
       </div>
       <p className='text-mainBlack'>{item.value}</p>
     </div>

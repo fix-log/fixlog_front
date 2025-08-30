@@ -1,22 +1,64 @@
-.swiper {
-  height: 480px;
-  overflow: hidden !important;
+/* 모바일 */
+@media (max-width: 1023px) {
+  .swiper {
+    min-height: 290px;
+    overflow: hidden !important;
+  }
+
+  .swiper-slide {
+    width: 253px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-slide:first-child {
+    margin-left: 30px;
+  }
+  .swiper-slide:last-child {
+    margin-right: 20px;
+  }
+
+  /* swiper 동그라미 공간 */
+  .swiper-pagination {
+    transform: scale(1) !important;
+  }
+
+  /* swiper 동그라미  */
+  .swiper-pagination-bullet {
+    margin: 0 5px !important;
+  }
 }
 
-.swiper-slide {
-  width: 380px !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+/* PC */
+@media (min-width: 1024px) {
+  .swiper {
+    height: 480px;
+    overflow: hidden !important;
+  }
 
-/* swiper 동그라미 공간 */
-.swiper-pagination {
-  bottom: 1px !important;
-  transform: scale(1.5) !important;
-}
+  .swiper-slide {
+    width: 380px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-/* swiper 동그라미  */
-.swiper-pagination-bullet {
-  margin: 0 10px !important;
+  .swiper-slide:first-child {
+    margin-left: 42px;
+  }
+  .swiper-slide:last-child {
+    margin-right: 30px;
+  }
+
+  /* swiper 동그라미 공간 */
+  .swiper-pagination {
+    bottom: 1px !important;
+    transform: scale(1.5) !important;
+  }
+
+  /* swiper 동그라미  */
+  .swiper-pagination-bullet {
+    margin: 0 10px !important;
+  }
 }

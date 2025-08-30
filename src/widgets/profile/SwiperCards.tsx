@@ -17,6 +17,7 @@ import {
 } from '@/features/profile/dummy';
 import CrewCard from '@/features/profile/CrewCard';
 import WorkroomCard from '@/features/profile/WorkroomCard';
+import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
 
 const EMPTY_TEXT = {
   crew: {
@@ -44,14 +45,15 @@ export default function SwiperCards({ category, title, className }: SwiperCardsP
   function isCrew(item: crewType | workroomType): item is crewType {
     return '모집날짜' in item; // crewType에만 있는 속성으로 판별
   }
+  
   return (
-    <div className={'py-[50px] pl-[42px] ' + cn(className)}>
-      <h1 className='mb-2 text-[32px] font-extrabold'>{title}</h1>
+    <div className={'py-[40px] lg:py-[50px] ' + cn(className)}>
+      <h1 className='ml-[30px] lg:ml-[42px] mb-[22px] text-[20px] lg:text-[32px] font-extrabold'>{title}</h1>
       {data?.length === 0 ? (
         <Empty {...(crewList.includes(category) ? EMPTY_TEXT.crew : EMPTY_TEXT.workroom)} />
       ) : (
         <Swiper
-          slidesPerView={2}
+          slidesPerView={'auto'}
           spaceBetween={15}
           pagination={{
             clickable: true,
