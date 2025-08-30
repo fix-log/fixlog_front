@@ -46,8 +46,8 @@ export default function SwiperCards({ category, title, className }: SwiperCardsP
   }
   
   return (
-    <div className={'py-[40px] lg:py-[50px] ' + cn(className)}>
-      <h1 className='ml-[30px] lg:ml-[42px] mb-[22px] text-[20px] lg:text-[32px] font-extrabold'>{title}</h1>
+    <div className={'py-[40px] md:py-[50px] ' + cn(className)}>
+      <h1 className='ml-[30px] md:ml-[42px] mb-[22px] text-[20px] md:text-[32px] font-extrabold'>{title}</h1>
       {data?.length === 0 ? (
         <Empty {...(crewList.includes(category) ? EMPTY_TEXT.crew : EMPTY_TEXT.workroom)} />
       ) : (

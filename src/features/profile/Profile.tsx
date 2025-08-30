@@ -25,27 +25,27 @@ export default function Profile({ totalFollower, setIsModalOpen }: ProfileProps)
           alt='유저 프로필'
           width={125}
           height={125}
-          className={'h-auto w-[59px] lg:w-[125px]'}
+          className={'h-auto w-[59px] md:w-[125px]'}
         />
 
         <div className='text-body-m flex flex-col !leading-[1.5]'>
-          <div className='flex items-center gap-3 text-[10px] font-bold lg:text-[14px]'>
-            <h1 className='text-[22px] font-extrabold lg:text-[32px]'>{userInfoData.nickname}</h1>
+          <div className='flex items-center gap-3 text-[10px] font-bold md:text-[14px]'>
+            <h1 className='text-[22px] font-extrabold md:text-[32px]'>{userInfoData.nickname}</h1>
 
-            <p className='border-mainRed text-mainRed rounded-full border-1 lg:border-2 px-[10px] py-[4px]'>
+            <p className='border-mainRed text-mainRed rounded-full border-1 md:border-2 px-[10px] py-[4px]'>
               LV. {userInfoData.level}
             </p>
 
-            <p className='border-pointDarkGreen text-pointDarkGreen rounded-full border-1 lg:border-2 px-[10px] py-[4px]'>
+            <p className='border-pointDarkGreen text-pointDarkGreen rounded-full border-1 md:border-2 px-[10px] py-[4px]'>
               경력 {userInfoData.career}
             </p>
           </div>
-          <p className='mt-1 inline-block text-[12px] font-medium lg:text-[18px]'>
+          <p className='mt-1 inline-block text-[12px] font-medium md:text-[18px]'>
             {userInfoData.email}
           </p>
 
           {isDesktop && (
-            <div className='text-gray3 mt-3 flex items-center gap-1 font-medium lg:text-[16px]'>
+            <div className='text-gray3 mt-3 flex items-center gap-1 font-medium md:text-[16px]'>
               <UserPlus className='h-[15px] w-[15px]' />
               <p
                 className='cursor-pointer !leading-[1.5] hover:underline'
@@ -61,7 +61,7 @@ export default function Profile({ totalFollower, setIsModalOpen }: ProfileProps)
         <Link href={`${userInfoData.viewUserId}/review`} className='ml-auto'>
           <ChevronRight
             className={
-              'text-gray3 hover:text-gray1 h-[30px] lg:h-[70px] w-[30px] lg:w-[60px] cursor-pointer' + colorChangeAnimation
+              'text-gray3 hover:text-gray1 h-[30px] md:h-[70px] w-[30px] md:w-[60px] cursor-pointer' + colorChangeAnimation
             }
           />
         </Link>

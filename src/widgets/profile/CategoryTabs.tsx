@@ -29,7 +29,7 @@ export default function CategoryTabs({ children }: CategoryTabsProps) {
 
   return (
     <div>
-      <div className='border-gray4 text-gray4 mt-6 flex h-[53px] lg:h-[90px] border-t w-full text-[14px] lg:text-[20px]'>
+      <div className='border-gray4 text-gray4 mt-6 flex h-[53px] md:h-[90px] border-t w-full text-[14px] md:text-[20px]'>
         {category.map((item) => (
           <button
             key={item.value}
@@ -46,7 +46,7 @@ export default function CategoryTabs({ children }: CategoryTabsProps) {
           </button>
         ))}
       </div>
-      <div className='bg-gray6 lg:h-screen p-[5px] w-full'>{children}</div>
+      <div className='bg-gray6 md:h-screen p-[5px] w-full'>{children}</div>
     </div>
   );
 }

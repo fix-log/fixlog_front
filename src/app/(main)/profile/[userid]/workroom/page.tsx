@@ -11,7 +11,7 @@ export default function WorkroomPage() {
   if (isMe) notFound();
 
   return (
-    <div className='lg:h-screen lg:max-h-[675px] lg:overflow-y-auto'>
+    <div className='md:h-screen md:max-h-[675px] md:overflow-y-auto'>
       <SwiperCards category='createdWorkroom' title={`👑 ${nickname}님이 만든 워크룸`} />
       <SwiperCards
         category='joinedWorkroom'

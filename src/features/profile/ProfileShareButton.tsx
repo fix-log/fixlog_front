@@ -24,7 +24,7 @@ export default function ProfileShareButton() {
     <>
       <button
         className={
-          'border-mainBlack mr-4 grow cursor-pointer rounded-[5px] border py-3 leading-[0.5] lg:leading-[1.5]'
+          'border-mainBlack mr-4 grow cursor-pointer rounded-[5px] border py-3 leading-[0.5] md:leading-[1.5]'
         }
         onClick={() => copyToClipboard(`http://localhost:3000/user/${params}`)}
       >

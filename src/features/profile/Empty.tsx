@@ -13,10 +13,10 @@ export default function ChatEmpty({ heading, subtext }: ChatEmptyProps) {
         alt='x_emput'
         width={80}
         height={80}
-        className='mt-[35px] lg:mt-[60px] mb-[15px] lg:mb-[25px] w-[50px] lg:w-[80px]'
+        className='mt-[35px] md:mt-[60px] mb-[15px] md:mb-[25px] w-[50px] md:w-[80px]'
       />
-      <div className='text-gray4 text-[18px] font-bold lg:text-[24px]'>{heading}</div>
-      {subtext && <div className='text-gray4 text-[12px] lg:text-[18px]'>{subtext}</div>}
+      <div className='text-gray4 text-[18px] font-bold md:text-[24px]'>{heading}</div>
+      {subtext && <div className='text-gray4 text-[12px] md:text-[18px]'>{subtext}</div>}
     </div>
   );
 }

@@ -30,7 +30,7 @@ export default function UserInfo({ children }: UserInfoProps) {
   return (
     <>
       <div className='w-full cursor-default'>
-        <div className='px-3 lg:px-10 pt-12'>
+        <div className='px-3 md:px-10 pt-12'>
           <Profile totalFollower={follower.total_count} setIsModalOpen={setIsModalOpen} />
           <InfoButton followingIds={followingIds} />
         </div>

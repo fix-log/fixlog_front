@@ -1,5 +1,5 @@
 /* 모바일 */
-@media (max-width: 1023px) {
+@media (max-width: 767px) {
   .swiper {
     min-height: 290px;
     overflow: hidden !important;
@@ -30,8 +30,8 @@
   }
 }
 
-/* PC */
-@media (min-width: 1024px) {
+/* PC & 태블릿 */
+@media (min-width: 768px) {
   .swiper {
     height: 480px;
     overflow: hidden !important;

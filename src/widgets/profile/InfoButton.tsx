@@ -16,7 +16,7 @@ export default function InfoButton({ followingIds }: InfoButtonProps) {
   );
 
   return (
-    <div className='text-[12px] lg:text-[16px] mt-7 flex h-[30px] lg:h-[50px] gap-4 text-center font-bold'>
+    <div className='text-[12px] md:text-[16px] mt-7 flex h-[30px] md:h-[50px] gap-4 text-center font-bold'>
       {profileActionButton}
       <ProfileShareButton />
     </div>

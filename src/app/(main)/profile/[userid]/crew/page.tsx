@@ -11,7 +11,7 @@ export default function CrewPage() {
   if (!isMe) notFound();
 
   return (
-    <div className='lg:h-screen lg:max-h-[675px] overflow-y-auto'>
+    <div className='md:h-screen md:max-h-[675px] overflow-y-auto'>
       <SwiperCards category='myCrew' title={`✨ ${nickname}님의 크루모집`} />
       <SwiperCards
         category='appliedCrew'
