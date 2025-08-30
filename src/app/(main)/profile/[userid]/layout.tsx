@@ -1,6 +1,5 @@
 import { userValueType } from '@/entities/profile/Types';
 import UserHydration from '@/entities/profile/UserHydration';
-import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
 import UserInfo from '@/widgets/profile/UserInfo';
 import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
