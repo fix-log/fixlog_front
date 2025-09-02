@@ -30,13 +30,16 @@ export default function UserInfo({ children }: UserInfoProps) {
   return (
     <>
       <div className='w-full cursor-default'>
-        <div className='px-3 md:px-10 pt-12'>
+        <div className='px-3 pt-12 md:px-10'>
           <Profile totalFollower={follower.total_count} setIsModalOpen={setIsModalOpen} />
           <InfoButton followingIds={followingIds} />
         </div>
         <CategoryTabs>{children}</CategoryTabs>
         {isModalOpen && (
-          <Modal setIsOpen={setIsModalOpen}>
+          <Modal
+            setIsOpen={setIsModalOpen}
+            className='top-auto h-auto min-h-[90vh] w-screen rounded-b-none md:inset-0 md:h-fit md:min-h-auto md:w-fit md:rounded-[5px]'
+          >
             <FollowModal
               setIsOpen={setIsModalOpen}
               followData={follow}
