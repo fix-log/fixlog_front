@@ -2,6 +2,7 @@
 
 import { userInfoStore } from '@/entities/profile/UserInfoStore';
 import { followData } from '@/features/user/api/Types';
+import getNumericStyle from '@/shared/lib/getNumericStyle';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -48,12 +49,22 @@ export default function FollowButton({ followUsers, tap, followingIds }: FollowB
 
   const button = isMe ? viewMyButtons : viewUserButtons;
 
+  const containerHeight = getNumericStyle('#follow-container', 'height') as number;
+  const tapHeight = getNumericStyle('#follow-tap', 'height') as number;
+  const closeHeight = getNumericStyle('#close-follow-modal', 'height') as number;
+  const contentHeght = Math.floor(containerHeight - (tapHeight + closeHeight));
+  console.log(contentHeght);
+
   interface following {
     user_id: number;
     username: string;
   }
+
   return (
-    <div className='h-[80vh] md:h-[730px] overflow-y-scroll'>
+    <div
+      style={{ '--h': `${contentHeght}px` } as React.CSSProperties}
+      className={`md:h-[var(--h)] h-[80vh] overflow-y-scroll`}
+    >
       {followUsers[tap].following.map((item: following) => {
         const ss = followingIds.includes(item.user_id) ? 'following' : 'follower';
         return (
