@@ -30,7 +30,7 @@ export default function EditProfileModal({ setStep, setIsModalOpen }: EditProfil
         className='bg-mainRed w-full cursor-pointer rounded-[5px] py-[10px] text-white'
         type='button'
         onClick={() => {
-          router.push(`/profile/${userId}`);
+          router.push(`/profile/${userId}/info`);
           setStep(1);
         }}
       >

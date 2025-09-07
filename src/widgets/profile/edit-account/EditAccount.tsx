@@ -25,7 +25,7 @@ export default function EditAccount() {
     <>
       <BackIconButton />
       <FormProvider {...form}>
-        <div className='flex w-full max-w-[500px] flex-col items-center'>
+        <div className='flex w-full max-w-[500px] flex-col px-5 items-center'>
           <FormHeader title='계정 정보 수정' />
           <form className='w-full' onSubmit={form.handleSubmit(handleSubmit)}>
             <FormInputString

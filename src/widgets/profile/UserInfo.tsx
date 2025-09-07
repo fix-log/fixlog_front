@@ -11,7 +11,6 @@ import Modal from '@/shared/ui/Modal';
 import FollowModal from './FollowModal';
 import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
 import { AnimatePresence, motion } from 'motion/react';
-import FollowModalMobile from './FollowModalMobile';
 
 interface UserInfoProps {
   children: ReactNode;

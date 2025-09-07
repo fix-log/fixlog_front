@@ -21,7 +21,7 @@ export default function FormProfileImg({ profileImg }: FormProfileImgProps) {
 
   return (
     <div className='flex w-full items-center justify-center'>
-      <div className='border-gray6 bg-gray6 relative mb-5 h-[150px] w-[150px] overflow-hidden rounded-full border'>
+      <div className='border-gray6 bg-gray6 relative mb-5 h-[100px] w-[100px] md:h-[150px] md:w-[150px] overflow-hidden rounded-full border'>
         <input
           id='profile-img'
           type='file'

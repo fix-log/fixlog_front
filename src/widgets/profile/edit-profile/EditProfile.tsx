@@ -122,7 +122,7 @@ export default function EditProfile() {
 
   return (
     <FormProvider {...getFormData()}>
-      {getElement()}
+      <div className='flex flex-col w-full items-center px-5'>{getElement()}</div>
       {isModalOpen && leaveGuard}
     </FormProvider>
   );
